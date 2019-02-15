@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>DeepStone | 深度學習，滴水穿石</title>
+<meta property="og:title" content="深度學習，滴水穿石" />
+<meta property="og:description" content="深石科技為一全方位線上，線下，出版，軟體的教育解決方案" />
+<meta property="og:url" content="http://www.deepstone.com.tw" />
+<meta property="og:image" content="http://www.deepstone.com.tw/deepstoneCoding.jpg" />
+  <link rel="shortcut icon" type="image/png" href="/assets/favicon-b1af13a9355bcc9fc7e2d1e67ba3485a1274b3f46bca5907b4a2dcdc3bb89094.png" />
+  <link rel="stylesheet" media="all" href="/assets/creative/manifest-e62ad48fd539f1fc2d119da15a3ed3aa35f53b8d51a04eab53c1d187b2f0d053.css" />
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+  <script src="/assets/creative/manifest-61a0f354e764b0314ce0a916bd7d837c205fbfb0b358d56c2879c25ece7e7bf3.js"></script>
+  <meta name="csrf-param" content="authenticity_token" />
+<meta name="csrf-token" content="0oy9u6qkbq5l+FoHsei8gjsVVSKccK4Dc99Kyu6vuk9I7atVU3l0io44L+1twcew6oEVn7XlWUhsT7A2LnOmzw==" />
+</head>
+
+<body>
+
+<nav id="mainNav" class="navbar navbar-default navbar-fixed-top wow fadeInDown top__element">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <!--<a class="navbar-brand page-scroll" href="#top"><span style="font-size:large;">DeepStone深石教育</span></a> -->
+      <a class="navbar-brand page-scroll" href="#top"><span style="font-size:large;"><img height="40" width="45" style="margin-bottom:0px;" src="/assets/logo-201d3e5a8982214de7ad639232c15c6a8306ab9e51c2cacbe425771a8aa1e769.png" alt="Logo" />DeepStone深石數位科技</span></a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+          <a class="page-scroll" href="#about"><span style="font-size:large;">關於DeepStone</span></a>
+        </li>
+        <li>
+          <a class="page-scroll" href="#services"><span style="font-size:large;">DeepStone的特色</span></a>
+        </li>
+        <li>
+          <a class="page-scroll" href="#portfolio"><span style="font-size:large;">我們的服務</span></a>
+        </li>
+        <li>
+          <a class="page-scroll" href="#contact"><span style="font-size:large;">經營團隊</span></a>
+        </li>
+
+      </ul>
+    </div>
+    <!-- /.navbar-collapse -->
+  </div>
+  <!-- /.container-fluid -->
+</nav>
+
+
+
+<header>
+<div id="bgndVideo" class="player" 
+     data-property="{videoURL:'e4vmNtYm7HE',quality:'highres',loop:true,showYTLogo:false,showControls:false,containment:'header',autoPlay:true, mute:true, startAt:1, opacity:1}">
+</div>
+	<div class="header-content">
+		<div class="header-content-inner">
+   			<h1>Deep Learning<br>深度學習，滴水穿石</h1>
+    	  	<hr>
+      			<p>全方位線上線下綜合學習隆重登場，輕輕鬆鬆應付考試、求職、進修、深造</p>
+					</hr>	
+		</div>
+	</div> 
+</header>  
+<style>
+    header{
+        background-color:black;
+    }
+</style>
+<script>
+    $(function(){
+      jQuery("#bgndVideo").YTPlayer();
+    });
+</script>
+
+<div id="about">
+  <div class="insideparticles">
+    <h2 class="section-heading">深度學習Deep Learning</h2>
+    <hr class="light">
+    <p class="text-faded">DeepStone Digital Technology是一個全方位的線上線下教育Solution<br>提供書籍、軟體、認證、教材、教具等，完整的解決方案</p>
+  </div>
+</div>
+<script>
+particlesJS.load('about', '/particles.json', function() {;});
+</script>
+
+<section id="services">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <h2 class="section-heading">深石數位科技的深度學習理念</h2>
+        <hr class="primary">
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-3 col-md-6 text-center">
+        <div class="service-box">
+          <div class="hvr-buzz-out">
+            <i class="fa fa-4x fa-newspaper-o text-primary wow rollIn"></i>
+          </div>
+          <h3>領先全球的認證SSE</h3>
+          <p class="text-muted">號稱小矽谷的南加州爾灣市，擁有全球頂尖的科技公司。我們獨家取得科技認證SSE亞洲區總代理</p>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 text-center">
+        <div class="service-box">
+          <div class="hvr-pulse">
+            <i class="fa fa-4x fa-book text-primary wow bounceInLeft"></i>
+          </div>
+          <h3>書籍及教材</h3>
+          <p class="text-muted">六家出版公司：上奇資訊，全國最專業Adobe教材，佳魁資訊，台灣最領先的資訊科技圖書，以及其它出版品</p>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 text-center">
+        <div class="service-box">
+          <div class="hvr-wobble-to-bottom-right">
+            <i class="fa fa-4x fa-language text-primary wow tada"></i>
+          </div>
+          <h3>專業認證智慧模擬考</h3>
+          
+          <p class="text-muted">勞動部及金融研訓院的證照考試,全人工智慧模擬考，可根據使用者的程度、進度，自動產生多種測試模式，幫助考生在提高應考功力指數</p>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 text-center">
+        <div class="service-box">
+          <div class="hvr-wobble-top">
+            <i class="fa fa-4x fa-connectdevelop text-primary wow rubberBand"></i>
+          </div>
+          <h3>教具軟體及設備</h3>
+          <p class="text-muted">專業的繪圖工具，專業軟體、雲端及大數據服務以及最新科技的AR、VR學習教具，並提供專業講師</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="no-padding" id="portfolio">
+  <div class="container-fluid">
+    <div class="row no-gutter">
+      <div class="col-lg-4 col-sm-4">
+        <a href="http://www.siliconstone.com/" class="portfolio-box">
+          <img class="img-responsive" alt="" src="/assets/creative/portfolio/sse3-9ac17a78bc545158147776e22989c2a52ed7412ee22fe5ea2143291347a56869.jpg" />
+          <div class="portfolio-box-caption">
+            <div class="portfolio-box-caption-content">
+              <div class="project-name contact-whitetext">
+                美國SiliconStone Education專業認證
+              </div>
+              <div class="project-category text-faded contact-whitetext">
+                Adobe、攝影、3D動畫<br>大數據，Office、餐飲、茶藝
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>      
+      <div class="col-lg-4 col-sm-4">
+        <a href="http://www.grandtech.info/" class="portfolio-box">
+          <img class="img-responsive" alt="" src="/assets/creative/portfolio/grandtech3-7e99632999eda9cb1d43747da5e83fd97891a54a6ea5611a1a61f0acb863cdda.jpg" />
+          <div class="portfolio-box-caption">
+            <div class="portfolio-box-caption-content">
+              <div class="project-name contact-whitetext">
+                上奇資訊
+              </div>
+              <div class="project-category text-faded contact-whitetext contact-whitetext">
+                Adobe系列，程式語言，3D動畫<br>其它電腦類...
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+      <div class="col-lg-4 col-sm-4">
+        <a href="http://www.topteam.cc/" class="portfolio-box">
+          <img class="img-responsive" alt="" src="/assets/creative/portfolio/topteam3-79b616e0c929efc97aa25548f450176b39a9dda42be4fafa97afb47bfcfb3700.jpg" />
+          <div class="portfolio-box-caption">
+            <div class="portfolio-box-caption-content">
+              <div class="project-name contact-whitetext">
+                佳魁資訊
+              </div>
+              <div class="project-category text-faded contact-whitetext">
+
+                大數據，物聯網、雲端技術<br>物聯網技術，網頁設計...
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+      <div class="col-lg-4 col-sm-4">
+        <a href="http://www.grandtimes.com.tw/" class="portfolio-box">
+          <img class="img-responsive" alt="" src="/assets/creative/portfolio/GTI-78b25d61ec992b150ee4ac3d2ad52432ae74310cbcec57ae8227bd35435fa78d.jpg" />
+          <div class="portfolio-box-caption">
+            <div class="portfolio-box-caption-content">
+              <div class="project-name contact-whitetext">
+                上奇時代、拓客，有意思，佳魁文化
+              </div>
+              <div class="project-category text-faded contact-whitetext">
+                生活、財經、旅遊、時尚<br>時事，科技，健康，職場
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+      <div class="col-lg-4 col-sm-4">
+        <a href="http://www.jobexam.tw/" class="portfolio-box">
+          <img class="img-responsive" alt="" src="/assets/creative/portfolio/jobexam-2291765907696b086e32fc6da35951d25db77358231a8afa15117f47a938d402.jpg" />
+          <div class="portfolio-box-caption">
+            <div class="portfolio-box-caption-content">
+              <div class="project-name contact-whitetext">
+                JobExam勞動部、金研院專業認證
+              </div>
+              <div class="project-category text-faded contact-whitetext">
+                甲乙丙級專業認證，金融研訓院<br>保險，銀行行員、房仲業證書
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+      <div class="col-lg-4 col-sm-4">
+        <a href="http://demo.neostation.net/login" class="portfolio-box">
+          <img class="img-responsive" alt="" src="/assets/creative/portfolio/drop-ad7ea5996b4b1b853fd8e993973c94abd0bffa66a747b3a7d79b3023a238b113.jpg" />
+          <div class="portfolio-box-caption">
+            <div class="portfolio-box-caption-content">
+              <div class="project-name contact-whitetext">
+                JobExam勞動部、金研院專業認證
+              </div>
+              <div class="project-category text-faded contact-whitetext">
+                甲乙丙級專業認證，金融研訓院<br>保險，銀行行員、房仲業證書
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<aside class="bg-dark">
+    <div class="container text-center">
+        <div class="call-to-action">
+            <h2>深石數位科技的服務</h2>
+            <!-- <a href="#" class="btn btn-default btn-xl"><span style="font-size:large;">深入了解...</span></a> -->
+        </div>
+    </div>
+</aside>
+
+<section id="contact" class="parallax-window" data-parallax="scroll" data-image-src=/assets/snow-adc0bbd2e820406a35f9ce6f5a024528ee7a3d2ca6ede884ff35bd247d320886.jpg>
+  <div class="container contact-whitetext">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <h2 class="section-heading">經營團隊</h2>
+        <hr class="primary">
+      </div>
+    </div>
+  </div>
+  <div class="container contact-whitetext">
+    <div class="row">
+       <div class="col-lg-4 col-md-6">
+        <div class="service-box">
+          <br><br><br><br><h3><class="text-muted text-center" style="margin-left: 35px;">業務總監：鄭義盟</h3>
+          <div class="hovereffect">
+            <img height="429" width="266" style="margin-left:0px;" class="img-rounded" src="/assets/james-311b675713714ee450610d2502b8ad5dbe094854b8b4966e1911d1b002e41262.jpg" alt="James" />
+            <div class="overlay">
+              <h2>最棒的團隊<br>最佳的服務</h2>
+            </div>
+          </div>
+          <p style="margin-left: 15px;">jamescheng@deepstone.com.tw</p>
+        </div>
+      </div>
+    <div class="col-lg-4 col-md-4">
+        <div class="service-box">
+          <h3><class="text-muted" style="margin-left: 95px;">總經理:洪錦魁</h3>
+          <div class="hovereffect">
+            <img height="529" width="360" style="margin-right:0px;" class="img-rounded" src="/assets/jk-a076d5d1db66bb03451a2de84f0c75d426347c4b293977204c0e76a47ad7cbdd.jpg" alt="Jk" />
+            <div class="overlay">
+              <h2>專業電腦作者及專業經理人</h2>
+            </div>
+          </div>
+          <p style="margin-left: 95px;">cshung@deepstone.com.tw</p>
+        </div>
+      </div>
+       <div class="col-lg-4 col-md-4">
+        <div class="service-box">
+          <br><br><br><br><h3><class="text-muted" style="margin-left: 55px;">銷售總監:李湘羚</h3>
+
+          <div class="hovereffect">
+            <img height="429" width="260" style="margin-left:20px;" class="img-rounded" src="/assets/sherry-7d637cbd0271c3d9f05c62681e25016ba844749eb99426bbd5c28dab9d7eb3d4.jpg" alt="Sherry" />
+            <div class="overlay">
+              <h2>機會是留給準備好的人</h2>
+            </div>
+          </div>
+          <p style="margin-left: 55px;">sherrylee@topteam.cc</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<footer class="footer-distributed">
+  <div class="footer-left">
+    <img height="130" width="130" src="/assets/logo-201d3e5a8982214de7ad639232c15c6a8306ab9e51c2cacbe425771a8aa1e769.png" alt="Logo" />
+    <p class="footer-company-name"><br>深石數位科技股份有限公司&copy; 2016<br>DeepStone Digital Technology Co. Ltd.&copy; 2016</p>
+  </div>
+
+  <div class="footer-center">
+    <div>
+      <i class="fa fa-map-marker"></i>
+      <p><span>11415台北市中山區南京東路二段98號8F-1</span> 台北, 台灣</p>
+    </div>
+    <div>
+      <i class="fa fa-phone"></i>
+      <p>+8862 2562-7756(代表號)<br>+8862 2562-7969</p>
+    </div>
+    <div>
+      <i class="fa fa-envelope"></i>
+      <p>service@deepstone.com.tw</p>
+    </div>
+  </div>
+  <div class="footer-right">
+    <p class="footer-company-about">
+    <span>有關深石數位科技</span>
+    前身為上奇資訊，致力於最先進的教育方法論，綜合了書籍、教材、教具、專業認證、軟體、雲端等技術，成立深石數位科技，透過最新深度學習方法，達到人人學有所用的目標。
+    </p>
+    <div class="footer-icons">
+      <!--<a href="#"><i class="fa fa-facebook"></i></a> -->
+    </div>
+    <!-- <script src="http://www.onlinetest.com.tw/jquery.ripples-min.js"></script> -->
+    <script>
+$(document).ready(function() {
+  try {
+    $('footer').ripples({
+      resolution: 512,
+      dropRadius: 20, //px
+      perturbance: 0.01,
+    });
+  }
+  catch (e) {
+    $('.error').show().text(e);
+  }
+
+  // Automatic drops
+  setInterval(function() {
+    var $el = $('');
+    var x = Math.random() * $el.outerWidth();
+    var y = Math.random() * $el.outerHeight();
+    var dropRadius = 20;
+    var strength = 0.04 + Math.random() * 0.04;
+
+    $el.ripples('drop', x, y, dropRadius, strength);
+  }, 5000);
+});
+    </script>
+</footer>
+
+
+
+
+</body>
+</html>
