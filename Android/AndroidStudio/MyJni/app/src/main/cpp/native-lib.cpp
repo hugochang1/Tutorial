@@ -463,3 +463,39 @@ Java_com_example_hugo_myjni_MainActivity_nativeCallbacks(
     env->DeleteLocalRef(c3);
 }
 
+//-------------------------------------------------------------------------------------------------------------------------------------------
+#include <pthread.h>
+
+JavaVM *g_jvm = NULL;
+jobject g_obj = NULL;
+
+void* jni_thread(void* data) {
+    LOGD("jni_thread 1");
+    JNIEnv *env;
+    if(g_jvm->AttachCurrentThread(&env, NULL) != JNI_OK) {
+        LOGD("AttachCurrentThread() failed");
+    }
+
+    jmethodID mid;
+    jclass c1 = env->GetObjectClass(g_obj);
+
+    mid = env->GetMethodID(c1, "callback", "()V");
+    env->CallVoidMethod(g_obj, mid);
+
+    if(g_jvm->DetachCurrentThread() != JNI_OK) {
+        LOGD("DetachCurrentThread() failed");
+    }
+    return NULL;
+}
+
+extern "C" JNIEXPORT void JNICALL
+Java_com_example_hugo_myjni_MainActivity_nativeThread(
+        JNIEnv* env,
+        jobject thisObj) {
+    LOGD("nativeThread");
+    env->GetJavaVM(&g_jvm);
+    g_obj = env->NewGlobalRef(thisObj);
+
+    pthread_t t;
+    pthread_create(&t, NULL, &jni_thread, NULL);
+}

@@ -63,6 +63,8 @@ public class MainActivity extends AppCompatActivity {
         log(c);
 
         nativeCallbacks();
+
+        nativeThread();
     }
 
     @Override
@@ -204,6 +206,8 @@ public class MainActivity extends AppCompatActivity {
     public native void nativeModifyClass(MyClass c);
 
     public native void nativeCallbacks();
+
+    public native void nativeThread();
 
     public static void log(Object msg) {
         Log.i("hugo_app", "" + msg);
