@@ -1,3 +1,7 @@
+# gdb test
+# gdb test core_dump
+
+-------------------------------------------------------------------------------
 GNU gdb (Ubuntu 7.7.1-0ubuntu5~14.04.3) 7.7.1
 Copyright (C) 2014 Free Software Foundation, Inc.
 License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
@@ -63,3 +67,10 @@ $5 = {a1 = 0 '\000', a2 = 0}
 
 (gdb) print s.d.a2
 $6 = 0
+
+(gdb) info sharedlibrary
+From                To                  Syms Read   Shared Object Library
+0x00007ffff7ddab00  0x00007ffff7df55b0  Yes         /lib64/ld-linux-x86-64.so.2
+0x00007ffff7a30520  0x00007ffff7b78e03  Yes         /lib/x86_64-linux-gnu/libc.so.6
+
+(gdb) set solib-search-path /lib64/ld-linux-x86-64.so.2 /lib/x86_64-linux-gnu/libc.so.6
