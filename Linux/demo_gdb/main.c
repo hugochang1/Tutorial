@@ -10,13 +10,13 @@ typedef struct {
   int b;
   char c[32];
   my_struct1 d;
-}
+} my_struct2;
 
 typedef enum {
   ENUM_A = 0,
   ENUM_B = 1,
   ENUM_C = 2,
-} my_enum
+} my_enum;
 
 static my_enum en = ENUM_B;
 static my_struct2 s;
