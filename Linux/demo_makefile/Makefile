@@ -29,7 +29,7 @@ CXXOBJS=$(CXXSRC:.cpp=.o)
 all: $(EXECUTABLE)
 
 $(EXECUTABLE): $(COBJS) $(CXXOBJS)
-	$(CXX) $(COBJS) $(CXXOBJS) $(LIBS) $(FLAGS) -o $@
+	$(CXX) $(COBJS) $(CXXOBJS) $(LIBS) $(FLAGS) $(CPPFLAGS) -o $@
 
 %.o : %.c
 	$(CC) -g -c $(INCLUDE) $(FLAGS) -o $@ $<
