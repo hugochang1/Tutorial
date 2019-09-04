@@ -1,0 +1,12 @@
+# case sensitive
+find ./ -name file_name
+find ./ -name file*
+
+# case insensitive
+find ./ -iname file_name
+
+
+grep keyword ./ -r
+grep keyword ./ -r --include=file_name
+grep keyword ./ -r --include=*.cpp
+
