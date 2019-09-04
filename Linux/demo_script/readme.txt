@@ -11,6 +11,7 @@ find ./ -iname file_name
 
 find ./ -type f -name file_name
 find ./ -type d -name folder_name
+find ./ -type d -name "folder_*"
 
 ----------------------------------------------------
         grep
