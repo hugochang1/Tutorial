@@ -9,8 +9,8 @@ find ./ -name file*
 # case insensitive
 find ./ -iname file_name
 
-find ./ -type f file_name
-find ./ -type d folder_name
+find ./ -type f -name file_name
+find ./ -type d -name folder_name
 
 ----------------------------------------------------
         grep
