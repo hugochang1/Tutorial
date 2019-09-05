@@ -20,3 +20,10 @@ grep keyword ./ -r
 grep keyword ./ -r --include=file_name
 grep keyword ./ -r --include=*.cpp
 
+
+----------------------------------------------------
+        objdump
+to check which libraries your module needed
+----------------------------------------------------
+objdump -x | grep NEEDED
+
