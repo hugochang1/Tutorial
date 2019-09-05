@@ -25,5 +25,5 @@ grep keyword ./ -r --include=*.cpp
         objdump
 to check which libraries your module needed
 ----------------------------------------------------
-objdump -x | grep NEEDED
+objdump -x your_module | grep NEEDED
 
