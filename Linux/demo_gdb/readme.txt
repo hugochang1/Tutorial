@@ -68,6 +68,19 @@ $5 = {a1 = 0 '\000', a2 = 0}
 (gdb) print s.d.a2
 $6 = 0
 
+(gdb) info variables
+(gdb) info args
+(gdb) info locals
+d = 123
+en = ENUM_C
+b = 2
+
+(gdb) select-frame 1
+(gdb) info locals
+en = ENUM_C
+b = 2
+
+
 (gdb) info sharedlibrary
 From                To                  Syms Read   Shared Object Library
 0x00007ffff7ddab00  0x00007ffff7df55b0  Yes         /lib64/ld-linux-x86-64.so.2
