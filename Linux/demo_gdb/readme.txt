@@ -74,3 +74,20 @@ From                To                  Syms Read   Shared Object Library
 0x00007ffff7a30520  0x00007ffff7b78e03  Yes         /lib/x86_64-linux-gnu/libc.so.6
 
 (gdb) set solib-search-path /lib64/ld-linux-x86-64.so.2 /lib/x86_64-linux-gnu/libc.so.6
+
+
+(gdb) info thread
+  Id   Target Id         Frame 
+  1    Thread 0x7ffff7fde700 (LWP 3381) "test" 0x00007ffff78bc30d in nanosleep () at ../sysdeps/unix/syscall-template.S:84
+* 2    Thread 0x7ffff77ef700 (LWP 3382) "test" 0x0000000000400796 in crash_here () at main.c:27
+  3    Thread 0x7ffff6fee700 (LWP 3383) "test" 0x00007ffff78bc30d in nanosleep () at ../sysdeps/unix/syscall-template.S:84
+
+(gdb) thread 1
+[Switching to thread 1 (Thread 0x7ffff7fde700 (LWP 3418))]
+#0  0x00007ffff78bc30d in nanosleep () at ../sysdeps/unix/syscall-template.S:84
+84	in ../sysdeps/unix/syscall-template.S
+
+(gdb) bt
+#0  0x00007ffff78bc30d in nanosleep () at ../sysdeps/unix/syscall-template.S:84
+#1  0x00007ffff78bc25a in __sleep (seconds=0) at ../sysdeps/posix/sleep.c:55
+#2  0x00000000004008e7 in main () at main.c:71
