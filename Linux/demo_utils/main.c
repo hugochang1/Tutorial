@@ -109,6 +109,7 @@ static void test_timer() {
 	}
 
 	int64_t timerid = timer_init(my_timer_routine, 123);
+
 	timer_start(timerid, 10);
 	assert(timer_get_remaining_time(timerid) > 0);
 	msleep(50); // wait for timer timeout
@@ -118,6 +119,7 @@ static void test_timer() {
 	assert(timer_get_remaining_time(timerid) > 0);
 	timer_stop(timerid);
 	assert(timer_get_remaining_time(timerid) == 0);
+	
 	assert(timer_deinit(timerid));
 }
 
@@ -316,6 +318,7 @@ int main() {
 	test_file();
 	test_time();
 	test_timer();
+
 	test_socket();
 	test_epoll();
 

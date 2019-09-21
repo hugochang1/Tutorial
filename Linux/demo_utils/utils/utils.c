@@ -1346,6 +1346,19 @@ int server_client_list_get_fd(server_client_list* list, int index) {
 	return context->fds[index];
 }
 
+
+/******************************************************************************
+* assume always success, if failure then crash with log
+******************************************************************************/
+void* malloc_0_impl(size_t size, const char* file, const char* function, int line) {
+	void* out = malloc(size);
+	if(out == NULL) {
+		LOGE("malloc() failed, size=%d", size);
+		crash_with_log_0(file, function, line);
+	}
+	return out;
+}
+
 /******************************************************************************
 * Misc
 ******************************************************************************/

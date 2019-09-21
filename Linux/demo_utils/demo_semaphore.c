@@ -31,6 +31,11 @@ void demo_semaphore() {
 		crash_with_log();
 	}
 
+	pthread_mutex_init_0(&mutex1, NULL);
+	pthread_mutex_lock_0(&mutex1);
+	pthread_mutex_unlock_0(&mutex1);
+	pthread_mutex_destroy_0(&mutex1);
+
 	//------------------ demo semaphore -------------------
 	sem_t sem;
 	ret = sem_init(&sem, 0 /*pshared*/, 0 /*value*/);
@@ -64,4 +69,11 @@ void demo_semaphore() {
 		LOGE("sem_destroy() failed reason=[%s]%d", strerror(errno), errno);
 		crash_with_log();
 	}
+
+	sem_init_0(&sem, 0, 0);
+	sem_post_0(&sem);
+	sem_getvalue_0(&sem, &value);
+	LOGD("sem_getvalue_0=%d", value);
+	sem_wait_0(&sem);
+	sem_destroy_0(&sem);
 }

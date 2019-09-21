@@ -24,11 +24,7 @@ static void* thread_trigger_event(void* arg) {
 	LOGD("thread_trigger_event()");
 
 	// set detach to avoid memory leak
-	int ret = pthread_detach(pthread_self());
-	if(ret != 0) {
-		LOGE("pthread_detach() failed, reason=[%s]%d", strerror(ret), ret);
-		crash_with_log();
-	}
+	pthread_detach_0(pthread_self());
 
 	// do what you want to do here
 	while(true) {
@@ -62,13 +58,8 @@ void demo_epoll() {
 	assert(client_list != NULL);
 
 	//create the thread to trigger the events
-	int ret;
 	pthread_t thread1;
-	ret = pthread_create(&thread1, NULL, thread_trigger_event, "hello");
-	if (ret != 0) {
-		LOGE("pthread_create() failed ret=[%s]%d", strerror(ret), ret);
-		crash_with_log();
-	}
+	pthread_create_0(&thread1, NULL, thread_trigger_event, "hello");
 	
 	// demo how to use the epoll
 	#define MAX_EPOLL_EVENT 10

@@ -6,6 +6,7 @@ void* thread_routine(void* arg) {
 	LOGD("arg=[%s]", arg);
 
 	// set detach to avoid memory leak
+	pthread_detach_0(pthread_self());
 	int ret = pthread_detach(pthread_self());
 	if(ret != 0) {
 		LOGE("pthread_detach() failed, reason=[%s]%d", strerror(ret), ret);

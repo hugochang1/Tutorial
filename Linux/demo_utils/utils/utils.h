@@ -49,12 +49,23 @@ void utils_loge(const char* tag, const char* fmt, ...);
 }
 
 #define crash_with_log() {\
-	LOGE("exit_dump() %s %s() line=%d", __FILE__, __FUNCTION__, __LINE__);\
+	LOGE("crash_with_log() %s %s() line=%d", __FILE__, __FUNCTION__, __LINE__);\
+	exit(1);\
+}
+
+#define crash_with_log_0(file, function, line) {\
+	LOGE("crash_with_log() %s %s() line=%d", file, function, line);\
 	exit(1);\
 }
 
 #define UNUSED(x) do { (void)(x); } while (0)
-#define msleep(interval) usleep((interval)*1000);
+#define msleep(usec) {\
+	int ret = usleep((usec)*1000);\
+	if(ret == -1) {\
+		LOGE("usleep() failed, usec=%lu reason=[%s]%d", strerror(errno), errno);\
+		crash_with_log();\
+	}\
+}
 
 int64_t utils_gettid();
 void utils_get_time_str(char* buff, int len);
@@ -216,8 +227,106 @@ bool server_client_list_contains(server_client_list* list, int fd);
 int server_client_list_get_fd(server_client_list* list, int index);
 
 /******************************************************************************
+* assume always success, if failure then crash with log
+******************************************************************************/
+
+#define malloc_0(size) malloc_0_impl(size, __FILE__, __FUNCTION__, __LINE__)
+
+//pthread
+#define pthread_create_0(thread, attr, start_routine, arg) {\
+	int ret = pthread_create(thread, attr, start_routine, arg);\
+	if (ret != 0) {\
+		LOGE("pthread_create() failed ret=[%s]%d", strerror(ret), ret);\
+		crash_with_log();\
+	}\
+}
+
+#define pthread_detach_0(thread) {\
+	int ret = pthread_detach(thread);\
+	if(ret != 0) {\
+		LOGE("pthread_detach() failed, reason=[%s]%d", strerror(ret), ret);\
+		crash_with_log();\
+	}\
+}
+
+//mutex
+#define pthread_mutex_init_0(mutex, attr) {\
+	int ret = pthread_mutex_init(mutex, attr);\
+	if(ret != 0) {\
+		LOGE("pthread_mutex_init() failed reason=[%s]%d", strerror(ret), ret);\
+		crash_with_log();\
+	}\
+}
+
+#define pthread_mutex_lock_0(mutex) {\
+	int ret = pthread_mutex_lock(mutex);\
+	if(ret != 0) {\
+		LOGE("pthread_mutex_lock() failed reason=[%s]%d", strerror(ret), ret);\
+		crash_with_log();\
+	}\
+}
+
+#define pthread_mutex_unlock_0(mutex) {\
+	int ret = pthread_mutex_unlock(mutex);\
+	if(ret != 0) {\
+		LOGE("pthread_mutex_unlock() failed reason=[%s]%d", strerror(ret), ret);\
+		crash_with_log();\
+	}\
+}
+
+#define pthread_mutex_destroy_0(mutex) {\
+	int ret = pthread_mutex_destroy(mutex);\
+	if(ret != 0) {\
+		LOGE("pthread_mutex_destroy() failed reason=[%s]%d", strerror(ret), ret);\
+		crash_with_log();\
+	}\
+}
+
+//semaphore
+#define sem_init_0(sem, pshared, value) {\
+	int ret = sem_init(sem, pshared, value);\
+	if(ret != 0) {\
+		LOGE("sem_init() failed reason=[%s]%d", strerror(errno), errno);\
+		crash_with_log();\
+	}\
+}
+
+#define sem_post_0(sem) {\
+	int ret = sem_post(sem);\
+	if(ret != 0) {\
+		LOGE("sem_post() failed reason=[%s]%d", strerror(errno), errno);\
+		crash_with_log();\
+	}\
+}
+
+#define sem_getvalue_0(sem, sval) {\
+	int ret = sem_getvalue(sem, sval);\
+	if(ret != 0) {\
+		LOGE("sem_getvalue() failed reason=[%s]%d", strerror(errno), errno);\
+		crash_with_log();\
+	}\
+}
+
+#define sem_wait_0(sem) {\
+	int ret = sem_wait(sem);\
+	if(ret != 0) {\
+		LOGE("sem_wait() failed reason=[%s]%d", strerror(errno), errno);\
+		crash_with_log();\
+	}\
+}
+
+#define sem_destroy_0(sem) {\
+	int ret = sem_destroy(sem);\
+	if(ret != 0) {\
+		LOGE("sem_destroy() failed reason=[%s]%d", strerror(errno), errno);\
+		crash_with_log();\
+	}\
+}
+
+/******************************************************************************
 * Misc
 ******************************************************************************/
+
 #ifdef __cplusplus
 }
 #endif

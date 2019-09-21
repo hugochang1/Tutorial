@@ -4,6 +4,7 @@
 make_success()
 {
 	echo -e "\E[1;32;40m-----------------------------make success-----------------------------\E[0m"
+	read -n1 -r -p "Press any key to continue..." key
 	./test
 	ret=$?
 	case $ret in
