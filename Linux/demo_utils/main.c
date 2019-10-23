@@ -108,7 +108,7 @@ static void test_timer() {
 		LOGD("my_timer_routine() id=%d", id);
 	}
 
-	int64_t timerid = timer_init(my_timer_routine, 123);
+	timer_t timerid = timer_init(my_timer_routine, 123);
 
 	timer_start(timerid, 10);
 	assert(timer_get_remaining_time(timerid) > 0);
@@ -330,6 +330,8 @@ int main() {
 
 	extern void demo_epoll();
 	demo_epoll();
+
+	LOGD("size=%d", sizeof(long));
 
 	return 0; //0~255
 }

@@ -105,14 +105,15 @@ int64_t time_get_system_time();
 typedef void (*timer_routine) (int id);
 //-1 means fail or timerid is returned
 
-int64_t timer_init(timer_routine cb, int id);
-bool timer_deinit(int64_t timerid);
+//NULL means fail or timerid is returned
+timer_t timer_init(timer_routine cb, int id);
+bool timer_deinit(timer_t timerid);
 
-bool timer_start(int64_t timerid, int milliseconds);
-bool timer_stop(int64_t timerid);
+bool timer_start(timer_t timerid, int milliseconds);
+bool timer_stop(timer_t timerid);
 
 //-1 means fail or the remaining time is returned
-int64_t timer_get_remaining_time(int64_t timerid);
+int64_t timer_get_remaining_time(timer_t timerid);
 
 /******************************************************************************
 * Socket

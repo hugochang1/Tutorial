@@ -22,6 +22,7 @@
 #include <sys/epoll.h> //epoll_create
 #include <semaphore.h> //sem_t
 #include <pthread.h> //pthread
+#include <inttypes.h> //PRId64
 
 #include "utils.h"
 
@@ -88,7 +89,7 @@ void utils_log(utils_log_type_enum type, const char* tag, const char* msg) {
 		strncpy(text_color, "\E[1;31;40m", sizeof(text_color));
 	}
 
-	printf("%s%s %5ld %14s %s\E[0m\r\n", text_color, time_str, utils_gettid(),
+	printf("%s%s %5"PRId64" %14s %s\E[0m\r\n", text_color, time_str, utils_gettid(),
 		log_type_str, msg);
 	fflush(stdout);
 }
@@ -281,15 +282,15 @@ int64_t time_get_system_time() {
 			strerror(errno), errno);
 		return -1;
 	}
-	return (ts.tv_sec * 1000) + (ts.tv_nsec / 1000000);
+	return ((int64_t)ts.tv_sec * 1000) + (ts.tv_nsec / 1000000);
 }
 
 /******************************************************************************
 * Timer
 ******************************************************************************/
 
-//-1 means fail or timerid is returned
-int64_t timer_init(timer_routine cb, int id) {
+//NULL means fail or timerid is returned
+timer_t timer_init(timer_routine cb, int id) {
 	struct sigevent sevp;
 	timer_t timerid;
 
@@ -301,13 +302,13 @@ int64_t timer_init(timer_routine cb, int id) {
 	if(timer_create(CLOCK_BOOTTIME, &sevp, &timerid) == -1) {
 		LOGE("timer_init() timer_create() failed, reason=[%s]%d",
 			strerror(errno), errno);
-		return -1;
+		return NULL;
 	}
-	return (int64_t)timerid;
+	return timerid;
 }
 
-bool timer_deinit(int64_t timerid) {
-	if(timer_delete((timer_t)timerid) == -1) {
+bool timer_deinit(timer_t timerid) {
+	if(timer_delete(timerid) == -1) {
 		LOGE("timer_deinit() timer_delete() failed, timerid=%ld reason=[%s]%d",
 			timerid, strerror(errno), errno);
 		return false;
@@ -315,13 +316,13 @@ bool timer_deinit(int64_t timerid) {
 	return true;
 }
 
-bool timer_start(int64_t timerid, int milliseconds) {
+bool timer_start(timer_t timerid, int milliseconds) {
 	struct itimerspec expire;
 	expire.it_interval.tv_sec = 0;
 	expire.it_interval.tv_nsec = 0;
 	expire.it_value.tv_sec = milliseconds/1000;
 	expire.it_value.tv_nsec = (milliseconds%1000)*1000000;
-	if(timer_settime((timer_t)timerid, 0, &expire, NULL) == -1) {
+	if(timer_settime(timerid, 0, &expire, NULL) == -1) {
 		LOGE("timer_start() timer_settime() failed, timerid=%ld reason=[%s]%d",
 			timerid, strerror(errno), errno);
 		return false;
@@ -329,19 +330,19 @@ bool timer_start(int64_t timerid, int milliseconds) {
 	return true;
 }
 
-bool timer_stop(int64_t timerid) {
+bool timer_stop(timer_t timerid) {
 	return timer_start(timerid, 0);
 }
 
 //-1 means fail or the remaining time is returned
-int64_t timer_get_remaining_time(int64_t timerid) {
+int64_t timer_get_remaining_time(timer_t timerid) {
 	struct itimerspec ts;
-	if(timer_gettime((timer_t)timerid, &ts) == -1) {
+	if(timer_gettime(timerid, &ts) == -1) {
 		LOGE("timer_get_remaining_time() timer_gettime() failed, timerid=%ld reason=[%s]%d",
 			timerid, strerror(errno), errno);
 		return -1;
 	}
-	return (int64_t)(ts.it_value.tv_sec*1000 + ts.it_value.tv_nsec/1000000);
+	return ((int64_t)ts.it_value.tv_sec * 1000 + ts.it_value.tv_nsec / 1000000);
 }
 
 /******************************************************************************

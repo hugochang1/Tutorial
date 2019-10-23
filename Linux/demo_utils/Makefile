@@ -5,6 +5,7 @@ FLAGS=\
   -g \
   -Wall \
   -D __COMPILE_OPTION__ \
+#  -m32 \
 
 CPPFLAGS=\
   -std=c++11 \
@@ -34,13 +35,13 @@ CXXOBJS=$(CXXSRC:.cpp=.o)
 all: $(EXECUTABLE)
 
 $(EXECUTABLE): $(COBJS) $(CXXOBJS)
-	$(CXX) $(COBJS) $(CXXOBJS) $(LIBS) $(FLAGS) $(CPPFLAGS) -o $@
+	$(CC) $(COBJS) $(CXXOBJS) $(LIBS) $(FLAGS) $(CPPFLAGS) -o $@
 
 %.o : %.c
-	$(CC) -g -c $(INCLUDE) $(FLAGS) -o $@ $<
+	$(CC) -c $(FLAGS) $(INCLUDE) -o $@ $<
 
 %.o : %.cpp
-	$(CXX) -g -c $(INCLUDE) $(FLAGS) $(CPPFLAGS) -o $@ $<
+	$(CC) -c $(FLAGS) $(INCLUDE) $(CPPFLAGS) -o $@ $<
 
 .PHONY: clean
 clean:
