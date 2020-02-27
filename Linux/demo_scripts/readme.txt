@@ -27,3 +27,28 @@ to check which libraries your module needed
 ----------------------------------------------------
 objdump -x your_module | grep NEEDED
 
+
+----------------------------------------------------
+        tree dump
+to show folder structure
+-C color
+-L 2: specific to show 2 layers
+----------------------------------------------------
+$tree -C -L 2 .
+.
++-- 1_make_run.sh
++-- certs
+¦   +-- test.pem
+¦   +-- UbuntuOne-Go_Daddy_CA.pem
++-- demo_epoll.c
++-- demo_pthread.c
++-- demo_semaphore.c
++-- fifo
++-- main.c
++-- Makefile
++-- readme.txt
++-- test_data2.txt
++-- test_data.txt
++-- utils
+    +-- utils.c
+    +-- utils.h
