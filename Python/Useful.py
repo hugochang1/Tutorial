@@ -1,5 +1,4 @@
 # --------------- log ---------------
-# --------------- log ---------------
 
 import datetime
 from threading import Lock
