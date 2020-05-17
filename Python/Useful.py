@@ -1,30 +1,37 @@
 # --------------- log ---------------
+# --------------- log ---------------
+
 import datetime
+from threading import Lock
 
 module_version = "[1.00]"
 log_file_path = "./log.txt"
+_log_lock = Lock()
 
-def LOGD(*args):
-	prefix = datetime.datetime.now().strftime('%Y/%m/%d %H:%M:%S.%f') + " " + module_version + '[D]'
-	print(prefix, *args)
-	with open(log_file_path, "a") as f:
-		print(prefix, *args, file=f)
+def LOGD(*args, **args2):
+    with _log_lock:
+        prefix = datetime.datetime.now().strftime('%Y/%m/%d %H:%M:%S.%f') + " " + module_version + '[D]'
+        print(prefix, *args, **args2)
+        with open(log_file_path, "a") as f:
+            print(prefix, *args, **args2, file=f)
 
-def LOGW(*args):
-	prefix = datetime.datetime.now().strftime('%Y/%m/%d %H:%M:%S.%f') + " " + module_version + '[W]'
-	print(prefix, *args)
-	with open(log_file_path, "a") as f:
-		print(prefix, *args, file=f)
+def LOGW(*args, **args2):
+    with _log_lock:
+        prefix = datetime.datetime.now().strftime('%Y/%m/%d %H:%M:%S.%f') + " " + module_version + '[W]'
+        print(prefix, *args, **args2)
+        with open(log_file_path, "a") as f:
+            print(prefix, *args, **args2, file=f)
 
-def LOGE(*args):
-	prefix = datetime.datetime.now().strftime('%Y/%m/%d %H:%M:%S.%f') + " " + module_version + '[E]'
-	print(prefix, *args)
-	with open(log_file_path, "a") as f:
-		print(prefix, *args, file=f)
-
-LOGD("aaa", 123, 11.22, "hello world")
-LOGW("aaa", 123, 11.22, "hello world")
-LOGE("aaa", 123, 11.22, "hello world")
+def LOGE(*args, **args2):
+    with _log_lock:
+        prefix = datetime.datetime.now().strftime('%Y/%m/%d %H:%M:%S.%f') + " " + module_version + '[E]'
+        print(prefix, *args, **args2)
+        with open(log_file_path, "a") as f:
+            print(prefix, *args, **args2, file=f)
+        
+LOGD("LOGD") # 2020/05/17 09:01:47.947437 [1.00][D] LOGD
+LOGW("LOGW") # 2020/05/17 09:01:47.949437 [1.00][W] LOGW
+LOGE("LOGE") # 2020/05/17 09:01:47.950437 [1.00][E] LOGE
 
 # --------------- config file ---------------
 import json
@@ -61,8 +68,14 @@ import traceback
 try:
 	assert False, "my error message!!!"
 except Exception as err:
-	LOGD(err)
+	LOGD(err) # my error message!!!
 	LOGD(traceback.format_exc())
+"""
+raceback (most recent call last):
+  File "<ipython-input-24-a705662e5f11>", line 3, in <module>
+    assert False, "my error message!!!"
+AssertionError: my error message!!!
+"""
 
 # --------------- assertEqual ---------------
 def assertEqual(a, b):
@@ -72,5 +85,5 @@ def assertEqual(a, b):
 try:
 	assertEqual(1, 2)
 except Exception as err:
-	LOGD(err)
+	LOGD(err) # a=[1] is not equals to b=[2]
 
