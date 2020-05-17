@@ -1,6 +1,6 @@
 # --------------- log ---------------
 
-import datetime
+import datetime, threading
 from threading import Lock
 
 module_version = "[1.00]"
@@ -9,28 +9,29 @@ _log_lock = Lock()
 
 def LOGD(*args, **args2):
     with _log_lock:
-        prefix = datetime.datetime.now().strftime('%Y/%m/%d %H:%M:%S.%f') + " " + module_version + '[D]'
+        prefix = datetime.datetime.now().strftime('%Y/%m/%d %H:%M:%S.%f') + " " + str(threading.get_ident()) + " " + module_version + '[D]'
         print(prefix, *args, **args2)
         with open(log_file_path, "a") as f:
             print(prefix, *args, **args2, file=f)
 
 def LOGW(*args, **args2):
     with _log_lock:
-        prefix = datetime.datetime.now().strftime('%Y/%m/%d %H:%M:%S.%f') + " " + module_version + '[W]'
+        prefix = datetime.datetime.now().strftime('%Y/%m/%d %H:%M:%S.%f') + " " + str(threading.get_ident()) + " " + module_version + '[W]'
         print(prefix, *args, **args2)
         with open(log_file_path, "a") as f:
             print(prefix, *args, **args2, file=f)
 
 def LOGE(*args, **args2):
     with _log_lock:
-        prefix = datetime.datetime.now().strftime('%Y/%m/%d %H:%M:%S.%f') + " " + module_version + '[E]'
+        prefix = datetime.datetime.now().strftime('%Y/%m/%d %H:%M:%S.%f') + " " + str(threading.get_ident()) + " " + module_version + '[E]'
         print(prefix, *args, **args2)
         with open(log_file_path, "a") as f:
             print(prefix, *args, **args2, file=f)
-        
-LOGD("LOGD") # 2020/05/17 09:01:47.947437 [1.00][D] LOGD
-LOGW("LOGW") # 2020/05/17 09:01:47.949437 [1.00][W] LOGW
-LOGE("LOGE") # 2020/05/17 09:01:47.950437 [1.00][E] LOGE
+
+             # YEAR/MM/DD HH:MM:SS.UUUUUU PID   VER  TAG your_msg
+LOGD("LOGD") # 2020/05/17 09:01:47.947437 2664 [1.00][D] LOGD
+LOGW("LOGW") # 2020/05/17 09:01:47.949437 2664 [1.00][W] LOGW
+LOGE("LOGE") # 2020/05/17 09:01:47.950437 2664 [1.00][E] LOGE
 
 # --------------- config file ---------------
 import json
