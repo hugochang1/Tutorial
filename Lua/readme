@@ -4,6 +4,9 @@
   multi-line comment
 --]]
 
+-- assert(false)
+
+----------- type -----------
 print("Hello World!") -- output Hello World!
 
 print("type:", type("aa")) -- string
@@ -14,4 +17,145 @@ print("type:", type(true)) -- boolean
 print(10 .. 22) -- string, "1022"
 print("10" + 5) -- number, 15.0
 
--- assert(false) 
+----------- if else -----------
+local a = 0
+
+if a == 0 then
+    print("a == 0") -- will be printed
+end
+
+if a > 0 then
+    print("a > 0")
+else
+    print("else") -- will be printed
+end
+
+if a > 0 then
+    print("a > 0")
+elseif a < 0 then
+    print("a < 0")
+else
+    print("else") -- will be printed
+end
+
+----------- while -----------
+local a = 0
+while a < 3 do
+    print(a)
+    a = a + 1
+end
+
+----------- repeat until -----------
+local a = 0
+repeat
+    print(a)
+    a = a + 1
+until a > 3
+
+----------- for -----------
+for i = 1, 3 do
+    print(i)
+end
+
+----------- goto (to simulator continue) -----------
+for i = 1, 3 do
+    if i == 2 then
+        goto continue
+    end
+    print(i) -- 2 will be skipped
+    ::continue::
+end
+
+----------- table -----------
+local arr = {1, 2, 3}
+print(arr) -- 0x112e040
+print(type(arr)) -- table
+print(arr[0], arr[1], arr[2]) -- nil	1	2
+print(#arr) -- the length of arr, 3
+
+-- traversal
+for i, e in ipairs(arr) do
+    print(e)
+end
+
+for i = 1, #arr do
+    print(arr[i])
+end
+
+-- insert
+table.insert(arr, "f")
+assert(arr[4] == "f")
+
+arr[#arr+1] = "g"
+assert(arr[5] == "g")
+
+-- remove
+local data = table.remove(arr) -- remove the last one
+print(data) -- "g"
+
+local data = table.remove(arr, 1) -- remove the first one
+print(data) -- 1
+
+for i = 1, #arr do
+    print(arr[i])  -- 2, 3, f
+end
+
+----------- table (dictionary) -----------
+local dict = {one=1, two=2, three=3}
+
+-- add
+dict["four"] = "gg"
+
+assert(dict["one"] == 1)
+assert(dict["four"] == "gg")
+assert(dict["five"] == nil)
+
+-- traversal
+for k, v in pairs(dict) do
+    print(k, v)
+end
+
+-- remove
+dict["three"] = nil
+
+----------- function -----------
+function f1(a1, a2)
+    print("hello", a1, a2)
+    return 10
+end
+
+f1() -- hello	nil	nil
+f1("aa", 123) -- hello	aa	123
+print(f1()) -- 10
+
+-- multi-return
+function f2()
+    return 1, "gg"
+end
+
+print(f2())
+a = f2()
+print(a) -- 1
+
+a, b, c= f2()
+print(b) -- "gg"
+print(c) -- nil
+
+-- arbitrary argument
+function f3(...)
+    for i, e in ipairs{...} do
+        print(e)
+    end
+end
+
+f3(1, 2, "gg")
+
+-- use table as argument
+function f4(a)
+    print(a.a1, a.a2) -- data1 data2
+end
+
+f4{a1="data1", a2="data2"}
+
+----------- object -----------
+
