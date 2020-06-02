@@ -1,0 +1,17 @@
+--single comment
+
+--[[
+  multi-line comment
+--]]
+
+print("Hello World!") -- output Hello World!
+
+print("type:", type("aa")) -- string
+print("type:", type(1)) -- number
+print("type:", type(1.1)) -- number
+print("type:", type(nil)) -- nil
+print("type:", type(true)) -- boolean
+print(10 .. 22) -- string, "1022"
+print("10" + 5) -- number, 15.0
+
+-- assert(false) 
