@@ -11,7 +11,7 @@ print(type(range(0)))           # <class 'range'>
 a = 0b1101
 print(a)            # 13
 print(bin(a))       # 0b1101
-print(type(bin(a))  # <class 'str'>
+print(type(bin(a)))  # <class 'str'>
 
 a = 0o57
 print(a)            # 47
