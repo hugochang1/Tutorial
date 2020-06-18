@@ -245,3 +245,37 @@ local people = {
 }
 
 dump(people) -- {1={"phone"="123456", "address"="16 Long Street", "name"="Fred", }, 2={"phone"="123456", "address"="16 Long Street", "name"="Wilma", }, 3={"phone"="123457", "address"="17 Long Street", "name"="Barney", }, }
+
+
+----------- module -----------
+-- tabledump.lua
+tabledump = {}
+function __dump(o)
+    if type(o) == 'table' then
+        local s = '{'
+        for k,v in pairs(o) do
+            if type(k) == "string" then
+                s = s..'"'..k..'"'
+            else
+                s = s..k
+            end
+            s = s ..'='..__dump(v)..', '
+        end
+        return s .. '}'
+    else
+        if type(o) == 'string' then
+            return '"'..o..'"'
+        else
+            return tostring(o)
+        end
+    end
+end
+function tabledump.dump(o)
+    print(__dump(o))
+end
+return tabledump
+--main.lua
+tabledump = require("tabledump")
+
+tabledump.dump({aaa="123", bbb="456", ccc="789"})
+
