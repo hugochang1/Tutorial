@@ -290,10 +290,32 @@ return tabledump
 tabledump = require("tabledump")
 
 tabledump.dump({aaa="123", bbb="456", ccc="789"})
---[[
+--[[ output
 {
     ['ccc'] = '789',
     ['bbb'] = '456',
     ['aaa'] = '123'
 }
+--]]
+
+----------- iterator function -----------
+function f1()
+    local i = 0
+    return function()
+        i = i + 1
+        if i <= 5 then
+            return i
+        end
+    end
+end
+
+for i in f1() do
+    print(i)
+end
+--[[ output
+1
+2
+3
+4
+5
 --]]
