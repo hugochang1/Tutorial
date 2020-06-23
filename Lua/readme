@@ -200,88 +200,100 @@ print(t.a2) -- 2
 print(t.a3) -- kk
 
 ----------- dump table -----------
-function __dump(o)
-    if type(o) == 'table' then
-        local s = '{'
-        for k,v in pairs(o) do
-            if type(k) == "string" then
-                s = s..'"'..k..'"'
-            else
-                s = s..k
-            end
-            s = s ..'='..__dump(v)..', '
-        end
-        return s .. '}'
-    else
-        if type(o) == 'string' then
-            return '"'..o..'"'
-        else
-            return tostring(o)
-        end
-    end
-end
-
-function dump(o)
-    print(__dump(o))
-end
-
-
-local people = {
-   {
-      name = "Fred",
-      address = "16 Long Street",
-      phone = "123456"
-   },
-   {
-      name = "Wilma",
-      address = "16 Long Street",
-      phone = "123456"
-   },
-   {
-      name = "Barney",
-      address = "17 Long Street",
-      phone = "123457"
-   }
-}
-
-dump(people) -- {1={"phone"="123456", "address"="16 Long Street", "name"="Fred", }, 2={"phone"="123456", "address"="16 Long Street", "name"="Wilma", }, 3={"phone"="123457", "address"="17 Long Street", "name"="Barney", }, }
-
-
------------ module -----------
 -- tabledump.lua
-dumptable = {}
-function __dump(o, indent, space, newline)
-    if type(o) == 'table' then
-        local s = newline
-        for i=1, indent do
-            s = s..space
+tabledump = {}
+
+function tabledump.dump(node)
+    local newline = "\n"
+	local space = "    "
+    local cache, stack, output = {},{},{}
+    local depth = 1
+    local output_str = "{"..newline
+
+    while true do
+        local size = 0
+        for k,v in pairs(node) do
+            size = size + 1
         end
-        s = s..'{'
-        --print("__dump", indent, s)
-        for k,v in pairs(o) do
-            if type(k) == "string" then
-                s = s..'"'..k..'"'
+
+        local cur_index = 1
+        for k,v in pairs(node) do
+            if (cache[node] == nil) or (cur_index >= cache[node]) then
+
+                if (string.find(output_str,"}",output_str:len())) then
+                    output_str = output_str .. ","..newline
+                elseif not (string.find(output_str,newline,output_str:len())) then
+                    output_str = output_str .. newline
+                end
+
+                -- This is necessary for working with HUGE tables otherwise we run out of memory using concat on huge strings
+                table.insert(output,output_str)
+                output_str = ""
+
+                local key
+                if (type(k) == "number" or type(k) == "boolean") then
+                    key = "["..tostring(k).."]"
+                else
+                    key = "['"..tostring(k).."']"
+                end
+
+                if (type(v) == "number" or type(v) == "boolean") then
+                    output_str = output_str .. string.rep(space,depth) .. key .. " = "..tostring(v)
+                elseif (type(v) == "table") then
+                    output_str = output_str .. string.rep(space,depth) .. key .. " = {"..newline
+                    table.insert(stack,node)
+                    table.insert(stack,v)
+                    cache[node] = cur_index+1
+                    break
+                else
+                    output_str = output_str .. string.rep(space,depth) .. key .. " = '"..tostring(v).."'"
+                end
+
+                if (cur_index == size) then
+                    output_str = output_str .. newline .. string.rep(space,depth-1) .. "}"
+                else
+                    output_str = output_str .. ","
+                end
             else
-                s = s..k
+                -- close the table
+                if (cur_index == size) then
+                    output_str = output_str .. newline .. string.rep(space,depth-1) .. "}"
+                end
             end
-            s = s ..'='..__dump(v, indent + 2, space, newline)
+
+            cur_index = cur_index + 1
         end
-        return s .. '}' .. newline
-    else
-        if type(o) == 'string' then
-            return '"'..o..'"'
+
+        if (size == 0) then
+            output_str = output_str .. newline .. string.rep(space,depth-1) .. "}"
+        end
+
+        if (#stack > 0) then
+            node = stack[#stack]
+            stack[#stack] = nil
+            depth = cache[node] == nil and depth + 1 or depth - 1
         else
-            return tostring(o)
+            break
         end
     end
+
+    -- This is necessary for working with HUGE tables otherwise we run out of memory using concat on huge strings
+    table.insert(output,output_str)
+    output_str = table.concat(output)
+
+    print(output_str)
 end
-function dumptable.dump(o)
-    print(__dump(o, 0, " ", "\n"))
-end
-return dumptable
+
+return tabledump
 
 --main.lua
 tabledump = require("tabledump")
 
 tabledump.dump({aaa="123", bbb="456", ccc="789"})
-
+--[[
+{
+    ['ccc'] = '789',
+    ['bbb'] = '456',
+    ['aaa'] = '123'
+}
+--]]
