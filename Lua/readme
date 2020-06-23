@@ -249,19 +249,24 @@ dump(people) -- {1={"phone"="123456", "address"="16 Long Street", "name"="Fred",
 
 ----------- module -----------
 -- tabledump.lua
-tabledump = {}
-function __dump(o)
+dumptable = {}
+function __dump(o, indent, space, newline)
     if type(o) == 'table' then
-        local s = '{'
+        local s = newline
+        for i=1, indent do
+            s = s..space
+        end
+        s = s..'{'
+        --print("__dump", indent, s)
         for k,v in pairs(o) do
             if type(k) == "string" then
                 s = s..'"'..k..'"'
             else
                 s = s..k
             end
-            s = s ..'='..__dump(v)..', '
+            s = s ..'='..__dump(v, indent + 2, space, newline)
         end
-        return s .. '}'
+        return s .. '}' .. newline
     else
         if type(o) == 'string' then
             return '"'..o..'"'
@@ -270,10 +275,11 @@ function __dump(o)
         end
     end
 end
-function tabledump.dump(o)
-    print(__dump(o))
+function dumptable.dump(o)
+    print(__dump(o, 0, " ", "\n"))
 end
-return tabledump
+return dumptable
+
 --main.lua
 tabledump = require("tabledump")
 
