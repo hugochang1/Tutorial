@@ -2,7 +2,7 @@ tabledump = {}
 
 function tabledump.dump(node)
     local newline = "\n"
-	local space = "    "
+    local space = "    "
     local cache, stack, output = {},{},{}
     local depth = 1
     local output_str = "{"..newline
