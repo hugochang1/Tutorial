@@ -37,4 +37,19 @@ print(a, b, c)  -- 1  2  abc
 a, b, c, d = f1()
 print(a, b, c, d)  -- 1  2  abc  nil
 
------------------- other ------------------
+------------------ arbitrary argument ------------------
+function f3(...)
+    for i, e in ipairs{...} do
+        print(e)
+    end
+end
+
+f3(1, 2, "gg")
+
+
+------------------ use table as argument ------------------
+function f4(a)
+    print(a.a1, a.a2) -- data1 data2
+end
+
+f4{a1="data1", a2="data2"}
