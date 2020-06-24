@@ -53,6 +53,28 @@ end
 
 f4{a1="data1", a2="data2"}
 
+------------------ iterator function ------------------
+function f1()
+    local i = 0
+    return function()
+        i = i + 1
+        if i <= 5 then
+            return i
+        end
+    end
+end
+
+for i in f1() do
+    print(i)
+end
+--[[ output
+1
+2
+3
+4
+5
+--]]
+
 ------------------ setmetatable ------------------
 t = setmetatable({}, {})
 print(t.a1) -- nil
