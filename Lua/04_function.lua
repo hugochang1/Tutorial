@@ -46,10 +46,48 @@ end
 
 f3(1, 2, "gg")
 
-
 ------------------ use table as argument ------------------
 function f4(a)
     print(a.a1, a.a2) -- data1 data2
 end
 
 f4{a1="data1", a2="data2"}
+
+------------------ setmetatable ------------------
+t = setmetatable({}, {})
+print(t.a1) -- nil
+
+t = setmetatable({a1=1, a2="hello", a3="world"}, { })
+print(t.a1) -- 1
+print(t.a2) -- hello
+print(t.a3) -- world
+
+t = setmetatable({}, { __index = {b1=2, b2="gg", b3="kk"} })
+print(t.b1) -- 2
+print(t.b2) -- gg
+print(t.b3) -- kk
+
+t = setmetatable({a1=1}, { __index = {b1=2} })
+print(t.a1) -- 1
+print(t.b1) -- 2
+print(t.c1) -- nil
+
+t = setmetatable({a1=1}, { __index = {b1=2} })
+print(t.a1) -- 1
+print(t.b1) -- 2
+print(t.c1) -- nil
+
+t = setmetatable({}, {
+    __index = function(mytable, key)
+        if key == "a1" then
+            return 1
+        elseif key == "a2" then
+            return 2
+        else
+            return "kk"
+        end
+    end
+})
+print(t.a1) -- 1
+print(t.a2) -- 2
+print(t.a3) -- kk
