@@ -4,6 +4,8 @@ local tabledump = {
     s1 = "hello"
 }
 
+tabledump.a3 = 3
+
 function tabledump.dump(node)
     local newline = "\n"
     local space = "    "
