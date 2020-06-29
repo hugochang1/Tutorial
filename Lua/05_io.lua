@@ -18,11 +18,15 @@ print(is_file_or_folder_exists("/usr")) -- true
 print(is_file_or_folder_exists("/usr2")) -- false
 
 ----------------- shell command line by using io.popen -----------------
-local dir = io.popen("ls /") -- user data
-for line in dir:lines() do
-  print(line)
+function shell_command(command)
+    local fp = io.popen(command)
+    local txt = fp:read("*a")
+    fp:close()
+    return txt
 end
 
+a = shell_command("ls /")
+print(a)
 --[[
 bin
 dev
