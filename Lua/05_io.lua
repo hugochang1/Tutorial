@@ -30,4 +30,21 @@ etc
 ...
 --]]
 
+----------------- read file -----------------
+function file_read(path)
+    local fd = io.open(path, "r")
+    if not fd then return end
+    local content = fd:read("*all")
+    fd:close()
+    return content
+end
+
+a = file_read("aaaaaaaaaaa")
+print(a)  -- nil
+
+a = file_read("/etc/BUILDTIME")
+print(a)  -- 20151215_1554
+
 ----------------- other -----------------
+
+
