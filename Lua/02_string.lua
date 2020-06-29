@@ -138,5 +138,26 @@ end
 s = "  abc  "
 print(s)  --   abc  
 print(mytrim("  abc  "))  -- abc
+
+-------------------------- str2table --------------------------
+function str2table(str)
+    local t = {}
+    for line in str:gmatch("(.-)\r?\n") do
+        table.insert(t, line)
+    end
+    return t
+end
+
+s = "aaa\nbbb\r\nddd\n"
+a = str2table(s)
+tabledump = require("tabledump")
+tabledump.dump(a)
+--[[
+{
+    [1] = 'aaa',
+    [2] = 'bbb',
+    [3] = 'ddd'
+}
+--]]
 -------------------------- others --------------------------
 
