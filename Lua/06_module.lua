@@ -1,5 +1,7 @@
 ----------------- require module -----------------
 tabledump = require("tabledump")
+tabledump = require "tabledump"
+
 tabledump.dump({aaa="123", bbb="456", ccc="789"})
 --[[
 {
