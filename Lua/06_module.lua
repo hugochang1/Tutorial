@@ -12,9 +12,10 @@ tabledump.dump({aaa="123", bbb="456", ccc="789"})
 tabledump.dump(tabledump)
 --[[
 {
-    ['a2'] = 2,
+    ['dump'] = 'function: 0x25e09a0',
+    ['a3'] = 3,
     ['s1'] = 'hello',
-    ['dump'] = 'function: 0x1c309a0',
+    ['a2'] = 2,
     ['a1'] = 1
 }
 --]]
