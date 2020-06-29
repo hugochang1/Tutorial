@@ -1,4 +1,8 @@
-tabledump = {}
+local tabledump = {
+    a1 = 1,
+    a2 = 2,
+    s1 = "hello"
+}
 
 function tabledump.dump(node)
     local newline = "\n"
