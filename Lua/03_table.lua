@@ -71,3 +71,30 @@ tabledump.dump(dict)
     ['two'] = 2
 }
 --]]
+
+
+----------- table length -----------
+function tablelength(T)
+  local count = 0
+  for k, v in pairs(T) do 
+      print(k, v)
+      count = count + 1 
+  end
+  return count
+end
+
+t = {1,2,{a=11,b=22},4}
+t[5] = 111
+t[9] = 222
+
+print("tablelength=", tablelength(t))
+--[[
+1	1
+2	2
+3	table: 0x8a7b40
+4	4
+5	111
+9	222
+tablelength=	6
+--]]
+
