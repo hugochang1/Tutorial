@@ -1,12 +1,21 @@
 ----------------- require module -----------------
 tabledump = require("tabledump")
 tabledump.dump({aaa="123", bbb="456", ccc="789"})
-
 --[[
 {
     ['aaa'] = '123',
     ['ccc'] = '789',
     ['bbb'] = '456'
+}
+--]]
+
+tabledump.dump(tabledump)
+--[[
+{
+    ['a2'] = 2,
+    ['s1'] = 'hello',
+    ['dump'] = 'function: 0x1c309a0',
+    ['a1'] = 1
 }
 --]]
 
