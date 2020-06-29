@@ -129,5 +129,14 @@ tabledump.dump(a)
     [3] = '23a'
 }
 --]]
+
+-------------------------- trim --------------------------
+function mytrim(s)
+    if s then return (s:gsub("^%s*(.-)%s*$", "%1")) end
+end
+
+s = "  abc  "
+print(s)  --   abc  
+print(mytrim("  abc  "))  -- abc
 -------------------------- others --------------------------
 
