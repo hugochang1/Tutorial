@@ -17,23 +17,6 @@ end
 print(is_file_or_folder_exists("/usr")) -- true
 print(is_file_or_folder_exists("/usr2")) -- false
 
------------------ shell command line by using io.popen -----------------
-function shell_command(command)
-    local fp = io.popen(command)
-    local txt = fp:read("*a")
-    fp:close()
-    return txt
-end
-
-a = shell_command("ls /")
-print(a)
---[[
-bin
-dev
-etc
-...
---]]
-
 ----------------- read file -----------------
 function file_read(path)
     local fd = io.open(path, "r")
