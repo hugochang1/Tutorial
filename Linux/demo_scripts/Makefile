@@ -6,6 +6,8 @@ FLAGS=\
   -Wall \
   -D __COMPILE_OPTION__ \
 
+$(warning "output message $(FLAGS)")
+
 CPPFLAGS=\
   -std=c++11 \
 
