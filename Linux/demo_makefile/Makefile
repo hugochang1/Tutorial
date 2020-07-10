@@ -1,3 +1,36 @@
+# dump all variables
+# $(foreach v, $(.VARIABLES), $(info $(v) = $($(v))))
+
+# set variable
+MY_FLAG = yes
+
+# dump variable
+$(warning  MY_FLAG=$(MY_FLAG))
+
+# if else
+ifeq (no, $(MY_FLAG))
+  $(warning  MY_FLAG is no)
+else ifneq (yes, $(MY_FLAG))
+  $(warning  MY_FLAG is not yes)
+else
+  $(warning  else case)
+endif
+
+# check if file or folder exists in hard code
+ifneq (,$(wildcard Makefile))
+  $(warning Makefile exist)
+endif
+
+# check if file or folder exists in variable
+MY_FILE_PATH=aaaa
+ifneq (,$(wildcard $(MY_FILE_PATH)))
+  $(warning $(MY_FILE_PATH) exist)
+else
+  $(warning $(MY_FILE_PATH) not exist)
+endif
+
+#----------------------------------------------------
+
 CC=gcc
 CXX=g++
 
