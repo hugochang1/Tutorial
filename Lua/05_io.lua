@@ -32,6 +32,11 @@ print(a)  -- nil
 a = file_read("/etc/BUILDTIME")
 print(a)  -- 20151215_1554
 
+----------------- log2file -----------------
+function log2file(path, msg)
+    local f = io.open(path, "a")
+    f:write(os.date("%x %X").. " "..msg.."\n")
+    f:close()
+end
+
 ----------------- other -----------------
-
-
