@@ -54,4 +54,20 @@ function mydump.print(data, space, newline)
     print(mydump.get_dump_string(data, space, newline))
 end
 
+function mydump.log(msg, ...)
+    if pcall(require, "nixio") then
+        local nixio = require("nixio")
+        nixio.syslog("debug", string.format(msg, ...))
+    else
+        print(os.date("%x %X").." "..string.format(msg, ...))
+    end
+    
+end
+
+function mydump.log2file(path, msg, ...)
+    local f = io.open(path, "a")
+    f:write(os.date("%x %X").." "..string.format(msg, ...).."\n")
+    f:close()
+end
+
 return mydump
