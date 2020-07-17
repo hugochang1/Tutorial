@@ -52,3 +52,18 @@ $tree -C -L 2 .
 +-- utils
     +-- utils.c
     +-- utils.h
+
+----------------------------------------------------
+        netstat
+to show network status
+-a   display all sockets (default: connected)
+-t   TCP sockets
+-p   display PID/Program name for sockets
+----------------------------------------------------
+$ netstat -atp
+Active Internet connections (servers and established)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name
+tcp        0      0 0.0.0.0:domain          0.0.0.0:*               LISTEN      1813/dnsmasq
+tcp        0      0 0.0.0.0:ssh             0.0.0.0:*               LISTEN      2326/dropbear
+tcp        0      0 0.0.0.0:https           0.0.0.0:*               LISTEN      2010/uhttpd
+tcp        0      0 localhost:14140         0.0.0.0:*               LISTEN      2716/my_daemon
