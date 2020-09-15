@@ -1,0 +1,26 @@
+<%+header%>
+
+<h1>page 2!!! ver=1.0</h1>
+
+<h3>demo how to get http request</h3>
+<%
+for i, e in ipairs(luci.dispatcher.context.request) do
+    print("i=", i, "data=", e, "<br>")
+end
+--[[
+i=	1	data=	admin	
+i=	2	data=	my_app	
+i=	3	data=	htm_example2	
+i=	4	data=	aaa	
+i=	5	data=	bbb	
+]]--
+%>
+
+<h3>demo how to get http query string</h3>
+<%
+print("key=k1 value=", luci.http.formvalue("k1"), "<br>") --- d2 (string)
+print("key=k2 value=", luci.http.formvalue("k2"), "<br>") --- d1 (string)
+print("key=k3 value=", luci.http.formvalue("k3"), "<br>") --- nil
+%>
+
+<%+footer%>
