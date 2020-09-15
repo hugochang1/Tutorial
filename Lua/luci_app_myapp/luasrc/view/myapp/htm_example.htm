@@ -1,0 +1,331 @@
+<%+header%>
+
+<!-- demo headings -->
+<h1>h1 example</h1>
+<h2>h2 example</h2>
+<h3>h3 example</h3>
+<h4>h4 example</h4>
+<h5>h5 example</h5>
+<h6>h6 example</h6>
+
+<!-- demo horizontal line -->
+<hr/>
+<hr width="50px"/>
+<hr width="50%"/>
+
+<!-- demo paragraphs -->
+<p>p example</p>
+<p>5 spaces: | &nbsp &nbsp | <br/> next line </p>
+<hr/>
+
+<!-- demo formatting -->
+<p>normal</p>
+<p><b>bold</b></p>
+<p><i>italic</i></p>
+<p><ins>inserted</ins></p>
+<p><del>delete</del></p>
+<hr/>
+
+<!-- demo align -->
+<p align="left">left</p>
+<p align="center">center</p>
+<p align="right" color="#ff0000">right</p>
+<hr/>
+
+<!-- demo color -->
+<font color="#ff0000">
+<p>red</p>
+</font>
+<p style="color:#0000ff";>blue</p>
+<hr/>
+
+<!-- demo ordered list -->
+<ol>
+	<li>list item 1</li>
+	<li>list item 2</li>
+	<li>list item 3</li>
+</ol>
+
+<!-- demo unordered list -->
+<ul>
+	<li>list item A</li>
+	<li>list item B</li>
+	<li>list item C</li>
+</ul>
+<hr/>
+
+
+<!-- demo table -->
+<style>
+table, tr, td {
+	border: 1px solid black;
+	text-align:center;
+	color:#0000ff;
+}
+</style>
+<table bgcolor="#00ffff" style="width:100%">
+	<tr>
+		<td>1</td>
+		<td bgcolor="red">2</td>
+		<td style="color:red">3</td>
+	</tr>
+	<tr>
+		<td>4</td>
+		<td>5</td>
+		<td>6</td>
+	</tr>
+	<tr>
+		<td>7</td>
+		<td colspan="2">8</td>
+	</tr>
+</table>
+<hr/>
+
+<!-- demo button -->
+<input class="cbi-button" style="width:150px" title="call Javascript function" value="call JS 1" type="button" onclick="jsLog()" >
+<input class="cbi-button" style="width:150px" title="call Javascript function" value="call JS 2" type="button" onclick="jsLog(123, 456.789, 'hello')" >
+<input class="cbi-button" style="width:150px" title="direct to other html" value="goto CBI page" type="button" 
+	onclick="location.href='<%=luci.dispatcher.build_url("admin", "my_app", "cbi_example")%>' + '?k1=d1&k2=d2' ">
+<input class="cbi-button" style="width:150px" title="direct to other html" value="goto htm2 page" type="button" 
+	onclick="location.href='<%=luci.dispatcher.build_url("admin", "my_app", "htm_example2", "aaa", "bbb")%>' + '?k1=d1&k2=d2' ">
+<hr/>
+
+<!-- demo text -->
+<input value="default text value" type="text" id="my_text_1">
+<script>
+document.getElementById('my_text_1').value='changed!';
+</script>
+<hr/>
+
+<!-- demo checkbox -->
+<input type="checkbox" id="my_checkbox_1" > check box 1
+<input type="checkbox" id="my_checkbox_2" checked="true"> check box 2
+<script>
+console.log("my_checkbox_1 check=", document.getElementById('my_checkbox_1').checked); //false
+console.log("my_checkbox_2 check=", document.getElementById('my_checkbox_2').checked); //true
+document.getElementById('my_checkbox_1').checked = true;
+document.getElementById('my_checkbox_2').checked = false;
+</script>
+<hr/>
+
+<!-- demo radio -->
+<input type="radio" name="my_radio_1" id="my_radio_1" value="0" > aaa
+<input type="radio" name="my_radio_1" id="my_radio_2" value="1" checked="true"> bbb
+<input type="radio" name="my_radio_1" id="my_radio_3" value="2" > ccc
+<script>
+console.log("my_radio_1 value=", document.getElementById('my_radio_1').checked); // false
+console.log("my_radio_2 value=", document.getElementById('my_radio_2').checked); // true
+console.log("my_radio_3 value=", document.getElementById('my_radio_3').checked); // false
+document.getElementById('my_radio_3').checked = "true";
+</script>
+<hr/>
+
+<!-- demo select -->
+<select style="width:auto" id="my_select_1">
+	<option value="1" >item 1 </option>
+	<option value="2" selected="true"> item 2 </option>
+	<option value="3" > item 3 </option>
+	<option value="4" > item 4 </option>
+	<option value="5" > item 5 </option>
+</select>
+<script>
+document.getElementById('my_select_1').options[3].selected = true  // start from option[0]
+console.log("my_select_1 value=", document.getElementById('my_select_1').value); // 4
+</script>
+<hr/>
+
+<!-- demo textarea -->
+<textarea id="textarea_1" cols="55" rows="2" readonly="true">aaa bbb ccc
+hello world
+</textarea>
+<textarea id="textarea_2" style="width:100%; height: 100px;" ></textarea>
+<hr/>
+
+<!-- demo lua -->
+<%
+local a1 = "hello"
+log("myapp this is syslog from html %d %f %s", 123, 456.789, "!!!")
+%>
+
+<!-- Lua to html (string type) -->
+<%=a1%>
+<hr/>
+
+<!-- Lua to C -->
+<%
+local mydump = require("mydump")
+local __my_app = require("my_app")
+local ret, ret2, ret3
+
+ret = c_input_test1()
+assert(ret == nil)
+ret = c_input_test2(1234567890, "hello", "world")
+assert(ret == nil)
+
+ret, ret2, ret3 = c_output_test1()
+print("c_output_test1() ret=", ret, "ret2=", ret2, "ret3=", ret3, "<br>")
+--- c_output_test1() ret=	nil	ret2=	1234567890	ret3=	hello
+
+ret = c_output_test2()
+print("c_output_test2() ret=", mydump.get_dump_string(ret), "<br>")
+--- c_output_test2() ret=	{ ['key1']='value1', }
+
+ret = c_output_test3()
+print("c_output_test3() ret=", mydump.get_dump_string(ret), "<br>")
+--- c_output_test3() ret=	{ ['key1']='value1', ['key3']='value3', ['key2']='value2', }
+
+ret = c_output_test4()
+print("c_output_test4() ret=", mydump.get_dump_string(ret), "<br>")
+--- c_output_test4() ret=	{ ['key1']='value1', ['key3']='value3', ['key2']='value2', }
+
+ret = c_output_test5()
+print("c_output_test5() ret=", mydump.get_dump_string(ret), "<br>")
+--- c_output_test5() ret=	{ [1]='value1', [2]='value2', [3]='value3', }
+
+ret = c_output_test6()
+print("c_output_test6() ret=", mydump.get_dump_string(ret), "<br>")
+--- c_output_test6() ret=	{ [1]={ }, [2]={ ['kk2']='vv2', ['kk1']='vv1', }, [3]='value3', }
+%>
+<hr/>
+
+<!-- demo Javascript -->
+<script>
+	console.log("Chrome -> More tools -> Developer tools -> Console");
+	
+	<!-- Lua to Javascript (string type), Lua must be surrounded by as below -->
+	console.log("Lua to Javascript a1=", '<%=a1%>') // hello
+	console.log("Lua to Javascript typeof a1=", typeof '<%=a1%>') //string
+	console.log("Lua to Javascript undefined_variable=", '<%=undefined_variable%>') // empty string
+
+	function demoJavascriptToLua() {
+	/*
+		// XHR.get() with unknown address, it will show error on console.log and callback is still issued
+		XHR.get('<%=luci.dispatcher.build_url("admin", "my_app", "unknown")%>', null,
+            function(x, data) {
+				if(x.status === 404) {
+					console.log("callback from unknown() with fail", x);
+				}
+			}
+		);
+		XHR.get('<%=luci.dispatcher.build_url("admin", "my_app", "lua_http_log_demo")%>', null,
+            function(x, data) {
+				if(x.status === 200) {
+					console.log("callback from lua_http_log_demo() with sccuess", x);
+				}
+			}
+		);
+		
+		// test inputs
+		XHR.get('<%=luci.dispatcher.build_url("admin", "my_app", "lua_http_input_array")%>', null,
+            function(x, data) {
+				console.log("callback from lua_http_input_array() 0 parameters", x);
+			}
+		);
+		XHR.get('<%=luci.dispatcher.build_url("admin", "my_app", "lua_http_input_array")%>' + "/p1", null,
+            function(x, data) {
+				console.log("callback from lua_http_input_array() 1 parameters", x);
+			}
+		);
+		XHR.get('<%=luci.dispatcher.build_url("admin", "my_app", "lua_http_input_array")%>' + "/p3/d1/d2", null,
+            function(x, data) {
+				console.log("callback from lua_http_input_array() 3 parameters", x);
+			}
+		);
+		XHR.get('<%=luci.dispatcher.build_url("admin", "my_app", "lua_http_input_array")%>' + "/p5/d11/d22/d33/d44", null,
+            function(x, data) {
+				console.log("callback from lua_http_input_array() 5 parameters", x);
+			}
+		);
+		var d1 = 123
+		var d2 = "hello"
+		XHR.get('<%=luci.dispatcher.build_url("admin", "my_app", "lua_http_input_dictionary")%>', {k1:d1, k2:d2},
+            function(x, data) {
+				console.log("callback from lua_http_input_dictionary() empty", x);
+			}
+		);
+		
+		XHR.get('<%=luci.dispatcher.build_url("admin", "my_app", "lua_http_input_array_dictionary")%>', null,
+            function(x, data) {
+				console.log("callback from lua_http_input_array_dictionary() empty", x);
+			}
+		);
+		XHR.get('<%=luci.dispatcher.build_url("admin", "my_app", "lua_http_input_array_dictionary")%>' + "/hello/world/kk", {k1:d1, k2:d2},
+            function(x, data) {
+				console.log("callback from lua_http_input_array_dictionary() full", x);
+			}
+		);
+		
+		// test outputs
+		XHR.get('<%=luci.dispatcher.build_url("admin", "my_app", "lua_http_return_nil")%>', null,
+            function(x, data) {
+				if(x.response === "null") {
+					console.log("callback from lua_http_return_nil()", x);
+				}
+			}
+		);
+		XHR.get('<%=luci.dispatcher.build_url("admin", "my_app", "lua_http_return_int")%>', null,
+            function(x, data) {
+				if(x.response === "123") {
+					console.log("callback from lua_http_return_int()", x);
+				}
+			}
+		);
+		XHR.get('<%=luci.dispatcher.build_url("admin", "my_app", "lua_http_return_string")%>', null,
+            function(x, data) {
+				if(x.response === '"123"') {
+					console.log("callback from lua_http_return_string()", x);
+				}
+			}
+		);
+		XHR.get('<%=luci.dispatcher.build_url("admin", "my_app", "lua_http_return_array")%>', null,
+            function(x, data) {
+				console.log("callback from lua_http_return_array()", x);
+				var r = JSON.parse(x.response);
+				console.log("callback from lua_http_return_array()", r);
+				r.forEach(dumpArray)
+			}
+		);
+		XHR.get('<%=luci.dispatcher.build_url("admin", "my_app", "lua_http_return_dictionary")%>', null,
+            function(x, data) {
+				console.log("callback from lua_http_return_dictionary()", x);
+				var r = JSON.parse(x.response);
+				console.log("callback from lua_http_return_dictionary()", r);
+				console.log("callback from lua_http_return_dictionary() a1=", r["a1"], " type=", typeof r["a1"]);	// 1 number
+				console.log("callback from lua_http_return_dictionary() a2=", r["a2"], " type=", typeof r["a2"]);	// hello string
+				console.log("callback from lua_http_return_dictionary() a3=", r["a3"], " type=", typeof r["a3"]);	// 123.456 number
+				console.log("callback from lua_http_return_dictionary() a4=", r["a4"], " type=", typeof r["a4"]);	// undefined undefined
+				console.log("callback from lua_http_return_dictionary() a5=", r["a5"], " type=", typeof r["a5"]);	// [] object
+				console.log("callback from lua_http_return_dictionary() a6=", r["a6"], " type=", typeof r["a6"]);	// {b2: "world", b1: 2} object
+				console.log("callback from lua_http_return_dictionary() a6.b1=", r["a6"]["b1"], " type=", typeof r["a6"]["b1"]);	// 2 number
+				console.log("callback from lua_http_return_dictionary() a6.b2=", r["a6"]["b2"], " type=", typeof r["a6"]["b2"]);	// world string
+			}
+		);
+		
+		// test outputs, XHR.poll(), the minimal of poll period is 1. less than 1 will cause calling once
+		XHR.poll(0.5, '<%=luci.dispatcher.build_url("admin", "my_app", "lua_http_echo")%>' + "/test", null,
+            function(x, data) {
+				if(x.responseText === '"test"') {
+					console.log("callback from lua_http_echo()", x);
+				}
+			}
+		);
+		*/
+	}
+	
+	function dumpArray(data, index, array) {
+		console.log("dumpArray index=", index, " data=", data, " typeof=", typeof data);
+	}
+
+	function jsLog(d1, d2, d3) {
+		console.log("jsLog d1=", d1, "d2=", d2, "d3=", d3);
+	}
+
+    window.onload = function() {
+		console.log("window.onload");
+		demoJavascriptToLua();
+	}
+
+</script>
+
+<%+footer%>
+
