@@ -10,7 +10,7 @@ print(string.rep("Lua", 3))  -- LuaLuaLua
 ------- string.reverse(s), s:reverse() -------
 print(string.reverse("lua")) -- aul
 
-------- sstring.sub(s, i [, j]), s:sub(i [,j]) -------
+------- string.sub(s, i [, j]), s:sub(i [,j]) -------
 print(string.sub("Hello Lua user", 7))      -- from character 7 including 7 until the end)
 -- Lua user
 print(string.sub("Hello Lua user", 7, 9))   -- from character 7 until and including 9)
