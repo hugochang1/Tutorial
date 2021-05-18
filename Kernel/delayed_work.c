@@ -21,3 +21,6 @@ static void hugo_exit(void)
 {
     cancel_delayed_work_sync(&hugo_delay_w1);
 }
+
+module_init(hugo_init);
+module_exit(hugo_exit);
