@@ -29,5 +29,34 @@
 ![image not found.](./img/ncm_align_1.png)
 ![image not found.](./img/ncm_align_2.png)
 
+# NTB Maximum Sizes
+- Bulk OUT
+  - the device tells the host the size of NTB data structures
+  - host should not send NTBs larger than the device can support
+- Bulk IN
+  - the host tells the device the size of NTB data structures
+  - device should not send NTBs larger than the host can support
+# NTB format support
+- 16-bit NTB structures is mandatory
+- 32-bit NTB structures is optional
+# Ethernet frame Datagram Maximum Size
+- the device tells the host wMaxSegmentSize e in the Ethernet Networking Functional Descriptor
+- the host shall not select a size larger than the device can support
+- four-byte CRCs are not included in the maximum size
+# Null NCM Datagram Pointer Entries
+- Receivers shall process datagram pointer entries sequentially from the first entry in the NTB
+# Class-Specific Codes
+- NCM Communications Interface Subclass Code (bInterfaceSubClass)
+  - 0Dh (Network Control Model)
+- NCM Communications Interface Protocol Code (bInterfaceProtocol)
+  - 00h (No encapsulated commands / responses)
+  - FEh (OEM defined)
+- NCM Data Class Protocol Code
+  - 01h (Network Control Model)
+- NCM Functional Descriptor Code
+  - 1Ah (NCM Functional Descriptor)
+
+
+
 # Reference
 ###### breakdown article: https://markdownlivepreview.com/
