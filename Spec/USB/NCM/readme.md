@@ -8,9 +8,9 @@
 ###### NCM Datagram Pointer (NDP)
 
 # NTB layout details (16 bit)
-![image not found.](./ntb_layout_16.png)
+![image not found.](./img/ntb_layout_16.png)
 # NTB layout details (32 bit)
-![image not found.](./ntb_layout_32.png)
+![image not found.](./img/ntb_layout_32.png)
 
 # Reference
 ###### breakdown article: https://markdownlivepreview.com/
