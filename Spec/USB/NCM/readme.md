@@ -10,6 +10,7 @@
 ![image not found.](./img/ntb_layout_16.png)
 # NTB layout details (32 bit)
 ![image not found.](./img/ntb_layout_32.png)
+
 # Datagram Formatting
 ###### The datagram always starts with a 14-byte [IEEE802.3] header, and then continues with the appropriate payload.
 ###### NDP16 or NDP32 must choose whether a CRC-32 will be appended to the payload.
@@ -18,6 +19,15 @@
 ###### NDP32.Sig=ncm0" if [IEEE802.3], no CRC-32
 ###### NDP32.Sig="ncm1" if [IEEE802.3], with CRC-32
 
+# NCM Ethernet Frame Alignment
+###### NCM allows a function to align transmitted payloads (the data following the Ethernet header in each datagram)
+- Bulk IN
+  - Offset % wNdpInDivisor == wNdpInPayloadRemainder
+- Bulk OUT
+  - Offset % wNdpOutDivisor == wNdpOutPayloadRemainder
+###### The agent formatting a given NTB aligns the payload of each datagram by inserting padding
+![image not found.](./img/ncm_align_1.png)
+![image not found.](./img/ncm_align_2.png)
 
 # Reference
 ###### breakdown article: https://markdownlivepreview.com/
