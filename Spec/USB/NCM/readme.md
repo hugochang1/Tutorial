@@ -56,6 +56,20 @@
 - NCM Functional Descriptor Code
   - 1Ah (NCM Functional Descriptor)
 
+![image not found.](./img/ncm_descriptor.png)
+
+# NCM Function Descriptor
+![image not found.](./img/ncm_function_descriptor.png)
+
+
+# Data Interface Descriptor
+- have two alternate settings
+  - alternate setting 0
+    - no endpoints and therefore no networking traffic can be exchanged
+  - alternate setting 1
+    - used for normal operation, and shall include one bulk IN endpoint and one bulk OUT endpoint
+
+
 
 
 # Reference
