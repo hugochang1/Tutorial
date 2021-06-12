@@ -75,6 +75,8 @@
 # GetNtbParameters
 ![ncm_get_ntb_param_request.png not found.](./img/ncm_get_ntb_param_request.png)
 ![ncm_get_ntb_param.png not found.](./img/ncm_get_ntb_param.png)
+- All NCM functions shall support 16-bit NTBs
+- If 32-bit NTBs are supported, then GetNtbFormat and SetNtbFormat must be supported
 
 
 # Reference
