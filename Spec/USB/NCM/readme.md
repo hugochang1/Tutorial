@@ -78,6 +78,18 @@
 - All NCM functions shall support 16-bit NTBs
 - If 32-bit NTBs are supported, then GetNtbFormat and SetNtbFormat must be supported
 
+# GetNetAddress
+![ncm_get_net_addr.png not found.](./img/ncm_get_net_addr.png)
+
+# SetNetAddress
+![ncm_set_net_addr.png not found.](./img/ncm_set_net_addr.png)
+
+# GetNtbFormat
+![ncm_get_ntb_format.png not found.](./img/ncm_get_ntb_format.png)
+
+# SetNtbFormat
+![ncm_set_ntb_foramt.png not found.](./img/ncm_set_ntb_foramt.png)
+
 
 # Reference
 ###### breakdown article: https://markdownlivepreview.com/
