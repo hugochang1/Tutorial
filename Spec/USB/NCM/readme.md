@@ -118,10 +118,30 @@
 
 # NCM Notifications
 ![ncm_notification.png not found.](./img/ncm_notification.png)
-- Sequencing for NetworkConnection
+- Sequencing for NetworkConnection with connected 
   - must send ConnectionSpeedChange first
   - and then send NetworkConnection
 
+# Using Alternate Settings to Reset an NCM Function
+- Host
+  - select alternate setting 0 of the NCM Data Interface
+  - select the second alternate interface setting of the NCM Data Interface
+- Device
+  - Whenever alternate setting 0 is selected by the host, the function shall
+    - flush function buffers
+    - reset the packet filter to its default state
+    - clear all multicast address filters
+    - clear all power filters set 
+    - reset statistics counters to zero
+    - restore its Ethernet address to its default state
+    - reset its IN NTB size to the value given by field dwNtbInMaxSize from the NTB Parameter Structure
+    - reset the NTB format to NTB-16
+    - reset the current Maximum Datagram Size to a function-specific default
+    - reset CRC mode so that the function will not append CRCs to datagrams sent on the IN pipe
+    - reset NTB sequence numbers to zero
+  - When the host selects the second alternate interface setting
+    - If connected to the network, the function shall send a ConnectionSpeedChange notification to the host indicating the current connection speed.
+    - Whether connected or not, the function shall then send a NetworkConnection notification to the host, with wValue indicating the current state of network connectivity
 
 ![a not found.](./img/a)
 # Reference
