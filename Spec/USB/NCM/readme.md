@@ -143,6 +143,23 @@
     - If connected to the network, the function shall send a ConnectionSpeedChange notification to the host indicating the current connection speed.
     - Whether connected or not, the function shall then send a NetworkConnection notification to the host, with wValue indicating the current state of network connectivity
 
-![a not found.](./img/a)
+# Remote Wakeup
+- two remote wake
+  - to awaken a link that has been selectively suspended (“link suspend”)
+  - to awaken the USB host from a system suspend state (“system suspend”)
+- host uses SetEthernetPowerManagementPatternFilter to help to allow the device to distinguish between cases 1 and 2
+
+# Using the Interface Association Descriptor
+- When using an IAD, the general order of descriptors for an NCM function should be
+  - Interface Association Descriptor (IAD)
+    - Communications Class Interface Descriptor (interface n)
+      - Functional descriptors for the Communication Class Interface
+        - Endpoint descriptors for the Communication Class Interface
+    - Data Class Interface (interface n+1, alternate setting 0)
+      - Functional descriptors for Data Class Interface (interface n+1, alternate setting 0)
+    - Data Class Interface (interface n+1, alternate setting 1)
+      - Functional descriptors for Data Class Interface (interface n+1, alternate setting 1)
+        - Endpoint descriptors for Data Class Interface (interface n+1, alternate setting 1)
+
 # Reference
 ###### breakdown article: https://markdownlivepreview.com/
