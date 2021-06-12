@@ -39,7 +39,7 @@
 # NTB format support
 - 16-bit NTB structures is mandatory
 - 32-bit NTB structures is optional
-# Ethernet frame Datagram Maximum Size
+# Ethernet Frame Datagram Maximum Size
 - the device tells the host wMaxSegmentSize e in the Ethernet Networking Functional Descriptor
 - the host shall not select a size larger than the device can support
 - four-byte CRCs are not included in the maximum size
@@ -56,10 +56,10 @@
 - NCM Functional Descriptor Code
   - 1Ah (NCM Functional Descriptor)
 
-![image not found.](./img/ncm_descriptor.png)
+![ncm_descriptor.png) not found.](./img/ncm_descriptor.png)
 
 # NCM Function Descriptor
-![image not found.](./img/ncm_function_descriptor.png)
+![ncm_function_descriptor.png not found.](./img/ncm_function_descriptor.png)
 
 
 # Data Interface Descriptor
@@ -69,7 +69,12 @@
   - alternate setting 1
     - used for normal operation, and shall include one bulk IN endpoint and one bulk OUT endpoint
 
+# NCM Control Message
+![ncm_control_msg.png not found.](./img/ncm_control_msg.png)
 
+# GetNtbParameters
+![ncm_get_ntb_param_request.png not found.](./img/ncm_get_ntb_param_request.png)
+![ncm_get_ntb_param.png not found.](./img/ncm_get_ntb_param.png)
 
 
 # Reference
