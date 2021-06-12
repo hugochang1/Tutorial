@@ -118,8 +118,8 @@
 
 # NCM Notifications
 ![ncm_notification.png not found.](./img/ncm_notification.png)
-- Sequencing for NetworkConnection notification with wValue == 0001h
-  - send ConnectionSpeedChange first 
+- Sequencing for NetworkConnection
+  - must send ConnectionSpeedChange first
   - and then send NetworkConnection
 
 
