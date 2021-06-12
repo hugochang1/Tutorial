@@ -80,16 +80,43 @@
 
 # GetNetAddress
 ![ncm_get_net_addr.png not found.](./img/ncm_get_net_addr.png)
+- the host should set wLength to at least 6
 
 # SetNetAddress
 ![ncm_set_net_addr.png not found.](./img/ncm_set_net_addr.png)
 
 # GetNtbFormat
 ![ncm_get_ntb_format.png not found.](./img/ncm_get_ntb_format.png)
+- host should set wLength to at least 2
 
 # SetNtbFormat
 ![ncm_set_ntb_foramt.png not found.](./img/ncm_set_ntb_foramt.png)
 
+# GetNtbInputSize
+![ncm_get_input_size.png not found.](./img/ncm_get_input_size.png)
+- the host should set wLength to at least 4
 
+# SetNtbInputSize
+![ncm_set_input_size.png not found.](./img/ncm_set_input_size.png)
+- This request selects the maximum size of NTB that the device is permitted to send to the host
+
+# GetMaxDatagramSize
+![ncm_get_max_data_size.png not found.](./img/ncm_get_max_data_size.png)
+- the host should set wLength to at least 2
+
+# SetMaxDatagramSize
+![ncm_set_max_data_size.png not found.](./img/ncm_set_max_data_size.png)
+- The host shall select a size that is at least 1514
+- and no larger than the maximum size permitted by the function, according to the value given by wMaxSegmentSize in the Ethernet Networking Functional Descriptor
+
+# GetCrcMode
+![ncm_get_crc.png not found.](./img/ncm_get_crc.png)
+- the host should set wLength to at least 2
+
+# SetCrcMode
+![ncm_set_crc.png not found.](./img/ncm_set_crc.png)
+
+
+![a not found.](./img/a)
 # Reference
 ###### breakdown article: https://markdownlivepreview.com/
