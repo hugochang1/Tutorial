@@ -83,6 +83,10 @@
 - wMaxPacketSize: 512
 - bInterval: 0
   - device to host data endpoint
+  - protocol stack over this interface is
+    - RNDIS header, Ethernet header, IP header, TCP/UDP/ICMP
+    - ![tcp_ip_stack.png not found.](./img/tcp_ip_stack.png)
+    - ![ethernet_stack.png not found.](./img/ethernet_stack.png)
 
 ### ENDPOINT DESCRIPTOR
 - bLength: 7
