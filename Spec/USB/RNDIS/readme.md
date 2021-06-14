@@ -38,6 +38,8 @@
 - iFunction: 7
   - Class (0xe0), SubClass (0x01), Protocol (0x03) is RNDIS
   - https://www.usb.org/defined-class-codes#anchor_BaseClassE0h
+  - IAD is used for association two or more interfaces together as one function (ex: RNDIS)
+    - assoicate wireless controller and CDC-Data
 
 ### INTERFACE DESCRIPTOR (0.0): class Wireless Controller
 - bLength: 9
@@ -59,6 +61,7 @@
 - bmAttributes: 0x03
 - wMaxPacketSize: 8
 - bInterval: 9
+  - for device to notify the host RNDIS control message is ready to be read
 
 ### INTERFACE DESCRIPTOR (1.0): class CDC-Data
 - bLength: 9
@@ -79,6 +82,7 @@
 - bmAttributes: 0x02
 - wMaxPacketSize: 512
 - bInterval: 0
+  - device to host data endpoint
 
 ### ENDPOINT DESCRIPTOR
 - bLength: 7
@@ -87,3 +91,4 @@
 - bmAttributes: 0x02
 - wMaxPacketSize: 512
 - bInterval: 0
+  - host to device data endpoint
