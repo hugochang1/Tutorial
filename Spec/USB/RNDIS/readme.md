@@ -30,11 +30,11 @@
 ### INTERFACE ASSOCIATION DESCRIPTOR (IAD)
 - bLength: 8
 - bDescriptorType: 0x0b (INTERFACE ASSOCIATION)
-- bFirstInterface: 0
-- bInterfaceCount: 2
-- bFunctionClass: Wireless Controller (0xe0)
-- bFunctionSubClass: 0x01
-- bFunctionProtocol: 0x03
+- bFirstInterface: **0**
+- bInterfaceCount: **2**
+- bFunctionClass: **Wireless Controller (0xe0)**
+- bFunctionSubClass: **0x01**
+- bFunctionProtocol: **0x03**
 - iFunction: 7
   - Class (0xe0), SubClass (0x01), Protocol (0x03) is RNDIS
   - https://www.usb.org/defined-class-codes#anchor_BaseClassE0h
@@ -47,9 +47,9 @@
 - bInterfaceNumber: 0
 - bAlternateSetting: 0
 - bNumEndpoints: 1
-- bInterfaceClass: Wireless Controller (0xe0)
-- bInterfaceSubClass: 0x01
-- bInterfaceProtocol: 0x03
+- bInterfaceClass: **Wireless Controller (0xe0)**
+- bInterfaceSubClass: **0x01**
+- bInterfaceProtocol: **0x03**
 - iInterface: 5
   - Class (0xe0), SubClass (0x01), Protocol (0x03) is RNDIS
   - https://www.usb.org/defined-class-codes#anchor_BaseClassE0h
@@ -69,9 +69,9 @@
 - bInterfaceNumber: 1
 - bAlternateSetting: 0
 - bNumEndpoints: 2
-- bInterfaceClass: CDC-Data (0x0a)
-- bInterfaceSubClass: 0x00
-- bInterfaceProtocol: No class specific protocol required (0x00)
+- bInterfaceClass: **CDC-Data (0x0a)**
+- bInterfaceSubClass: **0x00**
+- bInterfaceProtocol: **No class specific protocol required (0x00)**
 - iInterface: 6
   - https://www.usb.org/defined-class-codes#anchor_BaseClass0Ah
 
@@ -93,8 +93,11 @@
 - bInterval: 0
   - host to device data endpoint
 
-
-### RNDIS protocol stack
-- protocol stack over this interface is RNDIS header, Ethernet header, IP header, ...
+### RNDIS data message
+#### RNDIS data message header
+- https://docs.microsoft.com/zh-hk/windows-hardware/drivers/network/remote-ndis-packet-msg
+- normally, the RNDIS packet size is **44** bytes without using OOBData and PerPacketInfo
+#### RNDIS data message stack
+- protocol stack over this interface is RNDIS header (44 bytes), Ethernet header (14 bytes), IP header, ...
 ![tcp_ip_stack.png not found.](./img/tcp_ip_stack.png)
 ![ethernet_stack.png not found.](./img/ethernet_stack.png)
