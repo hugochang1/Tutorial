@@ -12,7 +12,7 @@ Host -> Device: Set Configuration
 
 note over Host, Device: USB configured
 
-== USB System SW disalbes remote wake up ==
+== USB System SW disables remote wake up ==
 
 Host -> Device: Clear Feature (remote wake up)
 
