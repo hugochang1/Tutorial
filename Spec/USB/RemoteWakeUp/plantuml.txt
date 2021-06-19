@@ -1,0 +1,50 @@
+@startuml
+
+participant Host as Host
+participant Device as Device
+
+note over Host, Device: USB connected
+
+Host -> Device: Get Descriptors
+Device -> Host: Configuration Descriptor (**remote wake up supported**)
+...
+Host -> Device: Set Configuration
+
+note over Host, Device: USB configured
+
+== USB System SW disalbes remote wake up ==
+
+Host -> Device: Clear Feature (remote wake up)
+
+...
+note over Host, Device: enter system suspend mode
+...
+
+Device <- : incoming event (ex: network data or incoming calls)
+note over Device: device wakes up
+
+note over Device
+  the device **cannot** use USB electrical 
+  signal to wake up the host
+end note
+
+== USB System SW enables remote wake up ==
+
+Host -> Device: Set Feature (remote wake up)
+
+...
+note over Host, Device: enter system suspend mode
+...
+Device <- : incoming event (ex: network data or incoming calls)
+note over Device: device wakes up
+
+Device -> Host: the electrical signal Resume('K') for 1~15 ms
+
+note over Host: Host wakes up
+
+Host -> Device: SOF
+
+note over Host, Device: all USB devices wake up
+
+
+@enduml
