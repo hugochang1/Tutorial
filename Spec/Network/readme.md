@@ -7,3 +7,15 @@
 
 # IPv4 Header
 ![network_ipv4_header.png not found.](./img/network_ipv4_header.png)
+- Version
+  - IPv4 is 4
+- Header Length
+  - minimum is value=5 = 5 x 4 bytes = 20 bytes
+  - maximum is value=15 = 15 x 4 bytes = 60 bytes 
+- Type of service (Tos)
+- Total Length
+  - the entire packet size in bytes, including header and data
+  - minimum size is 20 bytes 
+  - maximum is 65,535 bytes
+- Identifier
+  - the group of fragments of a single IP datagram
