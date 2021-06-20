@@ -55,5 +55,6 @@
 
 # UDP Header
 ![network_udp_header.png not found.](./img/network_udp_header.png)
-
+- Length
+  - This field specifies the length in bytes of the UDP header and UDP data
 
