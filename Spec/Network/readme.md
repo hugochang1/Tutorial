@@ -32,6 +32,7 @@
   - https://en.wikipedia.org/wiki/List_of_IP_protocol_numbers
   - TCP is 0x06
   - UDP is 0x11
+  - IMCP is 0x01
 
 # IPv6 Header
 ![network_ipv6_header.png not found.](./img/network_ipv6_header.png)
@@ -51,4 +52,8 @@
   - CWR (Congestion window reduced)
 - Window Size
   - The size of the receive window
+
+# UDP Header
+![network_udp_header.png not found.](./img/network_udp_header.png)
+
 
