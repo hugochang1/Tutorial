@@ -24,6 +24,10 @@
   - maximum is 65,535 bytes
 - Identifier
   - the group of fragments of a single IP datagram
+- Flags
+  - bit 0: Reserved; must be zero
+  - bit 1: Don't Fragment (DF)
+  - bit 2: More Fragments (MF)
 - Protocol
   - https://en.wikipedia.org/wiki/List_of_IP_protocol_numbers
   - TCP is 0x06
