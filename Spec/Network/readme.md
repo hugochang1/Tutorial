@@ -25,8 +25,17 @@
   - UDP is 0x11
 
 # IPv6 Header
+![network_ipv6_header.png not found.](./img/network_ipv6_header.png)
+
 
 # TCP Header
 ![network_tcp_header.png not found.](./img/network_tcp_header.png)
 - https://en.wikipedia.org/wiki/Transmission_Control_Protocol
-- 
+- Data offset
+  - Specifies the size of the TCP header in **32-bit words**
+  - The minimum size header is 5 words and the maximum is 15 words
+- Flags
+  - CWR (Congestion window reduced)
+- Window Size
+  - The size of the receive window
+
