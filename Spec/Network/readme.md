@@ -28,6 +28,9 @@
 ![network_ipv6_header.png not found.](./img/network_ipv6_header.png)
 - Version
   - IPv6 is 6
+- Payload length
+  - The size of the payload in octets, including any extension headers
+  - The length is set to zero when a Hop-by-Hop extension header carries a Jumbo Payload option
 
 # TCP Header
 ![network_tcp_header.png not found.](./img/network_tcp_header.png)
