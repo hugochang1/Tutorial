@@ -26,7 +26,8 @@
 
 # IPv6 Header
 ![network_ipv6_header.png not found.](./img/network_ipv6_header.png)
-
+- Version
+  - IPv6 is 6
 
 # TCP Header
 ![network_tcp_header.png not found.](./img/network_tcp_header.png)
