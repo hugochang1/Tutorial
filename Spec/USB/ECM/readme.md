@@ -6,9 +6,15 @@
 - Protocol Code 
   - 00h: No class specific protocol required 
 
+# Data Class interface
+- shall have a minimum of two interface settings
+  - The first setting (the default interface setting) includes no endpoints
+  - the second setting includes a pair of endpoints (one IN, and one OUT) to exchange network traffic
+- to recover the device to known states
+  - the host will first select the default interface setting (with no endpoints) and then select the appropriate alternate interface setting
+
 # Ethernet Networking Functional Descriptor
 ![ecm_functional_descriptor.png not found.](./img/ecm_functional_descriptor.png)
-
 
 # Ethernet Statistics Capabilities
 ![ecm_stat_cap.png not found.](./img/ecm_stat_cap.png)
