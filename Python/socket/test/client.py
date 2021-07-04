@@ -1,5 +1,4 @@
 import socket
-import time
 import traceback
 
 HOST = '127.0.0.1'
@@ -51,27 +50,46 @@ s.sendall(cmd.encode())
 read_and_expect_value(s, "1")
 
 # ------------ test 3 ------------
-cmd = "3"
-for i in range(1000):
-	cmd += "a"
-cmd += "!"
+cmd = "3" + "a" * 1000 + "!"
 s.sendall(cmd.encode())
 read_and_expect_value(s, "0")
 
 # ------------ test 4 ------------
-cmd = "4"
-for i in range(2000):
-	cmd += "a"
-cmd += "!"
+cmd = "4" + "a" * 2000 + "!"
 s.sendall(cmd.encode())
 read_and_expect_value(s, "0")
 
 # ------------ test 5 ------------
-cmd = "5"
-for i in range(16000):
-	cmd += "a"
-cmd += "!"
+cmd = "5" + "a" * 16000 + "!"
 s.sendall(cmd.encode())
 read_and_expect_value(s, "0")
+
+# ------------ test 6 ------------
+cmd = "6"
+s.sendall(cmd.encode())
+ret = s.recv(RECV_DATA_SIZE).decode()
+if ret != "6" + "b"*100 + "!":
+	print("[Client] case 6 fail, data=", ret)
+
+# ------------ test 7 ------------
+cmd = "7"
+s.sendall(cmd.encode())
+ret = s.recv(RECV_DATA_SIZE).decode()
+if ret != "7" + "b"*1000 + "!":
+	print("[Client] case 7 fail, data=", ret)
+
+# ------------ test 8 ------------
+cmd = "8"
+s.sendall(cmd.encode())
+ret = s.recv(RECV_DATA_SIZE).decode()
+if ret != "8" + "b"*2000 + "!":
+	print("[Client] case 8 fail, data=", ret)
+	
+# ------------ test 9 ------------
+cmd = "9"
+s.sendall(cmd.encode())
+ret = s.recv(RECV_DATA_SIZE).decode()
+if ret != "9" + "b"*16000 + "!":
+	print("[Client] case 9 fail, data=", ret)
 
 s.close()
