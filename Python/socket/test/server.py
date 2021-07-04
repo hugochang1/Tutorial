@@ -1,10 +1,15 @@
 import socket
+import traceback
 
 bind_ip = "0.0.0.0"
 bind_port = 9999
 RECV_DATA_SIZE = 1024 * 16
 
-def recv_handler(data):
+def show_traceback():
+    for line in traceback.format_stack():
+        print(line.strip())
+
+def recv_handler(data, client):
 	if data[0] == "1":
 		if len(data) != 1:
 			print("[Server] ERR: case 1 fail")
@@ -21,32 +26,33 @@ def recv_handler(data):
 		print("[Server] PASS: case 2")
 		return True
 	if data[0] == "3":
-		for i in range(1000):
-			if data[i+1] != "a":
-				print("[Server] ERR: case 3 fail 1")
-				return False
-			if data[1001] != "!":
-				print("[Server] ERR: case 3 fail 2")
-				return False
+		if data != "3" + "a"*1000 + "!":
+				print("[Server] ERR: case 3, data=", data)
 		return True
 	if data[0] == "4":
-		for i in range(2000):
-			if data[i+1] != "a":
-				print("[Server] ERR: case 4 fail 1")
-				return False
-			if data[2001] != "!":
-				print("[Server] ERR: case 4 fail 2")
-				return False
+		if data != "4" + "a"*2000 + "!":
+				print("[Server] ERR: case 4, data=", data)
 		return True
 	if data[0] == "5":
-		for i in range(16000):
-			if data[i+1] != "a":
-				print("[Server] ERR: case 5 fail 1")
-				return False
-			if data[16001] != "!":
-				print("[Server] ERR: case 5 fail 2")
-				return False
+		if data != "5" + "a"*16000 + "!":
+				print("[Server] ERR: case 5, data=", data)
 		return True
+	if data[0] == "6":
+		send_data = "6" + "b" * 100 + "!"
+		client.sendall(send_data.encode())
+		return None
+	if data[0] == "7":
+		send_data = "7" + "b" * 1000 + "!"
+		client.sendall(send_data.encode())
+		return None
+	if data[0] == "8":
+		send_data = "8" + "b" * 2000 + "!"
+		client.sendall(send_data.encode())
+		return None
+	if data[0] == "9":
+		send_data = "9" + "b" * 16000 + "!"
+		client.sendall(send_data.encode())
+		return None
 	print("[Server] ERR: unknown command")
 	return False
 
@@ -66,10 +72,14 @@ while True:
 				client.close()
 				break;
 			print("[Server] recv data=%s" % data)
-			if recv_handler(data.decode()) == True:
+			ret = recv_handler(data.decode(), client)
+			if ret == True:
 				client.sendall("0".encode()) # pass
-			else:
+			elif ret == False:
 				client.sendall("1".encode()) # fail
+			else:
+				pass
 	except Exception as err:
 		print("[Server] exception: " + str(err))
+		print(traceback.format_exc())
 		client.close()
