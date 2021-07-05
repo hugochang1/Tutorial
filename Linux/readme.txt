@@ -19,7 +19,7 @@ find ./ -type d -name "folder_*"
 grep keyword ./ -r
 grep keyword ./ -r --include=file_name
 grep keyword ./ -r --include=*.cpp
-
+grep -E -i -w 'keyword1|keyword2'
 
 ----------------------------------------------------
         objdump
