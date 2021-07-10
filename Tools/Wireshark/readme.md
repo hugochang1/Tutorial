@@ -32,4 +32,11 @@
     - -w C:\Users\88692\Desktop\simple.pcapng: which place and file name you want to save to
     - -b filesize: use the ring buffer in kilobyte for each file size
     - -b files: use the ring buffer with maximum file number
-
+#### Filter
+- tcp
+- ip
+- arp
+- mouse right click -> Conversation Filter -> ex: TCP
+- ip.addr == 192.168.1.1
+- ip.addr eq 192.168.1.1
+- (ip.addr eq 192.168.1.1) and tcp
