@@ -40,3 +40,11 @@
 - ip.addr == 192.168.1.1
 - ip.addr eq 192.168.1.1
 - (ip.addr eq 192.168.1.1) and tcp
+- ! arp
+- not arp
+- not (arp or ipv6)
+- tcp port in {80 111 222}
+- frame contains google
+  - case sensitive
+- frame matches google
+  - case insensitive
