@@ -39,7 +39,7 @@
 - Version
   - IPv6 is 6
 - Payload length
-  - The size of the payload in octets, including any extension headers
+  - The size of the payload in octets, including any extension headers (not including IPv6 header 40 bytes)
   - The length is set to zero when a Hop-by-Hop extension header carries a Jumbo Payload option
 
 # TCP Header
