@@ -151,3 +151,5 @@
         bmAttributes: 0x00
         wBytesPerInterval: 0
 
+# Kernel.org
+- https://github.com/torvalds/linux/blame/master/drivers/usb/gadget/function/f_ecm.c
