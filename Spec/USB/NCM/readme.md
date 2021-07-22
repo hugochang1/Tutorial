@@ -163,3 +163,10 @@
 
 # Reference
 ###### breakdown article: https://markdownlivepreview.com/
+
+# Kernel.org
+- https://github.com/torvalds/linux/blame/master/drivers/usb/gadget/function/f_ncm.c
+- 2020 https://github.com/torvalds/linux/commit/986499b1569af980a819817f17238015b27793f6
+- 2019 https://github.com/torvalds/linux/commit/5b24c28cfe136597dc3913e1c00b119307a20c7e
+- 2017 https://github.com/torvalds/linux/commit/b1a31a5f5f27ff8aba42b545a1c721941f735107
+- 2016 https://github.com/torvalds/linux/commit/1650113888fe7b7e16604a5019c32dd3ddeb3af2
