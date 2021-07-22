@@ -103,9 +103,17 @@
 ![ethernet_stack.png not found.](./img/ethernet_stack.png)
 
 # Kernel.org
-- https://github.com/torvalds/linux/blame/master/drivers/usb/gadget/function/f_rndis.c
-- 2021 https://github.com/torvalds/linux/commit/90c4d05780d47e14a50e11a7f17373104cd47d25
-- 2019 https://github.com/torvalds/linux/commit/e5b5da96da50ef30abb39cb9f694e99366404d24
-- 2017 https://github.com/torvalds/linux/commit/5fd54ace4721fc5ce2bb5aef6318fcf17f421460
-- 2016 https://github.com/torvalds/linux/commit/80d1642d7640ef00d8823f17a529785331aceb96
-- 2015 https://github.com/torvalds/linux/commit/83210e59ee1527f229af6aef78c95b747bdcf9c4
+- u_ether.c
+  - https://github.com/torvalds/linux/blame/master/drivers/usb/gadget/function/u_ether.c
+  - 2021 https://github.com/torvalds/linux/commit/63d152149b2d0860ccf8c4e6596b6175b2b7ace6
+  - 2020 https://github.com/torvalds/linux/commit/0a88fa221ce911c331bf700d2214c5b2f77414d3
+  - 2020 https://github.com/torvalds/linux/commit/a74005ab91856276ca5e424a239ebe73347079d8
+  - 2019 https://github.com/torvalds/linux/commit/d29fcf7078bc8be2b6366cbd4418265b53c94fac
+  - 2018 https://github.com/torvalds/linux/commit/c9287fa657b3328b4549c0ab39ea7f197a3d6a50
+- f_rndis.c
+  - https://github.com/torvalds/linux/blame/master/drivers/usb/gadget/function/f_rndis.c
+  - 2021 https://github.com/torvalds/linux/commit/90c4d05780d47e14a50e11a7f17373104cd47d25
+  - 2019 https://github.com/torvalds/linux/commit/e5b5da96da50ef30abb39cb9f694e99366404d24
+  - 2017 https://github.com/torvalds/linux/commit/5fd54ace4721fc5ce2bb5aef6318fcf17f421460
+  - 2016 https://github.com/torvalds/linux/commit/80d1642d7640ef00d8823f17a529785331aceb96
+  - 2015 https://github.com/torvalds/linux/commit/83210e59ee1527f229af6aef78c95b747bdcf9c4
