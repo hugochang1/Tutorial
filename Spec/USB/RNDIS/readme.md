@@ -101,3 +101,11 @@
 - protocol stack over this interface is RNDIS header (44 bytes), Ethernet header (14 bytes), IP header, ...
 ![tcp_ip_stack.png not found.](./img/tcp_ip_stack.png)
 ![ethernet_stack.png not found.](./img/ethernet_stack.png)
+
+# Kernel.org
+- https://github.com/torvalds/linux/blame/master/drivers/usb/gadget/function/f_rndis.c
+- 2021 https://github.com/torvalds/linux/commit/90c4d05780d47e14a50e11a7f17373104cd47d25
+- 2019 https://github.com/torvalds/linux/commit/e5b5da96da50ef30abb39cb9f694e99366404d24
+- 2017 https://github.com/torvalds/linux/commit/5fd54ace4721fc5ce2bb5aef6318fcf17f421460
+- 2016 https://github.com/torvalds/linux/commit/80d1642d7640ef00d8823f17a529785331aceb96
+- 2015 https://github.com/torvalds/linux/commit/83210e59ee1527f229af6aef78c95b747bdcf9c4
