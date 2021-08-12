@@ -58,3 +58,5 @@
 - Length
   - This field specifies the length in bytes of the UDP header and UDP data
 
+# GSO/TSO/UFO/LRO/GRO
+https://blog.csdn.net/Rong_Toa/article/details/108748689#blogTitle1
