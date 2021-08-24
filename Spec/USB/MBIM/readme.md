@@ -2,12 +2,12 @@
 
 ## Overview
 #### MBIM v1.0
-###### release date: 2011-10-25
-###### rename from NCM 2.0
-###### MBIM is a protocol 
-###### USB hosts and Mobile Broadband devices can efficiently exchange control commands and data frames
-###### MBIM is based on the Communications Class Network Control Model (NCM 1.0) Subclass
-###### defines control commands, raw IP usage and Communications Device Class subclass specification
+- release date: 2011-10-25
+- rename from NCM 2.0
+- MBIM is a protocol 
+- USB hosts and Mobile Broadband devices can efficiently exchange control commands and data frames
+- MBIM is based on the Communications Class Network Control Model (NCM 1.0) Subclass
+- defines control commands, raw IP usage and Communications Device Class subclass specification
 
 #### OTHER USB NETWORKING SPECIFICATIONS
 ###### Ethernet Control Model (ECM)
