@@ -9,11 +9,14 @@
 - defines control commands, raw IP usage and Communications Device Class subclass specification
 
 #### OTHER USB NETWORKING SPECIFICATIONS
+###### Remote-NDIS (RNDIS)
+- IEEE 802.3 type + RNDIS header (44 bytes)
+- RNDIS supports aggregation for DL/UL
 ###### Ethernet Control Model (ECM)
 - IEEE 802.3 type 
-- no header, no aggregation, 1-on-1 packet delivery
+- no extra header, no aggregation, 1-on-1 packet delivery
 ###### Network Control Model (NCM)
-- IEEE 802.3 type 
+- IEEE 802.3 type + NCM Transfer Block (NTB)
 - define NCM header and data structure for packet alignment and aggregation
 - it lacks the definition of control commands
 - overhead to carry the raw IP encapsulated in an Ethernet frame
