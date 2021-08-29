@@ -64,6 +64,14 @@
 ![mbim_default_pipe](https://user-images.githubusercontent.com/6143237/131256276-90f65b6d-d0c3-4bb9-b263-1924690d69b6.png)
 #### interrupt pipe
 ![mbim_interrupt_pipe](https://user-images.githubusercontent.com/6143237/131256306-365a0e4a-1888-4311-8e43-d41a3ec6d2bc.png)
-
-
+#### BULK-IN AND BULK-OUT PIPES
+- It is recommended that the values of dwNtbInMaxSize and dwNtbOutMaxSize be multiples of the wMaxPacketSize of the bulk pipes
+- If the transfer is a less than the configured Max NTB size and is a multiple of the wMaxPacketSize the sender must terminate the transfer with a ZLP
+#### OPERATIONAL MODEL
+##### command response sequence
+![mbim_command_response_sequence](https://user-images.githubusercontent.com/6143237/131256587-cd53a23a-907b-417a-8d21-1ad72113ab0f.png)
+- This model allows the host to issue multiple control messages to the device without waiting for previous message to complete
+##### unsolicited event sequence
+![mbim_unsolicited_event_sequence](https://user-images.githubusercontent.com/6143237/131256673-394cd4ea-e711-41a6-bd1a-10bd200263ae.png)
+- whenever the device needs to notify the host of an unsolicited device events, it uses the interrupt end-point
 
