@@ -93,5 +93,17 @@
 #### MBIM Communication Interface Descriptor Requirements
 ![mbim_communication_interface_descriptor](https://user-images.githubusercontent.com/6143237/131257138-e6af1088-bbe9-44bb-b137-ee521cdf446d.png)
 #### MBIM FUNCTIONAL DESCRIPTOR
+| Offset | Field | Size | Value | Description |
+| ------ | ----- | ---- | ----- | ----------- |
+| 0 | bFunctionLength | 1 | 12 | Size of Descriptor in bytes |
+| 1 | bDescriptorType | 1 | Constant | CS_INTERFACE (0x24) |
+| 2 | bDescriptorSubtype | 1 | Constant | MBIM Functional Descriptor code (0x1B or 0x1C) |
+| 3 | bcdMBIMVersion | 2 | Number 0x0100  | Release number of this specification in BCD |
+| 5 | wMaxControlMessage | 2 | Number | Maximum segment size in bytes a function can handle |
+| 7 | bNumberFilters | 1 | Number | Contains the number of PacketFilters that are available in total for all SessionIds. These filters are potentially capable of causing wakeup of the host |
+| 8 | bMaxFilterSize | 1 | Number | The maximum size of the PacketFilters in bytes |
+| 9 | wMaxSegmentSize | 2 | Number | The Maximum segment size in bytes that the function is capable of supporting. This number has to be larger than the MTU set for IP traffic by the network |
+| 11 | bmNetworkCapabilities | 1 | Bitmap | Specifies the capabilities of this function <br> D5: Function can process 8-byte forms of GetNtbInputSize and SetNtbInputSize requests  <br> D3: Function can process SetMaxDatagramSize and GetMaxDatagramSize requests. |
+- the default and minimum value of wMaxSegmentSize is 2048
 
 
