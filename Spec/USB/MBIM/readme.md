@@ -43,6 +43,8 @@
 #### FUNCTIONAL DESCRIPTORS FOR NCM AND MBIM FUNCTIONS
 ![mbim_functional_descriptor](https://user-images.githubusercontent.com/6143237/131255748-b3e40de9-cf43-4de5-bd99-f8047669392e.png)
 #### CLASS SPECIFIC CODES
+- Class
+  - Communication Interface Class code: 0x02
 - Subclass
   - Mobile Broadband Interface Model: 0x0E
 - Protocol Code
@@ -74,4 +76,22 @@
 ##### unsolicited event sequence
 ![mbim_unsolicited_event_sequence](https://user-images.githubusercontent.com/6143237/131256673-394cd4ea-e711-41a6-bd1a-10bd200263ae.png)
 - whenever the device needs to notify the host of an unsolicited device events, it uses the interrupt end-point
+
+### DEVICE SERVICE
+- A logical group of functionality supported by the device constitutes a "device service"
+- Each device service is uniquely identified by a 128-bit UUID (Universally Unique Identifier)
+- All CIDs exchanged between the host and the device carry the UUID to identify the device service associated with the transfer
+#### DEVICE SERVICE STREAMS
+- The transfer of high-bandwidth data over the control channel is not supported. Instead, Device Service Streams over bulk are recommended
+- Device Service Stream is a best effort service
+- The protocol layer and/or application above MBIM shall be responsible for flow control and recovery from data loss
+- Doing flow control by throttling the bulk IN/OUT pipes is strongly discouraged, because the pipes are shared by multiple services
+#### CUSTOM DEVICE SERVICES
+- Vendors are free to define additional device services by generating a UUID of their own. These services shall not be IP-protocol based
+
+## USB DEVICE MODEL
+#### MBIM Communication Interface Descriptor Requirements
+![mbim_communication_interface_descriptor](https://user-images.githubusercontent.com/6143237/131257138-e6af1088-bbe9-44bb-b137-ee521cdf446d.png)
+#### MBIM FUNCTIONAL DESCRIPTOR
+
 
