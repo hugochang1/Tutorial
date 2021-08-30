@@ -125,4 +125,15 @@
 - The data packets will be passed to and from the device using the standard NCM 1.0 transfer headers and datagram pointers
   - NCM: transport IEEE 802.3 frames
   - MBIM: “raw” IP (both IPv4 and IPv6) and Device Service Streams are transported
-  - 
+- MBIM Data Transport signature values for NDP structures
+| Protocol | NDP16 | NDP32 | 
+| ------ | ----- | ---- |
+| Raw IPv4 or IPv6 | “IPS”\<SessionId\> | “ips”\<SessionId\> |
+| Device Service Stream | “DSS”\<DssSessionId\>  | “dss”\<DssSessionId\> |
+- SessionId: specified by the host in the MBIM_CID_CONNECT command
+- DssSessionId specified by the host in the MBIM_CID_DSS_OPEN command
+- The minimum values for wDatagramLength
+  - For IPv4: >= 20 
+  - For IPv6: >= 40
+  - For DSS: >= 0
+
