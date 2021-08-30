@@ -126,7 +126,7 @@
   - NCM: transport IEEE 802.3 frames
   - MBIM: “raw” IP (both IPv4 and IPv6) and Device Service Streams are transported
 - MBIM Data Transport signature values for NDP structures
-| Protocol | NDP16 | NDP32 | 
+| Protocol | NDP16 | NDP32 |
 | ------ | ----- | ---- |
 | Raw IPv4 or IPv6 | “IPS”\<SessionId\> | “ips”\<SessionId\> |
 | Device Service Stream | “DSS”\<DssSessionId\>  | “dss”\<DssSessionId\> |
@@ -136,4 +136,19 @@
   - For IPv4: >= 20 
   - For IPv6: >= 40
   - For DSS: >= 0
+### DATA FORMATTING
+- IPV4
+  - The datagrams starts with the IPv4 header
+- IPV6
+  - The datagrams starts with the IPv6 header
+- DEVICE SERVICE STREAM
+  - The format of the Device Service Stream payload depends on the device service that is used when opening the data stream
+- MBIM FRAME ALIGNMENT
+  - MBIM allows a function to align transmitted datagrams on any convenient boundary within the NTB in both directions
+  - This alignment is specified by indicating a constraint as a divisor and a remainder
+    - IN: wNdpInDivisor & wNdpInPayloadRemainder (in byte)
+    - OUT: wNdpOutDivisor & wNdpOutPayloadRemainder (in byte)
+- MBIM ALLOWS MULTIPLE NDPS WITHIN ONE NTB
 
+| 6 | wNextNdpIndex | 2 | Number | Byte index, in little endian, of the next NDP. The index is from byte zero of the NTB |
+| - | - | - | - | - |
