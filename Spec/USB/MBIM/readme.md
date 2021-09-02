@@ -152,3 +152,20 @@
 
 | 6 | wNextNdpIndex | 2 | Number | Byte index, in little endian, of the next NDP. The index is from byte zero of the NTB |
 | - | - | - | - | - |
+
+# Control Message
+#### TODO
+- RESET FUNCTION
+  - RESET_FUNCTION resets the function to its initial state
+  - all IP data stream connections are disconnected
+  - all Device Service Streams are closed
+  - The function shall abandon all outstanding transactions that are awaiting completion
+  - No notifications shall be sent
+  - The alternate settings of interfaces are not changed
+  - remote-wakeup enable for the function is not affected
+  - only the MBIM function is affected by this request
+  - Other functions in a composite device are not affected by this request
+
+| bmRequestType | bRequestCode | wValue | wIndex | wLength | Data |
+| - | - | - | - | - | - |
+| 00100001B | RESET_FUNCTION | Zero | Interface | Zero | Zero |
