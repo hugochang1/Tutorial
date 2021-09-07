@@ -167,7 +167,6 @@
 | - | - | - | - | - |
 
 # Control Message
-#### TODO
 - RESET FUNCTION
   - RESET_FUNCTION resets the function to its initial state
   - all IP data stream connections are disconnected
@@ -182,3 +181,74 @@
 | bmRequestType | bRequestCode | wValue | wIndex | wLength | Data |
 | - | - | - | - | - | - |
 | 00100001B | RESET_FUNCTION | Zero | Interface | Zero | Zero |
+
+- MBIM_CID_CONNECT
+  - This command activates or deactivates a particular IP data stream session
+  - The set operation requests an IP data stream session (to a specific APN) to be made available to the host
+  - MBIM_SET_CONNECT
+
+| Offset | Size| Field | Type | Description |
+| - | - | - | - | - |
+| 0 | 4 | SessionId | UINT32 | Host specifies this member to uniquely identify the session for the IP data stream and its corresponding state. |
+| 4 | 4 | ActivationCommand | MBIM_ACTIVATION_COMMAND | Deactivate=0<br>Activate=1 |
+| 8 | 4 | AccessStringOffset | OFFSET | Offset in bytes, calculated from the beginning of this structure, to a string AccessString to access the network (APN) |
+| 12 | 4 | AccessStringSize | SIZE (0..200) | Size used for AccessString |
+| 16 | 4 | UserNameOffset | OFFSET | UserName, can be NULL |
+| 20 | 4 | UserNameSize | SIZE (0..510)  | Size used for UserName |
+| 24 | 4 | PasswordOffset | OFFSET | Password that represents the username's password, can be NULL |
+| 28 | 4 | PasswordSize | SIZE (0..510) | Size used for Password |
+| 32 | 4 | Compression | MBIM_COMPRESSION | none=0<br>enable=1 |
+| 36 | 4 | AuthProtocol | MBIM_AUTH_PROTOCOL | none=0<br>pap=1<br>chap=2<br>ImsChapV2=3 |
+| 40 | 4 | IPType | MBIM_CONTEXT_IP_TYPE | default=0 (mandatory)<br>IPv4=1<br>IPv6=2<br>IPv4v6=3<br>IPv4AndIPv6=4 |
+| 44 | 16 | ContextType | MBIM_CONTEXT_TYPES | None<br>Internet<br>Vpn<br>Voice<br>VideoShare<br>Purchase<br>IMS<br>MMS<br>Local |
+| 60 |  | DataBuffer | DATABUFFER | AccessString<br>UserName<br>Password<br> |
+
+  - MBIM_CONNECT_INFO (Unsolicited Event)
+
+| Offset | Size| Field | Type | Description |
+| - | - | - | - | - |
+| 0 | 4 | SessionId | UINT32 | The Host specifies a value for this member at the time of the connect request by using MBIM_CID_CONNECT. Devices must copy this value and use it when they notify the MB Service on subsequent connection state changes. |
+| 4 | 4 | ActivationState | MBIM_ACTIVATION_STATE | UNKNOWN=0<br>Activated=1<br>Activating=2<br>Deactivated=3<br>Deactivating=4 |
+| 8 | 4 | VoiceCallState | MBIM_VOICE_CALL_STATE | None=0<br>InProgress=1<br>HangUp=2 |
+| 12 | 4 | IPType | MBIM_CONTEXT_IP_TYPE | default=0 (mandatory)<br>IPv4=1<br>IPv6=2<br>IPv4v6=3<br>IPv4AndIPv6=4 |
+| 16 | 16 | ContextType | MBIM_CONTEXT_TYPES | None<br>Internet<br>Vpn<br>Voice<br>VideoShare<br>Purchase<br>IMS<br>MMS<br>Local |
+| 32 | 4 | NwError | UINT32 | A network-specific error. |
+
+  - NOTIFICATION
+
+| Status code | Description |
+| - | - |
+| MBIM_STATUS_SUCCESS | The operation succeeded |
+| MBIM_STATUS_RADIO_POWER_OFF | The operation failed because the radio is currently turned off |
+| MBIM_STATUS_SERVICE_NOT_ACTIVATED | The operation failed because either the subscription has expired, or the device does not allow PDP activation |
+| MBIM_STATUS_PROVIDER_NOT_VISIBLE | The operation failed because the service provider is not currently visible |
+| MBIM_STATUS_MAX_ACTIVATED_CONTEXTS | The operation failed because the maximum number of activated contexts has been reached. |
+| MBIM_STATUS_INVALID_ACCESS_STRING | The operation failed because the access string is invalid |
+| MBIM_STATUS_INVALID_USER_NAME_PWD | The operation failed because the user name and/or password supplied are invalid |
+| MBIM_STATUS_PACKET_SERVICE_DETACHED | The operation failed because packet service is detached |
+| MBIM_STATUS_NOT_REGISTERED | The operation failed because the device is not in the registered state  |
+| MBIM_STATUS_VOICE_CALL_IN_PROGRESS | The operation failed and cannot proceed with PDP activation because a voice call is currently in progress. Thisvalue applies only to devices with voice class is set to MBIMVoiceClassSeparateVoiceData |
+| MBIM_STATUS_CONTEXT_NOT_ACTIVATED | The operation failed because the context identified by SessionId is not the currently activated context |
+| MBIM_STATUS_CONTEXT_NOT_SUPPORTED | The operation failed because it could not support the typeof context identified by ContextType |
+| MBIM_STATUS_OPERATION_NOT_ALLOWED | If the device receives an activation request for an additional IP data stream to the same APN the device may reject the activation with this error code |
+
+
+- MBIM_CID_DSS_CONNECT
+  - This CID activates and deactivates a data stream channel over the bulk pipe for a non-IP based Device Service
+  - The host might open several Device Service Streams up to the maximum number of sessions as specified in MaxDssSessions in MBIM_DEVICE_SERVICES_INFO
+  - MBIM_SET_DSS_CONNECT
+
+| Offset | Size| Field | Type | Description |
+| - | - | - | - | - |
+| 0 | 16 | DeviceServiceId | UUID | A 16 byte UUID that identifies the Device Service for provided DssSessionId |
+| 16 | 4 | DssSessionId | UINT32 | Host specifies this member to uniquely identify the session for the Device Service Stream. |
+| 20 | 4 | DssLinkState | UINT32 | Deactivate=0<br>kActivate=1 |
+
+  - RESPONSE
+
+| Status code | Description |
+| - | - |
+| MBIM_STATUS_SUCCESS | The DSS is successfully opened |
+| MBIM_STATUS_BUSY | If the function temporarily cannot open the DSS it shall return this error code |
+| MBIM_STATUS_FAILURE | An unknown error where encountered during opening of the DSS |
+| MBIM_STATUS_DSS_INSTANCE_LIMIT | If the function cannot open a new session due to instance limit, it shall reply with this status code. |
