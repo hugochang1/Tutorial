@@ -57,6 +57,18 @@
 
 ## FUNCTIONAL CHARACTERISTICS
 ![mbim_block_diagram](https://user-images.githubusercontent.com/6143237/131255973-9242f221-eafc-4ece-b12e-e9405cfabc4c.png)
+- control functions
+  - MBIM_CID_DEVICE_CAPS
+  - MBIM_CID_SUBSCRIBER_READY_STATUS
+  - MBIM_CID_RADIO_STATE
+  - MBIM_CID_PIN
+  - MBIM_CID_PIN_LIST
+  - MBIM_CID_HOME_PRROVIDER
+  - MBIM_CID_SMS_XXX
+  - MBIM_CID_PHONEBOOK_XXX
+  - MBIM_CID_CONNECT
+  - MBIM_CID_DSS_CONNECT
+  - ...
 - data channel: similar to the NCM data transport, the only difference is that instead of transporting Ethernet frames, MBIM transports IPS and DSS
   - IPS: raw IP data streams
   - DSS: Device Service Stream
