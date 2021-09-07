@@ -109,7 +109,7 @@
 | Offset | Field | Size | Value | Description |
 | ------ | ----- | ---- | ----- | ----------- |
 | 0 | bFunctionLength | 1 | 8 | Size of Descriptor in bytes |
-| 1 | bDescriptorType | 1 | Constant | t CS_INTERFACE (0x24)  |
+| 1 | bDescriptorType | 1 | Constant | CS_INTERFACE (0x24)  |
 | 2 | bDescriptorSubtype | 1 | Constant | 0x1C |
 | 3 | bcdMBIMExtendedVersion | 2 | Number 0x0100  | Release number of MBIM extensions in BCD |
 | 5 | bMaxOutstandingCommandMessages | 1 | Number | Max number of outstanding Command Messages the device can handle simultaneously.  |
@@ -126,6 +126,7 @@
   - NCM: transport IEEE 802.3 frames
   - MBIM: “raw” IP (both IPv4 and IPv6) and Device Service Streams are transported
 - MBIM Data Transport signature values for NDP structures
+
 | Protocol | NDP16 | NDP32 |
 | ------ | ----- | ---- |
 | Raw IPv4 or IPv6 | “IPS”\<SessionId\> | “ips”\<SessionId\> |
