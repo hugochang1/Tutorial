@@ -66,8 +66,8 @@
   - MBIM_CID_HOME_PRROVIDER
   - MBIM_CID_SMS_XXX
   - MBIM_CID_PHONEBOOK_XXX
-  - MBIM_CID_CONNECT
-  - MBIM_CID_DSS_CONNECT
+  - **MBIM_CID_CONNECT**
+  - **MBIM_CID_DSS_CONNECT**
   - ...
 - data channel: similar to the NCM data transport, the only difference is that instead of transporting Ethernet frames, MBIM transports IPS and DSS
   - IPS: raw IP data streams
@@ -167,7 +167,7 @@
 | - | - | - | - | - |
 
 # Control Message
-- RESET FUNCTION
+- **RESET FUNCTION**
   - RESET_FUNCTION resets the function to its initial state
   - all IP data stream connections are disconnected
   - all Device Service Streams are closed
@@ -182,7 +182,7 @@
 | - | - | - | - | - | - |
 | 00100001B | RESET_FUNCTION | Zero | Interface | Zero | Zero |
 
-- MBIM_CID_CONNECT
+- **MBIM_CID_CONNECT**
   - This command activates or deactivates a particular IP data stream session
   - The set operation requests an IP data stream session (to a specific APN) to be made available to the host
   - MBIM_SET_CONNECT
@@ -233,7 +233,7 @@
 | MBIM_STATUS_OPERATION_NOT_ALLOWED | If the device receives an activation request for an additional IP data stream to the same APN the device may reject the activation with this error code |
 
 
-- MBIM_CID_DSS_CONNECT
+- **MBIM_CID_DSS_CONNECT**
   - This CID activates and deactivates a data stream channel over the bulk pipe for a non-IP based Device Service
   - The host might open several Device Service Streams up to the maximum number of sessions as specified in MaxDssSessions in MBIM_DEVICE_SERVICES_INFO
   - MBIM_SET_DSS_CONNECT
@@ -252,3 +252,21 @@
 | MBIM_STATUS_BUSY | If the function temporarily cannot open the DSS it shall return this error code |
 | MBIM_STATUS_FAILURE | An unknown error where encountered during opening of the DSS |
 | MBIM_STATUS_DSS_INSTANCE_LIMIT | If the function cannot open a new session due to instance limit, it shall reply with this status code. |
+
+# MBIM LOOPBACK TESTMODE
+- Loopback testing ensures that the link between host and device is verified with no dependency on the network, SIM, or air interfaces
+- loopback functionality is tested only for IP data traffic
+- MB device firmware should implement “loopback” APN 
+- Enter/Exit loopback mode
+  - On getting MBIM_CID_CONNECT set request with an ActivationCommand of MBIMActivationCommandActivate and an access string loopback, the firmware should do the following
+  - If the device is already connected, it should respond with an MBIM_STATUS_MAX_ACTIVATED_CONTEXTS
+  - The device should be able to enter loopback mode without registering with a provider
+  - The device should be able to enter loopback mode when its packet service state is detached
+  - The device should respond with an MBIM_CID_CONNECT response using the SessionId, IPType, and ContextType specified in the MBIM_CID_CONNECT request. ActivationState should be MBIMActivationStateActivated, and VoiceCallState should be MBIMVoiceCallStateNone
+  - Enter into loopback mode
+  - The device should respond to additional MBIM_CID_CONNECT set requests with MBIM_STATUS_MAX_ACTIVATE_CONTEXTS until loopback mode is deactivated
+- While in loopback mode
+  - Listen for NTBs (NCM Transfer Block) on the BULK OUT pipe from the host
+    - The device should unpack the datagrams from the NTB and send them back to the host on the MBIM Bulk-IN pipe
+    - The device should swap the Source and Destination addresses of IPv4 and IPv6 datagrams. The device should not need to modify the IPv4 checksum and vendor datagrams
+    - NTBs sent on the MBIM Bulk-IN pipe should conform to the NTB parameters specified by the device in the NCM GetNtbParameters function. Datagrams can be sent on the Bulk-IN pipe in one or more NTBs as required by the NTB parameters for the Bulk-IN pipe
