@@ -1,3 +1,4 @@
+# RT-AC1300UHP
 https://www.asus.com/tw/Networking-IoT-Servers/WiFi-Routers/ASUS-WiFi-Routers/RT-AC1300UHP/techspec/
 - USB application
   - File System : FAT16, FAT32, NT3G, HFS+, NTFS, ext2, ext3
@@ -12,3 +13,4 @@ https://www.asus.com/tw/Networking-IoT-Servers/WiFi-Routers/ASUS-WiFi-Routers/RT
   - Samba Server : 有
   - FTP Server : 有
   - Shared Folder privileges : 有
+
