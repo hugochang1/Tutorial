@@ -38,3 +38,7 @@ https://axiang.cc/archives/51045
   - 隨插即用
   - 提供SMS簡訊和電話簿編輯
   - 猜測可能有支持 MBIM
+- Mobile01 discussion
+  - https://www.mobile01.com/topicdetail.php?f=110&t=4766544
+  - 第一次使用直接插上筆電就會開始安裝驅動程式跟連線工具了
+  - 所以完全不需要事前準備好網路環境跟前置作業 十分的方便
