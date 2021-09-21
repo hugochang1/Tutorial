@@ -1,6 +1,6 @@
 # RT-AC1300UHP
 https://www.asus.com/tw/Networking-IoT-Servers/WiFi-Routers/ASUS-WiFi-Routers/RT-AC1300UHP/techspec/
-- 2.4GHz 與5GHz 雙頻連線
+- 2.4GHz 與5GHz 雙頻連線 (no 4G/5G modme)
 - USB application
   - File System : FAT16, FAT32, NT3G, HFS+, NTFS, ext2, ext3
   - 3G/4G LTE dongle : 有
@@ -30,3 +30,8 @@ https://axiang.cc/archives/51045
   - 可自訂 WLAN 的設定，包括 SSID 的名稱與密碼
   - DHCP 也能自訂
   - 車上若有 USB 電源，也可直接插入使用
+
+# D-Link友訊 DWM-222 4G LTE 150Mbps行動網卡
+https://24h.pchome.com.tw/prod/DRAJ3M-A9006TBYA?fq=/S/DRAFAB
+- 隨插即用
+- 提供SMS簡訊和電話簿編輯
