@@ -25,7 +25,7 @@ https://dlcdnets.asus.com/pub/ASUS/wireless/RT-AC1300UHP/T11649_RT_AC1300UHP_man
 
 # HUAWEI E8372h 4G + WiFi
 https://axiang.cc/archives/51045
-- USB LTE modem + WiFi
+- USB LTE modem + WiFi dongle
   - 啟動數十秒後，可看到燈號亮起，表示行動網路與無線網路的訊號都已準備好
   - 可自訂 WLAN 的設定，包括 SSID 的名稱與密碼
   - DHCP 也能自訂
@@ -33,5 +33,7 @@ https://axiang.cc/archives/51045
 
 # D-Link友訊 DWM-222 4G LTE 150Mbps行動網卡
 https://24h.pchome.com.tw/prod/DRAJ3M-A9006TBYA?fq=/S/DRAFAB
-- 隨插即用
-- 提供SMS簡訊和電話簿編輯
+- USB LTE dongle (no WiFi)
+  - 隨插即用
+  - 提供SMS簡訊和電話簿編輯
+  - 猜測可能有支持 MBIM
