@@ -23,3 +23,10 @@ https://dlcdnets.asus.com/pub/ASUS/wireless/RT-AC1300UHP/T11649_RT_AC1300UHP_man
   - 3G/4G USB 數據機可連接到 RT-AC1300UHP 以允許存取網際網路 (USB Host)
     - https://www.asus.com/event/networks_3G4G_support/
 
+# HUAWEI E8372h 4G + WiFi
+https://axiang.cc/archives/51045
+- USB LTE modem + WiFi
+  - 啟動數十秒後，可看到燈號亮起，表示行動網路與無線網路的訊號都已準備好
+  - 可自訂 WLAN 的設定，包括 SSID 的名稱與密碼
+  - DHCP 也能自訂
+  - 車上若有 USB 電源，也可直接插入使用
