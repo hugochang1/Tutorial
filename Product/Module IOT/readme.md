@@ -32,7 +32,8 @@ https://axiang.cc/archives/51045
   - 車上若有 USB 電源，也可直接插入使用
 
 # D-Link友訊 DWM-222 4G LTE 150Mbps行動網卡
-https://24h.pchome.com.tw/prod/DRAJ3M-A9006TBYA?fq=/S/DRAFAB
+- https://24h.pchome.com.tw/prod/DRAJ3M-A9006TBYA?fq=/S/DRAFAB
+- http://www.dlinktw.com.tw/download.ashx?id=pfoVT5%2byQC0nyAVowBc5xjw9JrNyLw6WitL1HFydHGIfMlyE4s%2b%2bE%2fka2LHYbbNLLjJ9M4%2bqCTOiE41MrMDEpw%3d%3d&type=Hi%2fBpD8YLGfRN%2bDMAzxltA%3d%3d
 - USB LTE dongle (no WiFi)
   - 隨插即用
   - 提供SMS簡訊和電話簿編輯
