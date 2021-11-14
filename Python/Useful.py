@@ -1,3 +1,17 @@
+# --------------- re ----------------
+import re
+
+my_str = "aaa [111.222]test_sentence aaa=3/4/5/66 bbb=444 kkk=aaa"
+
+match = re.findall(r'\[(\d+.\d+)\]', my_str)
+print(match) # ['111.222']
+
+match = re.findall(r'aaa=(\d+)/(\d+)/(\d+)/(\d+)', my_str)
+print(match) # [('3', '4', '5', '66')]
+
+match = re.findall(r'bbb=(\d+)', my_str)
+print(match) # ['444']
+
 # --------------- log ---------------
 
 import datetime, threading
