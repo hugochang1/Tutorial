@@ -1,3 +1,175 @@
+import re
+
+"""
+. any single character except the newline
+^ at the start of the string
+\A only at the start of the string
+$ end of the string
+\Z only at the end of the string
+\b only the beginning or end of the word
+[] the set of characters
+\w [0-9a-zA-Z_]
+\W not \w
+\s space, newline, tab, return
+\S not \s
+\d [0-9]
+\D not \d
+\t tab
+\n newline
+\r return
+\
+  case 1: escape character (ex: \w \s \d ...etc.)
+  case 2: in front of all the metacharacters to remove spcial meaning (ex: \+ \* \[ ...etc.)
++ the preceding character appears one or more times
+* the preceding character appears zero or more times
+? the preceding character appears exactly zero or one time
+{} an explicit number of times
+| or condition
+() group
+<> named group
+"""
+
+# demo ordinary word
+line = "!!hello!!"
+match = re.findall(r'hello', line)
+print(match) #['hello']
+
+# demo .
+line = "hello"
+match = re.findall(r'h.llo', line)
+print(match) #['hello']
+
+# demo ^
+line = "hello world"
+match = re.findall(r'^hello', line)
+print(match) #['hello']
+
+# demo \A
+line = "hello world"
+match = re.findall(r'\Ahello', line)
+print(match) #['hello']
+
+# demo $
+line = "hello world"
+match = re.findall(r'world$', line)
+print(match) #['world']
+
+# demo \Z
+line = "hello world"
+match = re.findall(r'world\Z', line)
+print(match) #['world']
+
+# demo \b
+line = "hello world hello"
+match = re.findall(r'\bhello', line)
+print(match) #['hello', 'hello']
+line = "hello world hello"
+match = re.findall(r'hello\b', line)
+print(match) #['hello', 'hello']
+
+# demo []
+line = "hello world"
+match = re.findall(r'[el]', line)
+print(match) #['e', 'l', 'l', 'l']
+
+# demo \w
+line = "hello world"
+match = re.findall(r'\w', line)
+print(match) #['h', 'e', 'l', 'l', 'o', 'w', 'o', 'r', 'l', 'd']
+
+# demo \W
+line = "hello world"
+match = re.findall(r'\W', line)
+print(match) #[' ']
+
+# demo \s
+line = "hello world"
+match = re.findall(r'\s', line)
+print(match) #[' ']
+
+# demo \S
+line = "hello world"
+match = re.findall(r'\S', line)
+print(match) #['h', 'e', 'l', 'l', 'o', 'w', 'o', 'r', 'l', 'd']
+
+# demo \d
+line = "hi 0123"
+match = re.findall(r'\d', line)
+print(match) #['0', '1', '2', '3']
+
+# demo \D
+line = "hi 0123"
+match = re.findall(r'\d', line)
+print(match) #['0', '1', '2', '3']
+
+# demo \t
+line = "hi\t012 45"
+match = re.findall(r'\t', line)
+print(match) #['\t']
+
+# demo \ (case 2)
+line = "[]"
+match = re.findall(r'\[\]', line)
+print(match) #['[]']
+
+# demo +
+line = "hello"
+match = re.findall(r'e+', line)
+print(match) #['e']
+
+# demo + (greedy)
+line = "<h1>title</h1>"
+match = re.findall(r'<.+>', line)
+print(match) #['<h1>title</h1>']
+
+# demo + (non-greedy)
+line = "<h1>title</h1>"
+match = re.findall(r'<.+?>', line)
+print(match) #['<h1>', '</h1>']
+
+# demo *
+line = "hello"
+match = re.findall(r'e*', line)
+print(match) #['', 'e', '', '', '', '']
+
+# demo ?
+line = "hello"
+match = re.findall(r'e?', line)
+print(match) #['', 'e', '', '', '', '']
+
+# demo {}
+line = "hello"
+match = re.findall(r'e{1}', line)
+print(match) #['e']
+
+line = "hello"
+match = re.findall(r'e{1,}', line)
+print(match) #['e']
+
+line = "hello"
+match = re.findall(r'e{1,3}', line)
+print(match) #['e']
+
+# demo |
+line = "hello world"
+match = re.findall(r'hello|world', line)
+print(match) #['hello', 'world']
+
+line = "hello world"
+match = re.findall(r'h|w|o', line)
+print(match) #['h', 'o', 'w', 'o']
+
+# demo ()
+line = "hello 123"
+match = re.findall(r'hello (\d+)', line)
+print(match) #['123']
+
+# demo <>
+line = "hello 123"
+match = re.search(r'hello (?P<number>(\d+))', line)
+print(match) #<re.Match object; span=(0, 9), match='hello 123'>
+print(match.group('number')) #123
+
 # ----------------- compile -----------------
 import re
 
