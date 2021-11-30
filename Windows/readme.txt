@@ -12,6 +12,10 @@ REM ---------- file not exist ----------
 IF NOT EXIST test.bat echo file not exist
 
 
+REM ---------- exiting the call and setting the %errorlevel% to 0 ----------
+exit /b 0
+
+
 REM ---------- for loop ---------- 
 for /l %%x in (1, 1, 5) do (
    echo %%x
