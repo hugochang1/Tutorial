@@ -4,6 +4,18 @@ REM ---------- sleep in second ----------
 timeout 1 /nobreak > NUL
 
 
+REM ---------- delete a file ---------- 
+del file_name
+
+
+REM ---------- delete a folder ---------- 
+rmdir /s /q folder_name
+
+
+REM ---------- make a folder ---------- 
+mkdir autotest
+
+
 REM ---------- file exist ---------- 
 IF EXIST test.bat echo file exist
 
