@@ -1,7 +1,7 @@
 from tkinter import *
 from tkinter.scrolledtext import ScrolledText
-from socket_part import *
 import select
+import socket
 import threading
 import traceback
 
@@ -27,6 +27,20 @@ def addMsg2ServerText(str):
 def addMsg2ClientText(str):
     tk.after(0, lambda: evtAddMsg2ClientText(str))
 
+
+def socket_server_create(host, port):
+    server = socket.socket()
+    server.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+    server.bind((host, port))
+    server.setblocking(0)
+    server.listen(5)
+    return server
+
+
+def socket_client_connect(host, port):
+    client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    client.connect((host, port))
+    return client
 
 # ---------------- UI events (in TK thread) ---------------------
 
