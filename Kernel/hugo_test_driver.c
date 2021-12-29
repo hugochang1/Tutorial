@@ -399,3 +399,84 @@ void static atomic_example(void)
 	ret = atomic_cmpxchg(&atomic, 456, 200);
 	pr_err("[hugo] atomic atomic_cmpxchg()=%d a=%d\n", ret, atomic_read(&atomic)); //456, 200
 }
+
+//--------------------- list_head ---------------------
+typedef struct my_struct {
+	int data1;
+	struct list_head list;
+	int data2;
+} my_struct;
+
+static void list_head_example(void)
+{
+	struct list_head my_list;
+	struct my_struct my1;
+	struct my_struct my2;
+
+	// for traversal
+	struct my_struct *my;
+	struct list_head *act, *tmp;
+	
+	// ----------- inital -----------
+	my1.data1 = 1;
+	my1.data2 = 2;
+	my2.data1 = 111;
+	my2.data2 = 222;
+	
+	INIT_LIST_HEAD(&my_list);
+	pr_err("[hugo] list_empty()=%d\n", list_empty(&my_list)); // 1
+
+	// ----------- add -----------
+	list_add(&my1.list, &my_list);
+	list_add_tail(&my2.list, &my_list);
+	pr_err("[hugo] list_empty()=%d\n", list_empty(&my_list)); // 0
+	
+	// ----------- traversal -----------
+	list_for_each_safe(act, tmp, &my_list) {
+		my = list_entry(act, struct my_struct, list);
+		pr_err("[hugo] data1=%d data2=%d\n", my->data1, my->data2);
+	}
+	
+	// ----------- delete all -----------
+	list_for_each_safe(act, tmp, &my_list) {
+		if (!act)
+			continue;
+
+		my = list_entry(act, struct my_struct, list);
+		list_del(&my->list);
+	}
+	pr_err("[hugo] list_empty()=%d\n", list_empty(&my_list)); // 1
+}
+
+//--------------------- spin_lock ---------------------
+#include <linux/spinlock.h>
+
+static void spin_lock_example(void)
+{
+	spinlock_t lock;
+	unsigned long flags;
+	int ret;
+
+	spin_lock_init(&lock);
+
+	spin_lock(&lock);
+	spin_unlock(&lock);
+
+	spin_lock_irq(&lock);
+	spin_unlock_irq(&lock);
+
+	// recommend to use this one
+	spin_lock_irqsave(&lock, flags);
+	spin_unlock_irqrestore(&lock, flags);
+
+	spin_lock_bh(&lock);
+	spin_unlock_bh(&lock);
+
+	//int spin_trylock(spinlock_t *lock)
+	//return 1 means requiring the lock, 0 means not requiring the lock
+	ret = spin_trylock(&lock);
+	pr_err("[hugo] spin_trylock() ret=%d\n", ret); // 1
+	ret = spin_trylock(&lock);
+	pr_err("[hugo] spin_trylock() ret=%d\n", ret); // 0
+	spin_unlock(&lock);
+}
