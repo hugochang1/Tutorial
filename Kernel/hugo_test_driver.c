@@ -73,3 +73,78 @@ static void timer_example(void)
 	//(ie. del_timer() of an inactive timer returns 0, del_timer() of an active timer returns 1.)
 	//del_timer(&g_time_ctx.timer);
 }
+
+//--------------------- DTS ---------------------
+#include <linux/of.h>
+#include <linux/of_address.h>
+#include <linux/of_irq.h>
+
+/* DTS
+my_module:my_module@10014000 {
+	compatible = "hugo,my_module";
+	reg = <0 0x10014000 0 0x1000>,
+		<0 0x1022D000 0 0x1000>,
+	interrupts = <GIC_SPI 209 IRQ_TYPE_LEVEL_HIGH 0>;
+};
+*/
+static void dts_example(void)
+{
+	struct device_node *node = NULL;
+	void __iomem *reg1;
+	void __iomem *reg2;
+	unsigned int irq_id;
+
+	//struct device_node *of_find_compatible_node(struct device_node *from, const char *type, const char *compatible)
+	node = of_find_compatible_node(NULL, NULL, "hugo,my_module");
+	if (node == NULL) {
+		pr_err("[hugo] node is NULL\n");
+		return;
+	}
+
+	//void __iomem *of_iomap(struct device_node *np, int index)
+	reg1 = of_iomap(node, 0);
+	if (reg1 == NULL) {
+		pr_err("[hugo] of_iomap(0) failed\n");
+		return;
+	}
+	pr_err("[hugo] reg1=%px\n", reg1);
+	
+	reg2 = of_iomap(node, 1);
+	if (reg2 == NULL) {
+		pr_err("[hugo] of_iomap(1) failed\n");
+		return;
+	}
+	pr_err("[hugo] reg2=%px\n", reg2);
+
+	//unsigned int irq_of_parse_and_map(struct device_node *dev, int index)
+	irq_id = irq_of_parse_and_map(node, 0);
+	if (irq_id == 0) {
+		pr_err("[hugo] irq_of_parse_and_map(0) failed\n");
+		return;
+	}
+	pr_err("[hugo] irq_id=%d\n", irq_id);
+}
+
+//--------------------- suspend/resume ---------------------
+#include <linux/syscore_ops.h>
+
+static int sys_suspend(void)
+{
+	pr_err("[hugo] sys_suspend()\n");
+	return 0;
+}
+
+static void sys_resume(void)
+{
+	pr_err("[hugo] sys_resume()\n");
+}
+
+static struct syscore_ops my_syscore_ops = {
+  .suspend = sys_suspend,
+  .resume = sys_resume,
+};
+
+static void suspend_example(void)
+{
+	register_syscore_ops(&my_syscore_ops);
+}
