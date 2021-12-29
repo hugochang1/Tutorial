@@ -269,3 +269,133 @@ static void kthread_example(void)
 	g_flag = 1;
 	wake_up_all(&g_wait_q);
 }
+
+//--------------------- sk_buff_head ---------------------
+#include <linux/skbuff.h>
+#include <linux/netdevice.h>
+
+static void sk_buff_head_example(void)
+{
+	struct sk_buff_head skb_list;
+	struct sk_buff *skb;
+
+	//void skb_queue_head_init(struct sk_buff_head *list)
+	skb_queue_head_init(&skb_list);
+
+	//sk_buff *__dev_alloc_skb(unsigned int length, gfp_t gfp_mask)
+	skb = __dev_alloc_skb(1662, GFP_KERNEL);
+	if (skb == NULL) {
+		pr_err("[hugo] __dev_alloc_skb() return NULL 1");
+		return;
+	}
+	skb_queue_tail(&skb_list, skb);
+	
+	skb = __dev_alloc_skb(2048, GFP_ATOMIC);
+	if (skb == NULL) {
+		pr_err("[hugo] __dev_alloc_skb() return NULL 2");
+		return;
+	}
+	skb_queue_tail(&skb_list, skb);
+
+	pr_err("[hugo] skb_list.qlen=%d\n", skb_list.qlen); // 2
+
+	skb = skb_dequeue(&skb_list);
+	pr_err("[hugo] 1 skb->end=%d\n", skb->end); // 1728
+	dev_kfree_skb_any(skb);
+	
+	skb = skb_dequeue(&skb_list);
+	pr_err("[hugo] 2 skb->end=%d\n", skb->end); // 2112
+	dev_kfree_skb_any(skb);
+
+	pr_err("[hugo] skb_list.qlen=%d\n", skb_list.qlen); // 0
+}
+
+//--------------------- dma_mapping ---------------------
+#include <linux/dma-mapping.h>
+
+static void dma_mapping_example(struct device *dev)
+{
+	struct sk_buff *skb;
+	dma_addr_t phy_addr;
+	
+	void *data = NULL;
+	struct page *page = NULL;
+	unsigned long offset;
+	
+	// ----------- dma_map_single -----------
+	skb = __dev_alloc_skb(1662, GFP_KERNEL);
+	if (skb == NULL) {
+		pr_err("[hugo] __dev_alloc_skb() return NULL 1");
+		return;
+	}
+
+	//dma_addr_t dma_map_single(struct device *dev, void *ptr, size_t size, enum dma_data_direction dir)
+	phy_addr = dma_map_single(dev, skb->data, 1662, DMA_FROM_DEVICE);
+	if (dma_mapping_error(dev, phy_addr)) {
+		pr_err("[hugo] dma_map_single() dma_mapping_error() is true\n");
+		goto exit;
+	}
+	pr_err("[hugo] dma_map_single() phy_addr=%llx\n", phy_addr);
+
+	//void dma_unmap_single(struct device *dev, dma_addr_t addr, size_t size, enum dma_data_direction dir)
+	dma_unmap_single(dev, phy_addr, 1662, DMA_FROM_DEVICE);
+
+	// ----------- dma_map_page -----------
+	//void *netdev_alloc_frag(unsigned int fragsz)
+	//Allocates a frag from a page for receive buffer. Uses GFP_ATOMIC allocations.
+	data = netdev_alloc_frag(1992);
+	
+	//struct page *virt_to_head_page(const void *x)
+	page = virt_to_head_page(data);
+
+	//void *page_address(const struct page *page)
+	offset = data - page_address(page);
+	pr_err("[hugo] page offset=%lu\n", offset);
+
+	//dma_addr_t dma_map_page_attrs(struct device *dev, struct page *page, size_t offset, size_t size, enum dma_data_direction dir)
+	phy_addr = dma_map_page(dev, page, offset, 1992, DMA_FROM_DEVICE);
+	if (dma_mapping_error(dev, phy_addr)) {
+		pr_err("[hugo] dma_map_page() dma_mapping_error() is true\n");
+		goto exit;
+	}
+	pr_err("[hugo] dma_map_page() phy_addr=%llx\n", phy_addr);
+
+	//void dma_unmap_page(struct device *dev, dma_addr_t addr, size_t size, enum dma_data_direction dir)
+	dma_unmap_page(dev, phy_addr, 1992, DMA_FROM_DEVICE);
+	
+exit:
+	dev_kfree_skb_any(skb);
+	skb_free_frag(data);
+}
+
+//--------------------- atomic ---------------------
+#include <asm/atomic.h>
+
+void static atomic_example(void)
+{
+	atomic_t atomic;
+	int ret;
+
+	//int atomic_read(const atomic_t *v)
+	atomic_set(&atomic, 0);
+	pr_err("[hugo] atomic a=%d\n", atomic_read(&atomic));
+	atomic_set(&atomic, -123);
+	pr_err("[hugo] atomic a=%d\n", atomic_read(&atomic));
+	atomic_set(&atomic, 456);
+	pr_err("[hugo] atomic a=%d\n", atomic_read(&atomic));
+	
+	atomic_inc(&atomic); //457
+	pr_err("[hugo] atomic a=%d\n", atomic_read(&atomic));
+
+	//int atomic_dec_and_test(atomic_t *v)
+	//returns true if the result is 0, or false for all other
+	ret = atomic_dec_and_test(&atomic);
+	pr_err("[hugo] atomic_dec_and_test()=%d a=%d\n", ret, atomic_read(&atomic)); //0, 456
+
+	//int atomic_cmpxchg(atomic_t *v, int old, int new)
+	//old: to compare with v
+	//new: if v == old then v = new
+	//return original v
+	ret = atomic_cmpxchg(&atomic, 456, 200);
+	pr_err("[hugo] atomic atomic_cmpxchg()=%d a=%d\n", ret, atomic_read(&atomic)); //456, 200
+}
