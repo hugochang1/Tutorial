@@ -148,3 +148,124 @@ static void suspend_example(void)
 {
 	register_syscore_ops(&my_syscore_ops);
 }
+
+//--------------------- tasklet ---------------------
+#include <linux/interrupt.h>
+
+static void my_tasklet(unsigned long data)
+{
+	struct tasklet_struct *tasklet;
+	
+	tasklet = (struct tasklet_struct *)data;
+	pr_err("[hugo] my_tasklet() tasklet=%px\n", tasklet);
+}
+
+
+struct tasklet_struct g_tasklet;
+static void tasklet_example(void)
+{
+	//void tasklet_init(struct tasklet_struct *t, void (*func)(unsigned long), unsigned long data)
+	tasklet_init(&g_tasklet, my_tasklet, (unsigned long)&g_tasklet);
+
+	//void tasklet_schedule(struct tasklet_struct *t)
+	tasklet_schedule(&g_tasklet);
+	
+	//void tasklet_hi_schedule(struct tasklet_struct *t), high priority tasklet
+	tasklet_hi_schedule(&g_tasklet);
+}
+
+//--------------------- workqueue ---------------------
+#include <linux/workqueue.h>
+
+struct work_struct g_work;
+struct delayed_work g_delay_work;
+struct workqueue_struct *g_wq;
+
+static void my_work_func(struct work_struct *work)
+{
+	pr_err("[hugo] my_work_func()\n");
+}
+
+static void workqueue_example(void)
+{
+	unsigned long timeout_in_s = 1;
+
+	//struct workqueue_struct *alloc_workqueue(const char *fmt, unsigned int flags, int max_active, ...)
+	g_wq = alloc_workqueue("my_workqueue", WQ_UNBOUND | WQ_MEM_RECLAIM, 1);
+
+	// ----------- demo work ----------- 
+	INIT_WORK(&g_work, my_work_func);
+
+	//bool queue_work(struct workqueue_struct *wq, struct work_struct *work)
+	queue_work(g_wq, &g_work);
+
+	//bool flush_work(struct work_struct *work)
+	//wait for a work to finish executing the last queueing instance
+	flush_work(&g_work);
+	
+	// ----------- demo delay_work -----------
+	INIT_DELAYED_WORK(&g_delay_work, my_work_func);
+
+	//bool queue_delayed_work(struct workqueue_struct *wq, struct delayed_work *dwork, unsigned long delay)
+	queue_delayed_work(g_wq, &g_delay_work, timeout_in_s * HZ);
+	
+	//bool cancel_delayed_work(struct delayed_work *dwork)
+	cancel_delayed_work(&g_delay_work);
+
+	//bool flush_delayed_work(struct work_struct *work)
+	//wait for a dwork to finish executing the last queueing
+	flush_delayed_work(&g_delay_work);
+}
+
+//--------------------- kthread ---------------------
+#include <linux/wait.h>
+#include <linux/kthread.h>
+#include <linux/delay.h>
+#include <linux/sched.h>
+
+wait_queue_head_t g_wait_q;
+int g_flag = 0;
+
+static int my_kthread(void *arg)
+{
+	int ret;
+	
+	pr_err("[hugo] my_kthread()\n");
+	ret = wait_event_interruptible(g_wait_q, ((g_flag == 1) || kthread_should_stop()));
+	pr_err("[hugo] my_kthread() wait_event_interruptible() ret=%d\n", ret);
+	if (ret == -ERESTARTSYS) {
+		pr_err("[hugo] my_kthread() wait_event_interruptible() return -ERESTARTSYS\n");
+		return 0;
+	}
+	return 0;
+}
+
+static void set_kthread_to_cpux(struct task_struct *task)
+{
+	struct cpumask mask;
+
+	cpumask_clear(&mask);
+	//cpumask_set_cpu(0, &mask); //enable on CPU0
+	//cpumask_set_cpu(1, &mask); //enable on CPU1
+	cpumask_set_cpu(2, &mask); //enable on CPU2
+	//cpumask_set_cpu(3, &mask); //enable on CPU3
+	//int set_cpus_allowed_ptr(struct task_struct *p, const struct cpumask *new_mask)
+	set_cpus_allowed_ptr(task, &mask);
+}
+
+static void kthread_example(void)
+{
+	struct task_struct *task;
+
+	init_waitqueue_head(&g_wait_q);
+	// "my_kthread" will appear in top
+	task = kthread_run(my_kthread, NULL, "my_kthread");
+	set_kthread_to_cpux(task);
+
+	pr_err("[hugo] mdelay(1000) before 1\n");
+	//use ndelay() that will cause build error
+	mdelay(1000);
+	pr_err("[hugo] mdelay(1000) after\n");
+	g_flag = 1;
+	wake_up_all(&g_wait_q);
+}
