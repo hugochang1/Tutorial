@@ -48,8 +48,6 @@ def socket_client_connect(host, port):
 def keyEvent(event):
     if event.keysym == "Escape":
         tk.destroy()
-        global ui_exit
-        ui_exit = True
 
 
 def evtAddMsg2ServerText(str):
@@ -112,6 +110,7 @@ def client_send_thread():
 def socket_thread():
     while True:
         readable, _, _ = select.select(inputs, [], [], 1)
+        global ui_exit
         if ui_exit:
             break
         for sck in readable:
@@ -198,3 +197,5 @@ if __name__ == '__main__':
     threading.Thread(target=socket_thread).start()
 
     tk.mainloop()  # blocking here until tk.destroy()
+
+    ui_exit = True
