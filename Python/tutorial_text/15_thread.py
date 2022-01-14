@@ -80,20 +80,6 @@ log("join before")
 a.join(0.5) # join() with a timeout
 log("join after")
 
-# ----------------- is alive -----------------
-def f1():
-    time.sleep(1)
-    
-a = threading.Thread(target=f1)
-log(a.isAlive())
-# False
-a.start()
-log(a.isAlive())
-# True
-a.join()
-log(a.isAlive())
-# False
-
 # ----------------- active_count & threading.enumerate -----------------
 def f1():
     time.sleep(1)

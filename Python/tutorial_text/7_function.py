@@ -34,9 +34,11 @@ def f(a,b,c=0):
 f(1,2)   # 1 2 0
 f(1,2,3) # 1 2 3
 
+"""
 def f(a=0,b):
     pass
 # SyntaxError: non-default argument follows default argument
+"""
 
 def f(*a):
     print(a)        
@@ -54,13 +56,13 @@ def f(**a):
     print(a)
 f()  # {}
 f(aaa=1, bbb=2, ccc="abc")  # {'aaa': 1, 'bbb': 2, 'ccc': 'abc'}
-
+"""
 f(1="a")
 # SyntaxError: keyword can't be an expression
 
 f("a"=1)
 # SyntaxError: keyword can't be an expression
-
+"""
 # ----------------- global variable, local variable -----------------
 def f():
     a = 2

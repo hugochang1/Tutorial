@@ -1,6 +1,5 @@
 import datetime
 
-
 def __log(tag, *args):
     prefix = datetime.datetime.now().strftime("%Y%m%d_%H%M%S.%f") + \
         " [1.00]" + tag
