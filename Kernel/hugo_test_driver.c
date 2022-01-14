@@ -270,6 +270,25 @@ static void kthread_example(void)
 	wake_up_all(&g_wait_q);
 }
 
+//--------------------- skb ---------------------
+#include <linux/skbuff.h>
+#include <linux/netdevice.h>
+
+static void skb_example(void)
+{
+	struct sk_buff *skb;
+
+	skb = __dev_alloc_skb(1200, GFP_KERNEL);
+	if(unlikely(!skb)) {
+		pr_err("[hugo] __dev_alloc_skb return NULL\n");
+		return;
+	}
+
+	pr_err("[hugo] skb_headroom=%u\n", skb_headroom(skb)); // 64
+
+	dev_kfree_skb_any(skb);
+}
+
 //--------------------- sk_buff_head ---------------------
 #include <linux/skbuff.h>
 #include <linux/netdevice.h>
@@ -308,6 +327,47 @@ static void sk_buff_head_example(void)
 	dev_kfree_skb_any(skb);
 
 	pr_err("[hugo] skb_list.qlen=%d\n", skb_list.qlen); // 0
+}
+
+//--------------------- file ---------------------
+// cat /sys/devices/platform/10014000.hugo/hugo_file
+// [output] hugo said hello 123 abc
+static ssize_t file_show_config(struct device *dev, struct device_attribute *attr, char *buff)
+{
+	pr_err("[hugo] file_show_config()\n");
+	sprintf(buff, "hugo said hello %d %s\n", 123, "abc");
+	return strlen(buff);
+}
+
+// echo hello world > /sys/devices/platform/10014000.hugo/hugo_file
+// [log] 308 [  230.533129]  (1)[6680:sh][hugo] file_set_config() count=12 buff=[hello world
+static ssize_t file_set_config(struct device *dev, struct device_attribute *attr, const char *buff, size_t count)
+{
+	pr_err("[hugo] file_set_config() count=%zu buff=[%s]\n", count, buff);
+	return count;
+}
+
+//DEVICE_ATTR(_name, _mode, _show, _store)
+static DEVICE_ATTR(hugo_file, 0660, file_show_config, file_set_config);
+
+static void file_create_example(struct device *dev)
+{
+	int ret = 0;
+	
+	//int device_create_file(struct device *dev, const struct device_attribute *attr)
+	ret = device_create_file(dev, &dev_attr_hugo_file);
+	if (ret != 0) {
+		pr_err("[hugo] file_create_example() device_create_file() failed, ret=%d\n", ret);
+		return;
+	}
+	pr_err("[hugo] file_create_example() device_create_file() success\n");
+}
+
+static void file_remove_example(struct device *dev)
+{
+	pr_err("[hugo] file_remove_example()\n");
+	//void device_remove_file(struct device *dev, const struct device_attribute *attr)
+	device_remove_file(dev, &dev_attr_hugo_file);
 }
 
 //--------------------- dma_mapping ---------------------
@@ -481,6 +541,128 @@ static void spin_lock_example(void)
 	spin_unlock(&lock);
 }
 
+//--------------------- devnode ---------------------
+#include <linux/fs.h>
+#include <linux/device.h>
+#include <linux/uaccess.h>
+
+/*
+# cat /dev/hugo_dev0
+abc 123
+[console log]
+6396 [  393.279835]  (0)[6991:cat]hugo_open()
+6397 [  393.280323]  (0)[6991:cat]hugo_read() size=4096 strlen=8 flag=1
+6398 [  393.281102]  (0)[6991:cat]hugo_read() size=4096 strlen=8 flag=0
+6399 [  393.281875]  (0)[6991:cat]hugo_release()
+
+# echo "aaa" > /dev/hugo_dev0 
+[console log]
+6497 [  464.827913]  (2)[6202:sh]hugo_open()
+6498 [  464.828434]  (2)[6202:sh]hugo_write() size=4 buf=[aaa
+6500 [  464.829554]  (2)[6202:sh]hugo_release()
+*/
+
+static int hugo_open(struct inode *inode, struct file *filp)
+{
+	pr_err("hugo_open()\n");
+	return 0;
+}
+
+static int hugo_release(struct inode *inode, struct file *filp)
+{
+	pr_err("hugo_release()\n");
+	return 0;
+}
+
+static int flag = 0;
+
+static ssize_t hugo_read(struct file *filp, char __user *buf, size_t count, loff_t *f_pos)
+{
+	char *buf2 = "abc 123\n";
+	size_t len = strlen(buf2);
+	
+	if (copy_to_user(buf, buf2, len)) {
+		pr_err("hugo_read() copy_to_user() failed");
+		return -EFAULT;
+	}
+	
+	flag = !flag;
+	pr_err("hugo_read() size=%ld strlen=%ld flag=%d\n", count, len, flag);
+	
+	if (flag)
+		return len;
+	else
+		return 0;
+}
+
+static ssize_t hugo_write(struct file *filp, const char __user *buf, size_t count, loff_t *f_pos)
+{
+	char buf2[1024];
+	if (copy_from_user(buf2, buf, count)) {
+		pr_err("hugo_read() copy_from_user() failed");
+		return -EFAULT;
+	}
+	pr_err("hugo_write() size=%ld buf=[%s]\n", count, buf2);
+	return count;
+}
+
+static unsigned int hugo_poll(struct file *filp, struct poll_table_struct *wait)
+{
+	pr_err("hugo_poll()\n");
+	return 0;
+}
+
+static long hugo_ioctl(struct file *filp, unsigned int cmd, unsigned long arg)
+{
+	pr_err("hugo_ioctl()\n");
+	return 0;
+}
+
+static const struct file_operations hugo_fops = {
+  	.owner          = THIS_MODULE,
+  	.open           = hugo_open,
+  	.release        = hugo_release,
+  	.read           = hugo_read,
+  	.write          = hugo_write,
+  	.poll           = hugo_poll,
+  	.unlocked_ioctl = hugo_ioctl,
+  	.compat_ioctl   = hugo_ioctl,
+};
+
+static char *DEVNAME = "hugo_dev";
+static int major;
+static struct class *my_class;
+
+static void devnode_create_example(void)
+{
+	struct device *dev;
+	
+	major = register_chrdev(0, DEVNAME, &hugo_fops);
+	if (major < 0) {
+		pr_err("hugo register_chrdev() failed\n");
+		return;
+	}
+	
+	my_class = class_create(THIS_MODULE, DEVNAME);
+	if (IS_ERR(my_class)) {
+		pr_err("hugo class_create() failed\n");
+		return;
+	}
+	
+	dev = device_create(my_class, NULL, MKDEV(major, 0), NULL, "%s%d", DEVNAME, 0);
+	if (IS_ERR(dev)) {
+		pr_err("hugo device_create() failed\n");
+		return;
+	}
+}
+
+static void devnode_remove_example(void)
+{
+	device_destroy(my_class, MKDEV(major, 0));
+	class_destroy(my_class);
+	unregister_chrdev(major, DEVNAME);
+}
+
 //--------------------- main ---------------------
 #include <linux/init.h>
 #include <linux/module.h>
@@ -506,7 +688,17 @@ static int hugo_probe(struct platform_device *pdev)
 {
 	pr_err("[hugo] hugo_probe()\n");
 	dma_mapping_example(&pdev->dev);
+	file_create_example(&pdev->dev);
+	devnode_create_example();
 	test_examples();
+	return 0;
+}
+
+static int hugo_remove(struct platform_device *pdev)
+{
+	pr_err("[hugo] hugo_remove()\n");
+	file_remove_example(&pdev->dev);
+	devnode_remove_example();
 	return 0;
 }
 
@@ -521,6 +713,7 @@ static struct platform_driver hugo_driver = {
 		.of_match_table = hugo_of_dev_ids,
 	},
 	.probe = hugo_probe,
+	.remove = hugo_remove,
 };
 
 static int hugo_test_init(void)
