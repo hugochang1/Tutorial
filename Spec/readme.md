@@ -8,6 +8,7 @@
 |I2C|Inter-Integrated Circuit|a synchronous, multi-controller/multi-target (master/slave), packet switched, single-ended, serial communication bus|
 |I3C|an inter-circuit protocol evolved from I2C|a specification[1] to enable communication between computer chips by defining the electrical connection between the chips and signaling patterns to be used|
 |SPI|Serial Peripheral Interface|a synchronous serial communication interface specification used for short-distance communication|
+|SCSI|Small Computer System Interface|一種用於電腦及其週邊裝置之間（硬碟、軟碟機、光碟機、印表機、掃描器等）系統級介面的獨立處理器標準|
 
 # File Format
 |Term|Full|Note|
