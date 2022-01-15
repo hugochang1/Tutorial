@@ -17,6 +17,9 @@ https://dotblogs.com.tw/what_s_note/2017/10/24/112508
 pip -v install <package name> >out.txt
 pip install --index-url=http://pypi.python.org/simple/ --trusted-host pypi.python.org <package_name>
 
+----------------- pip install -----------------
+py -m pip --version
+py -m pip install pyinputplus
 
 # ----------------- regular expression  -----------------
 https://www.datacamp.com/community/tutorials/python-regular-expression-tutorial?utm_source=adwords_ppc&utm_medium=cpc&utm_campaignid=14989519638&utm_adgroupid=127836677279&utm_device=m&utm_keyword=&utm_matchtype=b&utm_network=g&utm_adpostion=&utm_creative=332602034364&utm_targetid=dsa-473406579035&utm_loc_interest_ms=&utm_loc_physical_ms=9040379&gclid=CjwKCAiA7dKMBhBCEiwAO_crFCAlhOxsYLkxtarooP1jfeE7HaxhpHzDnCxcbHznNKlb5uYouRqvtBoC5rUQAvD_BwE
