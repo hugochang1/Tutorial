@@ -73,3 +73,16 @@ tcp        0      0 0.0.0.0:ssh             0.0.0.0:*               LISTEN      
 tcp        0      0 0.0.0.0:https           0.0.0.0:*               LISTEN      2010/uhttpd
 tcp        0      0 localhost:14140         0.0.0.0:*               LISTEN      2716/my_daemon
 
+----------------------------------------------------
+        ps
+----------------------------------------------------
+$ps axu
+USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root         1  0.0  0.0  30472  5064 ?        Ss   07:12   0:01 /sbin/init
+root         2  0.0  0.0      0     0 ?        S    07:12   0:00 [kthreadd]
+user1     4734  0.0  0.0  11336  2196 pts/51   R+   08:57   0:00 ps axu
+
+R: running state
+S: sleeping state
+D: sleeping state for storage I/O
+Z: zombie state, wait for Kernel to recycle this process
