@@ -107,7 +107,7 @@ user    0m0.004s
 sys     0m0.001s
 
 ----------------------------------------------------
-        free
+        free & swapon
 ----------------------------------------------------
 $time /bin/sleep 3
 free
@@ -119,3 +119,8 @@ the unit is KB
 total: 1.69 GB
 used: 104 MB
 free: 1.55 GB
+
+$/sbin/swapon -s
+Filename                                Type            Size    Used    Priority
+/dev/mapper/rootvg-swaplv               partition       7811068 100300  -1
+
