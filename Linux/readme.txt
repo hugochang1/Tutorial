@@ -106,3 +106,16 @@ real    0m3.005s
 user    0m0.004s
 sys     0m0.001s
 
+----------------------------------------------------
+        free
+----------------------------------------------------
+$time /bin/sleep 3
+free
+              total        used        free      shared  buff/cache   available
+Mem:        1698604      104472     1552220       22540       41912     1505296
+Swap:             0           0           0
+
+the unit is KB
+total: 1.69 GB
+used: 104 MB
+free: 1.55 GB
