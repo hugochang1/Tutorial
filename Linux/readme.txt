@@ -89,6 +89,15 @@ D: sleeping state for storage I/O
 Z: zombie state, wait for Kernel to recycle this process
 
 ----------------------------------------------------
+        ps -eo pid,comm,etime,time
+----------------------------------------------------
+$ps -eo pid,comm,etime,time
+  PID COMMAND             ELAPSED     TIME
+    1 init               03:10:00 00:00:01
+    2 kthreadd           03:10:00 00:00:00
+    3 ksoftirqd/0        03:10:00 00:00:07
+
+----------------------------------------------------
         time
 ----------------------------------------------------
 $time /bin/sleep 3
