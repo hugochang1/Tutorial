@@ -43,3 +43,9 @@
 |UFS|Universal Flash Storage|採用全新「串行傳輸」技術，可同時讀寫操作|
 |RFS|Remote File System||
 
+
+# Boot
+|Term|Full|Note|
+|-|-|-|
+|MBR|Master Boot Record||
+|GPT|Globally Unique Identifier Partition Table||
