@@ -17,3 +17,5 @@
 |NTFS|New Technology File System|developed by Microsoft|
 |ext2|second extended filesystem|commonly used by the Linux kernel|
 |ext3|Third extended filesystem|commonly used by the Linux kernel|
+|tmpfs|temporary file storage|data is stored in volatile memory instead of a persistent storage device|
+|nfs|Network File System|allowing a user on a client computer to access files over a computer network|
