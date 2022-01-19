@@ -137,3 +137,9 @@ $diff file1 file2 -u
 +Hello world
 \ No newline at end of file
 
+----------------------------------------------------
+        ln
+----------------------------------------------------
+$ln target linkname
+$ls -al
+lrwxrwxrwx  1 user1 group1      7 Jan 19 09:35 linkname -> target
