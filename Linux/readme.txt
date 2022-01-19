@@ -124,3 +124,16 @@ $/sbin/swapon -s
 Filename                                Type            Size    Used    Priority
 /dev/mapper/rootvg-swaplv               partition       7811068 100300  -1
 
+
+----------------------------------------------------
+        diff
+----------------------------------------------------
+$diff file1 file2 -u
+--- aaa.txt     2022-01-19 08:59:40.596677000 +0800
++++ aaa2.txt    2022-01-19 08:59:53.942717000 +0800
+@@ -1 +1 @@
+-hello
+\ No newline at end of file
++Hello world
+\ No newline at end of file
+
