@@ -144,3 +144,64 @@ create a symbolic link (like shortcut)
 $ln -s target linkname
 $ls -al
 lrwxrwxrwx  1 user1 group1      7 Jan 19 09:35 linkname -> target
+
+----------------------------------------------------
+        dd
+----------------------------------------------------
+copy the data from "if" to "of" with specific data size
+$dd if=/dev/zero of=new_file bs=1024 count=1
+1+0 records in
+1+0 records out
+1024 bytes (1.0 kB) copied, 0.000553609 s, 1.8 MB/s
+
+bs=block size
+count=number of bs to be copied
+
+$ls -al new_file
+-rw-r--r-- 1 mtk04140 srv_wear 1024 Jan 19 11:12 new_file
+
+
+
+----------------------------------------------------
+        udevadm
+----------------------------------------------------
+get the detail info of specific device node
+$udevadm info --query=all --name=/dev/sdb
+P: /devices/pci0000:00/0000:00:11.0/0000:02:01.0/host3/target3:0:0/3:0:0:0/block/sdb
+N: sdb
+S: disk/by-path/pci-0000:02:01.0-scsi-0:0:0:0
+E: DEVLINKS=/dev/disk/by-path/pci-0000:02:01.0-scsi-0:0:0:0
+E: DEVNAME=/dev/sdb
+E: DEVPATH=/devices/pci0000:00/0000:00:11.0/0000:02:01.0/host3/target3:0:0/3:0:0:0/block/sdb
+E: DEVTYPE=disk
+E: ID_BUS=scsi
+E: ID_FS_TYPE=LVM2_member
+E: ID_FS_USAGE=raid
+E: ID_FS_UUID=IdZPt8-2Pcl-h0XM-srbm-fzN8-q7qU-oZA2c7
+E: ID_FS_UUID_ENC=IdZPt8-2Pcl-h0XM-srbm-fzN8-q7qU-oZA2c7
+E: ID_FS_VERSION=LVM2 001
+E: ID_MODEL=Virtual_disk
+E: ID_MODEL_ENC=Virtual\x20disk\x20\x20\x20\x20
+E: ID_PATH=pci-0000:02:01.0-scsi-0:0:0:0
+E: ID_PATH_TAG=pci-0000_02_01_0-scsi-0_0_0_0
+E: ID_REVISION=1.0
+E: ID_SCSI=1
+E: ID_TYPE=disk
+E: ID_VENDOR=VMware
+E: ID_VENDOR_ENC=VMware\x20\x20
+E: MAJOR=8
+E: MINOR=16
+E: SUBSYSTEM=block
+E: UDISKS_LVM2_PV_NUM_MDA=1
+E: UDISKS_LVM2_PV_UUID=IdZPt8-2Pcl-h0XM-srbm-fzN8-q7qU-oZA2c7
+E: UDISKS_LVM2_PV_VG_EXTENT_COUNT=127999
+E: UDISKS_LVM2_PV_VG_EXTENT_SIZE=4194304
+E: UDISKS_LVM2_PV_VG_FREE_SIZE=0
+E: UDISKS_LVM2_PV_VG_LV_LIST=name=tmplv;uuid=w9a1K3-rFsf-9yek-TD4R-DriN-z585-waiShG;size=536866717696;;active=1
+E: UDISKS_LVM2_PV_VG_NAME=localvg
+E: UDISKS_LVM2_PV_VG_PV_LIST=uuid=IdZPt8-2Pcl-h0XM-srbm-fzN8-q7qU-oZA2c7;size=536866717696;allocated_size=536866717696
+E: UDISKS_LVM2_PV_VG_SEQNUM=2
+E: UDISKS_LVM2_PV_VG_SIZE=536866717696
+E: UDISKS_LVM2_PV_VG_UUID=7bFRGA-d1iv-IEDr-d6tK-9Nfx-oKae-66v4bQ
+E: UDISKS_PRESENTATION_NOPOLICY=0
+E: USEC_INITIALIZED=46957
