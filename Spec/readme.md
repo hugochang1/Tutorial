@@ -12,6 +12,10 @@
 |NoC|network-on-chip|a network-based communications subsystem on an integrated circuit|
 |AMBA|Advanced Microcontroller Bus Architecture|open-standard, on-chip interconnect specification for the connection and management of functional blocks in system-on-a-chip (SoC) designs|
 
+# HW
+|Term|Full|Note|
+|-|-|-|
+|RGU|Reset Generation Unit||
 
 # File Format
 |Term|Full|Note|
