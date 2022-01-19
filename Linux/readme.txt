@@ -140,6 +140,7 @@ $diff file1 file2 -u
 ----------------------------------------------------
         ln
 ----------------------------------------------------
-$ln target linkname
+create a symbolic link (like shortcut)
+$ln -s target linkname
 $ls -al
 lrwxrwxrwx  1 user1 group1      7 Jan 19 09:35 linkname -> target
