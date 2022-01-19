@@ -30,7 +30,8 @@
 |ext2|second extended filesystem|commonly used by the Linux kernel|
 |ext3|Third extended filesystem|commonly used by the Linux kernel|
 |tmpfs|temporary file storage|data is stored in volatile memory instead of a persistent storage device|
-|nfs|Network File System|allowing a user on a client computer to access files over a computer network|
+|NFS|Network File System|allowing a user on a client computer to access files over a computer network|
+|VFS|Virtual File System||
 
 # Storage
 |Term|Full|Note|
@@ -42,6 +43,7 @@
 |NVMe|NVM Express|運用在 MacBook 上的主流固態記憶體標準之一|
 |UFS|Universal Flash Storage|採用全新「串行傳輸」技術，可同時讀寫操作|
 |RFS|Remote File System||
+|SSD|Solid State Disk||
 
 
 # Boot
