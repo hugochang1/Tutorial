@@ -8,9 +8,14 @@
 |I2C|Inter-Integrated Circuit|a synchronous, multi-controller/multi-target (master/slave), packet switched, single-ended, serial communication bus|
 |I3C|an inter-circuit protocol evolved from I2C|a specification[1] to enable communication between computer chips by defining the electrical connection between the chips and signaling patterns to be used|
 |SPI|Serial Peripheral Interface|a synchronous serial communication interface specification used for short-distance communication|
-|SCSI|Small Computer System Interface|一種用於電腦及其週邊裝置之間（硬碟、軟碟機、光碟機、印表機、掃描器等）系統級介面的獨立處理器標準|
 |NoC|network-on-chip|a network-based communications subsystem on an integrated circuit|
 |AMBA|Advanced Microcontroller Bus Architecture|open-standard, on-chip interconnect specification for the connection and management of functional blocks in system-on-a-chip (SoC) designs|
+|IDE|Integrated Drive Electronics||
+|ATA|Advanced Technology Attachment||
+|PATA|Parallel ATA||
+|SATA|Serial ATA||
+|SCSI|Small Computer System Interface|一種用於電腦及其週邊裝置之間（硬碟、軟碟機、光碟機、印表機、掃描器等）系統級介面的獨立處理器標準|
+|SAS|Serial Attached SCSI||
 
 # HW
 |Term|Full|Note|
