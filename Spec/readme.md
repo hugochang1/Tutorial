@@ -1,3 +1,14 @@
+# Spec
+|Term|Full|Note|
+|-|-|-|
+|APM|Advanced Power Management||
+|ACPI|Advanced Configuration and Power Interface|an open standard that operating systems can use to discover and configure computer hardware components, to perform power management e.g. putting unused hardware components to sleep|
+|ACPICA|ACPI Component Architecture||
+|AML|ACPI Machine Language||
+|ASL|ACPI Source Language||
+|APIC|Advanced Programmable Interrupt Controller||
+|OSPM|Operating System-directed configuration and Power Management||
+
 # Bus
 |Term|Full|Note|
 |-|-|-|
