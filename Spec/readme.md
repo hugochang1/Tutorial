@@ -51,3 +51,4 @@
 |-|-|-|
 |MBR|Master Boot Record||
 |GPT|Globally Unique Identifier Partition Table||
+|ASLR|Address space layout randomization|a computer security technique involved in preventing exploitation of memory corruption vulnerabilities|
