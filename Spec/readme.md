@@ -21,6 +21,7 @@
 |SPI|Serial Peripheral Interface|a synchronous serial communication interface specification used for short-distance communication|
 |NoC|network-on-chip|a network-based communications subsystem on an integrated circuit|
 |AMBA|Advanced Microcontroller Bus Architecture|open-standard, on-chip interconnect specification for the connection and management of functional blocks in system-on-a-chip (SoC) designs|
+|AXI|Advanced eXtensible Interface|a parallel high-performance, synchronous, high-frequency, multi-master, multi-slave communication interface, mainly designed for on-chip communication|
 |IDE|Integrated Drive Electronics||
 |ATA|Advanced Technology Attachment||
 |PATA|Parallel ATA||
