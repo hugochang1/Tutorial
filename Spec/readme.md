@@ -33,6 +33,7 @@
 |Term|Full|Note|
 |-|-|-|
 |RGU|Reset Generation Unit||
+|PSU|power supply unit|converts mains AC to low-voltage regulated DC power for the internal components of a computer|
 
 # File Format
 |Term|Full|Note|
