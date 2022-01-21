@@ -25,9 +25,11 @@
 |IDE|Integrated Drive Electronics||
 |ATA|Advanced Technology Attachment||
 |PATA|Parallel ATA||
-|SATA|Serial ATA||
+|SATA|Serial ATA|a computer bus interface that connects host bus adapters to mass storage devices such as hard disk drives, optical drives, and solid-state drives|
 |SCSI|Small Computer System Interface|一種用於電腦及其週邊裝置之間（硬碟、軟碟機、光碟機、印表機、掃描器等）系統級介面的獨立處理器標準|
 |SAS|Serial Attached SCSI||
+|NVMe|NVM Express|an open, logical-device interface specification for accessing a computer's non-volatile storage media usually attached via PCI Express (PCIe) bus|
+|M.2|Next Generation Form Factor (NGFF)|a specification for internally mounted computer expansion cards and associated connectors|
 
 # HW
 |Term|Full|Note|
@@ -53,7 +55,7 @@
 |LP5|Low Power DDR5||
 |eMMC|embedded MultiMedia Card|採用「並行傳輸」技術製成，讀寫必須分開執行|
 |NVM|Non-Volatile Memory|an retain stored information even after power is removed|
-|NVMe|NVM Express|運用在 MacBook 上的主流固態記憶體標準之一|
+
 |UFS|Universal Flash Storage|採用全新「串行傳輸」技術，可同時讀寫操作|
 |RFS|Remote File System||
 |SSD|Solid State Disk||
