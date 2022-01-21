@@ -62,5 +62,6 @@
 |-|-|-|
 |MBR|Master Boot Record|a special type of boot sector at the very beginning of partitioned computer mass storage devices|
 |GPT|Globally Unique Identifier Partition Table|a standard for the layout of partition tables of a physical computer storage device|
+|LBR|logical block addressing|a common scheme used for specifying the location of blocks of data stored on computer storage devices|
 |ASLR|Address space layout randomization|a computer security technique involved in preventing exploitation of memory corruption vulnerabilities|
-|grub|GRand Unified Bootloader||
+|grub|GRand Unified Bootloader|a boot loader package from the GNU Project|
