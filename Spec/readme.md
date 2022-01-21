@@ -1,13 +1,13 @@
 # Spec
 |Term|Full|Note|
 |-|-|-|
-|APM|Advanced Power Management||
+|APM|Advanced Power Management|an API developed by Intel and Microsoft|
 |ACPI|Advanced Configuration and Power Interface|an open standard that operating systems can use to discover and configure computer hardware components, to perform power management e.g. putting unused hardware components to sleep|
-|ACPICA|ACPI Component Architecture||
+|ACPICA|ACPI Component Architecture|provides an operating system (OS)-independent reference implementation of ACPI|
 |AML|ACPI Machine Language||
 |ASL|ACPI Source Language||
-|APIC|Advanced Programmable Interrupt Controller||
-|OSPM|Operating System-directed configuration and Power Management||
+|APIC|Advanced Programmable Interrupt Controller|a family of interrupt controllers|
+|OSPM|Operating System-directed configuration and Power Management|a computer specification for device configuration and power management by the operating system|
 
 # Bus
 |Term|Full|Note|
