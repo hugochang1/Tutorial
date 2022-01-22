@@ -36,6 +36,8 @@
 |-|-|-|
 |RGU|Reset Generation Unit||
 |PSU|power supply unit|converts mains AC to low-voltage regulated DC power for the internal components of a computer|
+|JTAG|Joint Test Action Group|an industry standard for verifying designs and testing printed circuit boards after manufacture|
+|ICE|In-Circuit Emulator|a hardware device or in-circuit emulator used to debug the software of an embedded system|
 
 # File Format
 |Term|Full|Note|
