@@ -1,6 +1,8 @@
 # Good Article
 * Kernel code reference
   * http://lxr.linux.no/linux+v5.14/
+* kernel qemu
+  * https://hackmd.io/@sysprog/linux-virtme
 * printk
   * https://www.kernel.org/doc/Documentation/printk-formats.txt- 
   * https://linuxconfig.org/introduction-to-the-linux-kernel-log-levels
