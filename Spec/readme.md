@@ -47,6 +47,7 @@
 |tmpfs|temporary file storage|data is stored in volatile memory instead of a persistent storage device|
 |NFS|Network File System|allowing a user on a client computer to access files over a computer network|
 |VFS|Virtual File System||
+|ELF|Executable and Linking Format|common standard file format for executable files, object code, shared libraries, and core dumps|
 
 # Storage
 |Term|Full|Note|
