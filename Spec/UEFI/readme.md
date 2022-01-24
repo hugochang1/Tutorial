@@ -7,7 +7,7 @@
 |PEIM|PEM Module|modular chunks of firwmare|
 |PPI|PEIM-to-PEIM Interface||
 |HOBs|Hand-off blocks||
-|PHIT|PEI HOB Information Table||
+|PHIT|PEI Hand-off Information Table||
 |DXE|Driver Execution Environment||
 |BDS|Boot Dev Select||
 |TSL|Transient System Load||
