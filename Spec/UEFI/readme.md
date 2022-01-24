@@ -9,7 +9,7 @@
 |HOBs|Hand-off blocks||
 |PHIT|PEI Hand-off Information Table||
 |DXE|Driver Execution Environment||
-|BDS|Boot Dev Select||
+|BDS|Boot Device Selection||
 |TSL|Transient System Load||
 |RT|Runtime||
 |AL|After Life||
