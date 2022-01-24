@@ -1,7 +1,7 @@
 |Term|Full|Description|
 |-|-|-|
 |PI|Platform Initialization||
-|EDK|Extensible Firmware Interface Developer||
+|EDK|EFI Developer Kit||
 |SEC|Security||
 |PEI|Pre-EFI Initialization||
 |HOBs|Hand-off blocks||
