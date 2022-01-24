@@ -20,3 +20,5 @@
 |T-RAM|temporary RAM||
 |XIP|Execute In Place|PEIM run on flash instaed of RAM|
 |DEPEX|Dependency Expression||
+|IPL|Initial Program Loader||
+|DXE IPL||the code that transitions the DXE core code into memory|
