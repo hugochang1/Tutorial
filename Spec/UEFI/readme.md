@@ -4,6 +4,8 @@
 |EDK|EFI Developer Kit||
 |SEC|Security||
 |PEI|Pre-EFI Initialization||
+|PEIM|PEM Module||
+|PPI|PEIM-to-PEIM Interface||
 |HOBs|Hand-off blocks||
 |DXE|Driver Execution Environment||
 |BDS|Boot Dev Select||
