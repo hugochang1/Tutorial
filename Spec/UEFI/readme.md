@@ -1,7 +1,7 @@
 |Term|Full|Description|
 |-|-|-|
 |PI|Platform Initialization||
-|EDK|EFI Developer Kit||
+|EDK|EFI Developer Kit|A modern, feature-rich, cross-platform firmware development environment for the UEFI and PI specifications|
 |SEC|Security||
 |PEI|Pre-EFI Initialization||
 |PEIM|PEM Module|modular chunks of firwmare|
