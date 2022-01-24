@@ -24,3 +24,4 @@
 |DXE IPL||the code that transitions the DXE core code into memory|
 |BSP|Boot Strap Processor|
 |ESP|EFI System Partition||
+|SMM|System Management Mode||
