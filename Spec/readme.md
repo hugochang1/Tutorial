@@ -7,7 +7,7 @@
 |G1|Sleeping|S2|same as S1 except CPU powered off|
 |G1|Sleeping|S3|Suspend to RAM, RAM remains powered|
 |G1|Sleeping|S4|Suspend to Disk, the system is powered down|
-|G2|Soft Off|S5|same as G3 except the power supply unit (PSU) still supplies power, at a minimum|
+|G2|Soft Off|S5|same as G3 except the power supply unit (PSU) still supplies power, at a minimum. Other components may remain powered so the computer can "wake" on input from the keyboard, clock, modem, LAN, or USB device|
 |G3|Mechanical Off||The computer's power has been totally removed|
 
 # Spec
