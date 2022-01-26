@@ -1,5 +1,6 @@
 |Term|Full|Description|
 |-|-|-|
+|APM|Advanced Power Management||
 |ACPI|Advanced Configuration and Power Interface|作業系統電源管理、硬體組態介面，是一種開放標準，取代了進階電源管理、多處理器規範、舊式隨插即用規範|
 |OSPM|Operating System-directed configuration and Power Management||
 |APIC|Advanced Programmable Interrupt Controller||
