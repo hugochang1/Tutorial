@@ -60,3 +60,30 @@ freeze standby mem disk
 ...
 ````
 
+# Kernel Doc
+- Documentation/admin-guide/kernel-parameters.txt
+````
+	acpi=		[HW,ACPI,X86,ARM64]
+			Advanced Configuration and Power Interface
+			Format: { force | on | off | strict | noirq | rsdt |
+				  copy_dsdt }
+			force -- enable ACPI if default was off
+			on -- enable ACPI but allow fallback to DT [arm64]
+			off -- disable ACPI if default was on
+			noirq -- do not use ACPI for IRQ routing
+			strict -- Be less tolerant of platforms that are not
+				strictly ACPI specification compliant.
+			rsdt -- prefer RSDT over (default) XSDT
+			copy_dsdt -- copy DSDT to memory
+			For ARM64, ONLY "acpi=off", "acpi=on" or "acpi=force"
+			are available
+
+			See also Documentation/power/runtime_pm.rst, pci=noacpi
+
+	acpi_apic_instance=	[ACPI, IOAPIC]
+			Format: <int>
+			2: use 2nd APIC table, if available
+			1,0: use 1st APIC table
+			default: 0
+...
+````
