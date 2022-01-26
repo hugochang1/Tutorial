@@ -12,3 +12,15 @@
 |RSDT|Root System Description Table||
 |I/O APIC|Input/Output Advanced Programmable Interrupt Controller||
 |I/O SAPIC|Input/Output Streamlined Advanced Programmable Interrupt Controller||
+
+- RSDP (Root System Description Pointer)
+  - RSDT (Root System Description Table)
+    - APIC (Multiple APIC Description Table)
+    - MCFG (PCIe memory mapped configuration space base address description table)
+    - BOOT (Simple Boot Flag Table)
+    - SSDT (Secondary System Description Table)
+      - AML (ACPI Machine Language)
+    - FADT (Fixed ACPI Description Table)
+      - FACS (Firmware ACPI Control Structure)
+      - DSDT (Differentiated System Description Table)
+        - AML (ACPI Machine Language)
