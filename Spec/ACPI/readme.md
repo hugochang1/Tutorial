@@ -126,3 +126,7 @@ APIC @ 0x0000000000000000
 			default: 0
 ...
 ````
+
+# Kernel Source Code
+- arch/x86/kernel/acpi/boot.c
+  - acpi_boot_table_init()
