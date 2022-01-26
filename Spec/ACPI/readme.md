@@ -50,3 +50,13 @@ freeze standby mem disk
   - enter suspend to RAM
 - \# echo -n disk > /sys/power/state
   - enter suspend to disk
+- $ cat /proc/interrupts
+````
+            CPU0       CPU1       CPU2       CPU3       CPU4 
+   0:          4          0          0          0          0          0          0          0          0   IO-APIC    2-edge      timer
+   1:          0          0          0         16          0          0        326          0          0   IO-APIC    1-edge      i8042
+   8:          0          0          0          0          1          0          0          0          0   IO-APIC    8-edge      rtc0
+   9:          0          0          0          0          0          0          0          0          0   IO-APIC    9-fasteoi   acpi
+...
+````
+
