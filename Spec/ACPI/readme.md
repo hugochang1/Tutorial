@@ -38,3 +38,14 @@
       - FACS (Firmware ACPI Control Structure)
       - DSDT (Differentiated System Description Table)
         - AML (ACPI Machine Language)
+
+- $ cat /sys/power/state
+````
+freeze standby mem disk
+````
+
+- $ sudo -s
+- \# echo -n standby > /sys/power/state
+  - enter suspend to RAM
+- \# echo -n disk > /sys/power/state
+  - enter suspend to disk
