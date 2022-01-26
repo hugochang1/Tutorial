@@ -39,6 +39,7 @@
       - DSDT (Differentiated System Description Table)
         - AML (ACPI Machine Language)
 
+# Linux Command
 - $ cat /sys/power/state
 ````
 freeze standby mem disk
