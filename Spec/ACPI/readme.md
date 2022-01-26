@@ -60,6 +60,45 @@ freeze standby mem disk
 ...
 ````
 
+- $ ls -al /sys/firmware/acpi/tables/
+````
+total 0
+drwxr-xr-x 4 root root      0 Jan 26 07:40 .
+drwxr-xr-x 5 root root      0 Jan 26 07:40 ..
+-r-------- 1 root root   1858 Jan 26 08:14 APIC
+-r-------- 1 root root     40 Jan 26 08:14 BOOT
+drwxr-xr-x 2 root root      0 Jan 26 08:14 data
+-r-------- 1 root root 138866 Jan 26 08:14 DSDT
+drwxr-xr-x 2 root root      0 Jan 26 08:14 dynamic
+-r-------- 1 root root    244 Jan 26 08:14 FACP
+-r-------- 1 root root     64 Jan 26 08:14 FACS
+-r-------- 1 root root     56 Jan 26 08:14 HPET
+-r-------- 1 root root     60 Jan 26 08:14 MCFG
+-r-------- 1 root root   2256 Jan 26 08:14 SRAT
+-r-------- 1 root root     40 Jan 26 08:14 WAET
+````
+
+- $ sudo apt-get install acpidump
+- $ sudo acpidump -o acpidump.txt
+- $ cat acpidump.txt
+````MCFG @ 0x0000000000000000
+  0000: 4D 43 46 47 3C 00 00 00 01 6E 50 54 4C 54 44 20  MCFG<....nPTLTD 
+  0010: 24 50 43 49 54 42 4C 24 00 00 04 06 20 4C 54 50  $PCITBL$.... LTP
+  0020: 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 F0  ................
+  0030: 00 00 00 00 00 00 00 7F 00 00 00 00              ............
+
+APIC @ 0x0000000000000000
+  0000: 41 50 49 43 42 07 00 00 01 DA 50 54 4C 54 44 20  APICB.....PTLTD 
+  0010: 09 20 41 50 49 43 20 20 00 00 04 06 20 4C 54 50  . APIC  .... LTP
+  0020: 00 00 00 00 00 00 E0 FE 01 00 00 00 00 08 00 00  ................
+  0030: 01 00 00 00 00 08 01 01 01 00 00 00 00 08 02 02  ................
+  0040: 01 00 00 00 00 08 03 04 01 00 00 00 00 08 04 05  ................
+  0050: 01 00 00 00 00 08 05 06 01 00 00 00 00 08 06 08  ................
+  0060: 01 00 00 00 00 08 07 09 01 00 00 00 00 08 08 0A  ................
+...
+````
+
+
 # Kernel Doc
 - Documentation/admin-guide/kernel-parameters.txt
 ````
