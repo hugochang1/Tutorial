@@ -1,3 +1,16 @@
+# Gx and Sx state
+|Gx|Name|Sx|Description|
+|-|-|-|-|
+|G0|Wokring|S0|1. The computer is running (monitor can be on/off)|
+|G1|Sleeping|S0ix|Partial processor SoC sleep|
+|G1|Sleeping|S1|CPU(s) stops executing instructions and The power to the CPU(s) and RAM is maintained|
+|G1|Sleeping|S2|same as S1 except CPU powered off|
+|G1|Sleeping|S3|Suspend to RAM, RAM remains powered|
+|G1|Sleeping|S4|Suspend to Disk, the system is powered down|
+|G2|Soft Off|S5|same as G3 except the power supply unit (PSU) still supplies power, at a minimum. Other components may remain powered so the computer can "wake" on input from the keyboard, clock, modem, LAN, or USB device|
+|G3|Mechanical Off||The computer's power has been totally removed|
+
+# Term
 |Term|Full|Description|
 |-|-|-|
 |APM|Advanced Power Management||
@@ -13,6 +26,7 @@
 |I/O APIC|Input/Output Advanced Programmable Interrupt Controller||
 |I/O SAPIC|Input/Output Streamlined Advanced Programmable Interrupt Controller||
 
+# ACPI Tables
 - RSDP (Root System Description Pointer)
   - RSDT (Root System Description Table)
     - APIC (Multiple APIC Description Table)
