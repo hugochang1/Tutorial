@@ -25,3 +25,4 @@
 |BSP|Boot Strap Processor||
 |ESP|EFI System Partition||
 |SMM|System Management Mode|in DXE|
+|HII|Human Interface Infrastucture|in BDS|
