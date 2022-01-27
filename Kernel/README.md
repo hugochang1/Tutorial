@@ -3,6 +3,8 @@
   * http://lxr.linux.no/linux+v5.14/
 * kernel qemu
   * https://hackmd.io/@sysprog/linux-virtme
+* How to compile and install Linux Kernel 5.6.9 from source code
+  * https://www.cyberciti.biz/tips/compiling-linux-kernel-26.html
 * printk
   * https://www.kernel.org/doc/Documentation/printk-formats.txt- 
   * https://linuxconfig.org/introduction-to-the-linux-kernel-log-levels
