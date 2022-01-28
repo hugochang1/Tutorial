@@ -26,3 +26,5 @@
 |ESP|EFI System Partition||
 |SMM|System Management Mode|in DXE|
 |HII|Human Interface Infrastucture|in BDS|
+|IFR|Internal Form Representation|in BDS|
+|VFR|Visual Form Representation|in BDS|
