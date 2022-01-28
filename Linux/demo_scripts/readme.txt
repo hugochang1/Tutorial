@@ -213,3 +213,14 @@ status=$?
 echo "test result: $status"
 
 make clean
+
+
+# ===========================================
+# 			time diff
+# ===========================================
+d1=$(date +"%s")
+read -p "Press enter to continue"
+d2=$(date +"%s")
+
+echo $((d2-d1))
+
