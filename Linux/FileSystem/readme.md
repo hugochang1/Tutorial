@@ -155,6 +155,21 @@ Writing superblocks and filesystem accounting information: done
 - boot mount by modifying ``sudo vi /etc/fstab``
   - add ``UUID=eee9a205-eec6-4f49-9c35-aa894965f35f /data1          ext4    defaults 0 0``
   - save and exit /etc/fstab
-  - reboot PC ``reboot``
+````
+# /etc/fstab: static file system information.
+#
+# Use 'blkid' to print the universally unique identifier for a
+# device; this may be used with UUID= as a more robust way to name devices
+# that works even if disks are added and removed. See fstab(5).
+#
+# <file system> <mount point>   <type>  <options>       <dump>  <pass>
+# / was on /dev/sda1 during installation
+UUID=eac71733-82a8-4832-8fc6-4e7b649a559a /               ext4    errors=remount-ro 0       1
+/swapfile                                 none            swap    sw              0       0
+/dev/fd0        /media/floppy0  auto    rw,user,noauto,exec,utf8 0       0
+UUID=eee9a205-eec6-4f49-9c35-aa894965f35f /data1          ext4    defaults 0 0
+````
+
+- reboot PC ``reboot``
   - after reboot, you can find ``/data1``
   - please give the permission ``chmod 777 /data1`` for access
