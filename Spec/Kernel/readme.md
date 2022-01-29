@@ -1,0 +1,22 @@
+- High Level Layer
+  - User space
+    - command line
+    - server
+    - GUI
+  - Kernel sapce
+    - system call
+      - the only way to talk to Kernel from user space
+    - process management
+      - multitasking
+      - process management
+      - context switch
+    - memory management
+      - virtual memory
+      - each process memory space
+    - drivers
+      - USB drivers, PCIe drivers, Ethernet drivers, ...etc.
+  - Hardware
+    - CPU
+    - RAM
+    - Disk
+    - Network port
