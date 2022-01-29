@@ -167,7 +167,11 @@ Writing superblocks and filesystem accounting information: done
 /dev/sdb: UUID="eee9a205-eec6-4f49-9c35-aa894965f35f" TYPE="ext4"
 ````
 - create a new folder by ``mkdir ~/data1`` and mount it ``sudo mount /dev/sdb ~/data1``
-  - after mounting it, please give the permission ``chmod 777 ~/data1``
+  - after mounting it, please give the permission ``chmod 777 ~/data1`` for access
   - to unmount it, please use ``umount ~/data1`` or ``umount /dev/sdb``
 - you can also configure fstab to auto configuration in boot time ``sudo vi /etc/fstab``
   - add ``UUID=eee9a205-eec6-4f49-9c35-aa894965f35f /data1          ext4    defaults 0 0``
+  - save and exit /etc/fstab
+  - reboot PC
+  - you can find ``/data1``
+  - please give the permission ``chmod 777 /data1`` for access
