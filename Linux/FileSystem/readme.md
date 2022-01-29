@@ -65,7 +65,7 @@ Device     Boot Start       End   Sectors  Size Id Type
 /dev/sda1: UUID="9972783d-88b5-4cb2-9125-e9e80601e5c0" TYPE="ext4" PARTUUID="a82de0be-01"
 ````
 
-# add a new disk
+# add a new disk flow
 - main steps
   - check new disk dev by ``ls /dev/[sh]d*``
   - start partition by ``sudo fdisk /dev/sdb``
@@ -151,7 +151,7 @@ mke2fs 1.44.1 (24-Mar-2018)
 Found a dos partition table in /dev/sdb
 Proceed anyway? (y,N) y
 Creating filesystem with 5242880 4k blocks and 1310720 inodes
-Filesystem UUID: 04cbe152-bda4-4945-8fae-cd76c07c4484
+Filesystem UUID: eee9a205-eec6-4f49-9c35-aa894965f35f
 Superblock backups stored on blocks: 
 	32768, 98304, 163840, 229376, 294912, 819200, 884736, 1605632, 2654208, 
 	4096000
@@ -161,9 +161,13 @@ Writing inode tables: done
 Creating journal (32768 blocks): done
 Writing superblocks and filesystem accounting information: done
 ````
-- check the GUID for the new parition ``check UUID for all disks``
+- check the GUID for the new parition ``sudo blkid``
 ````
 /dev/sda1: UUID="eac71733-82a8-4832-8fc6-4e7b649a559a" TYPE="ext4" PARTUUID="a53817f2-01"
-/dev/sdb: UUID="04cbe152-bda4-4945-8fae-cd76c07c4484" TYPE="ext4"
+/dev/sdb: UUID="eee9a205-eec6-4f49-9c35-aa894965f35f" TYPE="ext4"
 ````
 - create a new folder by ``mkdir ~/data1`` and mount it ``sudo mount /dev/sdb ~/data1``
+  - after mounting it, please give the permission ``chmod 777 ~/data1``
+  - to unmount it, please use ``umount ~/data1`` or ``umount /dev/sdb``
+- you can also configure fstab to auto configuration in boot time ``sudo vi /etc/fstab``
+  - add ``UUID=eee9a205-eec6-4f49-9c35-aa894965f35f /data1          ext4    defaults 0 0``
