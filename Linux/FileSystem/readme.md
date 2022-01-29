@@ -1,10 +1,10 @@
 # list
-- ``sudo blkid``
+- list UUID of device ``sudo blkid``
 ````
 /dev/sda1: UUID="9972783d-88b5-4cb2-9125-e9e80601e5c0" TYPE="ext4" PARTUUID="a82de0be-01"
 ````
 
-- ``mount``
+- check the current mount ``mount``
 ````
 sysfs on /sys type sysfs (rw,nosuid,nodev,noexec,relatime)
 proc on /proc type proc (rw,nosuid,nodev,noexec,relatime)
@@ -12,7 +12,7 @@ udev on /dev type devtmpfs (rw,nosuid,relatime,size=1973712k,nr_inodes=493428,mo
 devpts on /dev/pts type devpts (rw,nosuid,noexec,relatime,gid=5,mode=620,ptmxmode=000)
 ````
 
-- ``df -h``
+- check disk free ``df -h``
 ````
 Filesystem      Size  Used Avail Use% Mounted on
 udev            3.7G     0  3.7G   0% /dev
@@ -30,7 +30,7 @@ tmpfs           3.9G     0  3.9G   0% /sys/fs/cgroup
 ````
 
 # status
-- ``sudo fdisk -l /dev/sda``
+- check disk info ``sudo fdisk -l /dev/sda``
 ````
 Disk /dev/sda: 100 GiB, 107374182400 bytes, 209715200 sectors
 Units: sectors of 1 * 512 = 512 bytes
@@ -43,33 +43,20 @@ Device     Boot Start       End   Sectors  Size Id Type
 /dev/sda1  *     2048 209713151 209711104  100G 83 Linux
 ````
 
-# create
-- ``ls -al /dev/sdf2``
-````
--rw-r--r-- 1 root root 2097152 Jan 19 05:53 sdf2
-````
-
-
-# umount
-- ``sudo umount /extra`` or ``sudo umount /dev/sdf2``
-- ``sudo blkid``
-````
-/dev/sda1: UUID="9972783d-88b5-4cb2-9125-e9e80601e5c0" TYPE="ext4" PARTUUID="a82de0be-01"
-````
 
 # add a new disk flow
 - main steps
-  - check new disk dev by ``ls /dev/[sh]d*``
-  - start partition by ``sudo fdisk /dev/sdb``
-  - format partition by ``sudo mkfs -t ext4 /dev/sdb``
-  - mount by ``sudo mount /dev/sdb ~/data1``
+  - check which one is new disk dev by ``ls /dev/[sh]d*``
+  - do partition by ``sudo fdisk /dev/sdb``
+  - format the partition by ``sudo mkfs -t ext4 /dev/sdb``
+  - dynamic mount by ``sudo mount /dev/sdb ~/data1``
   - boot mount by modifying ``sudo vi /etc/fstab``
-- ``ls /dev/[sh]d*``
-  - /dev/sdb is a new one
+- check which one is new disk dev by ``ls /dev/[sh]d*`` and /dev/sdb is a new one
 ````
 /dev/sda  /dev/sda1  /dev/sdb
 ````
-- ``sudo fdisk /dev/sdb``
+
+- do partition by ``sudo fdisk /dev/sdb``
 ````
 Welcome to fdisk (util-linux 2.31.1).
 Changes will remain in memory only, until you decide to write them.
@@ -80,6 +67,7 @@ Created a new DOS disklabel with disk identifier 0x6c2e020c.
 
 Command (m for help): m
 ````
+
 - input ``m`` for help
 ````
 Help:
@@ -137,7 +125,8 @@ The partition table has been altered.
 Calling ioctl() to re-read partition table.
 Syncing disks.
 ````
-- format a new partition by ``sudo mkfs -t ext4 /dev/sdb``
+
+- format the partition by ``sudo mkfs -t ext4 /dev/sdb``
 ````
 mke2fs 1.44.1 (24-Mar-2018)
 Found a dos partition table in /dev/sdb
@@ -153,17 +142,19 @@ Writing inode tables: done
 Creating journal (32768 blocks): done
 Writing superblocks and filesystem accounting information: done
 ````
+
 - check the GUID for the new parition ``sudo blkid``
 ````
 /dev/sda1: UUID="eac71733-82a8-4832-8fc6-4e7b649a559a" TYPE="ext4" PARTUUID="a53817f2-01"
 /dev/sdb: UUID="eee9a205-eec6-4f49-9c35-aa894965f35f" TYPE="ext4"
 ````
+
 - create a new folder by ``mkdir ~/data1`` and mount it ``sudo mount /dev/sdb ~/data1``
   - after mounting it, please give the permission ``chmod 777 ~/data1`` for access
   - to unmount it, please use ``umount ~/data1`` or ``umount /dev/sdb``
-- you can also configure fstab to auto configuration in boot time ``sudo vi /etc/fstab``
+- boot mount by modifying ``sudo vi /etc/fstab``
   - add ``UUID=eee9a205-eec6-4f49-9c35-aa894965f35f /data1          ext4    defaults 0 0``
   - save and exit /etc/fstab
-  - reboot PC
-  - you can find ``/data1``
+  - reboot PC ``reboot``
+  - after reboot, you can find ``/data1``
   - please give the permission ``chmod 777 /data1`` for access
