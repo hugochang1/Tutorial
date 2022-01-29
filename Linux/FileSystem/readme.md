@@ -1,3 +1,11 @@
+# a disk hierarchy
+- one partition table
+- partition 1
+  - one file system data structure (ex: ex2, ext3, ext4, fat32, ...etc.)
+  - file data
+- partition 2
+- ...
+
 # list
 - list UUID of device ``sudo blkid``
 ````
