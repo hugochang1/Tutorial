@@ -49,14 +49,6 @@ Device     Boot Start       End   Sectors  Size Id Type
 -rw-r--r-- 1 root root 2097152 Jan 19 05:53 sdf2
 ````
 
-# mount
-- ``sudo mkdir /extra``
-- ``sudo mount -t ext4 /dev/sdf2 /extra``
-- ``sudo blkid``
-````
-/dev/sda1: UUID="9972783d-88b5-4cb2-9125-e9e80601e5c0" TYPE="ext4" PARTUUID="a82de0be-01"
-/dev/loop19: UUID="9b8ca4c4-031e-417d-88f1-9426e0e09b91" TYPE="ext4"
-````
 
 # umount
 - ``sudo umount /extra`` or ``sudo umount /dev/sdf2``
