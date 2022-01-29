@@ -1,6 +1,6 @@
 # Good Article
 * Kernel code reference
-  * http://lxr.linux.no/linux+v5.14/
+  * https://elixir.bootlin.com/linux/v5.4.174/source
 * kernel qemu
   * https://hackmd.io/@sysprog/linux-virtme
 * How to compile and install Linux Kernel 5.6.9 from source code
