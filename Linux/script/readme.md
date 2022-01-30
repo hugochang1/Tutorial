@@ -1,6 +1,6 @@
 # echo
 ### simple
-- `echo hello world` or `echo "hello world"` or `echo 'hello world'`
+- `echo hello world` or `echo "hello world"` or `echo 'hello world'` or `printf "hello world"`
   - output: `hello world`
 - `echo hello world $a` or `echo "hello world $a"`
   - `a=1`
@@ -34,6 +34,59 @@
   - output: `Green`
 - `echo -e "\e[1;33mYellow\e[m"`
   - output: `Yellow`
+
+# string
+````
+string=0123456789abcde
+echo ${string:0:3}
+# 012
+
+echo ${string:5:2}
+# 56
+
+echo ${string:10:5}
+# abcd
+````
+
+# expr
+````
+expr 6 + 2  # 8
+expr 3 - 2  # 1
+expr 2 \* 3 # 6
+expr 8 / 3  # 2
+expr 8 % 3  # 2
+
+a1=`expr 10 + 20`
+echo $a1	# 30
+
+echo $((1+1)) # 2
+echo $((2-1)) # 1
+echo $((2*2)) # 4
+echo $((5/2)) # 2
+echo $((3%2)) # 1
+
+a1=$((2+2))
+echo $a1
+````
+
+# date
+````
+now=`date`
+echo $now
+# Tue Aug 25 14:24:16 CST 2020
+
+now="$(date +'%Y%m%d_%H%M%S')"
+echo $now
+# 20200825_142447
+````
+- get time diff in second
+````
+d1=$(date +"%s")
+read -p "Press enter to continue"
+d2=$(date +"%s")
+
+echo $((d2-d1))
+````
 
 # if
 ### if, elif, else, fi
@@ -171,6 +224,22 @@ case $a in
 esac
 ````
 
+# test
+````
+test aaa = aaa && echo YES3		#string comparsion: equal
+test aaa != bbb && echo YES4	#string comparsion: not equal
+test 5 -eq 5 && echo YES5		#integer comparsion: equal
+test 1 -ne 2 && echo YES6		#integer comparsion: not equal
+test 2 -gt 1 && echo YES7		#integer comparsion: greater than
+test 1 -lt 2 && echo YES8		#integer comparsion: less than
+test 2 -ge 2 && echo YES9		#integer comparsion: greater or equal
+test 2 -le 2 && echo YES10		#integer comparsion: less or equal
+
+a1="aaa"
+a2="aaa"
+test $a1 = $a2 && echo YES11
+````
+
 # for
 ````
 for a in a b hello; do
@@ -203,6 +272,17 @@ read -p "Press enter to continue"
 ````
 
 # function
+````
+f1()
+{
+	echo "f1() called"
+	echo "f1() 1st parameter $1"
+	echo "f1() 2nd parameter $2"
+}
+
+f1 aa bb
+````
+
 ````
 run_fail_exit()
 {
