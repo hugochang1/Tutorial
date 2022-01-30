@@ -253,6 +253,16 @@ b
 hello
 ````
 
+# while
+````
+i=0
+while [ $i -le 5 ]; do
+  echo $i
+  i=$(($i+1))
+  #i=`expr $i + 1`
+done
+````
+
 # number operation
 - a--
 ````
