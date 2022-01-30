@@ -1,3 +1,9 @@
+# basic
+- put this in the beginning of line
+````
+#!/bin/bash
+````
+
 # echo
 ### simple
 - `echo hello world` or `echo "hello world"` or `echo 'hello world'` or `printf "hello world"`
