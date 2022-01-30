@@ -1,0 +1,21 @@
+# echo
+- simple
+  - `echo hello world` or `echo "hello world"` or `echo 'hello world'`
+    - output: `hello world`
+  - `echo hello world $a` or `echo "hello world $a"`
+    - `a=1`
+    - ouptput: `hello world 1`
+  - echo 'hello world $a'
+    - output: `hello world $a`
+  - `echo I don\'t` or `echo "I don't"` or `echo 'I don'\''t'`
+    - output: `I don't`
+- specific parameters
+  - run script command: `./xxx.sh 1 abc`
+    - `echo $0` script name
+      - output: `./xxx.sh`
+    - `echo $1` first parameter
+      - output: `1`
+    - `echo $2` second parameter
+      - output: `abc`
+    - `echo $#` the number of parameter
+      - output: `2`
