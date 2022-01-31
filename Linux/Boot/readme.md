@@ -5,6 +5,7 @@
 BOOT_IMAGE=/boot/vmlinuz-4.4.0-148-generic root=/dev/mapper/rootvg-rootlv ro quiet splash
 ````
 
+![149607261-8ad1b958-e048-4d3f-bc50-c613d5f46b07](https://user-images.githubusercontent.com/6143237/151820206-3b7d4468-3881-471b-8837-f17427628f46.png)
 
 
 https://cloudchef.medium.com/linux-boot-process-part-2-bd7514913495
