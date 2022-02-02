@@ -360,4 +360,53 @@ $ systemctl list-jobs
 No jobs running.
 ````
 
+# add a new target
+- `$ sudo vi /etc/systemd/system/test1.target`
+````
+[Unit]
+Description=test 1
+````
+
+- `$ sudo vi /etc/systemd/system/test2.target`
+````
+[Unit]
+Description=test 2
+Wants=test1.target
+````
+
+- `$ systemctl start test2.target` to start a target
+- `$ systemctl status test1.target test2.target` to check status
+````
+● test1.target - test 1
+   Loaded: loaded (/etc/systemd/system/test1.target; static; vendor preset: enabled)
+   Active: active since Wed 2022-02-02 04:29:57 PST; 5min ago
+
+Feb 02 04:29:57 ubuntu systemd[1]: Reached target test 1.
+
+● test2.target - test 2
+   Loaded: loaded (/etc/systemd/system/test2.target; static; vendor preset: enabled)
+   Active: active since Wed 2022-02-02 04:35:43 PST; 7s ago
+
+Feb 02 04:35:43 ubuntu systemd[1]: Reached target test 2.
+````
+
+- `$ systemctl stop test2.target` to stop a target
+- `$ systemctl disable test2.target` to disable a target
+- `$ systemctl status test1.target test2.target`
+````
+● test1.target - test 1
+   Loaded: loaded (/etc/systemd/system/test1.target; static; vendor preset: enabled)
+   Active: active since Wed 2022-02-02 04:29:57 PST; 6min ago
+
+Feb 02 04:29:57 ubuntu systemd[1]: Reached target test 1.
+
+● test2.target - test 2
+   Loaded: loaded (/etc/systemd/system/test2.target; static; vendor preset: enabled)
+   Active: inactive (dead)
+
+Feb 02 04:29:57 ubuntu systemd[1]: Reached target test 2.
+Feb 02 04:31:12 ubuntu systemd[1]: Stopped target test 2.
+Feb 02 04:35:43 ubuntu systemd[1]: Reached target test 2.
+Feb 02 04:36:21 ubuntu systemd[1]: Stopped target test 2.
+````
 
