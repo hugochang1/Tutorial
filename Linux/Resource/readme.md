@@ -1,4 +1,5 @@
 # top
+- show CPU usage and memory usage in system view
 - `$ top`
   - `P` sorted by current CPU usage (default)
   - `M` sorted by memory usage
@@ -8,6 +9,7 @@
   - `$ sudo renice -19 1723` 
 
 # lsof
+- show open file in system view
 - `$ lsof`
   - TYPE could be file, directory or socket
   - `$ lsof /usr`
@@ -23,9 +25,10 @@ systemd      1                  root NOFD                                       
 
 # strace
 - system trace
-- `$ strace cat /dev/null`
-- `$ strace -ff cat /dev/null` follows all forks
-- `$ strace -o strace_file -ff cat /dev/null` the result will be outputed to strace_file.pid (ex: ex: `strace_file.4074`)
+- `$ strace <command>`
+  - `$ strace cat /dev/null`
+  - `$ strace -ff cat /dev/null` follows all forks
+  - `$ strace -o strace_file -ff cat /dev/null` the result will be outputed to strace_file.pid (ex: ex: `strace_file.4074`)
 ````
 execve("/bin/cat", ["cat", "/dev/null"], 0x7ffc9ce10988 /* 52 vars */) = 0
 ...
@@ -36,7 +39,8 @@ exit_group(0)                           = ?
 
 # ltrace
 - library trace
-- `$ ltrace cat /dev/null`
+- `$ ltrace <command>`
+  - `$ ltrace cat /dev/null`
 ````
 getpagesize()                                                                                                                                                             = 4096
 strrchr("cat", '/')                                                                                                                                                       = nil
@@ -59,7 +63,9 @@ fclose(0x7f5af296d680)                                                          
 ````
 
 # time
-- `$ time ls`
+- show the time used by process
+- `$ time <command>`
+  - `$ time ls`
 ````
 real	0m0.001s
 user	0m0.001s
