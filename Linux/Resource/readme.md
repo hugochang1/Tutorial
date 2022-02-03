@@ -3,7 +3,7 @@
   - `P` sorted by current CPU usage (default)
   - `M` sorted by memory usage
   - `T` sorted by accumulated CPU usage
-- `$ sudo renice <value> <pid>`
+- `$ sudo renice <value> <pid>` to change the priority of a process
   - `<value>` -20~20, -20 highest priority, 20 lowest priority
   - `$ sudo renice -19 1723` 
 
