@@ -3,6 +3,9 @@
   - `P` sorted by current CPU usage (default)
   - `M` sorted by memory usage
   - `T` sorted by accumulated CPU usage
+- `$ sudo renice <value> <pid>`
+  - `<value>` -20~20, -20 highest priority, 20 lowest priority
+  - `$ sudo renice -19 1723` 
 
 # lsof
 - `$ lsof`
@@ -54,3 +57,12 @@ fclose(0x7f5af296d680)                                                          
   4144      - ps -m -o pid,tid,command
      -   4144 -
 ````
+
+# time
+- `$ time ls`
+````
+real	0m0.001s
+user	0m0.001s
+sys	0m0.000s
+````
+
