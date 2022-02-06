@@ -97,3 +97,77 @@ Desktop  Documents  Downloads  Music  Pictures	Public	snap  Templates  tmp  Vide
 0.00user 0.00system 0:00.00elapsed 0%CPU (0avgtext+0avgdata 2604maxresident)k
 0inputs+0outputs (0major+109minor)pagefaults 0swaps
 ````
+
+# vmstat
+- Report virtual memory statistics
+- `$ vmstat <interval>`
+  - `$ vmstat 1` to update memory per 1 s
+````
+$ vmstat 1
+procs -----------memory---------- ---swap-- -----io---- -system-- ------cpu-----
+ r  b   swpd   free   buff  cache   si   so    bi    bo   in   cs us sy id wa st
+ 0  0      0 5222172 176164 1104256    0    0    70     8   32   47  0  0 99  0  0
+ 0  0      0 5222172 176172 1104256    0    0     0   184  539  761  0  0 100  0  0
+ 0  0      0 5222172 176172 1104256    0    0     0     0  890 1223  0  0 100  0  0
+ 0  0      0 5222172 176172 1104256    0    0     0     0  268  385  0  0 100  0  0
+````
+
+# iostat
+- `$ sudo apt install sysstat`
+- `$ iostat` by disk
+````
+Linux 5.4.174 (ubuntu) 	02/06/2022 	_x86_64_	(12 CPU)
+
+avg-cpu:  %user   %nice %system %iowait  %steal   %idle
+           0.18    0.05    0.41    0.04    0.00   99.32
+
+Device             tps    kB_read/s    kB_wrtn/s    kB_read    kB_wrtn
+sdb               0.07         1.67         0.00       2117          4
+sda              26.50       804.17       150.98    1018873     191284
+````
+
+- `$ iostat -p ALL` by partition
+````
+Linux 5.4.174 (ubuntu) 	02/06/2022 	_x86_64_	(12 CPU)
+
+avg-cpu:  %user   %nice %system %iowait  %steal   %idle
+           0.17    0.05    0.39    0.04    0.00   99.35
+
+Device             tps    kB_read/s    kB_wrtn/s    kB_read    kB_wrtn
+scd0              0.00         0.00         0.00          0          0
+sdb               0.07         1.59         0.00       2117          4
+sda              25.19       763.76       143.54    1018873     191480
+sda1             25.13       762.21       143.54    1016813     191480
+````
+
+# iotop
+- `$ sudo apt install iotop`
+- `$ sudo iotop`
+````
+Total DISK READ :       0.00 B/s | Total DISK WRITE :       0.00 B/s
+Actual DISK READ:       0.00 B/s | Actual DISK WRITE:       0.00 B/s
+   TID  PRIO  USER     DISK READ  DISK WRITE  SWAPIN     IO>    COMMAND
+   
+   370 be/4 root        0.00 B/s    0.00 B/s  0.00 %  0.01 % [kworker/u256:28-events_freezable_power_]
+     1 be/4 root        0.00 B/s    0.00 B/s  0.00 %  0.00 % init auto noprompt
+     2 be/4 root        0.00 B/s    0.00 B/s  0.00 %  0.00 % [kthreadd]
+     3 be/0 root        0.00 B/s    0.00 B/s  0.00 %  0.00 % [rcu_gp]
+     4 be/0 root        0.00 B/s    0.00 B/s  0.00 %  0.00 % [rcu_par_gp]
+     6 be/0 root        0.00 B/s    0.00 B/s  0.00 %  0.00 % [kworker/0:0H-kblockd]
+...
+````
+
+# pidstat
+- `$ pidstat -p <pid> <interval>`
+  - `$ pidstat -p 1777 1`
+````
+Linux 5.4.174 (ubuntu) 	02/06/2022 	_x86_64_	(12 CPU)
+
+07:25:15 AM   UID       PID    %usr %system  %guest   %wait    %CPU   CPU  Command
+07:25:16 AM  1000      1777    1.00    1.00    0.00    0.00    2.00    10  Xorg
+07:25:17 AM  1000      1777    0.99    0.99    0.00    0.00    1.98    11  Xorg
+07:25:18 AM  1000      1777    2.00    3.00    0.00    1.00    5.00    11  Xorg
+07:25:19 AM  1000      1777    1.00    1.00    0.00    0.00    2.00    11  Xorg
+07:25:20 AM  1000      1777    1.00    2.00    0.00    0.00    3.00     9  Xorg
+````
+
