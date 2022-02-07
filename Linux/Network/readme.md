@@ -68,3 +68,13 @@ traceroute to www.google.com (172.217.163.36), 64 hops max
   9   142.251.226.169  5.316ms  5.314ms  6.194ms 
  10   172.217.163.36  5.236ms  5.172ms  5.012ms 
 ````
+
+# host
+- DNS lookup utility
+- `$ host <FQDN>`
+  - `$ host www.google.com`
+````
+www.google.com has address 172.217.163.36
+www.google.com has IPv6 address 2404:6800:4012:4::2004
+````
+
