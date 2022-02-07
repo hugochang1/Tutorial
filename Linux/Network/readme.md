@@ -2,6 +2,7 @@
 - configure a network interface
 - `$ sudo apt install net-tools`
 - `$ ifconfig`
+  - `$ ifconfig -a` to show all interfaces including the disables
 ````
 ens33: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
         inet 192.168.163.129  netmask 255.255.255.0  broadcast 192.168.163.255
@@ -21,6 +22,10 @@ lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
         TX packets 303  bytes 24973 (24.9 KB)
         TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
 ````
+- `UP` and `RUNNING` means the interface is enabled
+- `$ ifconfig ens33 down` to disable `ens33` interface
+- `$ ifconfig ens33 up` to enable `ens33` interface
+- 
 
 # route
 - show the IP routing table
@@ -33,6 +38,7 @@ Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
 169.254.0.0     0.0.0.0         255.255.0.0     U     1000   0        0 ens33
 192.168.163.0   0.0.0.0         255.255.255.0   U     100    0        0 ens33
 ````
+
 
 # ping
 - send ICMP ECHO_REQUEST to network hosts
@@ -52,7 +58,7 @@ rtt min/avg/max/mdev = 0.032/0.044/0.057/0.014 ms
 # traceroute
 - Trace the route to a host
 - `$ sudo apt install inetutils-traceroute`
-- `$ traceroute -I <FQDN>`
+- `$ traceroute -I <IPv4, IPv6 or FQDN>`
   - `$ traceroute -I www.google.com`
   - `-I` use ICMP ECHO as probe
 ````
@@ -69,6 +75,7 @@ traceroute to www.google.com (172.217.163.36), 64 hops max
  10   172.217.163.36  5.236ms  5.172ms  5.012ms 
 ````
 
+
 # host
 - DNS lookup utility
 - `$ host <FQDN>`
@@ -77,4 +84,76 @@ traceroute to www.google.com (172.217.163.36), 64 hops max
 www.google.com has address 172.217.163.36
 www.google.com has IPv6 address 2404:6800:4012:4::2004
 ````
+
+# NetworkManager
+- `nmcli`
+````
+ens33: connected to Wired connection 1
+        "Intel 82545EM Gigabit Ethernet Controller (Copper) (PRO/1000 MT Single Port Adapter)"
+        ethernet (e1000), 00:0C:29:C1:8B:28, hw, mtu 1500
+        ip4 default
+        inet4 192.168.163.129/24
+        route4 0.0.0.0/0
+        route4 192.168.163.0/24
+
+lo: unmanaged
+        "lo"
+        loopback (unknown), 00:00:00:00:00:00, sw, mtu 65536
+
+DNS configuration:
+        servers: 192.168.163.2
+        domains: localdomain
+        interface: ens33
+
+Use "nmcli device show" to get complete information about known devices and
+"nmcli connection show" to get an overview on active connection profiles.
+
+Consult nmcli(1) and nmcli-examples(5) manual pages for complete usage details.
+````
+- `$ nm-online` to check whether your connection is available
+  - return 0 `$ echo $?` means your connection is available
+- config file is under `/etc/NetworkManager`
+
+
+# netstat
+- Print network connections
+- `$ netstat -nt` to show TCP connections
+  - `-n` show IP instead of FQDN
+  - `-p` show TCP
+  - `-u` show UDP
+````
+Active Internet connections (w/o servers)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State      
+tcp        0      0 192.168.163.129:36724   34.120.208.123:443      TIME_WAIT  
+tcp        0      0 192.168.163.129:46818   35.161.110.36:443       ESTABLISHED
+tcp        0      0 192.168.163.129:34384   34.209.131.4:443        ESTABLISHED
+tcp        0      0 192.168.163.129:44998   35.244.181.201:443      ESTABLISHED
+````
+
+- `$ netstat -ntl` to show TCP servers on this host
+````
+Active Internet connections (only servers)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State      
+tcp        0      0 127.0.0.53:53           0.0.0.0:*               LISTEN     
+tcp        0      0 127.0.0.1:631           0.0.0.0:*               LISTEN     
+tcp6       0      0 ::1:631                 :::*                    LISTEN     
+````
+
+- `$ cat /etc/services` to check known port
+````
+tcpmux          1/tcp                           # TCP port service multiplexer
+echo            7/tcp
+echo            7/udp
+discard         9/tcp           sink null
+discard         9/udp           sink null
+systat          11/tcp          users
+daytime         13/tcp
+...
+````
+
+# dhclient
+- Dynamic Host Configuration Protocol Client
+- `$ sudo dhclient <interface`
+  - `$ sudo dhclient ens33`
+  - need to remove the default gateway before using dhclient
 
