@@ -157,3 +157,8 @@ daytime         13/tcp
   - `$ sudo dhclient ens33`
   - need to remove the default gateway before using dhclient
 
+
+# sysctl
+- configure kernel parameters at runtime
+- `$ sysctl -a` to show all kernel parameters
+- `$ sudo sysctl -w net.ipv4.ip_forward=1` to enable IP forwarding in different subnetwork
