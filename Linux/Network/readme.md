@@ -177,18 +177,37 @@ target     prot opt source               destination
 Chain OUTPUT (policy ACCEPT)
 target     prot opt source               destination    
 ````
-- change policy by using `-P`
+- change the policy by `-P`
   - `$ sudo iptables -P FORWARD DROP`
   - `$ sudo iptables -P FORWARD ACCEPT`
   - `$ sudo iptables -P INPUT DROP`
   - `$ sudo iptables -P INPUT ACCEPT`
   - `$ sudo iptables -P OUTPUT DROP`
   - `$ sudo iptables -P OUTPUT ACCEPT`
-- add a new rule by using `-A`
+- add a new rule by `-A` (append)
+  - `$ sudo iptables -A INPUT -s 192.168.163.1 -j DROP`
   - `$ sudo iptables -A INPUT -s 192.168.163.1 -j DROP`
   - `$ sudo iptables -A INPUT -s 192.168.163.1 -j ACCEPT`
-  - `$ sudo iptables -A INPUT -s 192.168.163.1 -j ACCEPT`
+  - `$ sudo iptables -A INPUT -s 192.168.163.0/24 -j DROP`
+  - `$ sudo iptables -A INPUT -s 192.168.163.1 -p tcp -j DROP`
+- add a new rule by `-I` (insert)
+  - `$ sudo iptables -I INPUT -s 192.168.163.1 -j DROP` insert to first rule
+  - `$ sudo iptables -I INPUT 3 -s 192.168.163.3 -j DROP` insert to 3rd rule
+- remove the existed rule by `-D`
+  - `$ sudo iptables -D INPUT 1` remove 1st rule in INPUT chain
 
+# arp
+- manipulate the system ARP cache
+- `$ arp -n` to check ARP cache
+  - `-n` don't use DNS
+````
+Address                  HWtype  HWaddress           Flags Mask            Iface
+192.168.163.254          ether   00:50:56:e5:89:48   C                     ens33
+192.168.163.2            ether   00:50:56:f4:c2:1e   C                     ens33
+192.168.163.1            ether   00:50:56:c0:00:08   C                     ens33
+````
+- `$ sudo arp -d <address>` to delete ARP cache
+  - `$ sudo arp -d 192.168.163.2`
 
 # tcpdump
 - dump traffic on a network
