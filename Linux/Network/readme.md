@@ -86,7 +86,7 @@ www.google.com has IPv6 address 2404:6800:4012:4::2004
 ````
 
 # NetworkManager
-- `nmcli`
+- `$ nmcli`
 ````
 ens33: connected to Wired connection 1
         "Intel 82545EM Gigabit Ethernet Controller (Copper) (PRO/1000 MT Single Port Adapter)"
@@ -162,3 +162,66 @@ daytime         13/tcp
 - configure kernel parameters at runtime
 - `$ sysctl -a` to show all kernel parameters
 - `$ sudo sysctl -w net.ipv4.ip_forward=1` to enable IP forwarding in different subnetwork
+
+
+# iptables
+- administration tool for IPv4/IPv6 packet filtering and NAT
+- `$ sudo iptables -L` to show current filters
+````
+Chain INPUT (policy ACCEPT)
+target     prot opt source               destination         
+
+Chain FORWARD (policy ACCEPT)
+target     prot opt source               destination         
+
+Chain OUTPUT (policy ACCEPT)
+target     prot opt source               destination    
+````
+- change policy by using `-P`
+  - `$ sudo iptables -P FORWARD DROP`
+  - `$ sudo iptables -P FORWARD ACCEPT`
+  - `$ sudo iptables -P INPUT DROP`
+  - `$ sudo iptables -P INPUT ACCEPT`
+  - `$ sudo iptables -P OUTPUT DROP`
+  - `$ sudo iptables -P OUTPUT ACCEPT`
+- add a new rule by using `-A`
+  - `$ sudo iptables -A INPUT -s 192.168.163.1 -j DROP`
+  - `$ sudo iptables -A INPUT -s 192.168.163.1 -j ACCEPT`
+  - `$ sudo iptables -A INPUT -s 192.168.163.1 -j ACCEPT`
+
+
+# tcpdump
+- dump traffic on a network
+- `$ sudo tcpdump`
+````
+tcpdump: verbose output suppressed, use -v or -vv for full protocol decode
+listening on ens33, link-type EN10MB (Ethernet), capture size 262144 bytes
+05:20:18.407688 ARP, Request who-has _gateway tell 192.168.163.1, length 46
+05:20:18.408373 IP ubuntu.49933 > _gateway.domain: 34850+ [1au] PTR? 2.163.168.192.in-addr.arpa. (55)
+05:20:18.413074 IP _gateway.domain > ubuntu.49933: 34850 NXDomain 0/1/1 (99)
+05:20:18.413169 IP ubuntu.49933 > _gateway.domain: 34850+ PTR? 2.163.168.192.in-addr.arpa. (44)
+05:20:18.417758 IP _gateway.domain > ubuntu.49933: 34850 NXDomain 0/1/0 (88)
+05:20:18.418250 IP ubuntu.41698 > _gateway.domain: 57280+ [1au] PTR? 1.163.168.192.in-addr.arpa. (55)
+05:20:18.422609 IP _gateway.domain > ubuntu.41698: 57280 NXDomain 0/1/1 (99)
+05:20:18.428585 IP ubuntu.47833 > _gateway.domain: 36994+ [1au] PTR? 129.163.168.192.in-addr.arpa. (57)
+05:20:19.532135 IP 192.168.163.1.49849 > 239.255.255.250.1900: UDP, length 137
+05:20:19.532511 IP ubuntu.38740 > _gateway.domain: 29047+ [1au] PTR? 250.255.255.239.in-addr.arpa. (57)
+05:20:19.537645 IP _gateway.domain > ubuntu.38740: 29047 NXDomain 0/1/1 (114)
+05:20:19.537762 IP ubuntu.38740 > _gateway.domain: 29047+ PTR? 250.255.255.239.in-addr.arpa. (46)
+05:20:19.563983 ARP, Request who-has _gateway tell 192.168.163.1, length 46
+05:20:19.672671 IP _gateway.domain > ubuntu.38740: 29047 NXDomain 0/1/0 (103)
+^C
+14 packets captured
+19 packets received by filter
+5 packets dropped by kernel
+````
+- `$ sudo tcpdump -i <interface> -w <file>`
+  - `$ sudo tcpdump -i ens33 -w tcpdump.pcap`
+  - use `ctrl+c` to stop tcpdump
+  - `$ sudo chmod 777 tcpdump.pcap` to grant the permission
+
+
+# wireshark
+- Interactively dump and analyze network traffic
+- `$ sudo apt install wireshark` to install wireshark
+- `$ sudo wireshark &` to launch wireshark
