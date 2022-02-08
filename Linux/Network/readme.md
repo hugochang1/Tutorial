@@ -206,6 +206,8 @@ Address                  HWtype  HWaddress           Flags Mask            Iface
 192.168.163.2            ether   00:50:56:f4:c2:1e   C                     ens33
 192.168.163.1            ether   00:50:56:c0:00:08   C                     ens33
 ````
+- `$ arp -i <interface>` to check ARP cache by interface
+  - `$ arp -i ens33`
 - `$ sudo arp -d <address>` to delete ARP cache
   - `$ sudo arp -d 192.168.163.2`
 
