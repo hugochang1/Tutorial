@@ -246,3 +246,77 @@ listening on ens33, link-type EN10MB (Ethernet), capture size 262144 bytes
 - Interactively dump and analyze network traffic
 - `$ sudo apt install wireshark` to install wireshark
 - `$ sudo wireshark &` to launch wireshark
+
+
+# telnet
+- user interface to the TELNET protocol
+- `$ telnet www.google.com 80`
+````
+Trying 172.217.163.36...
+Connected to www.google.com.
+Escape character is '^]'.
+````
+- input `GET / HTTP/1.0` and click `Enter` twice
+````
+HTTP/1.0 200 OK
+Date: Tue, 08 Feb 2022 14:26:27 GMT
+Expires: -1
+Cache-Control: private, max-age=0
+...
+````
+
+# curl
+- transfer a URL
+- `$ sudo apt install curl`
+- `curl --trace-ascii trace_file http://www.google.com/`
+````
+<!doctype html><html itemscope="" itemtype="http://schema.org/WebPage" lang="zh-TW"><head><meta
+...
+````
+- `$ vi trace_file`
+````
+== Info:   Trying 172.217.163.36...
+== Info: TCP_NODELAY set
+== Info: Connected to www.google.com (172.217.163.36) port 80 (#0)
+=> Send header, 78 bytes (0x4e)
+0000: GET / HTTP/1.1
+0010: Host: www.google.com
+0026: User-Agent: curl/7.58.0
+003f: Accept: */*
+...
+````
+
+# lsof
+- list open files
+- `$ sudo lsof -i`
+````
+COMMAND    PID            USER   FD   TYPE DEVICE SIZE/OFF NODE NAME
+systemd-r  879 systemd-resolve   12u  IPv4   1515      0t0  UDP localhost:domain 
+systemd-r  879 systemd-resolve   13u  IPv4   1516      0t0  TCP localhost:domain (LISTEN)
+avahi-dae 1062           avahi   12u  IPv4  32502      0t0  UDP *:mdns 
+avahi-dae 1062           avahi   13u  IPv6  32503      0t0  UDP *:mdns 
+avahi-dae 1062           avahi   14u  IPv4  32504      0t0  UDP *:40956 
+avahi-dae 1062           avahi   15u  IPv6  32505      0t0  UDP *:37015 
+dhclient  1176            root    6u  IPv4  50312      0t0  UDP *:bootpc 
+GeckoMain 2165            hugo  126u  IPv4  76871      0t0  TCP ubuntu:54464->ec2-52-35-251-160.us-west-2.compute.amazonaws.com:https (ESTABLISHED)
+cupsd     2767            root    6u  IPv6  72029      0t0  TCP ip6-localhost:ipp (LISTEN)
+cupsd     2767            root    7u  IPv4  72030      0t0  TCP localhost:ipp (LISTEN)
+cups-brow 2768            root    7u  IPv4  69531      0t0  UDP *:ipp 
+````
+
+# nmap
+- Network exploration tool and security / port scanner
+- `$ sudo apt install nmap`
+- `$ nmap <ip>`
+  - `$ nmap 192.168.163.2`
+````
+Starting Nmap 7.60 ( https://nmap.org ) at 2022-02-08 06:42 PST
+Nmap scan report for _gateway (192.168.163.2)
+Host is up (0.00048s latency).
+Not shown: 999 closed ports
+PORT   STATE SERVICE
+53/tcp open  domain
+
+Nmap done: 1 IP address (1 host up) scanned in 0.06 seconds
+````
+
