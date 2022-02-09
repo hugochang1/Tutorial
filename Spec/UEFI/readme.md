@@ -5,7 +5,7 @@
 |EDK|EFI Developer Kit|A modern, feature-rich, cross-platform firmware development environment for the UEFI and PI specifications|
 |SEC|Security||
 |PEI|Pre-EFI Initialization||
-|PEIM|PEM Module|modular chunks of firwmare in PEI|
+|PEIM|PEI Module|modular chunks of firwmare in PEI|
 |PPI|PEIM-to-PEIM Interface|in DXE|
 |PHIT|PEI Hand-off Information Table|PEI generated -> DXE used|
 |HOBs|Hand-off blocks|PEI generated -> DXE used|
