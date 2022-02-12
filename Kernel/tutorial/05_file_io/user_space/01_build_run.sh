@@ -1,8 +1,8 @@
 run_fail_exit()
 {
-        echo -e "\e[1;33m$@\e[m"
+        echo -e "\e[1;33m$1\e[m"
         d1=$(date +"%s")
-        eval "$@"
+        eval $1
         if [ $? -ne 0 ]; then
                 d2=$(date +"%s")
                 echo -e "\e[1;31m$1, failed, time used: $((d2-d1))s\e[m"
@@ -14,15 +14,7 @@ run_fail_exit()
 
 
 run_fail_exit "make"
-run_fail_exit "sudo insmod hugo.ko $@"
-run_fail_exit "lsmod | grep hugo"
+run_fail_exit "./test"
 
-read -p "Press enter to show demsg"
-run_fail_exit "dmesg | tail"
-
-read -p "Press enter to rmmod hugo.ko"
-run_fail_exit "sudo rmmod hugo"
-
-read -p "Press enter to show demsg"
-run_fail_exit "dmesg | tail"
-
+# read -p "Press enter to show demsg"
+#run_fail_exit "dmesg"
