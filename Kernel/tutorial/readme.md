@@ -1,4 +1,6 @@
 # kernel exception for ko
+- the executable file is `test`
+- something wrong in `hugo.ko`
 
 ### step 1. run a user space executable file and stopped unexpectedly
 - `$ ./test` run the executable file directly
@@ -14,7 +16,7 @@ Starting program: /usr/bin/test
 [Inferior 1 (process 4317) exited with code 01]
 ````
 
-- `(gdb) bt` to show back trace
+- `(gdb) bt` to show backtrace
 ````
 No stack.
 ````
@@ -63,7 +65,7 @@ No stack.
 [  464.342917] RIP: 0010:hugo_ioctl+0x2e/0x160 [hugo]
 ````
 - `kernel NULL pointer dereference, address: 0000000000000000` exception reason
-- `hugo_ioctl+0x2e/0x160 [hugo]` this is key point log for this exception
+- `hugo_ioctl+0x2e/0x160 [hugo]` this is key point log to analysis the issue
   - `[hugo]` ko name
   - `hugo_ioctl` function name
   - `0x160` exectuable's address
@@ -104,3 +106,4 @@ static long hugo_ioctl(struct file *filp, unsigned int cmd, unsigned long arg)
 	pr_err("hugo crash test 1 !!!!!!!!!!!!!!!!!\n");
 	*p = 1; //crash here
 ````
+- remove `*p = 1;` from source code
