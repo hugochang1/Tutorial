@@ -240,6 +240,8 @@ listening on ens33, link-type EN10MB (Ethernet), capture size 262144 bytes
   - `$ sudo tcpdump -i ens33 -w tcpdump.pcap`
   - use `ctrl+c` to stop tcpdump
   - `$ sudo chmod 777 tcpdump.pcap` to grant the permission
+- `$ tcpdump tcp` to capture the TCP packet only
+- `$ tcpdump udp or port 80` to capture UDP packet or the packet with port 80
 
 
 # wireshark
