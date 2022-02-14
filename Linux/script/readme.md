@@ -308,9 +308,9 @@ f1 aa bb
 ````
 run_fail_exit()
 {
-        echo -e "\e[1;33m$1\e[m"
+        echo -e "\e[1;33m$@\e[m"
         d1=$(date +"%s")
-        eval $1
+        eval "$@"
         if [ $? -ne 0 ]; then
                 d2=$(date +"%s")
                 echo -e "\e[1;31m$1, failed, time used: $((d2-d1))s\e[m"
