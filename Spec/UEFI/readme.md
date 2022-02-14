@@ -13,7 +13,7 @@
 |BDS|Boot Device Selection||
 |TSL|Transient System Load||
 |BS|Boot Service||
-|RT|Runtime Service||
+|RT|Runtime||
 |AL|After Life||
 |FV|Firmware Volume|a logical repository for FW data + code|
 |BFV|Boot Firmware Volume|where PEI code is stored|
