@@ -4,6 +4,12 @@
 #!/bin/bash
 ````
 
+# run script
+- `$ ./your_script.sh`
+  - the variable will be cleared after done
+- `$ . your_script.sh`
+  - the variable will NOT be cleared after done
+
 # echo
 ### simple
 - `echo hello world` or `echo "hello world"` or `echo 'hello world'` or `printf "hello world"`
