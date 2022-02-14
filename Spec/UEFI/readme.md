@@ -12,7 +12,8 @@
 |DXE|Driver Execution Environment||
 |BDS|Boot Device Selection||
 |TSL|Transient System Load||
-|RT|Runtime||
+|BS|Boot Service||
+|RT|Runtime Service||
 |AL|After Life||
 |FV|Firmware Volume|a logical repository for FW data + code|
 |BFV|Boot Firmware Volume|where PEI code is stored|
