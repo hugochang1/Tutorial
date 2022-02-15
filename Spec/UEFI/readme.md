@@ -1,4 +1,4 @@
-
+# Term
 |Term|Full|Description|
 |-|-|-|
 |PI|Platform Initialization|SEC + PEI + DXE + BSD|
@@ -31,6 +31,7 @@
 |VFR|Visual Form Representation|in BDS|
 |OVMF|Open Virtual Machine Firmware||
 
+# dump GUID
 ````
 void dump_EFI_GUID(IN CONST EFI_GUID* guid)
 {
@@ -40,7 +41,10 @@ void dump_EFI_GUID(IN CONST EFI_GUID* guid)
   	guid->Data4[4], guid->Data4[5], guid->Data4[6], guid->Data4[7]));
 }
 dump_EFI_GUID(&gEfiDxeIplPpiGuid);
+````
 
+# compare GUID
+````
 //return 0 menas guid1 and guid2 are same, otherwise return 1
 BOOLEAN is_equal_EFI_GUID(IN CONST EFI_GUID* guid1, IN CONST EFI_GUID* guid2)
 {
@@ -53,5 +57,41 @@ BOOLEAN is_equal_EFI_GUID(IN CONST EFI_GUID* guid1, IN CONST EFI_GUID* guid2)
 	return TRUE;
 }
 is_equal_EFI_GUID(&guid1, &guid2);
-
 ````
+
+# How to use GUID
+- use `gEfiDxeIplPpiGuid` as example
+- defined in `MdePkg\MdePkg.dec`
+````
+[Ppis]
+  ## Include/Ppi/DxeIpl.h
+  gEfiDxeIplPpiGuid = {0xae8ce5d, 0xe448, 0x4437, {0xa8, 0xd7, 0xeb, 0xf5, 0xf1, 0x94, 0xf7, 0x31 }}
+````
+
+- used by `MdeModulePkg\Core\Pei\PeiMain.inf`
+````
+[Ppis]
+  ..
+  gEfiDxeIplPpiGuid                             ## CONSUMES
+````
+
+- used by `MdeModulePkg\Core\DxeIplPeim\DxeIpl.inf`
+````
+[Ppis]
+  gEfiDxeIplPpiGuid                      ## PRODUCES
+````
+
+- source code `MdeModulePkg\Core\Pei\PeiMain\PeiMain.c`
+````
+  //
+  // Lookup DXE IPL PPI
+  //
+  Status = PeiServicesLocatePpi (
+             &gEfiDxeIplPpiGuid,
+             0,
+             NULL,
+             (VOID **)&TempPtr.DxeIpl
+             );
+  ASSERT_EFI_ERROR (Status);
+````
+
