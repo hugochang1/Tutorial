@@ -1,3 +1,13 @@
+# file type
+|name|Description|Note|
+|-|-|-|
+|.c .cpp .h|Source Code and header file|
+|.asm|Assembly Language|
+|.uni|string resouce|
+|.inf|Module Information File|like Linux's makefile. after build, one inf file will generate one efi file|
+
+
+
 # Term
 |Term|Full|Description|
 |-|-|-|
@@ -30,6 +40,7 @@
 |IFR|Internal Form Representation|in BDS|
 |VFR|Visual Form Representation|in BDS|
 |OVMF|Open Virtual Machine Firmware||
+
 
 # Reference
 - EDK2
