@@ -17,13 +17,9 @@ run_fail_exit "make"
 run_fail_exit "sudo insmod hugo.ko $@"
 run_fail_exit "lsmod | grep hugo"
 run_fail_exit "sudo chmod 777 /dev/hugo_dev0"
-
-read -p "Press enter to show demsg"
 run_fail_exit "dmesg | tail"
 
 read -p "Press enter to rmmod hugo.ko"
 run_fail_exit "sudo rmmod hugo"
-
-read -p "Press enter to show demsg"
 run_fail_exit "dmesg | tail"
 
