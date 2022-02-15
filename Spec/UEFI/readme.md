@@ -30,3 +30,28 @@
 |IFR|Internal Form Representation|in BDS|
 |VFR|Visual Form Representation|in BDS|
 |OVMF|Open Virtual Machine Firmware||
+
+````
+void dump_EFI_GUID(IN CONST EFI_GUID* guid)
+{
+  DEBUG ((DEBUG_INFO, "hugo dump_EFI_GUID %x-%x-%x-%02x%02x%02x%02x%02x%02x%02x%02x\n",
+  	guid->Data1, guid->Data2, guid->Data3,
+  	guid->Data4[0], guid->Data4[1], guid->Data4[2], guid->Data4[3], 
+  	guid->Data4[4], guid->Data4[5], guid->Data4[6], guid->Data4[7]));
+}
+dump_EFI_GUID(&gEfiDxeIplPpiGuid);
+
+//return 0 menas guid1 and guid2 are same, otherwise return 1
+BOOLEAN is_equal_EFI_GUID(IN CONST EFI_GUID* guid1, IN CONST EFI_GUID* guid2)
+{
+	if ( ((INT32 *)guid1)[0] == ((INT32 *)guid2)[0] &&
+		((INT32 *)guid1)[1] == ((INT32 *)guid2)[1] &&
+		((INT32 *)guid1)[2] == ((INT32 *)guid2)[2] &&
+		((INT32 *)guid1)[3] == ((INT32 *)guid2)[3]	) {
+		return FALSE;
+	}
+	return TRUE;
+}
+is_equal_EFI_GUID(&guid1, &guid2);
+
+````
