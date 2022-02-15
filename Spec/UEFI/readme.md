@@ -31,6 +31,13 @@
 |VFR|Visual Form Representation|in BDS|
 |OVMF|Open Virtual Machine Firmware||
 
+# Reference
+- EDK2
+  - https://github.com/tianocore/edk2
+- UEFITool
+  - https://github.com/LongSoft/UEFITool/releases/tag/A59
+
+
 # dump GUID
 ````
 void dump_EFI_GUID(IN CONST EFI_GUID* guid)
