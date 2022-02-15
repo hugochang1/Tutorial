@@ -4,9 +4,25 @@
 |.c .cpp .h|Source Code and header file|
 |.asm|Assembly Language|
 |.uni|string resouce|
-|.inf|Module Information File|like Linux's makefile. after build, one inf file will generate one efi file|
-
-
+|.inf|Module Information File|like a makefile. to make a module (.efi)|
+|.dsc|Platform Descrption File|like a makefile to make a package|
+|.dec|Package Declaration File|define public data and interface for other module use|
+|.fdf|Flash Description Files|
+````
+.dsc .dec .inf ... .inf
+       |
+       V
+   build command
+       |
+       V
+.elf ... .elf + .dec .fdf
+       |
+       V
+   GenFW command
+       |
+       V
+    ROM Image
+````
 
 # Term
 |Term|Full|Description|
