@@ -56,6 +56,7 @@
 |IFR|Internal Form Representation|in BDS|
 |VFR|Visual Form Representation|in BDS|
 |OVMF|Open Virtual Machine Firmware||
+|PCD|Platform Configuration Database||
 
 
 # Reference
