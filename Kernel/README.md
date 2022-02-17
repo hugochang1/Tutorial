@@ -37,6 +37,22 @@
 * https://zhuanlan.zhihu.com/p/96001570
 
 ````
-//TODO
+void __dynamic_pr_info(struct _ddebug *descriptor, const char *fmt, ...)
+{
+	va_list args;
+	struct va_format vaf;
+	char buf[PREFIX_SIZE];
 
+	BUG_ON(!descriptor);
+	BUG_ON(!fmt);
+
+	va_start(args, fmt);
+
+	vaf.fmt = fmt;
+	vaf.va = &args;
+
+	printk(KERN_INFO "%s%pV", dynamic_emit_prefix(descriptor, buf), &vaf);
+
+	va_end(args);
+}
 ````
