@@ -33,6 +33,12 @@
 #define MY_LOG(fmt, args...) pr_emerg("%s MY_TAG,%s, "fmt"\n", "1.00", __func__, ## args)
 ```
 
+# get page size
+- `$ getconf PAGESIZE`
+````
+4096
+````
+
 # memory barrier
 * https://zhuanlan.zhihu.com/p/96001570
 
