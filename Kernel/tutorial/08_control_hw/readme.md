@@ -1,3 +1,16 @@
+# Memory Barrier
+- `barrier()`
+  - compile time level barrier
+- `wmb()`
+  - runtime level barrier for write operation
+- `rmb()`
+  - runtime level barrier for read operation
+- `mb()`
+  - runtime level barrier for read and write operation
+- `volatile`
+  - `volatile int *p`
+  - read/write of `p` must be via DRAM instead of CPU's cache
+
 # IO mapped IO
 - `$ sudo cat /proc/ioports`
 ````
