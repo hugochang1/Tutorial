@@ -1,5 +1,5 @@
 # IO mapped IO
-- `$cat /proc/ioports`
+- `$ cat /proc/ioports`
 ````
 0000-0cf7 : PCI Bus 0000:00
   0000-001f : dma1
@@ -16,7 +16,7 @@
 ````
 
 # Memory mapped IO (MMIO)
-- `$cat /proc/iomem`
+- `$ cat /proc/iomem`
 ````
 00000000-00000fff : reserved
 00001000-0009f3ff : System RAM
