@@ -94,6 +94,9 @@ hugo_ioctl():
 ...
 ````
 
+- `$ gdb "$(modinfo -n hugo.ko)"`
+- `(gdb) list *(hugo_ioctl+0x2e/0x160)`
+
 ### step 5. examine the source code and fix it
 ````
 static long hugo_ioctl(struct file *filp, unsigned int cmd, unsigned long arg)
