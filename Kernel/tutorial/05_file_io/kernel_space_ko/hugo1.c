@@ -12,7 +12,7 @@ struct hugo_ioctl_cmd {
 
 #define HUGO_IOCTL_GET _IOR('d', 1, struct hugo_ioctl_cmd)
 #define HUGO_IOCTL_SET _IOW('d', 2, struct hugo_ioctl_cmd)
-#define HUGO_IOCTL_SU _IOW('d', 3, struct hugo_ioctl_cmd)
+#define HUGO_IOCTL_SU _IO('d', 3)
 
 //-------------------- ctx --------------------
 struct data_ctx {

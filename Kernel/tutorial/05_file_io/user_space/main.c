@@ -113,8 +113,8 @@ int ioctl_test() {
 		printf("ioctl() GET failed, errno=%d %s\n", errno, strerror(errno));
 	}
 	//ioctl SU
-	ret = ioctl(fd, HUGO_IOCTL_SU, &cmd);
-	printf("ioctl() SU ret=%d d1=%d\n", ret, cmd.d1);
+	ret = ioctl(fd, HUGO_IOCTL_SU);
+	printf("ioctl() SU ret=%d\n", ret);
 	if (ret == -1) {
 		printf("ioctl() SU failed, errno=%d %s\n", errno, strerror(errno));
 	}
