@@ -1,3 +1,7 @@
+# these tutorial are based on Kernel 5.4.174
+  - use `$ uname -r` to check your kernel version
+
+
 # kernel exception for ko
 - the executable file is `test`
 - something wrong in `hugo.ko`
