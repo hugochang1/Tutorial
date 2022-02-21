@@ -256,6 +256,8 @@ if (mem) {
   - `vaddr` is the virtual address returned by dma_alloc_coherent()
 - `void dma_cache_sync(struct device *dev, void *vaddr, size_t size, enum dma_data_direction direction);`
   - `vaddr` is the virtual address returned by dma_alloc_coherent()
+  - to make the cache data invalid
+  - this API is used after the access of the register
 ````
 enum dma_data_direction {
 	DMA_BIDIRECTIONAL = 0,
