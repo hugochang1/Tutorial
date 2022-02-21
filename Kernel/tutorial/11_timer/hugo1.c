@@ -65,7 +65,7 @@ static void demo_sleep_interruptible(void)
 	unsigned long ret;
 	
 	pr_info("demo_sleep_interruptible()\n");
-	ret = msleep_interruptible(2000);
+	ret = msleep_interruptible(2000); //can be canceled by ctrl+c
 	if (ret == 0) {
 		pr_info("msleep_interruptible() timeout\n");
 	} else {
