@@ -1,4 +1,4 @@
-# these tutorial are based on Kernel 5.4.174
+# these tutorials are based on Kernel 5.4.174
   - use `$ uname -r` to check your kernel version
 
 
