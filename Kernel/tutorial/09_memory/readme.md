@@ -25,14 +25,14 @@
         Slab Allocator
 kmem_cache_create(), kmem_cache_destroy()
               |
-	          V
+	      V
 either SLAB, SLOB, or SLUB
               |
-	          V
+	      V
         Buddy System
  __get_free_pages(), free_pages()
               |
-	          V
+	      V
 page, page, ... page
 (size of page could be 4096KB or 8192KB)
 ````
