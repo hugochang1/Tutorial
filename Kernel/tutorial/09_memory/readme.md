@@ -267,4 +267,23 @@ enum dma_data_direction {
 };
 ````
 
+# virtual address, physical address
+- `__pa()` virtual address to physical address
+- `__va()` physical address to virtual address
+````
+#include <linux/slab.h>
 
+	void *data1;
+	void *pa;
+	void *va;
+	
+	data1 = kmalloc(1024, GFP_KERNEL);
+	pr_err("hugo data1=%px\n", data1); //data1=ffffff8065db2c00
+	
+	pa = __pa(data1);
+	va = __va(pa);
+	
+	pr_err("hugo pa=%px va=%px\n", pa, va); //pa=00000000a5db2c00 va=ffffff8065db2c00
+	
+	kfree(data1);
+````
