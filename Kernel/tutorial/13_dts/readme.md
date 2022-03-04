@@ -12,7 +12,8 @@
 - `arch/<ARCH>/boot/dts`
 
 # Exploring the DT on the target
-- `$ adb shell dtc -I fs /sys/firmware/devicetree/base/ > dts.txt`
+- `$ dtc -I fs /sys/firmware/devicetree/base/` to dump the device tree on the target
+- `$ adb shell dtc -I fs /sys/firmware/devicetree/base/ > dts.txt` to dump the device tree to the file
 
 # Reference
 - Youtube
