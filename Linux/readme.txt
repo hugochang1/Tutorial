@@ -4,6 +4,12 @@
 https://free.nchc.org.tw/ubuntu-cd/16.04/
 
 ----------------------------------------------------
+        sudo with echo >
+----------------------------------------------------
+# echo <your_msg> | sudo tee -a <your_file> > /dev/null
+# echo 'deb blah ... blah' | sudo tee -a /etc/apt/sources.list > /dev/null
+
+----------------------------------------------------
         find
 https://blog.gtwang.org/linux/unix-linux-find-command-examples/
 ----------------------------------------------------
