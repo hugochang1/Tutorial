@@ -11,4 +11,45 @@
   - Switzerland n 瑞士
   - Poland n 波蘭
   - Ireland n 愛爾蘭
-  - 
+- 2:06:20 41. Modern Engineering Wonders 現代工程奇蹟
+  - suspension bridge n 吊橋
+  - withstand v 抵擋
+  - Ontario n 安大略省
+  - malaysia n 馬來西亞
+  - witness n 見證
+- 2:09:35 42. Anne Sullivan and Helen Keller
+  - temper tantrum n 發脾氣
+  - braille n 盲文
+  - outburst n 爆發
+- 2:12:35 43. The Automobile, or Car
+  - profoundly adv 深刻地
+  - ignition n 點火
+  - ignite v 點火
+  - vapour n 蒸氣
+  - cylinder n 圓筒
+  - expansion n 擴張
+  - piston n 活塞
+  - shaft n 軸
+  - poisonous adj 有毒
+  - exhaust v 排氣
+  - fume n 煙
+  - journalist n 記者
+  - emission n 排放
+- 2:16:06 44. Sexual Attitude and Behavior
+  - permissive adj 放任
+  - intercourse n 交往
+  - premarital adj 婚前
+  - prostitution n 賣淫
+  - liberalization n 自由化
+  - contraceptive adj 避孕藥
+  - adulthood n 成年
+  - rebellion n 叛亂
+  - norm n 規範
+  - promiscuous adj 淫亂
+  - conservative adj 保守的
+  - monogamous adj 一夫一妻制
+  - exclusively adv 獨占地
+  - spouse n 伴侶
+  - adultery n 通姦
+- 2:19:16 45. The Mississippi River
+  -  
