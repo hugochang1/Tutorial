@@ -1,0 +1,14 @@
+- 2:03:36 40. The protestant reformation 新教改革
+  - Portugal n 葡萄牙
+  - Poland n 波蘭
+  - catholic adj 天主教
+  - theologian n 神學家
+  - heretic n 異教徒
+  - resent v 怨恨
+  - celibate adj 獨身
+  - Scandinavia n 斯堪的納維亞
+  - Holland n 荷蘭
+  - Switzerland n 瑞士
+  - Poland n 波蘭
+  - Ireland n 愛爾蘭
+  - 
