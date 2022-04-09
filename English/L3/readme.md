@@ -52,4 +52,27 @@
   - spouse n 伴侶
   - adultery n 通姦
 - 2:19:16 45. The Mississippi River
-  -  
+  - Minnesota n 明尼蘇達
+  - silt n 淤泥
+  - gulf n 海灣
+  - paddle n 槳
+  - St. Louis n 聖路易斯
+  - new orleans n 新奧爾良
+  - Mardi Gras n 狂歡節
+  - Cajun n 印第安人
+- 2:22:25 46. Doctors without borders
+  - Belgium n 比利時
+  - humanitarian adj 人道主義
+  - ethnicity n 種族
+  - famine n 飢荒
+  - anesthetist 麻醉師
+  - laboratory technician n 實驗室技術員
+  - logistics n 後勤
+  - abide v 遵守
+  - ethics n 倫理
+  - neutral adj 中性的
+  - vaccination n 疫苗接種
+  - sanitation n 衛生
+  - abuse n 虐待
+  - inflict v 施加
+- 2:25:40 47. Chicago
