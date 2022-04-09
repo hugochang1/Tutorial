@@ -86,5 +86,11 @@
   - rival n 對手
   - shoreline n 海岸線
 - 2:28:39 48. Women and the right to vote
-  - 
-- 
+  - great britain n 大不列顛
+  - minority n 少數民族
+  - widow n 寡婦
+  - possess v 具有
+  - suffrage n 選舉權
+  - Wyoming n 懷俄明州
+  - hunger strike n 絕食抗議
+- 2:32:12 49. Charles Dickens
