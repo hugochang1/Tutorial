@@ -76,3 +76,15 @@
   - abuse n 虐待
   - inflict v 施加
 - 2:25:40 47. Chicago
+  - glamorous adj 魅力四射
+  - Michigan n 密歇根州
+  - minor trading post n 小型貿易站
+  - knock over v 打翻
+  - notorious adj 臭名昭著
+  - mobster n 流氓
+  - smuggling n 走私
+  - rival n 對手
+  - shoreline n 海岸線
+- 2:28:39 48. Women and the right to vote
+  - 
+- 
