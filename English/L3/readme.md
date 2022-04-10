@@ -94,3 +94,33 @@
   - Wyoming n 懷俄明州
   - hunger strike n 絕食抗議
 - 2:32:12 49. Charles Dickens
+  - literary adj 文學的
+  - debt n 債務
+  - owed adj 欠的
+  - workhouse n 囚犯工廠
+  - spirit n 精神
+  - upheaval n 動盪
+- 2:35:45 50. Samuel Clemens, or Mark Twain
+  - sawyer n 鋸木工
+  - Missouri n 密蘇里州
+  - mischief n 惡作劇
+  - escape n/v 逃脫
+  - critics n 批評家
+- 2:39:06 51. The islands of the Caribbean 加勒比海
+  - hemisphere n 半球
+  - Cuba n 古巴
+  - communist adj/n 共產
+  - miami n 邁阿密
+  - Florida n 佛羅里達
+  - tobacco n 煙草
+  - Havana n 哈瓦那
+  - Hispaniola n 伊斯帕尼奧拉
+  - Haiti n 海地
+  - Dominican n 多米尼加
+  - Puerto Rico n 波多黎各
+  - Jamaica n 牙買加
+  - descendant n 後裔
+  - reggae n 雷鬼
+  - Trinidad n 特立尼達
+  - calypso n 卡里普索
+- 2:41:59 52. North American Indians
