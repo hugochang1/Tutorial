@@ -9,7 +9,6 @@
   - Scandinavia n 斯堪的納維亞
   - Holland n 荷蘭
   - Switzerland n 瑞士
-  - Poland n 波蘭
   - Ireland n 愛爾蘭
 - 2:06:20 41. Modern Engineering Wonders 現代工程奇蹟
   - suspension bridge n 吊橋
