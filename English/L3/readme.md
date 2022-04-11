@@ -161,4 +161,37 @@
   - proclamation n 公告
   - mourn v 哀悼
 - 2:51:41 55. Two great Musicians: Mozart and Beethoven
+  - Austria n 奧地利
+  - prodigy n 神童
+  - symphony n 交響樂
+  - archbishop n 大主教
+  - vienna n 維也納
+  - string quartet n 弦樂四重奏
+  - emperor n 皇帝
+  - enormous adj 巨大的
+  - aptitude n 資質
+  - withdrawn adj 撤銷
+  - deteriorate v 惡化
+  - reated v 評價
+  - originality n 獨創性
+  - flourish v 繁榮
+- 2:55:14 56. Amelia Earhart
+  - feat n 壯舉
+  - aviation n 航空
+  - Kansas n 堪薩斯
+  - stunt-flying n 特技飛行
+  - Atlantic Ocean n 大西洋
+  - Pacific Ocean n 太平洋
+  - exploit v 開發
+  - Newfoundland n 紐芬蘭
+  - dense adj 稠密
+  - three-quarter n 四分之三
+  - New Guinea n 新幾內亞
+  - took off v 起飛
+  - Howland n 豪蘭
+  - vast ocean n 浩瀚的海洋
+  - undertook v 承擔
+  - massive search n 大規模搜索
+- 2:58:50 57. Life in Academia 學術界
+  - 
 - 
