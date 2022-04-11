@@ -123,4 +123,42 @@
   - reggae n 雷鬼
   - Trinidad n 特立尼達
   - calypso n 卡里普索
-- 2:41:59 52. North American Indians
+- 2:41:59 52. North American Indians 印第安人
+  - salmon n 鮭魚
+  - totem pole n 圖騰柱
+  - mythical adj 神話
+  - spiritual adj 精神 
+  - giant herds of bison n 大群野牛
+  - teepees n 圓錐形帳篷
+  - sewing n sewing
+  - squash n 南瓜
+  - fortified adj 強化
+  - inhabit v 居住於
+  - earthwork n 土方工程
+- 2:45:26 53. How the first world war started
+  - optimistic adj 樂觀的
+  - Austria-Hungary n 奧匈帝國
+  - assassinated v 被暗殺
+  - assassin n 刺客
+  - Serbia n 塞爾維亞
+  - dispute v 爭議
+  - glory n 榮耀
+  - filthy adj 污穢
+  - trenches n 戰壕
+  - intensely adv 強烈地
+  - patriotic adj 愛國
+  - eagerness n 熱切
+- 2:48:05 54. Abraham Lincoln
+  - ordeal n 考驗
+  - Kentucky n 肯塔基州
+  - Indiana n 印第安納州
+  - Illinois n 伊利諾伊州
+  - legislature n 立法機關
+  - integrity n 正直
+  - prominent adj 著名的
+  - secede v 脫離
+  - emancipation n 解放
+  - proclamation n 公告
+  - mourn v 哀悼
+- 2:51:41 55. Two great Musicians: Mozart and Beethoven
+- 
