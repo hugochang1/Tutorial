@@ -192,5 +192,16 @@
   - undertook v 承擔
   - massive search n 大規模搜索
 - 2:58:50 57. Life in Academia 學術界
-  - 
+  - post-secondary institution n 大專院校
+  - complement n/v 補充
+  - aforementioned adj 前述
 - 3:01:03 58. Education Systems in Canada
+  - enroll v 註冊
+  - accommodate v 容納
+  - double cohort n 雙隊列
+  - diploma n 文憑
+  - bachelor n 學士
+  - mcgill university n 麥吉爾大學
+  - curriculum n 課程
+  - conjunction n 連詞
+- 3:04:06 59. Business education
