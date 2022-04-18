@@ -31,7 +31,70 @@
   - [ans] steak
   - [ans] say nothing
 
+- Would you like to ...?
+  - Would you like to leave?
+  - Would you like to try?
+  - Would you like to share?
+  - Would you like to ask John?
+  - [ans] Yes, I would.
+  - [ans] No, I wouldn't.
 
+- Why are you so ...?
+  - Why are you so shy?
+  - Why are you so mad?
+  - Why are you so thin?
+  - Why are you so lazy?
+  - [ans] the reason
+
+- Why do I ...?
+  - Why do I even care?
+  - Why do I need this?
+  - Why do I have to go?
+  - Why do I believe you?
+  - [ans] the reason
+
+- Why don't you ...?
+  - Why don't you go out?
+  - Why don't you say it?
+  - Why don't you listen?
+  - [ans] the reason
+
+- When will you ...?
+  - When will you go?
+  - When will you come?
+  - When will you begin?
+  - When will you get here?
+  - When will you let me know?
+  - [ans] give a time
+
+- When did you ...?
+  - When did you know?
+  - When did you get up?
+  - When did you ask her?
+  - [ans] give a time
+
+- Which one do you ...?
+  - Which one do you want?
+  - Which one do you mean?
+  - Which one do you choose?
+  - Which one do you like best?
+  - Which one do you think is correct?
+  - Which one do you think I should buy?
+  - [ans] this one
+
+- Which ... would you ...?
+  - Which car would you choose?
+  - Which wine would you recommend?
+  - Which newpager would you prefer?
+  - Which movie would you like to see?
+  - Which game would you like to play?
+  - [ans] this one
+
+- Who's ...?
+  - Who's Peter?
+  - Who's right?
+  - Who's that man?
+  - Who's your boss?
 
 
 
