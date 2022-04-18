@@ -8,7 +8,7 @@
   - How often do you call him?
   - How often do you practice?
   - [ans] 1 week
-  - [asn] 2 days
+  - [ans] 2 days
 
 - Are you ...?
   - Are you bald?
@@ -21,8 +21,8 @@
 - May I ...?
   - May I hug you?
   - May I call later?
-  - [asn] Yes, you may.
-  - [asn] No, you may not.
+  - [ans] Yes, you may.
+  - [ans] No, you may not.
 
 - Could you ...?
   - Could you forgive me?
@@ -31,4 +31,31 @@
   - [ans] Yes, I could.
   - [ans] No, I couldn't.
 
-- 
+- Do you want to ...?
+  - Do you want to win?
+  - Do you want to start?
+  - Do you want to give up?
+  - [ans] Yes, I want.
+  - [ans] No, I want not.
+
+- Have you got ...?
+  - Have you got any plans?
+  - Have you got any ideas?
+  - Have you got a mobile phone?
+  - [ans] Yes, I have.
+  - [ans] No, I haven't.
+
+- How much is ...?
+  - How much is the short?
+  - How much is this book?
+  - How much is your rent?
+  - [ans] 10 dollars
+  - [ans] priceless
+
+- Whose ... is it?
+  - Whose dog is it?
+  - Whose book is it?
+  - Whose mistake is it?
+  - Whose birthday is it today?
+  - [ans] John.
+  - [ans] mine.
