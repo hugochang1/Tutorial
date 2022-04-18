@@ -1,3 +1,40 @@
+- What are you ...?
+  - What are you drink?
+  - What are you reading now?
+  - What are you laughing about?
+  - What are you tring to hide?
+  - [ans] water
+  - [ans] working
+
+- What makes you ...?
+  - What makes you sad?
+  - What makes you laugh?
+  - What makes you so sure?
+  - What makes you different?
+  - [ans] bad news.
+  - [ans] any points.
+
+- What's your ...?
+  - What's your goal?
+  - What's your size?
+  - What's your plan?
+  - What's your score?
+  - What's your point?
+  - [ans] to be rich
+  - [ans] XL
+
+- What can I ...?
+  - What can I eat?
+  - What can I say?
+  - What can I bring?
+  - What can I do now?
+  - [ans] steak
+  - [ans] say nothing
+
+
+
+
+
 - How far is it from ... to ...?
   - How far is it from here to home?
   - How far is it from TW to CN?
@@ -59,3 +96,4 @@
   - Whose birthday is it today?
   - [ans] John.
   - [ans] mine.
+
