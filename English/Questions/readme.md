@@ -95,8 +95,60 @@
   - Who's right?
   - Who's that man?
   - Who's your boss?
+  - Who's behind you?
 
+- Who did you ...?
+  - Who did you see?
+  - Who did you ask?
+  - Who did you visit yesterday?
+  - Who did you go camping with?
 
+- What time do you ...?
+  - What time do you close?
+  - What time do you have a nap?
+  - What time do you want to meet?
+  - What time do you usually wake up?
+
+- What time should I ...?
+  - What time should I come back?
+  - What time should I meet you?
+  - What time should I check in?
+  - What time should I leave the hotel?
+
+- Where's ...?
+  - Where's Tony?
+  - Where's my car?
+  - Where's your office?
+  - Where's his house?
+
+- Where do you ...?
+  - Where do you work?
+  - Where do you teach?
+  - Where do you go skiing?
+  - Where do you go fishing?
+  - Where do you go shopping?
+  - Where do you play tennis?
+
+- How do I ...?
+  - How do I sign up? (報名)
+  - How do I find you?
+  - How do I help John?
+  - How do I get there?
+  - How do I get started?
+  - How do I get out of here?
+
+- How's your ...?
+  - How's your son?
+  - How's your job?
+  - How's your family?
+
+- How long will ...?
+  - How long will you stay?
+  - How long will this last?
+  - How long will you be there?
+  - How long will the trip take?
+  - How long will I have to wait?
+  - How long will the storm last?
 
 - How far is it from ... to ...?
   - How far is it from here to home?
