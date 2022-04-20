@@ -15,4 +15,30 @@
     - Can I leave my bag here, please?
     - Could I use the bathroom, please?
 - Thoughts?
-  - 
+  - think of you
+    - the simple relationship
+  - think about this
+    - concerning or relating to the matter
+- Opinions
+  - I suggest/recommend + (that) + S. + (should) +  V
+     - I suggested that Peter should reduce the cost of the project.
+     - I suggest that we should try to come up with another proposal
+  - In my opinion, S + V.
+    - In my opinion, this program is helpful (good for formal)
+    - In my opinion, children should be given the freedom to learn (good for formal)
+  - It appears/seems to me that + S / + V-ing
+    - It seems to me that this is the only way to fix the problem (good for formal)
+    - It appears to me that traveling by boat is very dangerous (good for formal)
+  - I believe/think/feel (that) + S. + V
+    - I believe that many people wish ehy had more free time (good for formal)
+    - I think we should start
+    - I feel my life is on the right track
+  - Hope or Wish?
+    - Wish usually expresses a desire that is impossible or unlikely to happen
+    - Hope mainly expresses a desire that is possible or likely to happen
+  - Start or Begin?
+    - Start is less formal
+    - Begin is more formal
+  - Finish or Complete?
+    - Finish means to end
+    - Complete means to fulfill
