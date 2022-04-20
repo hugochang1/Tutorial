@@ -42,4 +42,6 @@
     - Begin is more formal
   - Finish or Complete?
     - Finish means to end
+      - ex: bad marriage, your life is finished
     - Complete means to fulfill
+      - ex: bad marriage, your life is completed
