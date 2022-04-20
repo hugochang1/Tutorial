@@ -1,0 +1,18 @@
+- Question
+  - Why don't you + V?
+    - Why don't you look at the proposal?
+    - Why don't you introduce youself.
+  - Do you have any opinions + about V-ing / on N?
+    - Do you have any opinions on the clothes?
+    - Do you have any opinions about starting a show?
+  - What's your opinion + about/on...?
+    - What's your opinion about using this tool?
+    - What's your opinion on reducing the cost of this project?
+  - What do you think of/about N/V-ing?
+    - What do you think of his proposal?
+    - What do you think about joining the project?
+  - Can/Could/May I + V, please?
+    - Can I leave my bag here, please?
+    - Could I use the bathroom, please?
+- Thoughts?
+  - 
