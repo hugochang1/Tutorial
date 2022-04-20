@@ -45,3 +45,13 @@
       - ex: bad marriage, your life is finished
     - Complete means to fulfill
       - ex: bad marriage, your life is completed
+- Cause and Effect
+  - The reason for + N/V-ing is that + S + V
+    - the reason for our concern is that she hasn't returned our class
+    - the reason for doing the homework now is that we won't have time later
+  - That's why + S + V
+    - That's why we've never seen them before, they're not from here
+    - That's why he's taking time off work
+  - It's because + S + V
+    - It's becuase we failed to locate the root cause
+    - It's because I didn't check my bag
