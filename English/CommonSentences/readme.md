@@ -38,6 +38,7 @@
     - Hope mainly expresses a desire that is possible or likely to happen
   - Start or Begin?
     - Start is less formal
+      - start a machine, or start a business
     - Begin is more formal
   - Finish or Complete?
     - Finish means to end
