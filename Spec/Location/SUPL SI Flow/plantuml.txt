@@ -1,21 +1,17 @@
-
 @startuml
 
 HAL -> GNSSD : gps_open()
-note over GNSSD
-if AGNSS is needed
-  1. get latest PLMN (2/3/4/5G cell info)
-  2. check which SUPL server should be used
-end note
+
+group if SUPL required
 
 group if no DNS cached for SUPL server address
-  GNSSD --> NW : DNS Query for SUPL address
+  GNSSD -> NW : DNS Query for SUPL address
   NW -> GNSSD: DNS Response (IP address)
 end
 
 group if SUPL dedicated APN used
-  GNSSD --> HAL : data_conn_req(ip)
-  HAL --> GNSSD : data_conn_open()
+  GNSSD -> HAL : data_conn_req(ip)
+  HAL -> GNSSD : data_conn_open()
 end
 
 group TCP
@@ -36,7 +32,7 @@ group TCP
       group Positioning
         NW -> GNSSD : SUPL POS (provide data over RRLP/IS801/LPP/LPPe)
         group if server request UE location
-          GNSSD --> NW : SUPL POS (provide location over RRLP/IS801/LPP/LPPe)
+          GNSSD -> NW : SUPL POS (provide location over RRLP/IS801/LPP/LPPe)
         end
       end 
       NW -> GNSSD: SUPL_END
@@ -46,8 +42,10 @@ end
 
 
 group if SUPL dedicated APN used
-  GNSSD --> HAL : data_conn_release()
-  HAL --> GNSSD : data_conn_closed()
+  GNSSD -> HAL : data_conn_release()
+  HAL -> GNSSD : data_conn_closed()
+end
+
 end
 
 GNSSD -> HAL : report_location()
