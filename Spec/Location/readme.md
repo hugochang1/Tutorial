@@ -40,25 +40,25 @@
   - A Queue is defined as a linear data structure that is open at both ends and the operations are performed in First In First Out (FIFO) order.
 - hash
   - Hashing is a technique or process of mapping keys, and values into the hash table by using a hash function. It is done for faster access to elements.
-- hash-sets
-  - contains unique elements
-- hash-maps
-  - stores values in key-value pair and contains unique keys
-  - It can have only one null as key and multiple null as values
-  - It is not Thread-Safe because it is not Synchronized but it gives better performance
-- hash-tables
-  - stores values in key-value pair and contains unique keys
-  - The null is not allowed for both key and value
-  - It is Thread-Safe
-- dictionary
-  - Dictionaries is a data type in Python
-  - it likes hash-maps
+  - hash-sets (Java)
+    - contains unique elements
+  - hash-maps (Java)
+    - stores values in key-value pair and contains unique keys
+    - It can have only one null as key and multiple null as values
+    - It is not Thread-Safe because it is not Synchronized but it gives better performance
+  - hash-tables (Java)
+    - stores values in key-value pair and contains unique keys
+    - The null is not allowed for both key and value
+    - It is Thread-Safe
+  - dictionary (Python)
+    - Dictionaries is a data type in Python
+    - it likes hash-maps
 - trees
   - a hierarchical tree structure with a set of connected nodes.
   - Each node in the tree can be connected to many children (depending on the type of tree)
   - but must be connected to exactly one parent, except for the root node, which has no parent
 - binary trees
-  - same as trees except there is a constrain the number of children for each parent to exactly two
+  - same as trees except there is a constraint on the number of children for each parent to exactly two
 - heaps
   - it's a special binary tree
     - max heap: the value of parents are smaller than their children
@@ -78,18 +78,29 @@
   - $GPGSA,A,3,01,05,09,17,21,2,26,39,,,,1.9,1.0,1.7,*33
     - provide fix type (unavailable, 2D, 3D),  PRN (satellite IDs),  PDOP, HDOP, VDOP
   - $GPGSV,3,1,09,01,27,299,43,………*70
-    - provide satellite information such as num of satellite, num of satellite used in location fixed, each satellite's PRN (GPS: 32, Galileo: 36, Beidou: 63, NavIC: 14, QZSS:10, Glonass: 65-96), elevation (0-90), azimuth (0-359), SRN (0-99)
+    - provide satellite information such as num of satellite, num of satellite used in location fixed, each satellite ID (GPS: 32, Galileo: 36, Beidou: 63, NavIC: 14, QZSS:10, Glonass: 65-96), elevation (0-90), azimuth (0-359), SRN (0-99)
 
 # AGPS tech
 - Control Plane (3GPP, RRLP, RRC, LPP, LPPe)
-  - RRLP (Radio Resource Location service Protocol): support in 2G for AGPS, CID, ECID
-  - RRC (Radio Resource Control): support in 3G for AGPS
-  - LPP (LTE Positioning Protocol): support in 4G and 5G for AGNSS and OTDOA
-  - LPPe (LPP extension): support in 4G and 5G for Indoor positioning (WiFi, BT, Sensors)
+  - Protocols
+    - RRLP (Radio Resource Location service Protocol): support in 2G for AGPS, CID, ECID
+    - RRC (Radio Resource Control): support in 3G for AGPS
+    - LPP (LTE Positioning Protocol): support in 4G and 5G for AGNSS and OTDOA
+    - LPPe (LPP extension): support in 4G and 5G for Indoor positioning (WiFi, BT, Sensors)
   - User Scenarios
     - MO-LR (Mobile Oriented Location Request)
     - MT-LR (Mobile Terminated Location Request) notification only or verification (yes or no)
     - NI-LR (Network Initiated Location Request) for E911 (no notification and verification)
+  - positioning method
+    - MSB: NW provides the GNSS assistance data and request UE to calculate the location and report to NW
+    - MSA: NW provides the GNSS assistance data and request UE to report GNSS measurement data to NW, NW calculate the location
+    - Autonomous: NW does not provide any GNSS assistance data and request UE to calculate the location and report to NW
+    - ECID: UE measures CID and neighbor cell list and report to NW, NW calculate the location
+    - OTDOA: UE measures the distance of eNB or gNB and report to NW, NW calculate the location
+    - AFLT: similar to OTDOA but it's in C2K
+    - WiFi: UE scans WiFi info and report to NW, NW calcalate the location based on its database
+    - BT: similar to WiFi, but it uses BT
+    - Sensor (Barometer): UE measures the pressure from Barometer and report to NW, NW calculate the altitude based on its database
 - User Plane (OMA, SUPL1.0, SUPL2.0)
   - SUPL1.0 (Secure User Plane Location): 
     - User Scenarios
@@ -100,7 +111,10 @@
         - verification (yes or no)
   - SUPL2.0 (Secure User Plane Location): support 4G cell, LPP and LPPe
     - compitable with SUPL1.0
+    - SUPL2.0.4 support 5G cell
     - User Scenarios
       - NI can support over UDP or SIP push
-      - Area ID: like geofence but based on PLMN (Public land mobile network) instead, when user enter or leave then it reports
-      - 
+      - Area ID: like geofence but based on PLMN (Public land mobile network) instead, when user enter or leave then it reports (not popular)
+      - support periodic report (not popular)
+      - batch report (not popular)
+    
