@@ -6,6 +6,7 @@
 - E911
   - It's short for enhanced 911
   - It's a system used in North America to automatically provide the caller's location to 911 dispatchers
+  - detail: Public Safety Answering Point (PSAP) -> SMLC (Serving Mobile Location Center) -> trigger Control plane or User plane -> UE
 - GPS
   - Global Positioning System maintained by US
   - It provides geolocation and time information to GPS receiver in outdoor
