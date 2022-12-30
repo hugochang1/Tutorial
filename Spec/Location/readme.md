@@ -73,12 +73,12 @@
 - Warm start: only ephemeris data is invalid
 - Cold start: all GNSS assistance data are invalid
 - NMEA (National Marine Electronics Association): it's an ASCII string to represent the location, time and satellite information
-  -  $GPGGA,055148,2407.8945,N,12041.7649,E,1,00,1.0,155.2,M,16.6,M,X.X,xxxx,*47
+  - $GPGGA,055148,2407.8945,N,12041.7649,E,1,00,1.0,155.2,M,16.6,M,X.X,xxxx,*47
     - provide UTC, latitude, Longitude and altitude 
   - $GPGSA,A,3,01,05,09,17,21,2,26,39,,,,1.9,1.0,1.7,*33
     - provide fix type (unavailable, 2D, 3D),  PRN (satellite IDs),  PDOP, HDOP, VDOP
   - $GPGSV,3,1,09,01,27,299,43,………*70
-    - provide satellite information such as num of satellite, num of satellite used in location fixed, each satellite's PRN (GPS: 32, Galileo: 36, Beidou: 63, NavIC: 14, QZSS:10, Glonass: 65~96), elevation (0~90), azimuth (0~359), SRN (0~99)
+    - provide satellite information such as num of satellite, num of satellite used in location fixed, each satellite's PRN (GPS: 32, Galileo: 36, Beidou: 63, NavIC: 14, QZSS:10, Glonass: 65-96), elevation (0-90), azimuth (0-359), SRN (0-99)
 
 # AGPS tech
 - Control Plane (3GPP, RRLP, RRC, LPP, LPPe)
