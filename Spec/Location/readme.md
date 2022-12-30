@@ -68,4 +68,34 @@
   - consists of a set of vertices, together with a set of pairs of these vertices
   - https://ithelp.ithome.com.tw/articles/10208277
 
-# 
+# GPS
+- Hot start: all GPS/GNSS assistance data are valid
+- Warm start: only ephemeris data is invalid
+- Cold start: all GNSS assistance data are invalid
+- NMEA (National Marine Electronics Association): it's an ASCII string to represent the location, time and satellite information
+  -  $GPGGA,055148,2407.8945,N,12041.7649,E,1,00,1.0,155.2,M,16.6,M,X.X,xxxx,*47
+    - provide UTC, latitude, Longitude and altitude 
+  - $GPGSA,A,3,01,05,09,17,21,2,26,39,,,,1.9,1.0,1.7,*33
+    - provide fix type (unavailable, 2D, 3D),  PRN (satellite IDs),  PDOP, HDOP, VDOP
+  - $GPGSV,3,1,09,01,27,299,43,………*70
+    - provide satellite information such as num of satellite, num of satellite used in location fixed, each satellite's PRN (GPS: 32, Galileo: 36, Beidou: 63, NavIC: 14, QZSS:10, Glonass: 65~96), elevation (0~90), azimuth (0~359), SRN (0~99)
+
+# AGPS tech
+- Control Plane (3GPP, RRLP, RRC, LPP, LPPe)
+  - RRLP (Radio Resource Location service Protocol): support in 2G for AGPS, CID, ECID
+  - RRC (Radio Resource Control): support in 3G for AGPS
+  - LPP (LTE Positioning Protocol): support in 4G and 5G for AGNSS and OTDOA
+  - LPPe (LPP extension): support in 4G and 5G for Indoor positioning (WiFi, BT, Sensors)
+  - User Scenarios
+    - MO-LR (Mobile Oriented Location Request)
+    - MT-LR (Mobile Terminated Location Request) notification only or verification (yes or no)
+    - NI-LR (Network Initiated Location Request) for E911 (no notification and verification)
+- User Plane (OMA, SUPL1.0, SUPL2.0)
+  - SUPL1.0 (Secure User Plane Location): 
+  - SUPL2.0 (Secure User Plane Location): support 4G cell, LPP and LPPe
+  - User Scenarios
+    - SI (SET Initiated)
+    - NI (Network Inititated)
+      - no notification and verification, used in E911)
+      - notification only
+      - verification (yes or no)
