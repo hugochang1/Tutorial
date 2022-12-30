@@ -32,6 +32,7 @@
 
 # AGPS
 - Control Plane (3GPP, RRLP, RRC, LPP, LPPe)
+  - SMLC (Serving Mobile Location Center): It's a location server for control plan in cellular core network
   - Protocols
     - RRLP (Radio Resource Location service Protocol): support in 2G for AGPS, CID, ECID
     - RRC (Radio Resource Control): support in 3G for AGPS
@@ -52,14 +53,16 @@
     - BT: similar to WiFi, but it uses BT
     - Sensor (Barometer): UE measures the pressure from Barometer and report to NW, NW calculate the altitude based on its database
 - User Plane (OMA, SUPL1.0, SUPL2.0)
-  - SUPL1.0 (Secure User Plane Location): 
+  - SUPL Server:
+  - SUPL1.0 (Secure User Plane Location)
     - User Scenarios
       - SI (SET Initiated)
       - NI (Network Inititated) over OMA Push or SMS
         - no notification and verification, used in E911)
         - notification only
         - verification (yes or no)
-  - SUPL2.0 (Secure User Plane Location): support 4G cell, LPP and LPPe
+  - SUPL2.0 (Secure User Plane Location)
+    - support 4G cell, LPP and LPPe
     - compitable with SUPL1.0
     - SUPL2.0.4 support 5G cell
     - User Scenarios
