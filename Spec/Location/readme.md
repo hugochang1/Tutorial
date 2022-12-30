@@ -38,7 +38,7 @@
     - provide fix type (unavailable, 2D, 3D),  PRN (satellite IDs),  PDOP, HDOP, VDOP
   - $GPGSV,3,1,09,01,27,299,43,………*70
     - provide satellite information such as num of satellite, num of satellite used in location fixed, each satellite ID (GPS: 32, Galileo: 36, Beidou: 63, NavIC: 14, QZSS:10, Glonass: 65-96), elevation (0-90), azimuth (0-359), SRN (0-99)
-- choose which AGNSS procedure is needed
+- When GPS is started, it can choose which AGNSS procedure is needed
   - SUPL: get the assist from SUPL server
   - EPO (Extended Prediction Orbit)
     - it's enhanced ephemeris data which can last at least 1 day and data is calculated by a powerful PC
