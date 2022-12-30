@@ -92,10 +92,15 @@
     - NI-LR (Network Initiated Location Request) for E911 (no notification and verification)
 - User Plane (OMA, SUPL1.0, SUPL2.0)
   - SUPL1.0 (Secure User Plane Location): 
+    - User Scenarios
+      - SI (SET Initiated)
+      - NI (Network Inititated) over OMA Push or SMS
+        - no notification and verification, used in E911)
+        - notification only
+        - verification (yes or no)
   - SUPL2.0 (Secure User Plane Location): support 4G cell, LPP and LPPe
-  - User Scenarios
-    - SI (SET Initiated)
-    - NI (Network Inititated)
-      - no notification and verification, used in E911)
-      - notification only
-      - verification (yes or no)
+    - compitable with SUPL1.0
+    - User Scenarios
+      - NI can support over UDP or SIP push
+      - Area ID: like geofence but based on PLMN (Public land mobile network) instead, when user enter or leave then it reports
+      - 
