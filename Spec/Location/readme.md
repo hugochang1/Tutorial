@@ -6,8 +6,13 @@
 - E911
   - It's short for enhanced 911
   - It's a system used in North America to automatically provide the caller's location to 911 dispatchers
+- GPS
+  - Global Positioning System maintained by US
+  - It provides geolocation and time information to GPS receiver in outdoor
+- GNSS
+  - Global Navigation Satellite System contains GPS (US), GLONASS (Russia), BeiDou (China), Galileo (EU) and QZSS (Japan)
 - AGPS/AGNSS
-  - It's short for Assisted GPS or GNSS
+  - It's short for assisted GPS or assisted GNSS
   - It's a GNSS augmentation system that often significantly improves the startup performance
 - Application
   - It's a computer program designed to carry out a specific task other than one relating to the operation of the computer itself
@@ -62,4 +67,5 @@
 - graphs
   - consists of a set of vertices, together with a set of pairs of these vertices
   - https://ithelp.ithome.com.tw/articles/10208277
-  - 
+
+# 
