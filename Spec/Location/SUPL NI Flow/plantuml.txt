@@ -1,0 +1,69 @@
+@startuml
+
+note over HAL
+  SUPL_INIT over
+  SMS or WAP Push
+end note
+
+HAL -> GNSSD : ni_message()
+
+group if notification or verification required
+  GNSSD -> HAL : ni_notify()
+  note over HAL : notify to user
+  group if verification
+    note over HAL
+      start a timer and 
+      wait user's response
+    end note
+  end
+  HAL -> GNSSD: ni_response()
+end
+
+note over GNSSD : open GPS
+
+GNSSD -> HAL : set_id_req()
+HAL -> GNSSD : set_set_id(IMIS)
+GNSSD -> HAL : ref_loc_req()
+HAL -> GNSSD : set_ref_loc(2/3/4/5G cell)
+
+group if SUPL dedicated APN used
+  GNSSD -> HAL : data_conn_req(ip)
+  HAL -> GNSSD : data_conn_open()
+end
+
+group if no DNS cached for SUPL server address
+  GNSSD -> NW : DNS Query for SUPL address
+  NW -> GNSSD: DNS Response (IP address)
+end
+
+
+group TCP
+  GNSSD -> NW : TCP SYNC
+  NW -> GNSSD : TCP ACK
+  GNSSD -> NW : TCP SYNC/ACK
+
+  group TLS
+    GNSSD -> NW : Client Hello
+    NW -> GNSSD: Server Hello, Server Certificate, Server Hello Done
+    GNSSD -> NW: Client Key Exchange, Change Cipher Spec, Finished
+    NW -> GNSSD: Change Cipher Spec, Finished
+    
+    group SUPL
+      GNSSD -> NW : SPUL_POS_INIT
+      group Positioning
+        NW -> GNSSD : SUPL POS (provide data over RRLP/IS801/LPP/LPPe)
+        GNSSD -> NW : SUPL POS (provide location over RRLP/IS801/LPP/LPPe)
+      end 
+      NW -> GNSSD: SUPL_END
+    end 
+  end
+end
+
+note over GNSSD : close GPS
+
+group if SUPL dedicated APN used
+  GNSSD -> HAL : data_conn_release()
+  HAL -> GNSSD : data_conn_closed()
+end
+
+@enduml
