@@ -38,10 +38,18 @@
     - provide fix type (unavailable, 2D, 3D),  PRN (satellite IDs),  PDOP, HDOP, VDOP
   - $GPGSV,3,1,09,01,27,299,43,………*70
     - provide satellite information such as num of satellite, num of satellite used in location fixed, each satellite ID (GPS: 32, Galileo: 36, Beidou: 63, NavIC: 14, QZSS:10, Glonass: 65-96), elevation (0-90), azimuth (0-359), SRN (0-99)
+- choose which AGNSS procedure is needed
+  - SUPL: get the assist from SUPL server
+  - EPO (Extended Prediction Orbit)
+    - it's enhanced ephemeris data which can last at least 1 day and data is calculated by a powerful PC
+    - UE can download EPO data from vendor specific servers
+  - NLP (network location provider) location: to assist the first location
+  - NTP (Network Time Protocol) time: to assist UTC time
+  - EPO + NLP + NLP can almost get the similar performance compiared with SUPL
 
 # AGPS
 - Control Plane (3GPP, RRLP, RRC, LPP, LPPe)
-  - SMLC (Serving Mobile Location Center): It's a location server for control plan in cellular core network
+  - SMLC (Serving Mobile Location Center): It's a location server for control plane in cellular core network
   - Protocols
     - RRLP (Radio Resource Location service Protocol): support in 2G for AGPS, CID, ECID
     - RRC (Radio Resource Control): support in 3G for AGPS
@@ -62,7 +70,7 @@
     - BT: similar to WiFi, but it uses BT
     - Sensor (Barometer): UE measures the pressure from Barometer and report to NW, NW calculate the altitude based on its database
 - User Plane (OMA, SUPL1.0, SUPL2.0)
-  - SUPL Server:
+  - SUPL Server is TCP/IP server in network
   - SUPL1.0 (Secure User Plane Location)
     - User Scenarios
       - SI (SET Initiated)
