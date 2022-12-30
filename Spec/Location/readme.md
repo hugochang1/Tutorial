@@ -19,9 +19,14 @@
   - The sample of the application can be the engineer test tool, Google Map, Gmail, ...etc.
 
 # GPS
-- Hot start: all GPS/GNSS assistance data are valid
-- Warm start: only ephemeris data is invalid
-- Cold start: all GNSS assistance data are invalid
+- GPS messages
+  - subframe 1: Satellite clock
+  - subframe 2-3: Ephemeris (precise satellite orbit)
+  - subframe 4-5: Almanac (satellite network synopsis, error correction)
+- start type
+  - Hot start: all GPS/GNSS assistance data are valid
+  - Warm start: only ephemeris data is invalid
+  - Cold start: all GNSS assistance data are invalid
 - NMEA (National Marine Electronics Association): it's an ASCII string to represent the location, time and satellite information
   - $GPGGA,055148,2407.8945,N,12041.7649,E,1,00,1.0,155.2,M,16.6,M,X.X,xxxx,*47
     - provide UTC, latitude, Longitude and altitude 
