@@ -1,3 +1,16 @@
+# Terms
+- livelock
+- monitor
+- Storage/Memory
+  - direct memory access (DMA)
+  - access ordering
+  - caching
+- Embedded Systems Algorithms/Data Structures
+  - bit manipulation
+  - arrays
+  - linked lists
+  - mutexes
+  - string manipulation
 
 
 # Data structures
