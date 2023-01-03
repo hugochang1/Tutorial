@@ -60,30 +60,30 @@
     - MT-LR (Mobile Terminated Location Request) notification only or verification (yes or no)
     - NI-LR (Network Initiated Location Request) for E911 (no notification and verification)
   - positioning method
-    - MSB: NW provides the GNSS assistance data and request UE to calculate the location and report to NW
-    - MSA: NW provides the GNSS assistance data and request UE to report GNSS measurement data to NW, NW calculate the location
-    - Autonomous: NW does not provide any GNSS assistance data and request UE to calculate the location and report to NW
-    - ECID: UE measures CID and neighbor cell list and report to NW, NW calculate the location
-    - OTDOA: UE measures the distance of eNB or gNB and report to NW, NW calculate the location
-    - AFLT: similar to OTDOA but it's in C2K
-    - WiFi: UE scans WiFi info and report to NW, NW calcalate the location based on its database
-    - BT: similar to WiFi, but it uses BT
-    - Sensor (Barometer): UE measures the pressure from Barometer and report to NW, NW calculate the altitude based on its database
+    - MSB (RRLP, RRC, IS801, LPP): NW provides the GNSS assistance data and request UE to calculate the location and report to NW
+    - MSA (RRLP, RRC, IS801, LPP): NW provides the GNSS assistance data and request UE to report GNSS measurement data to NW, NW calculate the location
+    - Autonomous (RRLP, RRC, IS801, LPP): NW does not provide any GNSS assistance data and request UE to calculate the location and report to NW
+    - ECID (RRLP, RRC, LPP): UE measures CID and neighbor cell list and report to NW, NW calculate the location
+    - OTDOA (LPP): UE measures the distance of eNB or gNB and report to NW, NW calculate the location
+    - AFLT (IS801): similar to OTDOA but it's in C2K
+    - WiFi (LPPe): UE scans WiFi info and report to NW, NW calcalate the location based on its database
+    - BT (LPPe): similar to WiFi, but it uses BT
+    - Sensor/Barometer (LPPe): UE measures the pressure from Barometer and report to NW, NW calculate the altitude based on its database
 - User Plane (OMA, SUPL1.0, SUPL2.0)
-  - SUPL Server is TCP/IP server in network
+  - SUPL Server is a TCP/IP server in Internet
   - SUPL1.0 (Secure User Plane Location)
     - User Scenarios
       - SI (SET Initiated)
       - NI (Network Inititated) over OMA Push or SMS
-        - no notification and verification, used in E911)
+        - no notification and verification, used in E911
         - notification only
         - verification (yes or no)
   - SUPL2.0 (Secure User Plane Location)
-    - support 4G cell, LPP and LPPe
     - compitable with SUPL1.0
+    - support 4G cell, LPP and LPPe
     - SUPL2.0.4 support 5G cell
     - User Scenarios
-      - NI can support over UDP or SIP push
+      - NI can support over UDP push or SIP push
       - Area ID: like geofence but based on PLMN (Public land mobile network) instead, when user enter or leave then it reports (not popular)
       - support periodic report (not popular)
       - batch report (not popular)
