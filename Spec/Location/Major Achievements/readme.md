@@ -48,8 +48,10 @@
 	- IODT: 
 	  - the test machine vendors: R&S and Spirent
 	  - the infra vendor: Ericsson
+    - high level architecture design
     - LPPe service development
     - extend AGPS/MD interface to support LPPe feature
+    - integrate LPPe protocol stack into AGPS daemon
     - provide the documentation and training within my company
   - result
     - landing LPPe to our US projects and got the passed record for ATT, VZW, TMO
@@ -57,9 +59,12 @@
 ## USB Tethering Throughput Tuning (CPE/MiFi product) in 2021
   - purpose
     - to improve our product capability on USB Tethering T-put
-  - scope
+  - my effort
     - design the SKB buffer recycle mechanism architecture between HW packet accelerator and USB tethering protocol (ex: RNDIS, ECM, NCM)
     - cooperate with 10 colleagues to complete this task
+    - RNDIS source code modification based on the new interface
+    - t-put issue improvements (ex: out of order)
+    - provide the documentation and training within my company
   - result
     - improve at least 50% t-put from 4Gbps to 6Gbps (the data path is USB from or to Ethernet)
     - patent gained
@@ -70,7 +75,7 @@
 	  - normally, PCIe or USB will be wrapped into M.2 interface for PC/NB industry
   - purpose
     - my major job of this task is to ensure USB interface can meet our PM's requirements
-  - scope
+  - my effort
     - coordinate about 30 colleagues and role and responsibility for development to finish this task within 6 months
 	  - USB functions: MBIM, GNSS, Logging, remote wakeup, adb, mass storage
 	  - Host wakes up the device via UART
@@ -87,12 +92,14 @@
     - MiFi is a brand name used to describe a wireless router that acts as a mobile Wi-Fi hotspot.
   - purpose
     - to ensure our customer can achieve the mass production within our schedule
-  - scope
+  - my effort
     - customer's HW/SW requirement and schedule
     - HW: QVL (Qualified Vendors List), schematic design, simulation, review -> seeking our HW experts to assist these topics
     - SW: SW feature set, T-put, low power, ...etc. -> seeking our SW experts for those requirements
     - operator certification
     - GCF/PTCRB
     - device-IOT (Lab-IOT, Field Test, Acceptance Test)
+    - issue tracking
+    - risk management - handling urgent issues with our support team
   - result
     - assist customer to reach MP for 2 projects
