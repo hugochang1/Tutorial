@@ -1,5 +1,5 @@
-## landing SUPL2.0 and pass all Spirent test cases in 2013
-  - study the spec within 1 month and pass all test case with 2 months
+## landing SUPL2.0 in 2013
+  - study the spec within 1 month and pass all test cases by using Spirent test machine within 2 months
 
 ## AOSP AGPS in 2014
   - purpose
