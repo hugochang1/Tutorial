@@ -9,7 +9,7 @@
     - coordinate with 10 colleagues to achieve this architecture change
     - re-design interface between GPS and AGPS, AGPS and MD
   - result
-    - complete the architecture change within 3 months including full SQC and success landing to all our all next platforms
+    - complete the architecture change within 3 months including full SQC and success landing to all our next platforms
     - our customer, LG and Samsung, adopted our solutions
 	- introduce the unity AGPSD to all of different Android versions (ex: K, L, M, N, O, P, Q, R, S, ...etc.)
 	  - it can help reduce the overall effort for maintenance and fully use of AGPS daemon
