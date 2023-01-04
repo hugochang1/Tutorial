@@ -24,8 +24,7 @@
   - A livelock is similar to a deadlock, except that the states of the processes involved in the livelock constantly change with regard to one another, none progressing
   - Livelock is a risk with some algorithms that detect and recover from deadlock
 ### how to avoid them?
-  - Deadlock can be prevented by eliminating any of the four necessary conditions, which are mutual exclusion, hold and wait, no preemption, and circular wait.
-  - Deadlock prevention: eliminating one of the necessary conditions for deadlock
+  - Deadlock prevention: eliminating any of the four necessary conditions, which are mutual exclusion, hold and wait, no preemption, and circular wait.
   - Deadlock avoidance: Operating system runs an algorithm on requests to check for a safe state. Any request that may result in a deadlock is not granted
   - Deadlock detection & recovery: OS detects deadlock by regularly checking the system state, and recovers to a safe state using recovery techniques
 
