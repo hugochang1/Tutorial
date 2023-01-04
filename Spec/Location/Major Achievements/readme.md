@@ -10,7 +10,7 @@
   - purpose
     - to remove the dependency of our proprietary modules in Android Framework which our Tier-1 customers didn't like it
   - scope
-    - impact modules: Android Framework, GPS Daemon, AGPS Daemon and MD
+    - our proprietary modules in Android Framework, GPS Daemon, AGPS Daemon and MD
   - my effort
     - coordinate with 10 colleagues to achieve this architecture change
     - re-design interface between GPS and AGPS, AGPS and MD
