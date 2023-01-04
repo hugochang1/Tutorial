@@ -32,9 +32,9 @@
 ### context switch
   - a context switch is the process of storing the state of a process or thread, so that it can be restored and resume execution at a later point, and then restoring a different, previously saved, state
   - Switching cases
-    - Multitasking: Most commonly, within some scheduling scheme, one process must be switched out of the CPU so another process can run
-	- Interrupt handling: to handle peripheral I/O signals 
-	- User and kernel mode switching: 
+    - Multitasking: within some scheduling scheme, one process must be switched out of the CPU so another process can run
+    - Interrupt handling: to handle peripheral I/O signals 
+    - User and kernel mode switching
 
 # Storage/Memory
 ### Access Hierarchy
