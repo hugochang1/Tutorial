@@ -17,10 +17,10 @@
 ## AGPSD refactoring in 2015
   - purpose
     - there are too many redundant source codes in AGPS daemon and hard to maintain it
-      - the reason of redundant source codes was from porting, ex: AGPS solution was designed in the feature phone with non-Android OS and leverage this SW to Android Smart phone
-      - because different OS has different OS API and libraries
+      - the reason of redundant source codes was from porting to different OS, ex: AGPS solution was designed in the feature phone with non-Android OS and leverage this SW to Android Smart phone
+      - because different OS has different OS API, IPC and libraries
     - most AGPS test case need to be performed with the test machine (ex: Spirent or R&S) and it take time to do that
-	    - introduce the auto test in AGPS daemon to easy test all SUPL flows and SUPL parameters by itself without using any test machine
+      - introduce the auto test in AGPS daemon to easy test all SUPL flows and SUPL parameters by itself without using any test machine
   - scope
     - mainly in AGPS Daemon
   - result
