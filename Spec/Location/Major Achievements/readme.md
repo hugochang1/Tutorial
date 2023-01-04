@@ -13,7 +13,8 @@
     - our proprietary modules in Android Framework, GPS Daemon, AGPS Daemon and MD
   - my effort
     - coordinate with 10 colleagues to achieve this architecture change
-    - re-design interface between GPS and AGPS, AGPS and MD
+    - re-design interface between GPS and AGPS, and MD
+    - re-design AGPS to fit the new interface
     - coordinate the integration test and issue tracking
   - result
     - complete the architecture change within 3 months including full SQC and success landing to all our next platforms
