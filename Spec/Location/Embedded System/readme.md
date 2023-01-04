@@ -39,7 +39,7 @@
 # Storage/Memory
 ### Access Hierarchy
   - CPU
-  - Cache
+  - L1/L2/L3 Cache
   - Memory
   - I/O devices (disk, ethernet, ...etc.)
 ### direct memory access (DMA)
