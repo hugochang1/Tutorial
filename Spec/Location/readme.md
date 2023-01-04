@@ -21,6 +21,12 @@
 - Application
   - It's a computer program designed to carry out a specific task other than one relating to the operation of the computer itself
   - The sample of the application can be the engineer test tool, Google Map, Gmail, ...etc.
+- SELinux
+  - Security-Enhanced Linux (SELinux) is a Linux kernel security module that provides a mechanism for supporting access control security policies
+  - A Linux kernel integrating SELinux enforces mandatory access control policies that confine user programs and system services, as well as access to files and network resources
+- HIDL C++
+  - Android O re-architects the Android OS to define clear interfaces between the device-independent Android platform and device- and vendor-specific code
+
 
 # GPS
 - GPS messages
