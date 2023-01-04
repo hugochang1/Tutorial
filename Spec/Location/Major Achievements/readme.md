@@ -2,7 +2,7 @@
   - my effort
     - study the spec within 1 month
     - fix all SUPL protocol stack issue
-    - provide the documentation and training within my compnay
+    - provide the documentation and training within my company
   - result
     -  pass all test cases by using Spirent test machine within 2 months
 
@@ -49,7 +49,7 @@
 	  - the infra vendor: Ericsson
     - LPPe service development
     - extend AGPS/MD interface to support LPPe feature
-    - provide the documentation and training within my compnay
+    - provide the documentation and training within my company
   - result
     - landing LPPe to our US projects and got the passed record for ATT, VZW, TMO
 
