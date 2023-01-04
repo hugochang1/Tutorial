@@ -25,7 +25,7 @@
 ## AGPSD refactoring in 2015
   - purpose
     - there are too many redundant codes in AGPS daemon and hard to maintain it
-      - the reason of redundant source codes was from porting to different OS, ex: AGPS solution was designed in the feature phone with non-Android OS and leverage this SW to Android Smart phone
+      - the reason of redundant codes was from porting to different OS from previous owners, ex: AGPS solution was designed in the feature phone with non-Android OS and leverage this SW to Android Smart phone
       - because different OS has different OS API, IPC and libraries
     - most AGPS test case need to be performed with the test machine (ex: Spirent or R&S) and it take time to do that
   - scope
