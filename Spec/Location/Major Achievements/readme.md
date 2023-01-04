@@ -1,31 +1,39 @@
 ## landing SUPL2.0 in 2013
-  - study the spec within 1 month and pass all test cases by using Spirent test machine within 2 months
+  - my effort
+    - fix all SUPL protocol stack issue
+    - provide the documentation and training within my compnay
+  - result
+    - study the spec within 1 month and pass all test cases by using Spirent test machine within 2 months
 
 ## AOSP AGPS in 2014
   - purpose
     - to remove the dependency of our proprietary modules in Android Framework which our Tier-1 customers didn't like it
   - scope
     - impact modules: Android Framework, GPS Daemon, AGPS Daemon and MD
+  - my effort
     - coordinate with 10 colleagues to achieve this architecture change
     - re-design interface between GPS and AGPS, AGPS and MD
+    - coordinate the integration test and issue tracking
   - result
     - complete the architecture change within 3 months including full SQC and success landing to all our next platforms
     - our customer, LG and Samsung, adopted our solutions
-	- introduce the unity AGPSD to all of different Android versions (ex: K, L, M, N, O, P, Q, R, S, ...etc.)
+	- introduce the unity AGPS daemon to all of different Android versions (ex: K, L, M, N, O, P, Q, R, S, ...etc.)
 	  - it can help reduce the overall effort for maintenance and fully use of AGPS daemon
 
 ## AGPSD refactoring in 2015
   - purpose
-    - there are too many redundant source codes in AGPS daemon and hard to maintain it
+    - there are too many redundant codes in AGPS daemon and hard to maintain it
       - the reason of redundant source codes was from porting to different OS, ex: AGPS solution was designed in the feature phone with non-Android OS and leverage this SW to Android Smart phone
       - because different OS has different OS API, IPC and libraries
     - most AGPS test case need to be performed with the test machine (ex: Spirent or R&S) and it take time to do that
-      - introduce the auto test in AGPS daemon to easy test all SUPL flows and SUPL parameters by itself without using any test machine
   - scope
     - mainly in AGPS Daemon
+  - my effort
+    - select the source code we need to modify frequently and refactoring it
+    - introduce the auto test in AGPS daemon to easy test all SUPL flows and SUPL parameters by itself without using any test machine
   - result
     - reduce almost half percentage of source code which we need to change frequently (30,000 lines -> 15,000 lines)
-    - design at least 100 test cases including SUPL and control plane 
+    - design at least 100 test cases including SUPL and control plane to guarantee the stability of AGPS daemon
     - one round auto test can be done within 2 mintues (compare to real lab test > 1 day)
 
 ## LPPe development in 2017
@@ -33,10 +41,14 @@
     - it's a mandatory requirement for US operators such as VZW, T-TMO, and AT&T for E911 location required by FCC (Federal Communications Commission)
   - scope
     - support WiFi, BT/BLE, Barometer, and IP measurements
+  - my effort
     - coordinate with 15 colleagues to achieve this development
 	- IODT: 
 	  - the test machine vendors: R&S and Spirent
 	  - the infra vendor: Ericsson
+    - LPPe service development
+    - extend AGPS/MD interface to support LPPe feature
+    - provide the documentation and training within my compnay
   - result
     - landing LPPe to our US projects and got the passed record for ATT, VZW, TMO
 
