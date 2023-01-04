@@ -19,7 +19,7 @@
 
 # deadlock
 ### deadlock
-  - deadlock is any situation in which no member of some group of entities can proceed because each waits for another member
+  - deadlock is any situation in which no one can proceed because each waits for another's resources
 ### livelock
   - A livelock is similar to a deadlock, except that the states of the processes involved in the livelock constantly change with regard to one another, none progressing
   - Livelock is a risk with some algorithms that detect and recover from deadlock
