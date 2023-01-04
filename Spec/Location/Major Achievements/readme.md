@@ -1,10 +1,10 @@
 ## landing SUPL2.0 in 2013
   - my effort
-    - study the spec within 1 month and
+    - study the spec within 1 month
     - fix all SUPL protocol stack issue
     - provide the documentation and training within my compnay
   - result
-    -  pass all test cases by using Spirent test machine
+    -  pass all test cases by using Spirent test machine within 2 months
 
 ## AOSP AGPS in 2014
   - purpose
