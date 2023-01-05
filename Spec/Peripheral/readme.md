@@ -90,3 +90,6 @@
   - Isochronous Data Transfers
     - peiodic, continuous communication
     - real time video/voice
+- USB functions
+  - RNDIS
+    - 
