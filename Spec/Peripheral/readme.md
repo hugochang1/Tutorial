@@ -77,3 +77,16 @@
     - GND_DRAIN
     - StdA_SSTX−
     - StdA_SSTX+
+- Data Flow Types
+  - Control Transfers
+    - to configure a device at attach time
+    - can be used for other device-specific purposes
+  - Bulk Data Transfers
+    - Non-periodic, large-packet burst communication
+    - ex: file transfer, data packet transfer
+  - Interrupt Data Transfers
+    - low-frequency, bounded-latency communication
+    - ex: mouse, keyboard
+  - Isochronous Data Transfers
+    - peiodic, continuous communication
+    - real time video/voice
