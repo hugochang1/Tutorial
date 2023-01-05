@@ -92,4 +92,17 @@
     - real time video/voice
 - USB functions
   - RNDIS
-    - 
+    - INTERFACE DESCRIPTOR
+      - bInterfaceClass: Wireless Controller (0xe0)
+      - bInterfaceSubClass: 0x01
+      - bInterfaceProtocol: 0x03
+  - ECM
+    - INTERFACE DESCRIPTOR
+      - bInterfaceClass: Communications and CDC Control (0x02)
+      - bInterfaceSubClass: Ethernet Networking Control Model (0x06)
+      - bInterfaceProtocol: No class specific protocol required (0x00)
+  - NCM
+    - INTERFACE DESCRIPTOR
+      - bInterfaceClass: Communications and CDC Control (0x02)
+      - bInterfaceSubClass: Network Control Model (0x0D)
+      - bInterfaceProtocol: No encapsulated commands / responses (0x00)
