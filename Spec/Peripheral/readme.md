@@ -1,10 +1,20 @@
-# SPI
+## SPI
+- Serial Peripheral Interface is a synchronous serial communication interface specification used for short-distance communication
+  - SCLK: Serial Clock (output from master)
+  - MOSI: Master Out Slave In (data output from master)
+  - MISO: Master In Slave Out (data output from slave)
+  - CS /SS: Chip/Slave Select (often active low, output from master to indicate that data is being sent)
 
+## UART
+- Universal Asynchronous Receiver-Transmitter is an asynchronous serial communication in which the data format and transmission speeds are configurable
+  - TX/RX
+    - speed: ex: 921600
+    - data: 8bit or 7bit
+    - parity: none, odd, even, ...etc.
+    - stop bit: 1bit, 1.5bit, 2bit
+    - flow control: none, Xon/Xoff, ...etc.
 
-# UART
-
-
-# I2C
+## I2C
 - Inter-Integrated Circuit is a synchronous, multi-master and multi-slave serial communication bus in short-distance, intra-board communication
   - SDA (Serial Clock): it is a clock signal that is driven by the master (idle is in high voltage)
   - SCL (Serial Data): it is a bi-directional data signal that can be driven by either the master or the slave (idle is in high voltage)
@@ -33,6 +43,6 @@
     - kernel migration
     - modify I2C driver for new I2C HW design in new chip
   - design and maintain the I2C test code
-    - chip verification
+    - for chip Manufacturing
 
-# USB
+## USB
