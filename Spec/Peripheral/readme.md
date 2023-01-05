@@ -48,7 +48,7 @@
     - for chip Manufacturing
 
 ## USB
-- USB History
+### USB History
   - USB 1.0 (1996)
     - Low speed: 1.5 Mbit/s
     - Full speed: 12 Mbit/s
@@ -65,7 +65,7 @@
   - USB 3.1 (2013)
     - Super speed plus: 10 Gbit/s
     - compatible with USB 2.0 and USB 3.0
-- Electrical
+### Electrical
   - USB 2.0
     - VBUS
     - D+
@@ -77,7 +77,7 @@
     - GND_DRAIN
     - StdA_SSTX−
     - StdA_SSTX+
-- Data Flow Types
+### Data Flow Types
   - Control Transfers
     - to configure a device at attach time
     - can be used for other device-specific purposes
@@ -90,7 +90,7 @@
   - Isochronous Data Transfers
     - peiodic, continuous communication
     - real time video/voice
-- USB functions
+### USB functions
   - RNDIS
     - INTERFACE DESCRIPTOR
       - bInterfaceClass: Wireless Controller (0xe0)
