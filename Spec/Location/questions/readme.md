@@ -149,6 +149,16 @@ Q3: explain SUPL flow
   - String, CharSequence, List, Map
 
 ## GPS application
-- Q1: what is ANR
-- Q2: what is bundle
+- Q1: what is ANR and how to avoid it
+  - When the UI thread of an Android app is blocked for too long, an "Application Not Responding" (ANR) error is triggered
+    - the app is doing show operations (ex: I/O operations) on the main thread
+    - the app is doing a long calculation on the main thread
+    - the app is doing a synchronous binder call to another process
+    - the app is blocking (ex: synchronized) by another thread
+  - How to fix this issue
+    - when issue happened and close app, the backtrace will be appeared in logcat
+    - use Traceview to identify where the main thread is busy
+- Q2: what is Bundle
+  - Bundle is a class and using key/value pair to store the data
+  - Bundle uses to communicate in different Activity
 - Q3: How to debug application crash?
