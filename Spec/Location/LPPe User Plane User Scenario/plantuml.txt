@@ -1,0 +1,31 @@
+@startuml
+
+User -> UE : Make a E911 call
+note over UE, NW
+  establish E911 call
+end note
+
+note over NW
+  decide whether to trigger
+  UE location flow
+end note
+
+group if Network Initiated (NI)
+  NW -> UE : SUPL_INIT over WAP/SMS/UDP
+  UE -> NW : SUPL_POS_INIT with LPP/LPPe provide capabilities
+  NW -> UE : SUPL_POS with LPP/LPPe request location (gnss/wlan/bt/sensor/ip)
+  note over UE
+    collect GNSS/WIFI/BT/Sensor/IP 
+    measurement based within the
+    response time
+  end note
+  UE -> NW : SUPL_POS with LPP/LPPe provide location (gnss/wlan/bt/sensor/ip)
+  NW -> UE : SUPL_END
+  note over NW
+    using GNSS/WIFI/BT/Sensor/IP
+    measurement to query its database
+    to generate UE's location
+  end note
+end group
+
+@enduml

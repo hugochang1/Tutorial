@@ -1,0 +1,57 @@
+- Question
+  - Why don't you + V?
+    - Why don't you look at the proposal?
+    - Why don't you introduce youself.
+  - Do you have any opinions + about V-ing / on N?
+    - Do you have any opinions on the clothes?
+    - Do you have any opinions about starting a show?
+  - What's your opinion + about/on...?
+    - What's your opinion about using this tool?
+    - What's your opinion on reducing the cost of this project?
+  - What do you think of/about N/V-ing?
+    - What do you think of his proposal?
+    - What do you think about joining the project?
+  - Can/Could/May I + V, please?
+    - Can I leave my bag here, please?
+    - Could I use the bathroom, please?
+- Thoughts?
+  - think of you
+    - the simple relationship
+  - think about this
+    - concerning or relating to the matter
+- Opinions
+  - I suggest/recommend + (that) + S. + (should) +  V
+     - I suggested that Peter should reduce the cost of the project.
+     - I suggest that we should try to come up with another proposal
+  - In my opinion, S + V.
+    - In my opinion, this program is helpful (good for formal)
+    - In my opinion, children should be given the freedom to learn (good for formal)
+  - It appears/seems to me that + S / + V-ing
+    - It seems to me that this is the only way to fix the problem (good for formal)
+    - It appears to me that traveling by boat is very dangerous (good for formal)
+  - I believe/think/feel (that) + S. + V
+    - I believe that many people wish ehy had more free time (good for formal)
+    - I think we should start
+    - I feel my life is on the right track
+  - Hope or Wish?
+    - Wish usually expresses a desire that is impossible or unlikely to happen
+    - Hope mainly expresses a desire that is possible or likely to happen
+  - Start or Begin?
+    - Start is less formal
+      - start a machine, or start a business
+    - Begin is more formal
+  - Finish or Complete?
+    - Finish means to end
+      - ex: bad marriage, your life is finished
+    - Complete means to fulfill
+      - ex: bad marriage, your life is completed
+- Cause and Effect
+  - The reason for + N/V-ing is that + S + V
+    - the reason for our concern is that she hasn't returned our class
+    - the reason for doing the homework now is that we won't have time later
+  - That's why + S + V
+    - That's why we've never seen them before, they're not from here
+    - That's why he's taking time off work
+  - It's because + S + V
+    - It's becuase we failed to locate the root cause
+    - It's because I didn't check my bag

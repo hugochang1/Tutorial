@@ -62,3 +62,26 @@ void __dynamic_pr_info(struct _ddebug *descriptor, const char *fmt, ...)
 	va_end(args);
 }
 ````
+
+# dump raw data
+````
+static void dump_buff(char* prefix, char* buff, int len) {
+    int i = 0;
+    int offset = 0;
+    char str[64] = {0};
+    pr_info("%s dump_buff() len=[%d]\n", prefix, len);
+     
+    for(i = 0; i < len; i++) {
+        if(i != 0 && i % 16 == 0) {
+            pr_info("%s  %s\n", prefix, str);
+            offset = 0;
+            memset(str, 0, sizeof(str));
+        }
+        sprintf(str + offset, "%02x ", buff[i] & 0xff);
+        offset += 3;
+    }
+    if(i != 0) {
+        pr_info("%s  %s\n", prefix, str);
+    }
+}
+````

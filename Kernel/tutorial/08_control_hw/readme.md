@@ -11,6 +11,32 @@
   - `volatile int *p`
   - read/write of `p` must be via DRAM instead of CPU's cache
 
+# source code
+````
+#include <linux/io.h>
+
+	void __iomem *mem;
+	int addr = 0x10006004;
+	int value = 0x12345678;
+	
+	mem = ioremap_nocache(addr, 0x1000);
+	if (mem == NULL) {
+		pr_err("ioremap_nocache() failed\n");
+	} else {
+		pr_err("ioremap_nocache() success\n");
+		
+		writeb(value, mem); //write 1 byte
+		writew(value, mem); //write 2 bytes
+		writel(value, mem); //write 4 bytes
+		
+		pr_err("readb()=0x%x\n", readb(mem)); //read 1 byte
+		pr_err("readw()=0x%x\n", readw(mem)); //read 2 byte
+		pr_err("readl()=0x%x\n", readl(mem)); //read 4 byte
+		
+		iounmap(mem);
+	}
+````
+
 # IO mapped IO
 - `$ sudo cat /proc/ioports`
 ````

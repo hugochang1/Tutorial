@@ -32,6 +32,7 @@ module_exit(hugo_exit);
 
 - `$ sudo insmod hugo.ko`
 - `$ cat /proc/interrupts`
+  - `hugo_isr` is added
 ````
             CPU0       CPU1       CPU2       CPU3       CPU4       CPU5       CPU6       CPU7       CPU8       CPU9       CPU10      CPU11      
   19:          0          0          0          0          0          0          0          0          0         71          0       2165   IO-APIC   19-fasteoi   ens33, hugo_isr
@@ -40,6 +41,7 @@ module_exit(hugo_exit);
 
 - `$ sudo rmmod hugo.ko`
 - `$ cat /proc/interrupts`
+  - `hugo_isr` is removed
 ````
             CPU0       CPU1       CPU2       CPU3       CPU4       CPU5       CPU6       CPU7       CPU8       CPU9       CPU10      CPU11      
   19:          0          0          0          0          0          0          0          0          0         71          0       2130   IO-APIC   19-fasteoi   ens33
