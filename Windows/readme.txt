@@ -1,6 +1,6 @@
-@echo off 
+@echo off
 
-REM ---------- sleep in second ---------- 
+REM ---------- sleep in second. ---------- 
 timeout 1 /nobreak > NUL
 
 
