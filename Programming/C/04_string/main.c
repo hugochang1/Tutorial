@@ -4,9 +4,13 @@
 void demo_single_string1() {
     char str[20] = "hello";
     //char str[] = "hello"; //sizeof(str)=6
-    size_t size = sizeof(str);
-    size_t len = strlen(str);
     char* p = str;
+    
+    /* ------- sizeof ------- */
+    size_t size = sizeof(str);
+
+    /* ------- strlen ------- */
+    size_t len = strlen(str);
 
     printf("str=%s\n", str);  //str=hello
     printf("size=%zu\n", size); //size=6
@@ -21,10 +25,13 @@ void demo_single_string1() {
     str[0] = 'G';
     printf("str=%s\n", str); //str=Gg
 
+    /* ------- strcmp ------- */
+    //int strcmp(const char * str1, const char * str2);
     printf("strcmp=%d\n", strcmp(str, "gg")); //strcmp=0
     printf("strcmp=%d\n", strcmp(str, "ag")); //strcmp=1
     printf("strcmp=%d\n", strcmp(str, "zg")); //strcmp=-1
     
+    //int strncmp(const char *str1, const char *str2, size_t n)
     printf("strncmp=%d\n", strncmp(str, "gg", len)); //strncmp=0
 
     strcpy(str, "hello world");
@@ -110,9 +117,9 @@ void demo_multi_string2() {
         printf("strs[%d]=[%s] sizeof=[%d] strlen=[%d] pointer=%p\n",
             i, strs[i], sizeof(strs[i]), strlen(strs[i]), strs[i]);
         /*
-        strs[0]=[Geek] sizeof=[8] strlen=[4]
-        strs[1]=[Geeks] sizeof=[8] strlen=[5]
-        strs[2]=[Geekfor] sizeof=[8] strlen=[7]
+        strs[0]=[Geek] sizeof=[8] strlen=[4] pointer=00000000004050BE
+        strs[1]=[Geeks] sizeof=[8] strlen=[5] pointer=00000000004050C3
+        strs[2]=[Geekfor] sizeof=[8] strlen=[7] pointer=00000000004050C9
         */
     }
     // Segmentation fault due to read-only memory
@@ -121,10 +128,59 @@ void demo_multi_string2() {
     demo_multi_string_func(strs, 3);
 }
 
+void demo_string_advance() {
+    char str[100] = "hello world, Here I'm, GG.";
+    char *p = NULL;
+
+    /* ------- strtok ------- */
+    //char * strtok(char * str, const char * delimiters);
+    p = strtok(str, ",");
+    while (p != NULL) {
+        printf("%s\n", p);
+        p = strtok(NULL, ",");
+        /*
+        hello world
+         Here I'm
+         GG.
+        */
+    }
+
+    /* ------- strstr ------- */
+    //char * strstr(char * str1, const char * str2);
+    p = strstr(str, "Here");
+    printf("p=[%s]\n", p); //p=[Here I'm, GG.]
+    
+    p = strstr(str, "AAAAA");
+    printf("p=[%s]\n", p); //p=[(null)]
+    
+    /* ------- strcat ------- */
+    //char * strcat(char * destination, const char * source);
+    p = strcat(str, "!!!!!!!!");
+    printf("str=[%s]\n", str); //str=[hello world, Here I'm, GG.!!!!!!!!]
+    printf("p=[%s]\n", str); //p=[hello world, Here I'm, GG.!!!!!!!!]
+
+    //char *strncat(char *dest, const char *src, size_t n)
+    p = strncat(str, "1234567890", 5);
+    printf("str=[%s]\n", str); //str=[hello world, Here I'm, GG.!!!!!!!!12345]
+    printf("p=[%s]\n", str); //p=[hello world, Here I'm, GG.!!!!!!!!12345]
+
+    /* ------- strcpy ------- */
+    //char * strcpy(char * destination, const char * source);
+    p = strcpy(str, "hello");
+    printf("str=[%s]\n", str); //str=[hello]
+    printf("p=[%s]\n", str); //p=[hello]
+
+    //char *strncpy( char *dest, const char *src, size_t count );
+    p = strncpy(str, "1234567890", 5);
+    printf("str=[%s]\n", str); //str=[12345]
+    printf("p=[%s]\n", str); //p=[12345]
+}
+
 int main() {
     demo_single_string1();
     demo_single_string2();
     demo_multi_string1();
     demo_multi_string2();
+    demo_string_advance();
     return 0;
 }
