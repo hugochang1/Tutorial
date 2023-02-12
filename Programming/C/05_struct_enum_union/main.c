@@ -21,11 +21,19 @@ typedef struct {
 } student5;
 // student5 s;
 // student5 s = { .id=3, .age=5 };
+// student5 s = { 3, 5 };
+
+typedef struct student6 {
+    int id;
+    int age;
+} student6;
+// struct student6 s;
+// student6 s;
 
 struct student2 {
     int id;
     int age;
-} s3; // no need to declare s3
+} s3; // s3 is a variable and can be used directly
 // struct student2 s;
 // s3.id = 5;
 
@@ -67,8 +75,8 @@ typedef enum good {
 // good g
 
 enum type {
-    type_1 = 1,  //1
-    type_2 = 2,  //2
+    type_1 = 1,
+    type_2 = 2,
     type_3,      //3
     type_10 = 10,//10
     type_11,     //11
@@ -97,5 +105,7 @@ typedef union u2 {
            main
  ********************************/
 int main() {
+    struct student6 s = {12, 34};
+    printf("id=%d age=%d\n", s.id, s.age);
     return 0;
 }

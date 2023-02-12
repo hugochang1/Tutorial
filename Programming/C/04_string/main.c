@@ -1,5 +1,27 @@
 #include <stdio.h>
 #include <string.h>
+#include <ctype.h> // islower
+#include <stdlib.h> //atof
+
+void demo_string_basic() {
+    char a = '^';
+    // #include <ctype.h>
+    printf("islower=%d\n", islower(a));
+    printf("isupper=%d\n", isupper(a));
+    printf("isspace=%d\n", isspace(a));  // space \n \t \v \r \f
+    printf("isdigit=%d\n", isdigit(a));  // numbers 0-9
+    printf("isalnum=%d\n", isalnum(a));  // alphabet + numbers
+    printf("isdigit=%d\n", isdigit(a));  // numbers 0-9 + 'A'-'F' + 'a'-'F'
+    printf("isprint=%d\n", isprint(a));  // any printable key with whitespace
+    printf("isgraph=%d\n", isgraph(a));  // any printable key without whitespace
+    printf("tolower=%c\n", tolower('A')); // tolower=a
+    printf("toupper=%c\n", toupper('a')); // tolower=A
+
+    // #include <stdlib.h>
+    printf("atof(\"1.11\")=%lf\n", atof("1.11"));  // double
+    printf("atoi(\"123\")=%d\n", atoi("123"));     // int
+    printf("atol(\"123\")=%ld\n", atol("123"));    // long
+}
 
 void demo_single_string1() {
     char str[20] = "hello";
@@ -84,7 +106,7 @@ void demo_multi_string1() {
     strs[2] G  e  e  k  f  o  r \0
     */
     size_t size = sizeof(strs);
-    printf("sizeof(strs)=%d\n", size); //sizeof(strs)=30
+    printf("sizeof(strs)=%zu\n", size); //sizeof(strs)=30
 
     for (int i = 0; i < 3; i++) {
         printf("strs[%d]=[%s]\n", i, strs[i]);
@@ -111,10 +133,10 @@ void demo_multi_string2() {
     strs[2] -> Geekfor\0
     */
     size_t size = sizeof(strs);
-    printf("sizeof(strs)=%d\n", strs); //sizeof(strs)=6421952
+    printf("sizeof(size)=%zu\n", size); //sizeof(strs)=6421952
 
     for (int i = 0; i < 3; i++) {
-        printf("strs[%d]=[%s] sizeof=[%d] strlen=[%d] pointer=%p\n",
+        printf("strs[%d]=[%s] sizeof=[%zu] strlen=[%zu] pointer=%p\n",
             i, strs[i], sizeof(strs[i]), strlen(strs[i]), strs[i]);
         /*
         strs[0]=[Geek] sizeof=[8] strlen=[4] pointer=00000000004050BE
@@ -177,10 +199,13 @@ void demo_string_advance() {
 }
 
 int main() {
+    demo_string_basic();
+#if 0
     demo_single_string1();
     demo_single_string2();
     demo_multi_string1();
     demo_multi_string2();
     demo_string_advance();
+#endif
     return 0;
 }
