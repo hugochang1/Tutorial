@@ -14,7 +14,7 @@ typedef struct {
     unsigned char snr;
 } satellite;
 
-#define MAX_SATELITTE 256
+#define MAX_SATELITTE 8
 typedef struct {
     char state; //0: ready to use, 1: under parsing
     int ongoing_sat;
@@ -65,9 +65,7 @@ char* strtoken(char* str, char delim) {
     }
     out = p;
     p = strchr(p, delim);
-    if (p) {
-        *p = '\0';
-    }
+    if (p) *p = '\0';
     return out;
 }
 
@@ -80,9 +78,7 @@ void parseGPGSV(char* nmea, satellites* s) {
     //      0 1 2  3  4  5   6  7  8  9  10 11 12 13  14 15 16 17  18 19
     // $GPGSV,2,1,08,02,74,042,45,04,18,190,36,07,67,279,42,12,29,323,36*77
     p = strchr(nmea, '*');
-    if (p) {
-        *p = '\0';
-    }
+    if (p) *p = '\0';
     p = strtoken(nmea, ',');
     while (p) {
         if (count == 0) {
@@ -100,8 +96,15 @@ void parseGPGSV(char* nmea, satellites* s) {
             }
         } else if (count == 3) {
             s->num = atoi(p);
+            if (s->num > MAX_SATELITTE) {
+                s->num = MAX_SATELITTE;
+            }
         } else {
-            satellite *sat = &s->sat[s->ongoing_sat];
+            satellite *sat;
+            if (s->ongoing_sat == MAX_SATELITTE) {
+                return;
+            }
+            sat = &s->sat[s->ongoing_sat];
             if (count % 4 == 0 && strlen(p) > 0) {
                 sat->state |= HAS_PRN;
                 sat->prn = atoi(p);
@@ -148,8 +151,7 @@ void parseGPGGA(char* nmea, location* loc) {
             loc->latitude = atof(p);
             loc->latitude /= 100;
             fraction = loc->latitude - (int)loc->latitude;
-            loc->latitude -= fraction;
-            loc->latitude += fraction /60 * 100;
+            loc->latitude += fraction /60 * 100 - fraction;
         } else if (count == 3 && strlen(p) > 0) {
             //lat NS
             loc->state |= HAS_LAT_LNG;
@@ -163,8 +165,7 @@ void parseGPGGA(char* nmea, location* loc) {
             loc->longitude = atof(p);
             loc->longitude /= 100;
             fraction = loc->longitude - (int)loc->longitude;
-            loc->longitude -= fraction;
-            loc->longitude += fraction / 60 * 100;
+            loc->longitude += fraction / 60 * 100 - fraction;
         } else if (count == 5 && strlen(p) > 0) {
             //lng WE
             loc->state |= HAS_LAT_LNG;
@@ -199,21 +200,22 @@ int main() {
     const char *nmea[] = {
         "$GPGSV,2,1,08,02,74,042,45,04,18,190,36,07,67,279,42,12,29,323,36*77",
         "$GPGSV,2,2,08,15,30,050,47,19,09,158,,26,12,281,40,27,38,173,41*7B",
-        "$GPGGA,210230,3855.4487,N,09446.0071,W,1,07,1.1,370.5,M,-29.5,M,,*7A",
+        "$GPGGA,210230,3855.4487,S,09446.0071,W,1,07,1.1,370.5,M,-29.5,M,,*7A",
     };
     const char *nmea2[] = {
         "$GPGSV,3,1,10,18,,,,09,,,,22,,,,15,,,*70",
         "$GPGSV,3,2,10,21,32,199,23,14,25,272,24,05,,,,26,14,070,20*7E",
         "$GPGSV,3,3,10,29,07,074,,30,07,163,28*7D",
-        "$GPGGA,210230,3855.4487,N,09446.0071,W,1,07,1.1,370.5,M,-29.5,M,,*7A",
+        "$GPGGA,210230,3855.4487,N,09446.0071,E,1,07,1.1,370.5,M,-29.5,M,,*7A",
     };
     gps_info info;
 
     memset(&info, 0, sizeof(info));
-
     nmeaParser(nmea, 3, &info);
     dump_satellites(&info.s);
+    dump_location(&info.loc);
 
+    memset(&info, 0, sizeof(info));
     nmeaParser(nmea2, 4, &info);
     dump_satellites(&info.s);
     dump_location(&info.loc);
