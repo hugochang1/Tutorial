@@ -41,6 +41,7 @@ int main() {
     if (it != m1.end()) {
         cout << "found 1" << endl;
         cout << (*it).first << " " << (*it).second << endl; // 1 a
+        cout << m1[1] << endl; // a
     }
     
     it = m1.find(99);
