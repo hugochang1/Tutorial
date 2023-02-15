@@ -4,71 +4,40 @@
 using namespace std;
 
 int main() {
-    /*************************************
-        init
-    **************************************/
-    map<int, string> m;
-    map<int, string> m1 = {{1, "a"}, {2, "b"}, {3, "c"}};
-    
-    /*************************************
-        access
-    **************************************/
-    cout << m1[1] << endl; // a
-    cout << m1[2] << endl; // b
-    cout << m1[10] << endl; // (empty)
+    map<int, int> m1 = {
+        {1, 10},
+        {2, 20},
+        {3, 30},
+    };
 
-    m1[1] = "k"; //{{1, "k"}, {2, "b"}, {3, "c"}, {10,}}
-    m1[1] = "a"; //{{1, "a"}, {2, "b"}, {3, "c"}, {10,}}
-    m1[4] = "g"; //{{1, "a"}, {2, "b"}, {3, "c"}, {4, "g"}, {10,}}
-
-    /*************************************
-        traverse
-    **************************************/
-    for (pair<int, string> a : m1) {
-        cout << a.first << " " << a.second << endl;
-        // 1 a
-        // 2 b
-        // 3 c
-        // 4 g
-        // 10 (empty)
-    }
-    
-    /*************************************
-        find
-    **************************************/
-    map<int, string>::iterator it;
-    it = m1.find(1);
+    auto it = m1.find(1);
     if (it != m1.end()) {
-        cout << "found 1" << endl;
-        cout << (*it).first << " " << (*it).second << endl; // 1 a
-        cout << m1[1] << endl; // a
+        cout << "1 is in mp1" << endl;
     }
-    
-    it = m1.find(99);
+    it = m1.find(4);
     if (it == m1.end()) {
-        cout << "not found 99" << endl;
-    }
-    
-    /*************************************
-        erase
-    **************************************/
-    m1.erase(1); //{{2, "b"}, {3, "c"}, {4, "g"}, {10,}}
-    m1.erase(10); //{{2, "b"}, {3, "c"}, {4, "g"}}
-    for (pair<int, string> a : m1) {
-        cout << a.first << " " << a.second << endl;
+        cout << "4 is not in mp1" << endl;
     }
 
-    /*************************************
-        size
-    **************************************/
-    cout << m1.size() << endl; // 5
+    m1.insert(pair<int, int>(4, 40)); // {{1,10},{2,20},{3,30},{4,40}}
+    m1.insert(pair<int, int>(5, 50)); // {{1,10},{2,20},{3,30},{4,40},{5,50}}
+
+    int ret = m1.erase(1); // {{2,20},{3,30},{4,40},{5,50}}
+    cout << ret << endl; // 1 means delete key 1 and its value successfully
+    ret = m1.erase(1);
+    cout << ret << endl; // 0 means there is key 1 in map
+
+    for (auto i : m1) {
+        cout << i.first << " " << i.second << endl;
+    }
+
+    cout << m1.size() << endl; // 4
     cout << m1.empty() << endl; // 0
 
     m1.clear();
 
     cout << m1.size() << endl; // 0
     cout << m1.empty() << endl; // 1
-    cout << m1.max_size() << endl;
 
     return 0;
 }
