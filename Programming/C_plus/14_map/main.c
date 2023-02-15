@@ -34,6 +34,21 @@ int main() {
     }
     
     /*************************************
+        find
+    **************************************/
+    map<int, string>::iterator it;
+    it = m1.find(1);
+    if (it != m1.end()) {
+        cout << "found 1" << endl;
+        cout << (*it).first << " " << (*it).second << endl; // 1 a
+    }
+    
+    it = m1.find(99);
+    if (it == m1.end()) {
+        cout << "not found 99" << endl;
+    }
+    
+    /*************************************
         erase
     **************************************/
     m1.erase(1); //{{2, "b"}, {3, "c"}, {4, "g"}, {10,}}
@@ -52,6 +67,7 @@ int main() {
 
     cout << m1.size() << endl; // 0
     cout << m1.empty() << endl; // 1
+    cout << m1.max_size() << endl;
 
     return 0;
 }
