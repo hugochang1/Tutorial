@@ -4,7 +4,7 @@
 using namespace std;
 
 int main() {
-    deque q = {1,2,3};
+    deque<int> q = {1,2,3};
 
     q.push_back(4);  // {1,2,3,4}
     q.push_back(5);  // {1,2,3,4,5}

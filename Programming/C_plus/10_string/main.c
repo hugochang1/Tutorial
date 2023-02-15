@@ -60,7 +60,7 @@ int main() {
     cout << str1.substr(0,2) << endl; //he
 
     /*************************************
-        find(string)
+        find(string) search from left
     **************************************/
     size_t pos = str1.find("world");
     cout << str1.substr(pos) << endl; //world
@@ -75,7 +75,7 @@ int main() {
     cout << (pos == string::npos) << endl; // 1
     
     /*************************************
-        rfind(string)
+        rfind(string) search from right
     **************************************/
     str1 = "abcda";
     pos = str1.rfind("a");
