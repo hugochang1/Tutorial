@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <string>
-
+#include <algorithm>
 
 #include <stdio.h>
 #include <string.h>
@@ -20,34 +20,33 @@ public:
     int ele;
     int azi;
     int snr;
-};
-
-#define MAX_SAT_NUM 8
-class Satellites {
-public:
-    int num;
-    Satellite s[MAX_SAT_NUM];
-
-    int state;
-    int ongoing_sat;
-
-    Satellites() {
+    Satellite() {
         reset();
     }
-
+    
     void reset() {
-        num = 0;
-        memset(&s, 0, sizeof(s));
         state = 0;
-        ongoing_sat = 0;
+        prn = 0;
+        ele = 0;
+        azi = 0;
+        snr = 0;
     }
-
+    
     void dump() {
-        printf("num=%d state=%d ongoing_sat=%d\n",
-            num, state, ongoing_sat);
-        for (int i = 0; i < num; i++) {
-            printf("  i=%02d state=%x prn=%02d ele=%02d azi=%03d snr=%02d\n",
-                i, s[i].state, s[i].prn, s[i].ele, s[i].azi, s[i].snr);
+        printf("  state=%x prn=%02d ele=%02d azi=%03d snr=%02d\n",
+            state, prn, ele, azi, snr);
+    }
+};
+
+class Satellites {
+public:
+    vector<Satellite> s;
+    Satellites() {}
+    
+    void dump() {
+        printf("num=%zu\n", s.size());
+        for (size_t i = 0; i < s.size(); i++) {
+            s[i].dump();
         }
     }
 };
@@ -58,25 +57,20 @@ public:
     #define HAS_UTC 0x2
     #define HAS_ALT 0x4
     int state;
+    int utc;
     double lat;
     double lng;
-    int utc;
     float alt;
     Location() {
-        reset();
-    }
-
-    void reset() {
         state = 0;
         lat = 0;
         lng = 0;
-        utc = 0;
         alt = 0;
     }
-
+    
     void dump() {
         printf("state=%x lat=%lf lng=%lf utc=%d alt=%f\n",
-            state, lat, lng, utc, alt);
+            state, lat, lng, utc, lat);
     }
 };
 
@@ -84,19 +78,13 @@ class GpsInfo {
 public:
     Location loc;
     Satellites s;
-
-    void reset() {
-        loc.reset();
-        s.reset();
-    }
-
+    GpsInfo() {}
+    
     void dump() {
         loc.dump();
         s.dump();
     }
 };
-
-
 
 char* strtoken(char* str, char delim) {
     static char* p = NULL;
@@ -109,60 +97,53 @@ char* strtoken(char* str, char delim) {
     }
     out = p;
     p = strchr(p, delim);
-    if (p) *p = '\0';
+    if (p) *p = 0;
     return out;
 }
 
 void parseGPGSV(char* nmea, Satellites* s) {
-    int count = 0;
+    //     0 1 2  3  4  5   6  7  8  9  10 11 12 13  14 15 16 17 18  19
+    //$GPGSV,2,1,08,02,74,042,45,04,18,190,36,07,67,279,42,12,29,323,36*77
     int sent_num = 0;
     int curr_sent = 0;
+    int count = 0;
     char* p = NULL;
-    //     0 1 2  3  4  5   6  7  8  9  10 11 12 13  14 15 16 17  18 19
-    //$GPGSV,2,1,08,02,74,042,45,04,18,190,36,07,67,279,42,12,29,323,36*77
+    Satellite sat;
+    
     p = strchr(nmea, '*');
-    if (p) *p = '\0';
+    if (p) *p = 0;
     p = strtoken(nmea, ',');
     while (p) {
-        if (count == 0) {
-            
+        if (count == 0 ) {
         } else if (count == 1) {
             sent_num = atoi(p);
         } else if (count == 2) {
             curr_sent = atoi(p);
             if (curr_sent == 1) {
-                s->reset();
-                s->state = 1;
+                s->s.clear();
             }
             if (curr_sent == sent_num) {
-                s->state = 0;
+                //Satellites is ready
             }
         } else if (count == 3) {
-            s->num = atoi(p);
-            if (s->num > MAX_SAT_NUM) {
-                s->num = MAX_SAT_NUM;
-            }
+            // the number of satellite
         } else {
-            Satellite* sat;
-            if (s->ongoing_sat == MAX_SAT_NUM) {
-                return;
-            }
-            sat = &s->s[s->ongoing_sat];
             if (count % 4 == 0 && strlen(p) > 0) {
-                sat->state |= HAS_PRN;
-                sat->prn = atoi(p);
+                sat.reset();
+                sat.state |= HAS_PRN;
+                sat.prn = atoi(p);
             } else if (count % 4 == 1 && strlen(p) > 0) {
-                sat->state |= HAS_ELE;
-                sat->ele = atoi(p);
+                sat.state |= HAS_ELE;
+                sat.ele = atoi(p);
             } else if (count % 4 == 2 && strlen(p) > 0) {
-                sat->state |= HAS_AZI;
-                sat->azi = atoi(p);
-            } else if (count % 4 == 3 && strlen(p) > 0 ) {
-                sat->state |= HAS_SNR;
-                sat->snr = atoi(p);
+                sat.state |= HAS_AZI;
+                sat.azi = atoi(p);
+            } else if (count % 4 == 3 && strlen(p) > 0) {
+                sat.state |= HAS_SNR;
+                sat.snr = atoi(p);
             }
             if (count % 4 == 3) {
-                s->ongoing_sat++;
+                s->s.push_back(sat);
             }
         }
         p = strtoken(NULL, ',');
@@ -171,35 +152,33 @@ void parseGPGSV(char* nmea, Satellites* s) {
 }
 
 void parseGPGGA(char* nmea, Location* loc) {
-    //     0      1         2 3          4 5 6  7   8     9 10   11 12 13
+    //     0      1         2 3          4 5 6  7   8     9 10   11 12 13 14
     //$GPGGA,210230,3855.4487,S,09446.0071,W,1,07,1.1,370.5,M,-29.5,M,,*7A
-    int count = 0;
     char* p = NULL;
+    int count = 0;
+    
     p = strchr(nmea, '*');
-    if (p) *p = '\0';
+    if (p) *p = 0;
     p = strtoken(nmea, ',');
     while (p) {
         if (count == 0) {
-
         } else if (count == 1 && strlen(p) > 0) {
             loc->state |= HAS_UTC;
             loc->utc = atoi(p);
         } else if (count == 2 && strlen(p) > 0) {
-            double fraction = 0;
             loc->state |= HAS_LOC;
             loc->lat = atof(p);
             loc->lat /= 100;
-            fraction = loc->lat - (int)loc->lat;
+            double fraction = loc->lat - (int)loc->lat;
             loc->lat += fraction/60*100 - fraction;
         } else if (count == 3 && strlen(p) > 0) {
             if (*p == 'S') {
                 loc->lat = -loc->lat;
             }
         } else if (count == 4 && strlen(p) > 0) {
-            double fraction = 0;
             loc->lng = atof(p);
             loc->lng /= 100;
-            fraction = loc->lng - (int)loc->lng;
+            double fraction = loc->lng - (int)loc->lng;
             loc->lng += fraction/60*100 - fraction;
         } else if (count == 5 && strlen(p) > 0) {
             if (*p == 'W') {
@@ -209,34 +188,37 @@ void parseGPGGA(char* nmea, Location* loc) {
             loc->state |= HAS_ALT;
             loc->alt = atof(p);
         }
-        
         p = strtoken(NULL, ',');
         count++;
     }
 }
 
-void nmeaParser(const char * nmea, GpsInfo* info) {
-    char buff[256];
-    if (strstr(nmea, "$GPGSV")) {
-        strcpy(buff, nmea);
-        parseGPGSV(buff, &info->s);
-    } else if (strstr(nmea, "$GPGGA")) {
-        strcpy(buff, nmea);
-        parseGPGGA(buff, &info->loc);
-    }
-}
-
-int main(int argc, char *argv[]) {
-    GpsInfo info;
-    string str[] = {
+int main() {
+    vector<string> nmea1 = {
         "$GPGSV,2,1,08,02,74,042,45,04,18,190,36,07,67,279,42,12,29,323,36*77",
         "$GPGSV,2,2,08,15,30,050,47,19,09,158,,26,12,281,40,27,38,173,41*7B",
-        "$GPGGA,210230,3855.4487,S,09446.0071,W,1,07,1.1,370.5,M,-29.5,M,,*7A"};
-
-    for (auto s : str) {
-        nmeaParser(s.c_str(), &info);
+        "$GPGGA,210230,3855.4487,S,09446.0071,W,1,07,1.1,370.5,M,-29.5,M,,*7A",
+    };
+    GpsInfo info;
+    
+    for (string nmea : nmea1) {
+        char buff[512];
+        const char* p = nmea.c_str();
+        if (strstr(p, "$GPGSV")) {
+            strcpy(buff, p);
+            parseGPGSV(buff, &info.s);
+        } else if (strstr(p, "$GPGGA")) {
+            strcpy(buff, p);
+            parseGPGGA(buff, &info.loc);
+        }
+        
     }
+        
     info.dump();
+    sort(info.s.s.begin(), info.s.s.end(), [](Satellite s1, Satellite s2) {
+        return s1.snr < s2.snr;
+        });
+    info.dump();
+    
     return 0;
 }
-
