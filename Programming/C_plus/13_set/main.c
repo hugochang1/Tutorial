@@ -5,6 +5,10 @@ using namespace std;
 
 int main() {
     set<int> s = {1,2,3};
+    
+    /**************************************
+        insert() erase(), O(logn)
+    **************************************/
     s.insert(4);  // {1,2,3,4}
     s.insert(5);  // {1,2,3,4,5}
     s.insert(5);  // {1,2,3,4,5}
@@ -13,6 +17,9 @@ int main() {
     s.erase(3);   // {1,2,4,5} it's ok
     s.erase(2);   // {1,4,5}
 
+    /**************************************
+        find(), O(logn)
+    **************************************/
     set<int>::iterator it = s.find(1);
     if (it != s.end()) {
         cout << "found 1" << endl;
@@ -23,7 +30,7 @@ int main() {
         cout << "not found 2" << endl;
     }
 
-    for(auto i : s) {
+    for(int i : s) {
         cout << i << endl;
     }
 

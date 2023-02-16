@@ -59,13 +59,13 @@ void demo_struct() {
     my_struct* s2 = new my_struct({5, 10}); // new and intial a1=5 and a2=10
     delete s2;
 
-    my_struct* s3 = new my_struct[3]; // new and wihtout intial the array
+    my_struct* s3 = new my_struct[3](); // new and intial the array to be 0
     for (int i = 0; i < 3; i++) {
         cout << (*(s3+i)).a1 << " " << (*(s3+i)).a2 << endl;
         /*
-        1980433120 21874
         0 0
-        1980433120 21874
+        0 0
+        0 0
         */
     }
     s3[0].a1 = 10;

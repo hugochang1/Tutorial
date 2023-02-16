@@ -119,34 +119,34 @@ public:
 int main() {
     LinkList list;
 
-    list.push_back(1); //1
-    list.push_back(2); //1->2
-    list.push_back(3); //1->2->3
+    list.push_back(1); // 1
+    list.push_back(2); // 1->2
+    list.push_back(3); // 1->2->3
 
-    cout << list.pop_back() << endl; //true 1->2
-    cout << list.pop_back() << endl; //true 1
-    cout << list.pop_back() << endl; //true
-    cout << list.pop_back() << endl; //false
+    cout << list.pop_back() << endl; // true 1->2
+    cout << list.pop_back() << endl; // true 1
+    cout << list.pop_back() << endl; // true
+    cout << list.pop_back() << endl; // false
     
-    list.push_front(1); //1
-    list.push_front(2); //2->1
-    list.push_front(3); //3->2->1
+    list.push_front(1); // 1
+    list.push_front(2); // 2->1
+    list.push_front(3); // 3->2->1
 
-    cout << list.pop_front() << endl; //true 2->1
-    cout << list.pop_front() << endl; //true 1
-    cout << list.pop_front() << endl; //true
-    cout << list.pop_front() << endl; //false
+    cout << list.pop_front() << endl; // true 2->1
+    cout << list.pop_front() << endl; // true 1
+    cout << list.pop_front() << endl; // true
+    cout << list.pop_front() << endl; // false
 
-    list.push_front(1); //1
-    list.push_front(2); //2->1
-    list.push_front(3); //3->2->1
+    list.push_front(1); // 1
+    list.push_front(2); // 2->1
+    list.push_front(3); // 3->2->1
 
     for (int i = 0; i < list.size(); i++) {
         int val = 0;
         cout << "index=" << i << " ret=" << list.at(i, &val) << " val=" << val << endl;
-        //index=0 ret=1 val=3
-        //index=1 ret=1 val=2
-        //index=2 ret=1 val=1
+        // index=0 ret=1 val=3
+        // index=1 ret=1 val=2
+        // index=2 ret=1 val=1
     }
 
     return 0;
