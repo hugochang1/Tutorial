@@ -1,3 +1,15 @@
+# LocationManager
+* provide to access to the system location services
+* requestLocationUpdates/removeUpdates
+* register/unregister to listen GnssStatus, NmeaMessage, GnssMeasurements, GnssNavigation
+* getLastKnownLocation
+
+# Location
+* represent a geographic location such as UTC time, latitude, longitude, accuracy, altitude, ...etc.
+
+# GnssStatus
+* the current state of the GNSS engine such as constellation type, carrier frequency, satellite ID, elevation, azimuth, baseband/antenna carrier-to-noise, used in fix, ...etc.)
+
 # Geocoder
 * A class to transform location coordinate (latitude and longitude) info an address
 
@@ -9,3 +21,8 @@
 * provide GNSS capabilities such as constellation type (ex: GPS, Galileo, Glonass, Beidou) and their carry frequency
 * whether GNSS chip can support Accumulated Delta Range (ADR)
   * ADR measures the change in phase of the carrier wave, ADR is theoretically ~1000x more precise than the pseudorange
+* whether GNSS chip can support low power mode. when low power mode is active, GNSS HW must take limit the power usage
+* whether to support MSA (mobile station assisted)
+* whether to support MSB (mobile station based)
+
+
