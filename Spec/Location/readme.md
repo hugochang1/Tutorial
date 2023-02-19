@@ -1,3 +1,6 @@
+# Good reference
+- https://scdn.rohde-schwarz.com/ur/pws/dl_downloads/dl_common_library/dl_brochures_and_datasheets/pdf_1/LTE_LBS_White_Paper.pdf
+
 # Terms
 - Android Framework
   - It is a layer between Android application and Hardware abstract layer (HAL)
