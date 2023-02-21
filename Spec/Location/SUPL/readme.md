@@ -12,7 +12,7 @@
 * SLP <-> SET: SUPL POS (session-id, RRLP/TIA801/LPP/LPPe)
 * SLP ->  SET: SUPL REPORT(session-id, position)
 * SLP <-  SET: SUPL REPORT(session-id, positions)
-* SLP <-  SET: (SET sends SUPL REPORT periodic)
+* ... (SET sends SUPL REPORT periodic)
 * SLP ->  SET: SUPL END (session-id)
 
 # NI, Event Trigger
@@ -23,7 +23,7 @@
 * SLP <-> SET: SUPL POS (session-id, RRLP/TIA801/LPP/LPPe)
 *         SET: (SET check for area event)
 * SLP ->  SET: SUPL REPORT(session-id)
-*         SET: (SET check for area event and sends SUPL REPORT if condition met)
+* ... (SET checks for area event and sends SUPL REPORT if condition met)
 * SLP ->  SET: SUPL END (session-id)
 
 # NI, Event Trigger, Network/SET capabilities
