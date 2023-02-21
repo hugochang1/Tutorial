@@ -1,20 +1,21 @@
-# NI, proxy mode (non-roaming and roaming are the same from UE's view)
+# NI
+### NI, proxy mode (non-roaming and roaming are the same from UE's view)
 * SLP ->  SET: SUPL INIT (session-id, posmethod, SLP mode)
 * SLP <-  SET: SUPL POS INIT (session-id, lid, SET capabilities, ver)
 * SLP <-> SET: SUPL POS (session-id, RRLP/TIA801/LPP/LPPe)
 * SLP ->  SET: SUPL END (session-id)
 
-# Emergency Services Location Request
+### Emergency Services Location Request
 * SLP ->  SET: SUPL INIT (session-id, posmethod, SLP mode, **E-SLP** address)
 * SLP <-  SET: SUPL POS INIT (session-id, lid, SET capabilities, ver)
 * SLP <-> SET: SUPL POS (session-id, RRLP/RRC/TIA-801/LPP/LPPe)
 * SLP ->  SET: SUPL END (session-id)
 
-# NI, user rejects SUPL_INIT
+### NI, user rejects SUPL_INIT
 * SLP ->  SET: SUPL INIT (session-id, posmethod, SLP mode)
 * SLP <-  SET: SUPL END (session-id, status code=**consentDeniedByUser**, ver)
 
-# NI, Periodic Triggers
+### NI, Periodic Triggers
 * SLP ->  SET: SUPL INIT (session-id, trigger_type=**periodic**, posmethod, SLP mode)
 * SLP <-  SET: SUPL TRIGGERED START(session-id, lid, SET capabilities, **rep_capabilities**, ver)
 * SLP ->  SET: SUPL TRIGGERED RESPONSE(session-id, posmethod, **trigger_params**, **rep_mode**)
@@ -25,7 +26,7 @@
 * ... (SET sends SUPL REPORT periodic)
 * SLP ->  SET: SUPL END (session-id)
 
-# NI, Event Trigger
+### NI, Event Trigger
 * SLP ->  SET: SUPL INIT (session-id, trigger_type=**area_event**, posmethod, SLP mode)
 * SLP <-  SET: SUPL TRIGGERED START(session-id, lid, SET capabilities, ver)
 * SLP ->  SET: SUPL TRIGGERED RESPONSE(session-id, posmethod, **trigger_params**)
@@ -36,14 +37,14 @@
 * ... (SET checks for area event and sends SUPL REPORT if condition met)
 * SLP ->  SET: SUPL END (session-id)
 
-# NI, Event Trigger, Network/SET capabilities change
+### NI, Event Trigger, Network/SET capabilities change
 * SLP <-> SET: ongoing Area event
 *         SET: network change
 * SLP <-  SET: SUPL TRIGGERED START (session-id, lid, SET capabilities, **cause**)
 * SLP ->  SET: SUPL TRIGGERED RESPONSE (session-id, posmethods, trigger_parameters)
 * SLP <-> SET: continued Area event
 
-# NI, notification/verification on current location
+### NI, notification/verification on current location
 * SLP ->  SET: SUPL INIT (session-id, posmethod, SLP mode, ...)
 * SLP <-  SET: SUPL POS INIT (session-id, SET capabilities,ver)
 * SLP <-> SET: SUPL POS (session-id, RRLP/RRC/TIA-801/LPP/LPPe)
@@ -51,7 +52,7 @@
 * SLP <-  SET: **SUPL NOTIFY RESPONSE (session-id, notification-response)**
 * SLP ->  SET: SUPL END (session-id)
 
-# NI, notification/verification on current location, SET denies permission
+### NI, notification/verification on current location, SET denies permission
 * SLP ->  SET: SUPL INIT (session-id, posmethod, SLP mode, ...)
 * SLP <-  SET: SUPL POS INIT (session-id, SET capabilities,ver)
 * SLP <-> SET: SUPL POS (session-id, RRLP/RRC/TIA-801/LPP/LPPe)
@@ -59,11 +60,11 @@
 * SLP <-  SET: SUPL NOTIFY RESPONSE (session-id, notification-response=**not_allow**)
 * SLP ->  SET: SUPL END (session-id)
 
-# NI, Retrieval of Historical Positions and/or Enhanced Cell Sector Measurements
+### NI, Retrieval of Historical Positions and/or Enhanced Cell Sector Measurements
 * SLP ->  SET: SUPL INIT(session-id, posmethod=**historical data retrieval**, SLP mode, **historic reporting**)
 * SLP <-  SET: SUPL REPORT(session-id, positions/enhanced cell/sector measurements, ver)
 
-# NI, Session Info Query
+### NI, Session Info Query
 * Purpose
   * Query the SET for active SUPL session information.
   * Perform re-notification or re-notification and verification for active Network Initiated sessions
@@ -79,4 +80,10 @@
 * SLP ->  SET: SUPL END (SessionInfoQuery session-id)
 
 # Misc
+### verification field (**ver**)
 * a hash of the received SUPL INIT message (ver)
+  * VER=H(SLP XOR opad, H(SLP XOR ipad, SUPL INIT))
+    * where SLP is the FQDN of the SLP address
+    * SHA-256 MUST be used as the hash (H) function, with opad and ipad as specified in [HMAC]
+    * The output of the SHA-256 HASH function MUST be truncated to 64 bits
+
