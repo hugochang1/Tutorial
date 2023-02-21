@@ -2,7 +2,7 @@
 ### NI, proxy mode (non-roaming and roaming are the same from UE's view)
 * SLP ->  SET: SUPL INIT (session-id, posmethod, SLP mode)
 * SLP <-  SET: SUPL POS INIT (session-id, lid, SET capabilities, ver)
-* SLP <-> SET: SUPL POS (session-id, RRLP/TIA801/LPP/LPPe)
+* SLP <-> SET: SUPL POS (session-id, RRLP/RRC/TIA-801/LPP/LPPe)
 * SLP ->  SET: SUPL END (session-id)
 
 ### Emergency Services Location Request
@@ -31,7 +31,7 @@
 * SLP <-  SET: SUPL TRIGGERED START(session-id, lid, SET capabilities, ver)
 * SLP ->  SET: SUPL TRIGGERED RESPONSE(session-id, posmethod, **trigger_params**)
 * SLP <-  SET: SUPL POS INIT(session-id, lid, SET Capabilities)
-* SLP <-> SET: SUPL POS (session-id, RRLP/TIA801/LPP/LPPe)
+* SLP <-> SET: SUPL POS (session-id, RRLP/RRC/TIA-801/LPP/LPPe)
 *         SET: (SET check for area event)
 * SLP ->  SET: SUPL REPORT(session-id)
 * ... (SET checks for area event and sends SUPL REPORT if condition met)
@@ -78,6 +78,30 @@
 * SLP ->  SET: SUPL TRIGGERED STOP (Triggered session-id)
 * SLP <-  SET: SUPL END (Triggered session-id)
 * SLP ->  SET: SUPL END (SessionInfoQuery session-id)
+
+# SI
+### SI, Proxy mode
+* SLP <-  SET: SUPL START(session-id, lid, SET capabilities)
+* SLP ->  SET: SUPL RESPONSE(session-id, posmethod)
+* SLP <-  SET: SUPL POS INIT(session-id, lid, SET capabilities)
+* SLP <-> SET: SUPL POS (session-id, RRLP/RRC/TIA-801/LPP/LPPe)
+* SLP ->  SET: SUPL END (session-id)
+
+### SI, Triggered Services
+* SLP <-  SET: SUPL TRIGGERED START(session-id, trigger_type=**periodic**, lid, SET capabilities, **trigger_params**)
+* SLP ->  SET: SUPL TRIGGERED RESPONSE(session-id, posmethod)
+* (wait for first position to be started)
+* SLP <-  SET: SUPL POS INIT(session-id, lid, SET capabilities)
+* SLP <-> SET: SUPL POS (session-id, RRLP/RRC/TIA-801/LPP/LPPe)
+* SLP ->  SET: SUPL REPORT(session-id, position)
+* (wait for next position to be calculated)
+* SLP <-  SET: SUPL POS INIT(session-id, lid, SET capabilities)
+* SLP <-> SET: SUPL POS (session-id, RRLP/RRC/TIA-801/LPP/LPPe)
+* SLP ->  SET: SUPL REPORT(session-id, position)
+* (repated)
+* SLP <-  SET: SUPL END (session-id)
+
+### SI, Triggered Services (page 147)
 
 # Misc
 ### verification field (**ver**)
