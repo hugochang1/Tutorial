@@ -40,35 +40,116 @@
 * Unforeseen Component
   * When the MS receives a complete Assistance Data pseudo-segmentation sequence or an Assistance Data component that was sent without pseudo-segmentation
 
-# Components
+# Message Structure
+### Abbreviation
 * msr = measure
 * req = request
 * rsp = response
 * nbr = number
 * ack = acknowledgement
+```
+PDU ::= SEQUENCE {
+	referenceNumber			INTEGER (0..7),
+	component				RRLP-Component 
+}
 
+RRLP-Component ::= CHOICE {
+	msrPositionReq			MsrPosition-Req,
+	msrPositionRsp			MsrPosition-Rsp,
+	assistanceData			AssistanceData,
+	assistanceDataAck		NULL,
+	protocolError			ProtocolError,
+	...
+
+}
+```
+
+# Components
 ### Measure Position Request
 * PositionInstruct
+  * methodType (MSA, MSB, MSAPref, MSBPref)
+  * positionMethod (eotd, gps, gpsOrEOTD)
+  * measureResponseTime (0..7)
+  * useMultipleSets (multipleSets, oneSet)
+  * environmentCharacter (badArea, notBadArea, mixedArea)
 * ReferenceAssistData
+  * bcchCarrier (0..1024) // RF channel number of BCCH (Broadcast Control Channel)
+  * bsic (0..63) //Base station identity code
+  * timeSlotScheme (equalLength, variousLength)
+  * btsPosition
 * MsrAssistData
+  * msrAssistList (list 1..15)
+    * bcchCarrier
+    * bsic
+    * multiFrameOffset (0..51)
+    * timeSlotScheme
+    * roughRTD (0..1250)
 * SystemInfoAssistData
+  * systemInfoAssistList (list 1..32) // E-OTD Measurement assistance data
 * GPS-AssistData
-* ExtensionContainer
+  * referenceTime (gpsTime)
+  * refLocation (threeDLocation)
+  * dgpsCorrections (gpsTOW, status, satList)
+  * navigationModel //list, by satellite
+    * satelliteID
+    * satStatus (ephemeris data)
+  * ionosphericModel
+  * utcModel
+  * almanac //by satellite
+  * acquisAssist //by satellite
+  * realTimeIntegrity // number of bad satellites
 
 ### Measure Position Response
 * MultipleSets
 * ReferenceIdentity
 * OTD-MeasureInfo
 * LocationInfo
-* GPS-MeasureInfo
+  * refFrame (0..65535)
+  * gpsTOW (0..14399999)
+  * fixType (2DFix, 3DFix)
+  * posEstimate
+* GPS-MeasureInfo // by satellites
 * LocationError
-* ExtensionContainer
+  * unDefined
+  * notEnoughBTSs
+  * notEnoughSats
+  * eotdLocCalAssDataMissing 
+  * eotdAssDataMissing 
+  * gpsLocCalAssDataMissing 
+  * gpsAssDataMissing 
+  * methodNotSupported 
+  * notProcessed 
+  * refBTSForGPSNotServingBTS 
+  * refBTSForEOTDNotServingBTS 
 
 ### Assistance Data
 * ReferenceAssistData
+  * bcchCarrier (0..1024) // RF channel number of BCCH (Broadcast Control Channel)
+  * bsic (0..63) //Base station identity code
+  * timeSlotScheme (equalLength, variousLength)
+  * btsPosition
 * MsrAssistData
 * SystemInfoAssistData
+  * systemInfoAssistList (list 1..32) // E-OTD Measurement assistance data
 * GPS-AssistData
-* MoreAssDataToBeSent
-* ExtensionContainer
+  * referenceTime (gpsTime)
+  * refLocation (threeDLocation)
+  * dgpsCorrections (gpsTOW, status, satList)
+  * navigationModel //list, by satellite
+    * satelliteID
+    * satStatus (ephemeris data)
+  * ionosphericModel
+  * utcModel
+  * almanac //by satellite
+  * acquisAssist //by satellite
+  * realTimeIntegrity // number of bad satellites
+* MoreAssDataToBeSent (noMoreMessages, moreMessagesOnTheWay)
 
+### Protocol Error
+* ErrorCodes
+  * unDefined
+  * missingComponet
+  * incorrectData
+  * missingIEorComponentElement
+  * messageTooShort
+  * unknowReferenceNumber
