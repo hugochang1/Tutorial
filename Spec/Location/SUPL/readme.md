@@ -126,4 +126,19 @@
     * where SLP is the FQDN of the SLP address
     * SHA-256 MUST be used as the hash (H) function, with opad and ipad as specified in [HMAC]
     * The output of the SHA-256 HASH function MUST be truncated to 64 bits
-
+### NMR (Network Measurement Reports)
+* use for GSM cell
+### RepMode (Report Mode for periodic report)
+* realtime
+* quasirealtime
+* batch
+### SUPL INIT interface
+* TCP/UDP
+  * port 7275
+* SIP push
+  * Application Resource Identifier +g.oma.pusheventapp= “ulp.ua”
+  * Content-Type header application/vnd.omaloc-supl-init.
+  * SIP MESSAGE body contain PER encoded SUPL INIT message
+* MT SMS
+  * For GSM/WCDMA/TD-SCDMA
+  * port 7275
