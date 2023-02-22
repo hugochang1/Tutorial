@@ -98,9 +98,9 @@
 * SLP ->  SET: SUPL TRIGGERED RESPONSE(session-id, posmethod)
 * (wait for start time)
 * SLP <-  SET: SUPL POS INIT(session-id, lid, SET capabilities)
-* SLP <-> SET: SUPL POS (session-id, RRLP/RRC/TIA-801/LPP/LPPe)
-* SLP ->  SET: SUPL REPORT(session-id, **position**) for MSA
-* (repated)
+* SLP <-> SET: SUPL POS (session-id, RRLP/RRC/TIA-801/LPP/LPPe) 1s position for MSB case
+* SLP ->  SET: SUPL REPORT(session-id, **position**) 1s position for MSA case
+* (repated until reach the number of fixes)
 * SLP <-  SET: SUPL END (session-id)
 
 ### SI, Triggered Services
