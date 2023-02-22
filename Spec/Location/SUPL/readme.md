@@ -1,5 +1,5 @@
 # NI
-### NI, proxy mode (non-roaming and roaming are the same from UE's view)
+### NI, Proxy Mode (non-roaming and roaming are the same from UE's view)
 * SLP ->  SET: SUPL INIT (session-id, posmethod, SLP mode)
 * SLP <-  SET: SUPL POS INIT (session-id, lid, SET capabilities, ver)
 * SLP <-> SET: SUPL POS (session-id, RRLP/RRC/TIA-801/LPP/LPPe)
@@ -11,7 +11,7 @@
 * SLP <-> SET: SUPL POS (session-id, RRLP/RRC/TIA-801/LPP/LPPe)
 * SLP ->  SET: SUPL END (session-id)
 
-### NI, user rejects SUPL_INIT
+### NI, User Rejects SUPL_INIT
 * SLP ->  SET: SUPL INIT (session-id, posmethod, SLP mode)
 * SLP <-  SET: SUPL END (session-id, status code=**consentDeniedByUser**, ver)
 
@@ -22,25 +22,29 @@
 * (wait until start time)
 * SLP <-  SET: SUPL POS INIT(session-id, lid, SET Capabilities)
 * SLP <-> SET: SUPL POS (session-id, RRLP/TIA801/LPP/LPPe)
-* SLP ->  SET: SUPL REPORT(session-id, position)
-* SLP <-  SET: SUPL REPORT(session-id, positions)
-* ... (SET sends SUPL REPORT periodic)
+* SLP ->  SET: SUPL REPORT(session-id, **position** for MSA)
+* (wait for next periodic report)
+* SLP <-  SET: SUPL REPORT(session-id, **positions**)
+* (SET sends SUPL REPORT periodic)
 * SLP ->  SET: SUPL END (session-id)
 
 ### NI, Event Trigger
 * SLP ->  SET: SUPL INIT (session-id, trigger_type=**area_event**, posmethod, SLP mode)
 * SLP <-  SET: SUPL TRIGGERED START(session-id, lid, SET capabilities, ver)
 * SLP ->  SET: SUPL TRIGGERED RESPONSE(session-id, posmethod, **trigger_params**)
+  * **geographicTargetAreaList** provided
+* (wait until start time. compare current cell with geographicTargetAreaList, if condition met then start below procedure)
 * SLP <-  SET: SUPL POS INIT(session-id, lid, SET Capabilities)
 * SLP <-> SET: SUPL POS (session-id, RRLP/RRC/TIA-801/LPP/LPPe)
-*         SET: (SET check for area event)
 * SLP ->  SET: SUPL REPORT(session-id)
-* ... (SET checks for area event and sends SUPL REPORT if condition met)
+* (SET checks for area event and sends SUPL REPORT if condition met)
+* SLP <-  SET: SUPL REPORT (seesion-id)
+* (SET repated to check area event and send SUPL REPORT if condition met)
 * SLP ->  SET: SUPL END (session-id)
 
 ### NI, Event Trigger, Network/SET capabilities change
 * SLP <-> SET: ongoing Area event
-*         SET: network change
+* (SET network change)
 * SLP <-  SET: SUPL TRIGGERED START (session-id, lid, SET capabilities, **cause**)
 * SLP ->  SET: SUPL TRIGGERED RESPONSE (session-id, posmethods, trigger_parameters)
 * SLP <-> SET: continued Area event
