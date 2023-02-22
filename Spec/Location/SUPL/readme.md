@@ -21,11 +21,12 @@
 * SLP ->  SET: SUPL TRIGGERED RESPONSE(session-id, posmethod, **trigger_params**, **rep_mode**)
 * (wait until start time)
 * SLP <-  SET: SUPL POS INIT(session-id, lid, SET Capabilities)
-* SLP <-> SET: SUPL POS (session-id, RRLP/TIA801/LPP/LPPe)
-* SLP ->  SET: SUPL REPORT(session-id, **position** for MSA)
+* SLP <-> SET: SUPL POS (session-id, RRLP/TIA801/LPP/LPPe) 1st position for MSB
+* SLP ->  SET: SUPL REPORT(session-id, **position** for MSA) 1st position for MSA
 * (wait for next periodic report)
-* SLP <-  SET: SUPL REPORT(session-id, **positions**)
-* (SET sends SUPL REPORT periodic)
+* SLP <-  SET: SUPL REPORT(session-id, **positions**) 2nd psoition for MSB
+* (repat and SET sends SUPL REPORT periodic)
+* (reach to number of fixes)
 * SLP ->  SET: SUPL END (session-id)
 
 ### NI, Event Trigger
