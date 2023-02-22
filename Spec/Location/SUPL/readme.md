@@ -1,3 +1,5 @@
+* download link:https://www.openmobilealliance.org/release/SUPL/V2_0_4-20181213-A/OMA-ERELD-SUPL-V2_0_4-20181213-A.pdf
+
 # NI
 ### NI, Proxy Mode (non-roaming and roaming are the same from UE's view)
 * SLP ->  SET: SUPL INIT (session-id, posmethod, SLP mode)
