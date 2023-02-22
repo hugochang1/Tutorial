@@ -69,7 +69,7 @@ RRLP-Component ::= CHOICE {
 * PositionInstruct
   * methodType (MSA, MSB, MSAPref, MSBPref)
   * positionMethod (eotd, gps, gpsOrEOTD)
-  * measureResponseTime (0..7)
+  * measureResponseTime (0..7) // 1,2,4,8,16,32,64,128
   * useMultipleSets (multipleSets, oneSet)
   * environmentCharacter (badArea, notBadArea, mixedArea)
 * ReferenceAssistData
