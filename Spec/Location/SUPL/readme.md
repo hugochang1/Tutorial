@@ -40,6 +40,7 @@
 * (SET checks for area event and sends SUPL REPORT if condition met)
 * SLP <-  SET: SUPL REPORT (seesion-id)
 * (SET repated to check area event and send SUPL REPORT if condition met)
+* (reach to end time)
 * SLP ->  SET: SUPL END (session-id)
 
 ### NI, Event Trigger, Network/SET capabilities change
@@ -95,11 +96,7 @@
 ### SI, Triggered Services
 * SLP <-  SET: SUPL TRIGGERED START(session-id, trigger_type=**periodic**, lid, SET capabilities, **trigger_params**)
 * SLP ->  SET: SUPL TRIGGERED RESPONSE(session-id, posmethod)
-* (wait for first position to be started)
-* SLP <-  SET: SUPL POS INIT(session-id, lid, SET capabilities)
-* SLP <-> SET: SUPL POS (session-id, RRLP/RRC/TIA-801/LPP/LPPe)
-* SLP ->  SET: SUPL REPORT(session-id, **position**) for MSA
-* (wait until start time)
+* (wait for start time)
 * SLP <-  SET: SUPL POS INIT(session-id, lid, SET capabilities)
 * SLP <-> SET: SUPL POS (session-id, RRLP/RRC/TIA-801/LPP/LPPe)
 * SLP ->  SET: SUPL REPORT(session-id, **position**) for MSA
@@ -117,6 +114,7 @@
 * SLP <-> SET: SUPL POS (session-id, RRLP/RRC/TIA-801/LPP/LPPe)
 * SLP ->  SET: SUPL REPORT(session-id, **position**) for MSA
 * (SET checks for area event and repeated)
+* (reach to end time)
 * SLP <-  SET: SUPL END (session-id)
 
 # Misc
