@@ -19,6 +19,7 @@
 * SLP ->  SET: SUPL INIT (session-id, trigger_type=**periodic**, posmethod, SLP mode)
 * SLP <-  SET: SUPL TRIGGERED START(session-id, lid, SET capabilities, **rep_capabilities**, ver)
 * SLP ->  SET: SUPL TRIGGERED RESPONSE(session-id, posmethod, **trigger_params**, **rep_mode**)
+* (wait until start time)
 * SLP <-  SET: SUPL POS INIT(session-id, lid, SET Capabilities)
 * SLP <-> SET: SUPL POS (session-id, RRLP/TIA801/LPP/LPPe)
 * SLP ->  SET: SUPL REPORT(session-id, position)
@@ -93,15 +94,26 @@
 * (wait for first position to be started)
 * SLP <-  SET: SUPL POS INIT(session-id, lid, SET capabilities)
 * SLP <-> SET: SUPL POS (session-id, RRLP/RRC/TIA-801/LPP/LPPe)
-* SLP ->  SET: SUPL REPORT(session-id, position)
-* (wait for next position to be calculated)
+* SLP ->  SET: SUPL REPORT(session-id, **position**) for MSA
+* (wait until start time)
 * SLP <-  SET: SUPL POS INIT(session-id, lid, SET capabilities)
 * SLP <-> SET: SUPL POS (session-id, RRLP/RRC/TIA-801/LPP/LPPe)
-* SLP ->  SET: SUPL REPORT(session-id, position)
+* SLP ->  SET: SUPL REPORT(session-id, **position**) for MSA
 * (repated)
 * SLP <-  SET: SUPL END (session-id)
 
-### SI, Triggered Services (page 147)
+### SI, Triggered Services
+* SLP <-  SET: SUPL TRIGGERED START(session-id, **trigger_type=area event**, lid, SET capabilities, **trigger_params**)
+  * SET can indicate **geographicTargetAreaList** to SLP
+* SLP ->  SET: SUPL TRIGGERED RESPONSE(session-id, posmethod)
+  * SLP can provide cell info in **areaIdLists**
+* (wait until start time)
+* (SET checks **areaIdLists** first. if condition met, start GNSS for location calculation)
+* SLP <-  SET: SUPL POS INIT(session-id, lid, SET capabilities)
+* SLP <-> SET: SUPL POS (session-id, RRLP/RRC/TIA-801/LPP/LPPe)
+* SLP ->  SET: SUPL REPORT(session-id, **position**) for MSA
+* (SET checks for area event and repeated)
+* SLP <-  SET: SUPL END (session-id)
 
 # Misc
 ### verification field (**ver**)
