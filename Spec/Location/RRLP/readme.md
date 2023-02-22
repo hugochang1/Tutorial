@@ -6,6 +6,7 @@
 * LCS: Location Services
 * RRLP: Radio Resource LCS Protocol
 
+# Functionality of Protocol
 ### Position Measurement Procedure
 * SMLC <-> MS: Assistance Data Delivery Procedure
 * SMLC ->  MS: RRLP (Measure Position Request)
@@ -38,3 +39,36 @@
   * When the SMLC sends a Measure Position Request component to the MS, it starts a timer.
 * Unforeseen Component
   * When the MS receives a complete Assistance Data pseudo-segmentation sequence or an Assistance Data component that was sent without pseudo-segmentation
+
+# Components
+* msr = measure
+* req = request
+* rsp = response
+* nbr = number
+* ack = acknowledgement
+
+### Measure Position Request
+* PositionInstruct
+* ReferenceAssistData
+* MsrAssistData
+* SystemInfoAssistData
+* GPS-AssistData
+* ExtensionContainer
+
+### Measure Position Response
+* MultipleSets
+* ReferenceIdentity
+* OTD-MeasureInfo
+* LocationInfo
+* GPS-MeasureInfo
+* LocationError
+* ExtensionContainer
+
+### Assistance Data
+* ReferenceAssistData
+* MsrAssistData
+* SystemInfoAssistData
+* GPS-AssistData
+* MoreAssDataToBeSent
+* ExtensionContainer
+
