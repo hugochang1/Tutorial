@@ -9,6 +9,12 @@
 ### SMLC -> UE:  requestLocationInformation
 ### SMLC <- UE:  provideLocationInformation
 
+# Functionality
+* a_gnss
+* otdoa
+* ecid
+* epdu
+
 # LPP_LPP_MessageBody lpp_MessageBody
 
 ### SMLC -> UE:  requestCapabilities
