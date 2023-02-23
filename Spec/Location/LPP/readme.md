@@ -104,9 +104,111 @@
 ### SMLC -> UE:  provideAssistanceData
 * commonIEsProvideAssistanceData
 * a_gnss_ProvideAssistanceData
+  * gnss_CommonAssistData
+    * ReferenceLocation
+    * IonosphericModel
+    * EarthOrientationPrameters
+  * gnss_GenericAssistData (list)
+    * gnss_ID
+    * TimeModels
+    * DifferentialCorrections
+    * NavigationModel
+    * RealTimeIntegrity
+    * DataBitAssistance
+    * AcquisitionAssistance
+    * Almanac
+    * UTC_Model
+    * AuxiliaryInformation
 * otdoa_ProvideAssistanceData
+  * ReferenceCellInfo
+  * NeighbourCellInfo
 * epdu_Provide_Assistance_Data
 
 ### SMLC -> UE:  requestLocationInformation
+* commonIEsRequestLocationInformation
+  * locationInformationType (choice)
+    * locationEstimateRequired
+    * locationMeasurementsRequired
+    * locationEstimatePreferred
+    * locationMeasurementsPreferred
+  * triggeredReporting
+    * cellChange
+    * reportingDuration
+  * periodicalReporting
+    * reportingAmount (choice, 1,2,4,8,16,32,64)
+    * reportingInterval (choice, 0_25, 0_5, 1,2,4,8,16,32,64)
+  * additionalInformation (choice)
+    * onlyReturnInformationRequested
+    * mayReturnAditionalInformation
+  * qos
+    * horizontalAccuracy
+    * verticalCoordinateRequest
+    * verticalAccuracy
+    * responseTime
+    * velocityRequest
+  * environment (choice, badArea, notBadArea, mixedArea)
+  * locationCoordinateTypes
+    * bool ellipsoidPoint
+    * bool ellipsoidPointWithUncertaintyCircle
+    * bool ellipsoidPointWithUncertaintyEllipse
+    * bool polygon
+    * bool ellipsoidPointWithAltitude
+    * bool ellipsoidPointWithAltitudeAndUncertaintyEllipsoid
+    * bool ellipsoidArc
+  * velocityTypes
+    * Bool horizontalVelocity
+    * Bool horizontalWithVerticalVelocity
+    * Bool horizontalVelocityWithUncertainty
+    * Bool horizontalWithVerticalVelocityAndUncertainty
+* a_gnss_RequestLocationInformation
+  * Bool fineTimeAssistanceMeasReq
+  * Bool adrMeasReq
+  * Bool multiFreqMeasReq
+  * Bool assistanceAvailability
+* otdoa_RequestLocationInformatio
+  * Bool assistanceAvailability
+  * multipathRSTD
+  * maxNoOfRSTDmeas
+* ecid_RequestLocationInformation
+* epdu_RequestLocationInformation
 
 ### SMLC <- UE:  provideLocationInformation
+* commonIEsProvideLocationInformation
+  * locationEstimate
+  * velocityEstimate
+  * locationError (choice)
+    * undefined
+    * requestMethodNotSupport
+    * positionMethodFailure
+    * periodicLocationMeasurementNotAvailable
+* a_gnss_ProvideLocationInformation
+  * gnss_SignalMeasurementInformation
+  * gnss_LocationInformation
+  * gnss_Error (choice)
+    * undefined
+    * thereWereNotEnoughSatellitesReceived
+    * assistanceDataMissing
+    * notAllRequestedMeasurementsPossible
+* otdoa_ProvideLocationInformation
+  * otdoaSignalMeasurementInformation
+  * otdoa_Error (choice)
+    * undefined
+    * assistance_data_missing
+    * unableToMeasureReferenceCell
+    * unableToMeasureAnyNeighbourCell
+    * attemptedButUnableToMeasureSomeNeighbourCells
+* ecid_ProvideLocationInformation
+  * primaryCellMeasuredResults
+    * physCellId
+    * cellGlobalId
+    * arfcnEUTRA
+    * systemFrameNumber
+    * rsrp_Result
+    * rsrq_Result
+    * ue_RxTxTimeDiff
+  * measuredResultsList (list)
+  * ecid_Error (choice)
+    * undefined
+    * requestedMeasurementNotAvailable
+    * notAllrequestedMeasurementsPossible
+* epdu_ProvideLocationInformation
