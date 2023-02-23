@@ -10,8 +10,17 @@
   * PPP is a positioning technique that removes or models GNSS system errors to provide a high level of position accuracy from a single receiver
   * A PPP solution depends on GNSS satellite clock and orbit corrections, generated from a network of global reference stations
   * Once the corrections are calculated, they are delivered to the end user via satellite or over the Internet
+* GPS L5
+  * GPS L1: 1575.42 MHz
+    * 1.023 million chips per second
+  * GPS L5: 1176.45 MHz
+    * 10.23 million chips per second -> has better anti-interference compared with GPS L1
+    * this frequency (1176.45 MHz) only reserve for space satellite to use, it means the interference in the air is less
+    * signal strength is better than GPS L1 about 6dB
+    * different radio frequency has different travel speed in ionospheric, it means ionospheric can be corrected by using GPS L1 and GPS L5 at the same time
 
 # Terms
+* E-UTRAN: Evolved Universal Terrestrial Radio Access Network
 * LOS: Line of Sight
 * NLOS: non line of sight
 * AoD: Angle of Departure
