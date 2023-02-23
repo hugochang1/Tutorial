@@ -1,6 +1,5 @@
 # RRLP
-* download link: https://www.3gpp.org/ftp/Specs/archive/04_series/04.31/
-* download link (new): https://www.etsi.org/deliver/etsi_ts/144000_144099/144031/14.03.00_60/ts_144031v140300p.pdf
+* download link: https://www.etsi.org/deliver/etsi_ts/144000_144099/144031/14.03.00_60/ts_144031v140300p.pdf
 
 # Terms
 * SMLP: Serving Mobile Location Centre
@@ -107,26 +106,41 @@ RRLP-Component ::= CHOICE {
 * GPS-AssistData
   * referenceTime (gpsTime)
   * refLocation (threeDLocation)
+  * ionosphericModel
   * dgpsCorrections (gpsTOW, status, satList)
   * navigationModel //list, by satellite
     * satelliteID
     * satStatus (ephemeris data)
-  * ionosphericModel
   * utcModel
   * almanac //by satellite
   * acquisAssist //by satellite
   * realTimeIntegrity // number of bad satellites
+* rel98-MsrPosition-Req-extension
+  * gpsTimeAssistanceMeasurementRequest
+  * GPSReferenceTimeUncertainty
+* rel5-MsrPosition-Req-extension (empty)
+* rel7-MsrPosition-Req-extension
+  * velocityRequested (NULL)
+  * ganssPositionMethod (ganssID, mas, msb, standalone, signals)
+  * ganss-AssistData (commonAssistData, GenericAssistDataList)
+  * ganssCarrierPhaseMeasurementRequest (NULL)
+  * ganssTODGSMTimeAssociationMeasurementRequest (NULL)
+  * requiredResponseTime (1..128)
+  * add-GPS-AssistData (gpsEphemerisExt, gpsEphemerisExtCheck, ...)
+  * ganssMultiFreqMeasurementRequest (NULL)
 
 ### Measure Position Response
-* MultipleSets
-* ReferenceIdentity
-* OTD-MeasureInfo
+* MultipleSets (choice)
+  * MultipleSets
+  * oneSet
+* ReferenceIdentity (list, 1..3)
+* OTD-MeasureInfo (1..3)
 * LocationInfo
   * refFrame (0..65535)
   * gpsTOW (0..14399999)
   * fixType (2DFix, 3DFix)
   * posEstimate
-* GPS-MeasureInfo // by satellites
+* GPS-MeasureInfo // by satellites (1..16)
 * LocationError
   * unDefined
   * notEnoughBTSs
@@ -138,7 +152,13 @@ RRLP-Component ::= CHOICE {
   * methodNotSupported 
   * notProcessed 
   * refBTSForGPSNotServingBTS 
-  * refBTSForEOTDNotServingBTS 
+  * refBTSForEOTDNotServingBTS
+* rel-98-MsrPosition-Rsp-Extension
+* rel-5-MsrPosition-Rsp-Extension
+* rel-7-MsrPosition-Rsp-Extension 
+  * VelocityEstimate
+  * GANSSLocationInfo
+  * GANSSMeasureInfo
 
 ### Assistance Data
 * ReferenceAssistData
@@ -146,9 +166,8 @@ RRLP-Component ::= CHOICE {
   * bsic (0..63) //Base station identity code
   * timeSlotScheme (equalLength, variousLength)
   * btsPosition
-* MsrAssistData
-* SystemInfoAssistData
-  * systemInfoAssistList (list 1..32) // E-OTD Measurement assistance data
+* MsrAssistData (list 1..15)
+* SystemInfoAssistData (list 1..32)
 * GPS-AssistData
   * referenceTime (gpsTime)
   * refLocation (threeDLocation)
@@ -162,12 +181,64 @@ RRLP-Component ::= CHOICE {
   * acquisAssist //by satellite
   * realTimeIntegrity // number of bad satellites
 * MoreAssDataToBeSent (noMoreMessages, moreMessagesOnTheWay)
+* rel98-AssistanceData-Extension
+  * gpsTimeAssistanceMeasurementRequest (null)
+  * gpsReferenceTimeUncertainty (0..127)
+* rel5-AssistanceData-Extension
+* rel7-AssistanceData-Extension
+  * ganss-AssistData
+  * ganssCarrierPhaseMeasurementRequest
+  * ganssTODGSMTimeAssociationMeasurementRequest
+  * add-GPS-AssistData
 
 ### Protocol Error
-* ErrorCodes
+* ErrorCodes (choice)
   * unDefined
   * missingComponet
   * incorrectData
   * missingIEorComponentElement
   * messageTooShort
   * unknowReferenceNumber
+* rel-5-ProtocolError-Extension
+
+### Positioning Capability Request
+* Extended-reference
+  * smlc-code (0..63)
+  * transaction-ID (0..262143)
+* GANSSPositionMethods (MSA-EOTD, MSB-EOTD, MSA-GPS, MSB-GPS, StandaloneGPS)
+
+### Positioning Capability Response
+* Extended-reference
+  * smlc-code (0..63)
+  * transaction-ID (0..262143)
+* PosCapabilities
+  * NonGANSSPositionMethods (MSA-EOTD, MSB-EOTD, MSA-GPS, MSB-GPS, Standalone)
+  * GANSSPositionMethods (ganssID, MSA/MSB/Standalone, signals)
+  * MultipleMeasurementSets (eotd, gps, ganss)
+* AssistanceSupported
+  * GPSAssistance
+  * GANSSAssistanceSet
+  * GANSSAdditionalAssistanceChoices (list 1..16)
+* AssistanceNeeded
+  * GPSAssistanceData
+  * GANSSAssistanceData
+
+### Positioning Multilateration Timing Advance Request
+* target-Number-of-Cells (0..7)
+* requested-MS-Synchronization-Accuracy (0..15)
+* mta-Method
+* random-ID-Set
+* mpm-Timer (0..7)
+* serving-cell
+* co-sited-cells
+* cell-Set1~8
+
+### Multilateration OTD Response
+* servingCellDLAccuracy (1..16)
+* OTDMeasurementResults (list 1..7)
+  * reportedCell
+  * msSyncAccuracy (0..15)
+  * observedTimeDiff (0..999)
+* RXLEVMeasurementResults (list 1..6)
+  * reportedCell
+  * rxLEV (0..63)
