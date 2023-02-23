@@ -2,12 +2,12 @@
 * download: https://www.etsi.org/deliver/etsi_ts/137300_137399/137355/16.02.00_60/ts_137355v160200p.pdf
 
 # LPP
-### SMLC -> UE:  requestCapabilities
-### SLMC <- UE:  provideCapabilities
-### SLMC <- UE:  requestAssistanceData
-### SMLC -> UE:  provideAssistanceData
-### SMLC -> UE:  requestLocationInformation
-### SMLC <- UE:  provideLocationInformation
+* SMLC -> UE:  requestCapabilities
+* SLMC <- UE:  provideCapabilities
+* SLMC <- UE:  requestAssistanceData
+* SMLC -> UE:  provideAssistanceData
+* SMLC -> UE:  requestLocationInformation
+* SMLC <- UE:  provideLocationInformation
 
 # Functionality
 * a_gnss
