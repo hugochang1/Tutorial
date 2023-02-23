@@ -1,5 +1,7 @@
 # RRLP
 * download link: https://www.3gpp.org/ftp/Specs/archive/04_series/04.31/
+* download link (new): https://www.etsi.org/deliver/etsi_ts/144000_144099/144031/14.03.00_60/ts_144031v140300p.pdf
+
 # Terms
 * SMLP: Serving Mobile Location Centre
 * MS: Mobile Station
