@@ -37,7 +37,7 @@
       * ReferenceLocationSupport
       * IonosphericModelSupport
       * EarthOrientationParametersSupport
-    * gnss_GenericAssistanceDataSupport
+    * gnss_GenericAssistanceDataSupport (list)
       * gnss_ID
       * TimeModelsSupport
       * DifferentialCorrectionsSupport
@@ -72,9 +72,34 @@
 * epdu_ProvideCapabilities
 
 ### SLMC <- UE:  requestAssistanceData
-* 
+* commonIEsRequestAssistanceData
+  * mcc, mnc, cellid
+* a_gnss_RequestAssistanceData
+  * gnss_CommonAssistDataReq
+    * ReferenceTime
+    * ReferenceLocation
+    * IonosphericModel
+    * EarthOrientationParameters
+  * gnss_GenericAssistDataReq (list)
+    * gnss_ID
+    * TimeModels
+    * DifferentialCorrections
+    * NavigationModel
+    * RealTimeIntegrity
+    * DataBitAssistance
+    * AcquisitionAssistance
+    * Almanac
+    * UTCModel
+    * AuxiliaryInformation
+* otdoa_RequestAssistanceData
+  * physCellId
+* epdu_RequestAssistanceData
 
 ### SMLC -> UE:  provideAssistanceData
+* commonIEsProvideAssistanceData
+* a_gnss_ProvideAssistanceData
+* otdoa_ProvideAssistanceData
+* epdu_Provide_Assistance_Data
 
 ### SMLC -> UE:  requestLocationInformation
 
