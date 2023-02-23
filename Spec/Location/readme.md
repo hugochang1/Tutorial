@@ -3,7 +3,13 @@
 
 # Questions
 * What is RTK (real-time Kinematic)
+  * introduce a fixed base station, Rover, which knows the precise of its location
+  * the Rover observes GNSS satellite , then it will know the location errors
+  * UE get the location erros from nearest Rover to correct the location errors
 * What is PPP (Precise Point Positioning)
+  * PPP is a positioning technique that removes or models GNSS system errors to provide a high level of position accuracy from a single receiver
+  * A PPP solution depends on GNSS satellite clock and orbit corrections, generated from a network of global reference stations
+  * Once the corrections are calculated, they are delivered to the end user via satellite or over the Internet
 
 # Terms
 * BTS: Base Transceiver Station
