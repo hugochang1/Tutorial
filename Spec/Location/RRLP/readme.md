@@ -9,19 +9,31 @@
 * RRLP: Radio Resource LCS Protocol
 
 # Functionality of Protocol
-### Position Measurement Procedure
-* SMLC <-> MS: Assistance Data Delivery Procedure
-* SMLC ->  MS: RRLP (Measure Position Request)
-  * QoP
-  * assistance data for MSA
-* SMLC <-  MS: RRLP (Protocol Error) if something wrong happen
-  * SMLC may resend Measure Position Request or start a new positioning measurement procedure
-* SMLC <-  MS: RRLP (Measure Position Response)
+* Measure Position Request
+* Measure Position Response
+* Assistance Data
+* Assistance Data Acknowledgement
+* Protocol Error
+* Positioning Capability Request
+* Positioning Capability Response
+* Multilateration Timing Advance Request
 
-### Assistance Data Delivery Procedure
-* SMLC ->  MS: RRLP(Assistance Data)
-* SMLC <-  MS: RRLP(Protocol Error) if something wrong happen
-* SMLC <-  MS: RRLP(Assistnace Data Ack)
+### Position Measurement Procedure
+* Capability Transfer Procedure
+  * SMLC ->  MS: RRLP(Positioning Capability Request)
+  * SMLC <-  MS: RRLP(Protocol Error) if something wrong happen
+  * SMLC <-  MS: RRLP(Positioning Capability Response)
+* Assistance Data Transfer
+  * SMLC ->  MS: RRLP(Assistance Data)
+  * SMLC <-  MS: RRLP(Protocol Error) if something wrong happen
+  * SMLC <-  MS: RRLP(Assistnace Data Ack)
+* Measure Position
+  * SMLC ->  MS: RRLP (Measure Position Request)
+    * QoP
+    * assistance data for MSA
+  * SMLC <-  MS: RRLP (Protocol Error) if something wrong happen
+    * SMLC may resend Measure Position Request or start a new positioning measurement procedure
+  * SMLC <-  MS: RRLP (Measure Position Response)
 
 ### Error Handling
 * SMLC <-  MS: RRLP(Protocol Error - Message Too Short)
