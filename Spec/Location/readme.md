@@ -12,6 +12,11 @@
   * Once the corrections are calculated, they are delivered to the end user via satellite or over the Internet
 
 # Terms
+* LOS: Line of Sight
+* NLOS: non line of sight
+* AoD: Angle of Departure
+* AoA: Angle of Arrival
+* ToA: Time of Arrival
 * BTS: Base Transceiver Station
 * ADR: Accumulated Delta-Range
 * ARFCN: Absolute Radio Frequency Channel Number
