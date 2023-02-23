@@ -33,6 +33,9 @@
   * SMLC <-  MS: RRLP (Protocol Error) if something wrong happen
     * SMLC may resend Measure Position Request or start a new positioning measurement procedure
   * SMLC <-  MS: RRLP (Measure Position Response)
+* Multilateration Timing advance procedure
+![image](https://user-images.githubusercontent.com/6143237/220946588-a93b730f-d3bd-4965-8c16-2eb9ef9399d4.png)
+
 
 ### Error Handling
 * SMLC <-  MS: RRLP(Protocol Error - Message Too Short)
@@ -60,26 +63,11 @@
 * rsp = response
 * nbr = number
 * ack = acknowledgement
-```
-PDU ::= SEQUENCE {
-	referenceNumber			INTEGER (0..7),
-	component				RRLP-Component 
-}
 
-RRLP-Component ::= CHOICE {
-	msrPositionReq  MsrPosition-Req,
-	msrPositionRsp  MsrPosition-Rsp,
-	assistanceData  AssistanceData,
-	assistanceDataAck  NULL,
-	protocolError  ProtocolError,
-	...,
-	posCapabilityReq  PosCapability-Req,
-	posCapabilityRsp  PosCapability-Rsp,
-	multilaterationOTDReq  MultilaterationOTD-Req,
-	multilaterationOTDRsp  MultilaterationOTD-Rsp,
-	posMTAReq  PosMTA-Req
-}
-```
+![image](https://user-images.githubusercontent.com/6143237/220945833-5ccabd4b-e2e8-4e67-8b54-d4815ec54ae7.png)
+
+
+
 
 # Components
 ### Measure Position Request
