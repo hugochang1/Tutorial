@@ -68,13 +68,17 @@ PDU ::= SEQUENCE {
 }
 
 RRLP-Component ::= CHOICE {
-	msrPositionReq			MsrPosition-Req,
-	msrPositionRsp			MsrPosition-Rsp,
-	assistanceData			AssistanceData,
-	assistanceDataAck		NULL,
-	protocolError			ProtocolError,
-	...
-
+	msrPositionReq  MsrPosition-Req,
+	msrPositionRsp  MsrPosition-Rsp,
+	assistanceData  AssistanceData,
+	assistanceDataAck  NULL,
+	protocolError  ProtocolError,
+	...,
+	posCapabilityReq  PosCapability-Req,
+	posCapabilityRsp  PosCapability-Rsp,
+	multilaterationOTDReq  MultilaterationOTD-Req,
+	multilaterationOTDRsp  MultilaterationOTD-Rsp,
+	posMTAReq  PosMTA-Req
 }
 ```
 
