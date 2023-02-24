@@ -2,26 +2,26 @@
 - https://scdn.rohde-schwarz.com/ur/pws/dl_downloads/dl_common_library/dl_brochures_and_datasheets/pdf_1/LTE_LBS_White_Paper.pdf
 
 # Positioning Method
-|Position Method|MSB|MSA|Standalone|
-|-|-|-|-|
-|RRLP-GPS (r4)|O|O|O|
-|RRLP-EOTD (r4)|TBD|O||
-|RRLP-TA||O||
-|RRLP-GNSS (r7)|O|O|O|
-|LPP-GNSS (r9)|O|O|O|
-|LPP-OTDOA (r9)||O||
-|LPP-ECID (r9)||O||
-|LPP-TBS (r13)||O||
-|LPP-WLAN (r13)||O||
-|LPP-BT (r13)||O||
-|LPP-Sensor (r13)||O||
-|LPP-NR ECID (r16)||O||
-|LPP-NR DL-TDOA (r16)||O||
-|LPP-NR DL-AoD (r16)||O||
-|LPP-NR DL-MultiRTT (r16)||O||
-|LPPe-WLAN (v1)|TBD|O||
-|LPPe-BT (v1)|TBD|O||
-|LPPe-Sensor (v1)|TBD|O||
+|Position Method|Rel/Ver|MSB|MSA|Standalone|
+|-|-|-|-|-|
+|RRLP-GPS    |r4|O|O|O|
+|RRLP-EOTD   |r4|TBD|O||
+|RRLP-TA     |TBD||O||
+|RRLP-GNSS   |r7|O|O|O|
+|LPP-GNSS    |r9|O|O|O|
+|LPP-OTDOA   |r9||O||
+|LPP-ECID    |r9||O||
+|LPP-TBS     |r13||O||
+|LPP-WLAN    |r13||O||
+|LPP-BT      |r13||O||
+|LPP-Sensor  |r13||O||
+|LPP-NR ECID |r16||O||
+|LPP-NR DL-TDOA|r16||O||
+|LPP-NR DL-AoD|r16||O||
+|LPP-NR DL-MultiRTT|r16||O||
+|LPPe-WLAN   |v1|TBD|O||
+|LPPe-BT     |v1|TBD|O||
+|LPPe-Sensor |v1|TBD|O||
 * TA: Timing Advance
 * EOTD: Enhance Observed Time Difference
 * OTDOA: Obersed Time Difference of Arrival
