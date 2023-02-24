@@ -4,23 +4,28 @@
 # Positioning Method
 |Position Method|MSB|MSA|Standalone|
 |-|-|-|-|
-|GNSS|O|O|O|
+|RRLP-GPS (r4)|O|O|O|
+|RRLP-EOTD (r4)|O|O||
 |RRLP-TA||O||
-|RRLP-EOTD|O|O||
-|LPP-OTDOA||O||
-|LPP-UTDOA||O||
-|LPP-ECID||O||
-|LPP-TBS||O||
-|LPPe-WLAN||O||
-|LPPe-BT||O||
-|LPPe-Sensor||O||
-|LPP-NR ECID||O||
-|LPP-NR DL-TDOA||O||
-|LPP-NR DL-AoD||O||
-|LPP-NR DL-MultiRTT||O||
+|RRLP-GNSS (r7)|O|O|O|
+|LPP-GNSS (r9)||O||
+|LPP-OTDOA (r9)||O||
+|LPP-ECID (r9)||O||
+|LPP-TBS (r13)||O||
+|LPP-WLAN (r13)||O||
+|LPP-BT (r13)||O||
+|LPP-Sensor (r13)||O||
+|LPP-NR ECID (r16)||O||
+|LPP-NR DL-TDOA (r16)||O||
+|LPP-NR DL-AoD (r16)||O||
+|LPP-NR DL-MultiRTT (r16)||O||
+|LPPe-WLAN (v1)||O||
+|LPPe-BT (v1)||O||
+|LPPe-Sensor (v1)||O||
 * TA: Timing Advance
 * EOTD: Enhance Observed Time Difference
 * OTDOA: Obersed Time Difference of Arrival
+* TBS: Terrestrial Beacon System
 * NR: New Radio (5G)
 * DL: Downlink
 * TDOA: Time Difference of Arrival
