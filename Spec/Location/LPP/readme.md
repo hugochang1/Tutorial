@@ -17,6 +17,38 @@
 * ecid
 * epdu
 
+# Capability Transfer procedure
+### Server request UE capability
+* Server -> UE: RequestCapability
+* Server <- UE: ProvideCapability
+### UE provides unsolicited capability 
+* Server <- UE: ProvideCapability
+
+# Assistance Data Transfer
+### Assistance Data Transfer procedure
+* Server <- UE: RequestAssistanceData
+* Server -> UE: ProvideAssistanceData
+* Server -> UE: ProvideAssistanceData
+* ...
+
+### Periodic Assistance Data Transfer procedure
+* Server <- UE: RequestAssistanceData (TransactionID=T1, PeriodicSession=S, Control Parameter)
+* Server -> UE: ProvideAssistanceData (TransactionID=T1, PeriodicSession=S, Control Parameter) **no assisData**
+* Server -> UE: ProvideAssistanceData (TransactionID=T2, PeriodicSession=S, Periodic AssistanceData)
+* Server -> UE: ProvideAssistanceData (TransactionID=T2, PeriodicSession=S, Periodic AssistanceData)
+* Server -> UE: Abort (TransactionID=T2) if Server wants
+* Server <- UE: Abort (TransactionID=T2) if UE wants
+* ...
+* Server -> UE: ProvideAssistanceData (TransactionID=T2, endTransaction, PeriodicSession=S, Periodic AssistanceData) normal end case
+
+### Periodic Assistance Data Transfer with Update procedure
+* If the target device changes its primary cell
+* Server <-> UE: Periodic Session ongoing
+* Server <- UE: RequestAssistanceData (TransactionID=T1, PeriodicSession=S, Control Parameter)
+* Server -> UE: ProvideAssistanceData (TransactionID=T1, PeriodicSession=S, Control Parameter) **no assisData**
+* Server <-> UE: Periodic Session ongoing
+
+
 # LPP_LPP_MessageBody lpp_MessageBody
 
 ### SMLC -> UE:  requestCapabilities
