@@ -13,7 +13,9 @@
 |LPPe-WLAN||O||
 |LPPe-BT||O||
 |LPPe-Sensor||O||
-
+* TA: Timing Advance
+* EOTD: Enhance Observed Time Difference
+* OTDOA: Obersed Time Difference of Arrival
 
 # Questions
 * What is RTK (real-time Kinematic)
