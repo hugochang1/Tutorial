@@ -2,7 +2,7 @@
 - https://scdn.rohde-schwarz.com/ur/pws/dl_downloads/dl_common_library/dl_brochures_and_datasheets/pdf_1/LTE_LBS_White_Paper.pdf
 
 # Positioning Method
-|Tech|MSB|MSA|Standalone|
+|Position Method|MSB|MSA|Standalone|
 |-|-|-|-|
 |GNSS|O|O|O|
 |RRLP-TA||O||
@@ -10,12 +10,22 @@
 |LPP-OTDOA||O||
 |LPP-UTDOA||O||
 |LPP-ECID||O||
+|LPP-TBS||O||
 |LPPe-WLAN||O||
 |LPPe-BT||O||
 |LPPe-Sensor||O||
+|LPP-NR ECID||O||
+|LPP-NR DL-TDOA||O||
+|LPP-NR DL-AoD||O||
+|LPP-NR DL-MultiRTT||O||
 * TA: Timing Advance
 * EOTD: Enhance Observed Time Difference
 * OTDOA: Obersed Time Difference of Arrival
+* NR: New Radio (5G)
+* DL: Downlink
+* TDOA: Time Difference of Arrival
+* AoD: Angle of Departure
+* RTT: Round Trip Time
 
 # Questions
 * What is RTK (real-time Kinematic)
