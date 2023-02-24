@@ -28,8 +28,8 @@
 ### Assistance Data Transfer procedure
 * Server <- UE: RequestAssistanceData
 * Server -> UE: ProvideAssistanceData
-* Server -> UE: ProvideAssistanceData
-* ...
+* Server -> UE: ProvideAssistanceData  if needed
+* ...  if needed
 
 ### Periodic Assistance Data Transfer procedure
 * Server <- UE: RequestAssistanceData (TransactionID=T1, PeriodicSession=S, Control Parameter)
@@ -48,6 +48,12 @@
 * Server -> UE: ProvideAssistanceData (TransactionID=T1, PeriodicSession=S, Control Parameter) **no assisData**
 * Server <-> UE: Periodic Session ongoing
 
+# Location Information Transfer 
+### Location Information Transfer procedure
+* Server -> UE: RequestLocationInformation
+* Server <- UE: ProvideLocationInformation
+* Server <- UE: ProvideLocationInformation if needed
+* ... if needed
 
 # LPP_LPP_MessageBody lpp_MessageBody
 
