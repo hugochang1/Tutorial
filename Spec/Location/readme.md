@@ -1,6 +1,20 @@
 # Good reference
 - https://scdn.rohde-schwarz.com/ur/pws/dl_downloads/dl_common_library/dl_brochures_and_datasheets/pdf_1/LTE_LBS_White_Paper.pdf
 
+# Positioning Method
+|Tech|MSB|MSA|Standalone|
+|-|-|-|-|
+|GNSS|O|O|O|
+|RRLP-TA||O||
+|RRLP-EOTD|O|O||
+|LPP-OTDOA||O||
+|LPP-UTDOA||O||
+|LPP-ECID||O||
+|LPPe-WLAN||O||
+|LPPe-BT||O||
+|LPPe-Sensor||O||
+
+
 # Questions
 * What is RTK (real-time Kinematic)
   * introduce a fixed base station, Rover, which knows the precise of its location
