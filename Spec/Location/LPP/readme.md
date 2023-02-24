@@ -8,6 +8,8 @@
 * SMLC -> UE:  provideAssistanceData
 * SMLC -> UE:  requestLocationInformation
 * SMLC <- UE:  provideLocationInformation
+* SMLC <-> UE: Error
+* SMLC <-> UE: Abort
 
 # Functionality
 * a_gnss
