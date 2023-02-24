@@ -5,10 +5,10 @@
 |Position Method|MSB|MSA|Standalone|
 |-|-|-|-|
 |RRLP-GPS (r4)|O|O|O|
-|RRLP-EOTD (r4)|O|O||
+|RRLP-EOTD (r4)|TBD|O||
 |RRLP-TA||O||
 |RRLP-GNSS (r7)|O|O|O|
-|LPP-GNSS (r9)||O||
+|LPP-GNSS (r9)|O|O|O|
 |LPP-OTDOA (r9)||O||
 |LPP-ECID (r9)||O||
 |LPP-TBS (r13)||O||
@@ -19,9 +19,9 @@
 |LPP-NR DL-TDOA (r16)||O||
 |LPP-NR DL-AoD (r16)||O||
 |LPP-NR DL-MultiRTT (r16)||O||
-|LPPe-WLAN (v1)||O||
-|LPPe-BT (v1)||O||
-|LPPe-Sensor (v1)||O||
+|LPPe-WLAN (v1)|TBD|O||
+|LPPe-BT (v1)|TBD|O||
+|LPPe-Sensor (v1)|TBD|O||
 * TA: Timing Advance
 * EOTD: Enhance Observed Time Difference
 * OTDOA: Obersed Time Difference of Arrival
