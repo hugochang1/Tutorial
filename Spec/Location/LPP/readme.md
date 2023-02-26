@@ -2,6 +2,7 @@
 * download: https://www.etsi.org/deliver/etsi_ts/137300_137399/137355/16.02.00_60/ts_137355v160200p.pdf
   * page 82
 * Qualcomm OTDOA: https://www.qualcomm.com/content/dam/qcomm-martech/dm-assets/documents/otdoa_positioning_in_3gpp_lte_v1.pdf
+  * page 33, 6.4 RRC
 
 # LPP
 * SMLC -> UE:  requestCapabilities
@@ -119,7 +120,7 @@
     * Bool horizontalVelocityWithUncertainty
     * Bool horizontalWithVerticalVelocityAndUncertainty
 * otdoa_ProvideCapabilities
-  * otdoa_Mode
+  * otdoa_Mode (MSA, MSA-NB, MSB for LPPe)
   * supportedBandListEUTRA
   * interFreqRSTDmeasurement_r10
   * additionalNeighbourCellInfoList_r10
@@ -172,16 +173,12 @@
     * AuxiliaryInformation
 * otdoa_ProvideAssistanceData
   * ReferenceCellInfo
-  * NeighbourCellInfo
+  * NeighbourCellInfo (up to 72 cells)
 * epdu_Provide_Assistance_Data
 
 ### SMLC -> UE:  requestLocationInformation
 * commonIEsRequestLocationInformation
-  * locationInformationType (choice)
-    * locationEstimateRequired
-    * locationMeasurementsRequired
-    * locationEstimatePreferred
-    * locationMeasurementsPreferred
+  * locationInformationType (choice, MSA, MSB, MSA_Pref, MSB_Pref)
   * triggeredReporting
     * cellChange
     * reportingDuration
@@ -242,6 +239,14 @@
     * notAllRequestedMeasurementsPossible
 * otdoa_ProvideLocationInformation
   * otdoaSignalMeasurementInformation
+    * reference cell
+      * time stamp
+      * Identity of the reference cell (PCI, ARFCN, ECGI)
+      * quality of TOA measurement from the reference cell
+    * neighbor cells (up to 24)
+      * Identity of the neighbor cells (PCI, ARFCN, ECGI)
+      * RSTD measuremnts
+      * quality of RSTD measurements
   * otdoa_Error (choice)
     * undefined
     * assistance_data_missing
