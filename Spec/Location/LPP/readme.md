@@ -1,6 +1,7 @@
 # 3GPP TS 37.355
 * download: https://www.etsi.org/deliver/etsi_ts/137300_137399/137355/16.02.00_60/ts_137355v160200p.pdf
-* page 82
+  * page 82
+* Qualcomm OTDOA: https://www.qualcomm.com/content/dam/qcomm-martech/dm-assets/documents/otdoa_positioning_in_3gpp_lte_v1.pdf
 
 # LPP
 * SMLC -> UE:  requestCapabilities
