@@ -13,14 +13,18 @@
 * SMLC <-> UE: Error
 * SMLC <-> UE: Abort
 
+# Control Plane
+* ![image](https://user-images.githubusercontent.com/6143237/221423237-0d37b969-00a9-44b1-a85f-4c4bdf979515.png)
+
+# User Plane
+* ![image](https://user-images.githubusercontent.com/6143237/221423430-b28afc53-43a2-4997-bc1b-80138b3f9027.png)
+
 # Functionality
 * a_gnss
 * otdoa
   * Multilateration
   * ![image](https://user-images.githubusercontent.com/6143237/221404174-4b6bafd2-25b9-4220-9869-7fd557204476.png)
   * ![image](https://user-images.githubusercontent.com/6143237/221404200-90e2b225-d3b3-4b9d-8825-ef92819ee774.png)
-
-
 * ecid
 * epdu
 
