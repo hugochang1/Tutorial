@@ -16,6 +16,11 @@
 # Functionality
 * a_gnss
 * otdoa
+  * Multilateration
+  * ![image](https://user-images.githubusercontent.com/6143237/221404174-4b6bafd2-25b9-4220-9869-7fd557204476.png)
+  * ![image](https://user-images.githubusercontent.com/6143237/221404200-90e2b225-d3b3-4b9d-8825-ef92819ee774.png)
+
+
 * ecid
 * epdu
 
