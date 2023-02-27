@@ -2,7 +2,7 @@
 * download: https://www.etsi.org/deliver/etsi_ts/137300_137399/137355/16.02.00_60/ts_137355v160200p.pdf
   * page 82
 * Qualcomm OTDOA: https://www.qualcomm.com/content/dam/qcomm-martech/dm-assets/documents/otdoa_positioning_in_3gpp_lte_v1.pdf
-  * page 33, 6.4 RRC
+  * page 42, 6.4 RRC
 
 # LPP
 * SMLC -> UE:  requestCapabilities
