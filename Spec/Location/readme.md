@@ -1,5 +1,6 @@
 # Good reference
 - https://scdn.rohde-schwarz.com/ur/pws/dl_downloads/dl_common_library/dl_brochures_and_datasheets/pdf_1/LTE_LBS_White_Paper.pdf
+- https://developers.google.com/location-context/
 
 # Positioning Method
 |Position Method|Rel/Ver|MSB|MSA|Standalone|
