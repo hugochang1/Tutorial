@@ -3,6 +3,17 @@
 - https://developers.google.com/location-context/
 
 # Positioning Method
+* GNSS
+* ECID
+* Cell Trilateration 
+  * 2G/3G: EOTD (Enhanced Obersved Time Different)
+  * 4G/5G: OTDOA (Observed Time Different of Arrival)
+  * reference cell (1)
+  * neighbor cell list (>= 2)
+* Wlan-AP
+* BT/BLE
+* Sensor (Barometer)
+
 |Position Method|Rel/Ver|MSB|MSA|Standalone|
 |-|-|-|-|-|
 |RRLP-GPS    |r4|O|O|O|
