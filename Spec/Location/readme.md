@@ -20,6 +20,13 @@
 * Sensor 
   * Barometer (Barometric pressure)
 
+# Factors influencing the accuracy
+* UE measurement performance
+* Radio Environment (ex: multipath)
+* eNodeB/Satellite time synchronization
+* Cell database / Ephemeris accuracy
+* measurement Geometry (GDOP)
+
 |Position Method|Rel/Ver|MSB|MSA|Standalone|
 |-|-|-|-|-|
 |RRLP-GPS    |r4|O|O|O|
