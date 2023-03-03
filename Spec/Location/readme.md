@@ -5,14 +5,20 @@
 # Positioning Method
 * GNSS
 * ECID
+  * serving cell + neighbor cells (up to 64, cid, RSSI)
 * Cell Trilateration 
-  * 2G/3G: EOTD (Enhanced Obersved Time Different)
-  * 4G/5G: OTDOA (Observed Time Different of Arrival)
+  * 2G: EOTD (Enhanced Obersved Time Different)
+  * 3G/4G/5G: OTDOA (Observed Time Different of Arrival)
   * reference cell (1)
-  * neighbor cell list (>= 2)
-* Wlan-AP
-* BT/BLE
-* Sensor (Barometer)
+  * neighbor cell list (up to 32)
+    * cid
+    * otd (observed time different)
+* Wlan-AP (up to 64)
+  * mac, rssi, frequChannel
+* BT/BLE (up to 64)
+  * mac, rssi 
+* Sensor 
+  * Barometer (Barometric pressure)
 
 |Position Method|Rel/Ver|MSB|MSA|Standalone|
 |-|-|-|-|-|
