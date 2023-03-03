@@ -1,0 +1,1844 @@
+<!doctype html>
+<html>
+  <head>
+    <title></title>
+    <style type="text/css">
+      pre{
+        background-color:white;
+        font-family:Consolas
+      }
+    </style>
+  </head>
+<body><pre>
+<font color="orange">IMPORTS</font>
+<a href="#Version">Version</a>, <a href="#SessionID">SessionID</a>
+<font color="orange">FROM</font> ULP-Components
+    <a href="#SUPLINIT">SUPLINIT</a>
+<font color="orange">FROM</font> SUPL-INIT
+    <a href="#SUPLSTART">SUPLSTART</a>
+<font color="orange">FROM</font> SUPL-START
+    <a href="#SUPLRESPONSE">SUPLRESPONSE</a>
+<font color="orange">FROM</font> SUPL-RESPONSE
+    <a href="#SUPLPOSINIT">SUPLPOSINIT</a>
+<font color="orange">FROM</font> SUPL-POS-INIT
+    <a href="#SUPLPOS">SUPLPOS</a>
+<font color="orange">FROM</font> SUPL-POS
+    <a href="#SUPLEND">SUPLEND</a>
+<font color="orange">FROM</font> SUPL-END
+    <a href="#SUPLAUTHREQ">SUPLAUTHREQ</a>
+<font color="orange">FROM</font> SUPL-AUTH-REQ
+    <a href="#SUPLAUTHRESP">SUPLAUTHRESP</a>
+<font color="orange">FROM</font> SUPL-AUTH-RESP
+    <a href="#Ver2-SUPLTRIGGEREDSTART">Ver2-SUPLTRIGGEREDSTART</a>
+<font color="orange">FROM</font> SUPL-TRIGGERED-START
+    <a href="#Ver2-SUPLTRIGGEREDRESPONSE">Ver2-SUPLTRIGGEREDRESPONSE</a>
+<font color="orange">FROM</font> SUPL-TRIGGERED-RESPONSE
+    <a href="#Ver2-SUPLREPORT">Ver2-SUPLREPORT</a>
+<font color="orange">FROM</font> SUPL-REPORT
+    <a href="#Ver2-SUPLTRIGGEREDSTOP">Ver2-SUPLTRIGGEREDSTOP</a>
+<font color="orange">FROM</font> SUPL-TRIGGERED-STOP
+    <a href="#Ver2-SUPLSETINIT">Ver2-SUPLSETINIT</a>
+<font color="orange">FROM</font> SUPL-SET-INIT
+    <a href="#Ver2-SUPLNOTIFY">Ver2-SUPLNOTIFY</a>
+<font color="orange">FROM</font> SUPL-NOTIFY
+    <a href="#Ver2-SUPLNOTIFYRESPONSE">Ver2-SUPLNOTIFYRESPONSE</a>
+<font color="orange">FROM</font> SUPL-NOTIFY-RESPONSE;
+
+<font color="green"><i>-- general ULP PDU layout;--
+</i></font><a name="ULP-PDU"><font color="DarkViolet"><b>ULP-PDU</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  length <font color="orange">INTEGER</font>(0..65535),
+  version <a href="#Version">Version</a>,
+  sessionID <a href="#SessionID">SessionID</a>,
+  message <a href="#UlpMessage">UlpMessage</a>}
+
+<a name="UlpMessage"><font color="DarkViolet"><b>UlpMessage</b></font></a> ::= <font color="orange">CHOICE</font> {
+  msSUPLINIT <a href="#SUPLINIT">SUPLINIT</a>,
+  msSUPLSTART <a href="#SUPLSTART">SUPLSTART</a>,
+  msSUPLRESPONSE <a href="#SUPLRESPONSE">SUPLRESPONSE</a>,
+  msSUPLPOSINIT <a href="#SUPLPOSINIT">SUPLPOSINIT</a>,
+  msSUPLPOS <a href="#SUPLPOS">SUPLPOS</a>,
+  msSUPLEND <a href="#SUPLEND">SUPLEND</a>,
+  msSUPLAUTHREQ <a href="#SUPLAUTHREQ">SUPLAUTHREQ</a>,
+  msSUPLAUTHRESP <a href="#SUPLAUTHRESP">SUPLAUTHRESP</a>,
+  ...,
+  msSUPLTRIGGEREDSTART <a href="#Ver2-SUPLTRIGGEREDSTART">Ver2-SUPLTRIGGEREDSTART</a>,
+  msSUPLTRIGGEREDRESPONSE <a href="#Ver2-SUPLTRIGGEREDRESPONSE">Ver2-SUPLTRIGGEREDRESPONSE</a>,
+  msSUPLTRIGGEREDSTOP <a href="#Ver2-SUPLTRIGGEREDSTOP">Ver2-SUPLTRIGGEREDSTOP</a>,
+  msSUPLNOTIFY <a href="#Ver2-SUPLNOTIFY">Ver2-SUPLNOTIFY</a>,
+  msSUPLNOTIFYRESPONSE <a href="#Ver2-SUPLNOTIFYRESPONSE">Ver2-SUPLNOTIFYRESPONSE</a>,
+  msSUPLSETINIT <a href="#Ver2-SUPLSETINIT">Ver2-SUPLSETINIT</a>,
+  msSUPLREPORT <a href="#Ver2-SUPLREPORT">Ver2-SUPLREPORT</a>}
+
+<font color="orange">EXPORTS</font> <a href="#SUPLINIT">SUPLINIT</a>, <a href="#Notification">Notification</a>;
+<font color="orange">IMPORTS</font>
+<a href="#SLPAddress">SLPAddress</a>, <a href="#QoP">QoP</a>, <a href="#PosMethod">PosMethod</a>
+<font color="orange">FROM</font> ULP-Components
+    <a href="#Ver2-SUPL-INIT-extension">Ver2-SUPL-INIT-extension</a>
+<font color="orange">FROM</font> ULP-Version-2-message-extensions
+    <a href="#Ver2-Notification-extension">Ver2-Notification-extension</a>
+<font color="orange">FROM</font> ULP-Version-2-parameter-extensions;
+
+<a name="SUPLINIT"><font color="DarkViolet"><b>SUPLINIT</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  posMethod <a href="#PosMethod">PosMethod</a>,
+  notification <a href="#Notification">Notification</a> <font color="orange">OPTIONAL</font>,
+  sLPAddress <a href="#SLPAddress">SLPAddress</a> <font color="orange">OPTIONAL</font>,
+  qoP <a href="#QoP">QoP</a> <font color="orange">OPTIONAL</font>,
+  sLPMode <a href="#SLPMode">SLPMode</a>,
+  mac <a href="#MAC">MAC</a> <font color="orange">OPTIONAL</font>, <font color="green"><i>-- included for backwards compatibility
+</i></font>  keyIdentity <a href="#KeyIdentity">KeyIdentity</a> <font color="orange">OPTIONAL</font>, <font color="green"><i>-- included for backwards compatibility
+</i></font>  ...,
+  <font color="green"><i>-- version 2 extension element
+</i></font>  ver2-SUPL-INIT-extension <a href="#Ver2-SUPL-INIT-extension">Ver2-SUPL-INIT-extension</a> <font color="orange">OPTIONAL</font>}
+
+<a name="Notification"><font color="DarkViolet"><b>Notification</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  notificationType <a href="#NotificationType">NotificationType</a>,
+  encodingType <a href="#EncodingType">EncodingType</a> <font color="orange">OPTIONAL</font>,
+  requestorId <font color="orange">OCTET</font> <font color="orange">STRING</font>(<font color="orange">SIZE</font> (1..<a href="#maxReqLength">maxReqLength</a>)) <font color="orange">OPTIONAL</font>,
+  requestorIdType <a href="#FormatIndicator">FormatIndicator</a> <font color="orange">OPTIONAL</font>,
+  clientName <font color="orange">OCTET</font> <font color="orange">STRING</font>(<font color="orange">SIZE</font> (1..<a href="#maxClientLength">maxClientLength</a>)) <font color="orange">OPTIONAL</font>,
+  clientNameType <a href="#FormatIndicator">FormatIndicator</a> <font color="orange">OPTIONAL</font>,
+  ...,
+  ver2-Notification-extension <a href="#Ver2-Notification-extension">Ver2-Notification-extension</a> <font color="orange">OPTIONAL</font>}
+
+<a name="NotificationType"><font color="DarkViolet"><b>NotificationType</b></font></a> ::= <font color="orange">ENUMERATED</font> {
+  noNotificationNoVerification(0), notificationOnly(1),
+  notificationAndVerficationAllowedNA(2),
+  notificationAndVerficationDeniedNA(3), privacyOverride(4), ...}
+
+<a name="EncodingType"><font color="DarkViolet"><b>EncodingType</b></font></a> ::= <font color="orange">ENUMERATED</font> {ucs2(0), gsmDefault(1), utf8(2), ...}
+
+<a name="maxReqLength"><font color="DarkViolet"><b>maxReqLength</b></font></a> <font color="orange">INTEGER</font> ::= 50
+<a name="maxClientLength"><font color="DarkViolet"><b>maxClientLength</b></font></a> <font color="orange">INTEGER</font> ::= 50
+<a name="FormatIndicator"><font color="DarkViolet"><b>FormatIndicator</b></font></a> ::= <font color="orange">ENUMERATED</font> {
+  logicalName(0), e-mailAddress(1), msisdn(2), url(3), sipUrl(4), min(5),
+  mdn(6), iMSPublicidentity(7), ...}
+
+<a name="SLPMode"><font color="DarkViolet"><b>SLPMode</b></font></a> ::= <font color="orange">ENUMERATED</font> {proxy(0), nonProxy(1)}
+
+<a name="MAC"><font color="DarkViolet"><b>MAC</b></font></a> ::= <font color="orange">BIT</font> <font color="orange">STRING</font>(<font color="orange">SIZE</font> (64)) <font color="green"><i>-- empty placeholder required for SUPL 1.0
+</i></font>backwards compatibility
+<a name="KeyIdentity"><font color="DarkViolet"><b>KeyIdentity</b></font></a> ::= <font color="orange">BIT</font> <font color="orange">STRING</font>(<font color="orange">SIZE</font> (128)) <font color="green"><i>-- empty placeholder required for SUPL
+</i></font>1.0 backwards compatibility
+<font color="orange">EXPORTS</font> <a href="#SUPLSTART">SUPLSTART</a>, <a href="#SETCapabilities">SETCapabilities</a>;
+<font color="orange">IMPORTS</font>
+<a href="#LocationId">LocationId</a>, <a href="#QoP">QoP</a>
+<font color="orange">FROM</font> ULP-Components
+    <a href="#Ver2-SUPL-START-extension">Ver2-SUPL-START-extension</a>
+<font color="orange">FROM</font> ULP-Version-2-message-extensions
+    <a href="#Ver2-SETCapabilities-extension">Ver2-SETCapabilities-extension</a>, <a href="#Ver2-PosProtocol-extension">Ver2-PosProtocol-extension</a>, Ver2-
+PosTechnology-extension
+<font color="orange">FROM</font> ULP-Version-2-parameter-extensions;
+
+<a name="SUPLSTART"><font color="DarkViolet"><b>SUPLSTART</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  sETCapabilities <a href="#SETCapabilities">SETCapabilities</a>,
+  locationId <a href="#LocationId">LocationId</a>,
+  qoP <a href="#QoP">QoP</a> <font color="orange">OPTIONAL</font>,
+  ...,
+  <font color="green"><i>-- version 2 extension element
+</i></font>  ver2-SUPL-START-extension <a href="#Ver2-SUPL-START-extension">Ver2-SUPL-START-extension</a> <font color="orange">OPTIONAL</font>}
+
+<a name="SETCapabilities"><font color="DarkViolet"><b>SETCapabilities</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  posTechnology <a href="#PosTechnology">PosTechnology</a>,
+  prefMethod <a href="#PrefMethod">PrefMethod</a>,
+  posProtocol <a href="#PosProtocol">PosProtocol</a>,
+  ...,
+  ver2-SETCapabilities-extension <a href="#Ver2-SETCapabilities-extension">Ver2-SETCapabilities-extension</a> <font color="orange">OPTIONAL</font>}
+
+<a name="PosTechnology"><font color="DarkViolet"><b>PosTechnology</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  agpsSETassisted <font color="orange">BOOLEAN</font>,
+  agpsSETBased <font color="orange">BOOLEAN</font>,
+  autonomousGPS <font color="orange">BOOLEAN</font>,
+  aflt <font color="orange">BOOLEAN</font>,
+  ecid <font color="orange">BOOLEAN</font>,
+  eotd <font color="orange">BOOLEAN</font>,
+  otdoa <font color="orange">BOOLEAN</font>,
+  ...,
+  ver2-PosTechnology-extension <a href="#Ver2-PosTechnology-extension">Ver2-PosTechnology-extension</a> <font color="orange">OPTIONAL</font>}
+
+<a name="PrefMethod"><font color="DarkViolet"><b>PrefMethod</b></font></a> ::= <font color="orange">ENUMERATED</font> {
+  agpsSETassistedPreferred, agpsSETBasedPreferred, noPreference}
+
+<font color="green"><i>-- To achieve compatibility with ULP V1.0 the names of the enumerations are
+</i></font><font color="green"><i>-- kept the same as in ULP V1.0. agps shall be interpreted as agnss.
+</i></font><a name="PosProtocol"><font color="DarkViolet"><b>PosProtocol</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  tia801 <font color="orange">BOOLEAN</font>,
+  rrlp <font color="orange">BOOLEAN</font>,
+  rrc <font color="orange">BOOLEAN</font>,
+  ...,
+  ver2-PosProtocol-extension <a href="#Ver2-PosProtocol-extension">Ver2-PosProtocol-extension</a> <font color="orange">OPTIONAL</font>}
+
+<font color="orange">EXPORTS</font> <a href="#SUPLRESPONSE">SUPLRESPONSE</a>;
+<font color="orange">IMPORTS</font>
+<a href="#PosMethod">PosMethod</a>, <a href="#SLPAddress">SLPAddress</a>
+<font color="orange">FROM</font> ULP-Components
+    <a href="#Ver2-SUPL-RESPONSE-extension">Ver2-SUPL-RESPONSE-extension</a>
+<font color="orange">FROM</font> ULP-Version-2-message-extensions;
+
+<a name="SUPLRESPONSE"><font color="DarkViolet"><b>SUPLRESPONSE</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  posMethod <a href="#PosMethod">PosMethod</a>,
+  sLPAddress <a href="#SLPAddress">SLPAddress</a> <font color="orange">OPTIONAL</font>,
+  sETAuthKey <a href="#SETAuthKey">SETAuthKey</a> <font color="orange">OPTIONAL</font>, <font color="green"><i>-- included for backwards compatibility
+</i></font>  keyIdentity4 <a href="#KeyIdentity4">KeyIdentity4</a> <font color="orange">OPTIONAL</font>, <font color="green"><i>-- included for backwards compatibility
+</i></font>  ...,
+  <font color="green"><i>-- version 2 extension element
+</i></font>  ver2-SUPL-RESPONSE-extension <a href="#Ver2-SUPL-RESPONSE-extension">Ver2-SUPL-RESPONSE-extension</a> <font color="orange">OPTIONAL</font>}
+
+<a name="SETAuthKey"><font color="DarkViolet"><b>SETAuthKey</b></font></a> ::= <font color="orange">CHOICE</font> {
+  shortKey <font color="orange">BIT</font> <font color="orange">STRING</font>(<font color="orange">SIZE</font> (128)),
+  longKey <font color="orange">BIT</font> <font color="orange">STRING</font>(<font color="orange">SIZE</font> (256)),
+  ...}
+
+<a name="KeyIdentity4"><font color="DarkViolet"><b>KeyIdentity4</b></font></a> ::= <font color="orange">BIT</font> <font color="orange">STRING</font>(<font color="orange">SIZE</font> (128))
+<font color="orange">EXPORTS</font> <a href="#SUPLPOSINIT">SUPLPOSINIT</a>;
+<font color="orange">IMPORTS</font>
+<a href="#SUPLPOS">SUPLPOS</a>
+<font color="orange">FROM</font> SUPL-POS
+    <a href="#SETCapabilities">SETCapabilities</a>
+<font color="orange">FROM</font> SUPL-START
+    <a href="#LocationId">LocationId</a>, <a href="#Position">Position</a>, <a href="#Ver">Ver</a>
+<font color="orange">FROM</font> ULP-Components
+    <a href="#Ver2-SUPL-POS-INIT-extension">Ver2-SUPL-POS-INIT-extension</a>
+<font color="orange">FROM</font> ULP-Version-2-message-extensions
+    <a href="#Ver2-RequestedAssistData-extension">Ver2-RequestedAssistData-extension</a>
+<font color="orange">FROM</font> ULP-Version-2-parameter-extensions;
+
+<a name="SUPLPOSINIT"><font color="DarkViolet"><b>SUPLPOSINIT</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  sETCapabilities <a href="#SETCapabilities">SETCapabilities</a>,
+  requestedAssistData <a href="#RequestedAssistData">RequestedAssistData</a> <font color="orange">OPTIONAL</font>,
+  locationId <a href="#LocationId">LocationId</a>,
+  position <a href="#Position">Position</a> <font color="orange">OPTIONAL</font>,
+  suplpos <a href="#SUPLPOS">SUPLPOS</a> <font color="orange">OPTIONAL</font>,
+  ver <a href="#Ver">Ver</a> <font color="orange">OPTIONAL</font>,
+  ...,
+  <font color="green"><i>-- version 2 extension element
+</i></font>  ver2-SUPL-POS-INIT-extension <a href="#Ver2-SUPL-POS-INIT-extension">Ver2-SUPL-POS-INIT-extension</a> <font color="orange">OPTIONAL</font>}
+
+<a name="RequestedAssistData"><font color="DarkViolet"><b>RequestedAssistData</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  almanacRequested <font color="orange">BOOLEAN</font>,
+  utcModelRequested <font color="orange">BOOLEAN</font>,
+  ionosphericModelRequested <font color="orange">BOOLEAN</font>,
+  dgpsCorrectionsRequested <font color="orange">BOOLEAN</font>,
+  referenceLocationRequested <font color="orange">BOOLEAN</font>, <font color="green"><i>-- Note: Used also for GANSS
+</i></font>  referenceTimeRequested <font color="orange">BOOLEAN</font>,
+  acquisitionAssistanceRequested <font color="orange">BOOLEAN</font>,
+  realTimeIntegrityRequested <font color="orange">BOOLEAN</font>,
+  navigationModelRequested <font color="orange">BOOLEAN</font>,
+  navigationModelData <a href="#NavigationModel">NavigationModel</a> <font color="orange">OPTIONAL</font>,
+  ...,
+  ver2-RequestedAssistData-extension <a href="#Ver2-RequestedAssistData-extension">Ver2-RequestedAssistData-extension</a>
+  <font color="orange">OPTIONAL</font>}
+
+<a name="NavigationModel"><font color="DarkViolet"><b>NavigationModel</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  gpsWeek <font color="orange">INTEGER</font>(0..1023),
+  gpsToe <font color="orange">INTEGER</font>(0..167),
+  nsat <font color="orange">INTEGER</font>(0..31),
+  toeLimit <font color="orange">INTEGER</font>(0..10),
+  satInfo <a href="#SatelliteInfo">SatelliteInfo</a> <font color="orange">OPTIONAL</font>,
+  ...}
+
+<font color="green"><i>-- Further information on this fields can be found
+</i></font><font color="green"><i>-- in [3GPP RRLP]and [3GPP 49.031]
+</i></font><a name="SatelliteInfo"><font color="DarkViolet"><b>SatelliteInfo</b></font></a> ::= <font color="orange">SEQUENCE</font> (<font color="orange">SIZE</font> (1..31)) <font color="orange">OF</font> SatelliteInfoElement
+<a name="SatelliteInfoElement"><font color="DarkViolet"><b>SatelliteInfoElement</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  satId <font color="orange">INTEGER</font>(0..63),
+  iode <font color="orange">INTEGER</font>(0..255),
+  ...}
+
+<font color="orange">EXPORTS</font> <a href="#SUPLPOS">SUPLPOS</a>;
+<font color="orange">IMPORTS</font>
+<a href="#Velocity">Velocity</a>
+<font color="orange">FROM</font> ULP-Components
+    <a href="#Ver2-SUPL-POS-extension">Ver2-SUPL-POS-extension</a>
+<font color="orange">FROM</font> ULP-Version-2-message-extensions
+    <a href="#Ver2-PosPayLoad-extension">Ver2-PosPayLoad-extension</a>
+<font color="orange">FROM</font> ULP-Version-2-parameter-extensions;
+
+<a name="SUPLPOS"><font color="DarkViolet"><b>SUPLPOS</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  posPayLoad <a href="#PosPayLoad">PosPayLoad</a>,
+  velocity <a href="#Velocity">Velocity</a> <font color="orange">OPTIONAL</font>,
+  ...,
+  <font color="green"><i>-- version 2 extension element
+</i></font>  ver2-SUPL-POS-extension <a href="#Ver2-SUPL-POS-extension">Ver2-SUPL-POS-extension</a> <font color="orange">OPTIONAL</font>}
+
+<a name="PosPayLoad"><font color="DarkViolet"><b>PosPayLoad</b></font></a> ::= <font color="orange">CHOICE</font> {
+  tia801payload <font color="orange">OCTET</font> <font color="orange">STRING</font>(<font color="orange">SIZE</font> (1..8192)),
+  rrcPayload <font color="orange">OCTET</font> <font color="orange">STRING</font>(<font color="orange">SIZE</font> (1..8192)),
+  rrlpPayload <font color="orange">OCTET</font> <font color="orange">STRING</font>(<font color="orange">SIZE</font> (1..8192)),
+  ...,
+  ver2-PosPayLoad-extension <a href="#Ver2-PosPayLoad-extension">Ver2-PosPayLoad-extension</a>}
+
+<font color="orange">EXPORTS</font> <a href="#SUPLEND">SUPLEND</a>;
+<font color="orange">IMPORTS</font>
+<a href="#StatusCode">StatusCode</a>, <a href="#Position">Position</a>, <a href="#Ver">Ver</a>
+<font color="orange">FROM</font> ULP-Components
+    <a href="#Ver2-SUPL-END-extension">Ver2-SUPL-END-extension</a>
+<font color="orange">FROM</font> ULP-Version-2-message-extensions;
+
+<a name="SUPLEND"><font color="DarkViolet"><b>SUPLEND</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  position <a href="#Position">Position</a> <font color="orange">OPTIONAL</font>,
+  statusCode <a href="#StatusCode">StatusCode</a> <font color="orange">OPTIONAL</font>,
+  ver <a href="#Ver">Ver</a> <font color="orange">OPTIONAL</font>,
+  ...,
+  <font color="green"><i>-- version 2 extension element
+</i></font>  ver2-SUPL-END-extension <a href="#Ver2-SUPL-END-extension">Ver2-SUPL-END-extension</a> <font color="orange">OPTIONAL</font>}
+
+<font color="orange">EXPORTS</font> <a href="#SUPLAUTHREQ">SUPLAUTHREQ</a>;
+<font color="orange">IMPORTS</font>
+<a href="#Ver">Ver</a>
+<font color="orange">FROM</font> ULP-Components
+    <a href="#SETCapabilities">SETCapabilities</a>
+<font color="orange">FROM</font> SUPL-START;
+
+<a name="SUPLAUTHREQ"><font color="DarkViolet"><b>SUPLAUTHREQ</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  ver <a href="#Ver">Ver</a> <font color="orange">OPTIONAL</font>,
+  sETCapabilities <a href="#SETCapabilities">SETCapabilities</a> <font color="orange">OPTIONAL</font>,
+  ...}
+
+<font color="orange">EXPORTS</font> <a href="#SUPLAUTHRESP">SUPLAUTHRESP</a>;
+<font color="orange">IMPORTS</font>
+<a href="#SPCSETKey">SPCSETKey</a>, <a href="#SPCTID">SPCTID</a>, <a href="#SPCSETKeylifetime">SPCSETKeylifetime</a>
+<font color="orange">FROM</font> Ver2-ULP-Components;
+
+<a name="SUPLAUTHRESP"><font color="DarkViolet"><b>SUPLAUTHRESP</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  sPCSETKey <a href="#SPCSETKey">SPCSETKey</a>,
+  spctid <a href="#SPCTID">SPCTID</a>,
+  sPCSETKeylifetime <a href="#SPCSETKeylifetime">SPCSETKeylifetime</a> <font color="orange">OPTIONAL</font>,
+  ...}
+
+<font color="orange">EXPORTS</font> <a href="#Ver2-SUPLNOTIFY">Ver2-SUPLNOTIFY</a>;
+<font color="orange">IMPORTS</font>
+<a href="#Notification">Notification</a>
+<font color="orange">FROM</font> SUPL-INIT;
+
+<a name="Ver2-SUPLNOTIFY"><font color="DarkViolet"><b>Ver2-SUPLNOTIFY</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  notification <a href="#Notification">Notification</a>,
+  ...}
+
+<font color="orange">EXPORTS</font> <a href="#Ver2-SUPLNOTIFYRESPONSE">Ver2-SUPLNOTIFYRESPONSE</a>;
+<a name="Ver2-SUPLNOTIFYRESPONSE"><font color="DarkViolet"><b>Ver2-SUPLNOTIFYRESPONSE</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  notificationResponse <a href="#NotificationResponse">NotificationResponse</a> <font color="orange">OPTIONAL</font>,
+  ...}
+
+<a name="NotificationResponse"><font color="DarkViolet"><b>NotificationResponse</b></font></a> ::= <font color="orange">ENUMERATED</font> {allowed(0), notAllowed(1), ...}
+
+<font color="orange">EXPORTS</font> <a href="#Ver2-SUPLSETINIT">Ver2-SUPLSETINIT</a>;
+<font color="orange">IMPORTS</font>
+<a href="#SETId">SETId</a>, <a href="#QoP">QoP</a>
+<font color="orange">FROM</font> ULP-Components
+    <a href="#ApplicationID">ApplicationID</a>
+<font color="orange">FROM</font> Ver2-ULP-Components;
+
+<a name="Ver2-SUPLSETINIT"><font color="DarkViolet"><b>Ver2-SUPLSETINIT</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  targetSETID <a href="#SETId">SETId</a>, <font color="green"><i>--Target SETid identifies the target SET to be located
+</i></font>  qoP <a href="#QoP">QoP</a> <font color="orange">OPTIONAL</font>,
+  applicationID <a href="#ApplicationID">ApplicationID</a> <font color="orange">OPTIONAL</font>,
+  ...}
+
+<font color="orange">EXPORTS</font> <a href="#Ver2-SUPLTRIGGEREDSTART">Ver2-SUPLTRIGGEREDSTART</a>, <a href="#TriggerType">TriggerType</a>, <a href="#TriggerParams">TriggerParams</a>, <a href="#maxNumGeoArea">maxNumGeoArea</a>,
+<a href="#maxAreaId">maxAreaId</a>, <a href="#maxAreaIdList">maxAreaIdList</a>;
+<font color="orange">IMPORTS</font>
+<a href="#LocationId">LocationId</a>, <a href="#QoP">QoP</a>, <a href="#Ver">Ver</a>, <a href="#Position">Position</a>
+<font color="orange">FROM</font> ULP-Components
+    <a href="#MultipleLocationIds">MultipleLocationIds</a>, <a href="#CauseCode">CauseCode</a>, <a href="#ThirdParty">ThirdParty</a>, <a href="#ApplicationID">ApplicationID</a>,
+<a href="#ReportingCap">ReportingCap</a>, <a href="#Coordinate">Coordinate</a>, <a href="#CircularArea">CircularArea</a>, <a href="#EllipticalArea">EllipticalArea</a>, <a href="#PolygonArea">PolygonArea</a>
+<font color="orange">FROM</font> Ver2-ULP-Components
+    <a href="#SETCapabilities">SETCapabilities</a>
+<font color="orange">FROM</font> SUPL-START;
+
+<a name="Ver2-SUPLTRIGGEREDSTART"><font color="DarkViolet"><b>Ver2-SUPLTRIGGEREDSTART</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  sETCapabilities <a href="#SETCapabilities">SETCapabilities</a>,
+  locationId <a href="#LocationId">LocationId</a>,
+  ver <a href="#Ver">Ver</a> <font color="orange">OPTIONAL</font>,
+  qoP <a href="#QoP">QoP</a> <font color="orange">OPTIONAL</font>,
+  multipleLocationIds <a href="#MultipleLocationIds">MultipleLocationIds</a> <font color="orange">OPTIONAL</font>,
+  thirdParty <a href="#ThirdParty">ThirdParty</a> <font color="orange">OPTIONAL</font>,
+  applicationID <a href="#ApplicationID">ApplicationID</a> <font color="orange">OPTIONAL</font>,
+  triggerType <a href="#TriggerType">TriggerType</a> <font color="orange">OPTIONAL</font>,
+  triggerParams <a href="#TriggerParams">TriggerParams</a> <font color="orange">OPTIONAL</font>,
+  position <a href="#Position">Position</a> <font color="orange">OPTIONAL</font>,
+  reportingCap <a href="#ReportingCap">ReportingCap</a> <font color="orange">OPTIONAL</font>,
+  causeCode <a href="#CauseCode">CauseCode</a> <font color="orange">OPTIONAL</font>,
+  ...}
+
+<a name="TriggerType"><font color="DarkViolet"><b>TriggerType</b></font></a> ::= <font color="orange">ENUMERATED</font> {
+  periodic(0), areaEvent(1),
+  ...}
+
+<a name="TriggerParams"><font color="DarkViolet"><b>TriggerParams</b></font></a> ::= <font color="orange">CHOICE</font> {
+  periodicParams <a href="#PeriodicParams">PeriodicParams</a>,
+  areaEventParams <a href="#AreaEventParams">AreaEventParams</a>,
+  ...}
+
+<a name="PeriodicParams"><font color="DarkViolet"><b>PeriodicParams</b></font></a> ::= <font color="orange">SEQUENCE</font>{
+  numberOfFixes <font color="orange">INTEGER</font>(1.. 8639999),
+  intervalBetweenFixes <font color="orange">INTEGER</font>(1.. 8639999),
+  startTime <font color="orange">INTEGER</font>(0..2678400) <font color="orange">OPTIONAL</font>,
+  ...}
+
+<font color="green"><i>-- intervalBetweenFixes and startTime are in seconds.
+</i></font><font color="green"><i>-- numberOfFixes * intervalBetweenFixes shall not exceed 8639999
+</i></font><font color="green"><i>-- (100 days in seconds) for compatibility with OMA MLP and RLP
+</i></font><font color="green"><i>-- startTime is in relative time in units of seconds measured from "now"
+</i></font><font color="green"><i>-- a value of 0 signifies "now", a value of "startTime" signifies startTime
+</i></font><font color="green"><i>-- seconds from "now"
+</i></font><a name="AreaEventParams"><font color="DarkViolet"><b>AreaEventParams</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  areaEventType <a href="#AreaEventType">AreaEventType</a>,
+  locationEstimate <font color="orange">BOOLEAN</font>,
+  repeatedReportingParams <a href="#RepeatedReportingParams">RepeatedReportingParams</a> <font color="orange">OPTIONAL</font>,
+  startTime <font color="orange">INTEGER</font>(0..2678400) <font color="orange">OPTIONAL</font>,
+  stopTime <font color="orange">INTEGER</font>(0..11318399) <font color="orange">OPTIONAL</font>,
+  geographicTargetAreaList <a href="#GeographicTargetAreaList">GeographicTargetAreaList</a> <font color="orange">OPTIONAL</font>,
+  areaIdLists <font color="orange">SEQUENCE</font> (<font color="orange">SIZE</font> (1..<a href="#maxAreaIdList">maxAreaIdList</a>)) <font color="orange">OF</font>
+  <a href="#AreaIdList">AreaIdList</a> <font color="orange">OPTIONAL</font>,
+  ...}
+
+<font color="green"><i>-- startTime and stopTime are in seconds.
+</i></font><font color="green"><i>-- startTime and stop Time are in relative time in units of seconds measured
+</i></font><font color="green"><i>-- from "now"
+</i></font><font color="green"><i>-- a value of 0 signifies "now"
+</i></font><font color="green"><i>-- stopTime must be > startTime
+</i></font><font color="green"><i>-- stopTime - startTime shall not exceed 8639999
+</i></font><font color="green"><i>-- (100 days in seconds) for compatibility with OMA MLP and RLP
+</i></font><a name="AreaEventType"><font color="DarkViolet"><b>AreaEventType</b></font></a> ::= <font color="orange">ENUMERATED</font> {enteringArea(0), insideArea(1), outsideArea(2),
+  leavingArea(3), ...}
+
+<a name="RepeatedReportingParams"><font color="DarkViolet"><b>RepeatedReportingParams</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  minimumIntervalTime <font color="orange">INTEGER</font> (1..604800), <font color="green"><i>-- time in seconds
+</i></font>  maximumNumberOfReports <font color="orange">INTEGER</font> (1..1024),
+  ...}
+
+<a name="GeographicTargetAreaList"><font color="DarkViolet"><b>GeographicTargetAreaList</b></font></a> ::= <font color="orange">SEQUENCE</font> (<font color="orange">SIZE</font> (1..maxNumGeoArea)) <font color="orange">OF</font>
+<a href="#GeographicTargetArea">GeographicTargetArea</a>
+<a name="GeographicTargetArea"><font color="DarkViolet"><b>GeographicTargetArea</b></font></a> ::= <font color="orange">CHOICE</font> {
+  circularArea <a href="#CircularArea">CircularArea</a>,
+  ellipticalArea <a href="#EllipticalArea">EllipticalArea</a>,
+  polygonArea <a href="#PolygonArea">PolygonArea</a>,
+  ...}
+
+<a name="AreaIdList"><font color="DarkViolet"><b>AreaIdList</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  areaIdSet <a href="#AreaIdSet">AreaIdSet</a>,
+  areaIdSetType <a href="#AreaIdSetType">AreaIdSetType</a> <font color="orange">OPTIONAL</font>,
+  geoAreaMappingList <a href="#GeoAreaMappingList">GeoAreaMappingList</a> <font color="orange">OPTIONAL</font>}
+
+<a name="AreaIdSet"><font color="DarkViolet"><b>AreaIdSet</b></font></a> ::= <font color="orange">SEQUENCE</font> <font color="orange">SIZE</font> (1..maxAreaId) <font color="orange">OF</font> AreaId
+<a name="AreaId"><font color="DarkViolet"><b>AreaId</b></font></a> ::= <font color="orange">CHOICE</font> {
+  gSMAreaId <a href="#GSMAreaId">GSMAreaId</a>,
+  wCDMAAreaId <a href="#WCDMAAreaId">WCDMAAreaId</a>, <font color="green"><i>-- For TD-SCDMA networks, this parameter
+</i></font>  indicates a TD-SCDMA Area ID
+  cDMAAreaId <a href="#CDMAAreaId">CDMAAreaId</a>,
+  hRPDAreaId <a href="#HRPDAreaId">HRPDAreaId</a>,
+  uMBAreaId <a href="#UMBAreaId">UMBAreaId</a>,
+  lTEAreaId <a href="#LTEAreaId">LTEAreaId</a>,
+  wLANAreaId <a href="#WLANAreaId">WLANAreaId</a>,
+  wiMAXAreaId <a href="#WimaxAreaId">WimaxAreaId</a>,
+  ...,
+  nRAreaId <a href="#NRAreaId">NRAreaId</a> }
+
+<a name="GSMAreaId"><font color="DarkViolet"><b>GSMAreaId</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  refMCC <font color="orange">INTEGER</font>(0..999) <font color="orange">OPTIONAL</font>, <font color="green"><i>-- Mobile Country Code
+</i></font>  refMNC <font color="orange">INTEGER</font>(0..999) <font color="orange">OPTIONAL</font>, <font color="green"><i>-- Mobile Network Code
+</i></font>  refLAC <font color="orange">INTEGER</font>(0..65535) <font color="orange">OPTIONAL</font>, <font color="green"><i>-- Location Area Code
+</i></font>  refCI <font color="orange">INTEGER</font>(0..65535) <font color="orange">OPTIONAL</font>, <font color="green"><i>-- Cell Id
+</i></font>  ...}
+
+<font color="green"><i>-- only one of the following four combinations are allowed: (1) refMCC, (2)
+</i></font>refMCC+refMNC, (3) refMCC+refMNC+refLAC or (4) refMCC+refMNC+refLAC+refCI
+<a name="WCDMAAreaId"><font color="DarkViolet"><b>WCDMAAreaId</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  refMCC <font color="orange">INTEGER</font>(0..999) <font color="orange">OPTIONAL</font>, <font color="green"><i>-- Mobile Country Code
+</i></font>  refMNC <font color="orange">INTEGER</font>(0..999) <font color="orange">OPTIONAL</font>, <font color="green"><i>-- Mobile Network Code
+</i></font>  refLAC <font color="orange">INTEGER</font>(0..65535) <font color="orange">OPTIONAL</font>, <font color="green"><i>-- Location Area Code
+</i></font>  refUC <font color="orange">INTEGER</font>(0..268435455) <font color="orange">OPTIONAL</font>, <font color="green"><i>-- Cell identity
+</i></font>  ...}
+
+<font color="green"><i>-- only one of the following four combinations are allowed: (1) refMCC, (2)
+</i></font>refMCC+refMNC, (3) refMCC+refMNC+refLAC, or (4) refMCC+refMNC+refLAC+refUC
+<a name="CDMAAreaId"><font color="DarkViolet"><b>CDMAAreaId</b></font></a>::= <font color="orange">SEQUENCE</font> {
+  refSID <font color="orange">INTEGER</font>(0..65535) <font color="orange">OPTIONAL</font>, <font color="green"><i>-- System Id
+</i></font>  refNID <font color="orange">INTEGER</font>(0..32767) <font color="orange">OPTIONAL</font>, <font color="green"><i>-- Network Id
+</i></font>  refBASEID <font color="orange">INTEGER</font>(0..65535) <font color="orange">OPTIONAL</font>, <font color="green"><i>-- Base Station Id
+</i></font>  ...}
+
+<font color="green"><i>-- only one of the following three combinations are allowed: (1) refSID, (2)
+</i></font>refSID+refNID, or (3) refSID+refNID+refBASEID
+<a name="HRPDAreaId"><font color="DarkViolet"><b>HRPDAreaId</b></font></a>::= <font color="orange">SEQUENCE</font> {
+  refSECTORID <font color="orange">BIT</font> <font color="orange">STRING</font>(<font color="orange">SIZE</font> (128)), <font color="green"><i>-- HRPD Sector Id
+</i></font>  ...}
+
+<a name="UMBAreaId"><font color="DarkViolet"><b>UMBAreaId</b></font></a>::= <font color="orange">SEQUENCE</font> {
+  refMCC <font color="orange">INTEGER</font>(0..999) <font color="orange">OPTIONAL</font>, <font color="green"><i>-- Mobile Country Code
+</i></font>  refMNC <font color="orange">INTEGER</font>(0..999) <font color="orange">OPTIONAL</font>, <font color="green"><i>-- Mobile Network Code
+</i></font>  refSECTORID <font color="orange">BIT</font> <font color="orange">STRING</font>(<font color="orange">SIZE</font> (128)) <font color="orange">OPTIONAL</font>, <font color="green"><i>-- UMB Sector Id
+</i></font>  ...}
+
+<a name="LTEAreaId"><font color="DarkViolet"><b>LTEAreaId</b></font></a>::= <font color="orange">SEQUENCE</font> {
+  refMCC <font color="orange">INTEGER</font>(0..999) <font color="orange">OPTIONAL</font>, <font color="green"><i>-- Mobile Country Code
+</i></font>  refMNC <font color="orange">INTEGER</font>(0..999) <font color="orange">OPTIONAL</font>, <font color="green"><i>-- Mobile Network Code
+</i></font>  refCI <font color="orange">BIT</font> <font color="orange">STRING</font>(<font color="orange">SIZE</font> (29)) <font color="orange">OPTIONAL</font>, <font color="green"><i>-- LTE Cell-Id
+</i></font>  ...}
+
+<font color="green"><i>-- only one of the following three combinations are allowed: (1) refMCC, (2)
+</i></font>refMCC+refMNC, or (3) refMCC+refMNC+refCI
+<font color="green"><i>-- The LTE Cell-Id is encoded in the 28 Least Significant Bits of refCI
+</i></font><font color="green"><i>-- The Most Significant Bit of refCI shall be ignored
+</i></font><a name="WLANAreaId"><font color="DarkViolet"><b>WLANAreaId</b></font></a>::= <font color="orange">SEQUENCE</font> {
+  apMACAddress <font color="orange">BIT</font> <font color="orange">STRING</font>(<font color="orange">SIZE</font> (48)), <font color="green"><i>-- AP <a href="#MAC">MAC</a> Address
+</i></font>  ...}
+
+<a name="WimaxAreaId"><font color="DarkViolet"><b>WimaxAreaId</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  bsID-MSB <font color="orange">BIT</font> <font color="orange">STRING</font> (<font color="orange">SIZE</font>(24)) <font color="orange">OPTIONAL</font>,
+  bsID-LSB <font color="orange">BIT</font> <font color="orange">STRING</font> (<font color="orange">SIZE</font>(24)) }
+
+<font color="green"><i>-- if only LSB is present, MSB is assumed to be identical to the current
+</i></font>serving BS or clamped on network value
+<a name="NRAreaId"><font color="DarkViolet"><b>NRAreaId</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  refMCC <font color="orange">INTEGER</font>(0..999) <font color="orange">OPTIONAL</font>, <font color="green"><i>-- Mobile Country Code
+</i></font>  refMNC <font color="orange">INTEGER</font>(0..999) <font color="orange">OPTIONAL</font>, <font color="green"><i>-- Mobile Network Code
+</i></font>  refCI <font color="orange">BIT</font> <font color="orange">STRING</font>(<font color="orange">SIZE</font> (36)) <font color="orange">OPTIONAL</font>, <font color="green"><i>-- NR Cell-Id
+</i></font>  ...}
+
+<font color="green"><i>-- only one of the following three combinations are allowed: (1) refMCC, (2)
+</i></font><font color="green"><i>-- refMCC+refMNC, or (3) refMCC+refMNC+refCI
+</i></font><a name="AreaIdSetType"><font color="DarkViolet"><b>AreaIdSetType</b></font></a> ::= <font color="orange">ENUMERATED</font> {border(0), within(1), ...}
+
+<a name="GeoAreaMappingList"><font color="DarkViolet"><b>GeoAreaMappingList</b></font></a> ::= <font color="orange">SEQUENCE</font> (<font color="orange">SIZE</font> (1..maxNumGeoArea)) <font color="orange">OF</font> GeoAreaIndex
+<a name="GeoAreaIndex"><font color="DarkViolet"><b>GeoAreaIndex</b></font></a> ::= <font color="orange">INTEGER</font> (1..maxNumGeoArea)
+<a name="maxNumGeoArea"><font color="DarkViolet"><b>maxNumGeoArea</b></font></a> <font color="orange">INTEGER</font> ::= 32
+<a name="maxAreaId"><font color="DarkViolet"><b>maxAreaId</b></font></a> <font color="orange">INTEGER</font> ::= 256
+<a name="maxAreaIdList"><font color="DarkViolet"><b>maxAreaIdList</b></font></a> <font color="orange">INTEGER</font> ::= 32
+<font color="orange">EXPORTS</font> <a href="#Ver2-SUPLTRIGGEREDRESPONSE">Ver2-SUPLTRIGGEREDRESPONSE</a>;
+<font color="orange">IMPORTS</font>
+<a href="#PosMethod">PosMethod</a>, <a href="#SLPAddress">SLPAddress</a>
+<font color="orange">FROM</font> ULP-Components
+    <a href="#SupportedNetworkInformation">SupportedNetworkInformation</a>, <a href="#SPCSETKey">SPCSETKey</a>, <a href="#SPCTID">SPCTID</a>, <a href="#SPCSETKeylifetime">SPCSETKeylifetime</a>,
+<a href="#GNSSPosTechnology">GNSSPosTechnology</a>
+<font color="orange">FROM</font> Ver2-ULP-Components
+    <a href="#TriggerParams">TriggerParams</a>
+<font color="orange">FROM</font> SUPL-TRIGGERED-START;
+
+<a name="Ver2-SUPLTRIGGEREDRESPONSE"><font color="DarkViolet"><b>Ver2-SUPLTRIGGEREDRESPONSE</b></font></a>::= <font color="orange">SEQUENCE</font>{
+  posMethod <a href="#PosMethod">PosMethod</a>,
+  triggerParams <a href="#TriggerParams">TriggerParams</a> <font color="orange">OPTIONAL</font>,
+  sLPAddress <a href="#SLPAddress">SLPAddress</a> <font color="orange">OPTIONAL</font>,
+  supportedNetworkInformation <a href="#SupportedNetworkInformation">SupportedNetworkInformation</a> <font color="orange">OPTIONAL</font>,
+  reportingMode <a href="#ReportingMode">ReportingMode</a> <font color="orange">OPTIONAL</font>,
+  sPCSETKey <a href="#SPCSETKey">SPCSETKey</a> <font color="orange">OPTIONAL</font>,
+  spctid <a href="#SPCTID">SPCTID</a> <font color="orange">OPTIONAL</font>,
+  sPCSETKeylifetime <a href="#SPCSETKeylifetime">SPCSETKeylifetime</a> <font color="orange">OPTIONAL</font>,
+  gnssPosTechnology <a href="#GNSSPosTechnology">GNSSPosTechnology</a> <font color="orange">OPTIONAL</font>,
+  ...}
+
+<a name="ReportingMode"><font color="DarkViolet"><b>ReportingMode</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  repMode <a href="#RepModee">RepModee</a>,
+  batchRepConditions <a href="#BatchRepConditions">BatchRepConditions</a> <font color="orange">OPTIONAL</font>, <font color="green"><i>-- only used for batch
+</i></font>  reporting
+  batchRepType <a href="#BatchRepType">BatchRepType</a> <font color="orange">OPTIONAL</font>, <font color="green"><i>-- only used for batch reporting
+</i></font>  ...}
+
+<a name="RepModee"><font color="DarkViolet"><b>RepModee</b></font></a> ::= <font color="orange">ENUMERATED</font> {realtime(1), quasirealtime(2), batch(3), ...}
+
+<a name="BatchRepConditions"><font color="DarkViolet"><b>BatchRepConditions</b></font></a> ::= <font color="orange">CHOICE</font> {
+  num-interval <font color="orange">INTEGER</font> (1..1024), <font color="green"><i>-- number of periodic fixes/measurements after
+</i></font>  which the batch report is sent to the SLP
+  num-minutes <font color="orange">INTEGER</font> (1..2048), <font color="green"><i>-- number of minutes after which the batch
+</i></font>  report is sent to the SLP
+  endofsession NULL, <font color="green"><i>-- if selected batch report is to be sent at the end of the
+</i></font>  session
+  ...}
+
+<a name="BatchRepType"><font color="DarkViolet"><b>BatchRepType</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  reportPosition <font color="orange">BOOLEAN</font>, <font color="green"><i>-- set to "true" if reporting of position is
+</i></font>  allowed
+  reportMeasurements <font color="orange">BOOLEAN</font>, <font color="green"><i>-- set to "true" if reporting of measurements is
+</i></font>  allowed
+  intermediateReports <font color="orange">BOOLEAN</font>, <font color="green"><i>-- set to "true" if the SET is allowed to send
+</i></font>  intermediate reports if it runs out of memory
+  discardOldest <font color="orange">BOOLEAN</font> <font color="orange">OPTIONAL</font>, <font color="green"><i>-- set to "true" if the SET should
+</i></font>  discard the oldest positions or measurements of the batch report in order to
+  save memory, set to "false" the SET should discard the latest positions or
+  measurements
+  ...}
+
+<font color="orange">EXPORTS</font> <a href="#Ver2-SUPLREPORT">Ver2-SUPLREPORT</a>;
+<font color="orange">IMPORTS</font>
+<a href="#SETCapabilities">SETCapabilities</a>
+<font color="orange">FROM</font> SUPL-START
+    <a href="#Position">Position</a>, <a href="#PosMethod">PosMethod</a>, <a href="#SessionID">SessionID</a>, <a href="#Ver">Ver</a>
+<font color="orange">FROM</font> ULP-Components
+    <a href="#MultipleLocationIds">MultipleLocationIds</a>, <a href="#GNSSPosTechnology">GNSSPosTechnology</a>, <a href="#GANSSSignals">GANSSSignals</a>
+<font color="orange">FROM</font> Ver2-ULP-Components
+    <a href="#maxGANSS">maxGANSS</a>
+<font color="orange">FROM</font> ULP-Version-2-parameter-extensions;
+
+<a name="Ver2-SUPLREPORT"><font color="DarkViolet"><b>Ver2-SUPLREPORT</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  sessionList <a href="#SessionList">SessionList</a> <font color="orange">OPTIONAL</font>,
+  sETCapabilities <a href="#SETCapabilities">SETCapabilities</a> <font color="orange">OPTIONAL</font>,
+  reportDataList <a href="#ReportDataList">ReportDataList</a> <font color="orange">OPTIONAL</font>,
+  ver <a href="#Ver">Ver</a> <font color="orange">OPTIONAL</font>,
+  moreComponents NULL <font color="orange">OPTIONAL</font>,
+  ...}
+
+<a name="SessionList"><font color="DarkViolet"><b>SessionList</b></font></a> ::= <font color="orange">SEQUENCE</font> <font color="orange">SIZE</font> (1..maxnumSessions) <font color="orange">OF</font> SessionInformation
+<a name="SessionInformation"><font color="DarkViolet"><b>SessionInformation</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  sessionID <a href="#SessionID">SessionID</a>,
+  ...}
+
+<a name="maxnumSessions"><font color="DarkViolet"><b>maxnumSessions</b></font></a> <font color="orange">INTEGER</font> ::= 64
+<a name="ReportDataList"><font color="DarkViolet"><b>ReportDataList</b></font></a> ::= <font color="orange">SEQUENCE</font> <font color="orange">SIZE</font> (1.. 1024) <font color="orange">OF</font> ReportData
+<a name="ReportData"><font color="DarkViolet"><b>ReportData</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  positionData <a href="#PositionData">PositionData</a> <font color="orange">OPTIONAL</font>,
+  multipleLocationIds <a href="#MultipleLocationIds">MultipleLocationIds</a> <font color="orange">OPTIONAL</font>,
+  resultCode <a href="#ResultCode">ResultCode</a> <font color="orange">OPTIONAL</font>,
+  timestamp <a href="#TimeStamp">TimeStamp</a> <font color="orange">OPTIONAL</font>,
+  ...}
+
+<a name="PositionData"><font color="DarkViolet"><b>PositionData</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  position <a href="#Position">Position</a>,
+  posMethod <a href="#PosMethod">PosMethod</a> <font color="orange">OPTIONAL</font>,
+  gnssPosTechnology <a href="#GNSSPosTechnology">GNSSPosTechnology</a> <font color="orange">OPTIONAL</font>,
+  ganssSignalsInfo <a href="#GANSSsignalsInfo">GANSSsignalsInfo</a> <font color="orange">OPTIONAL</font>,
+  ...}
+
+<a name="GANSSsignalsInfo"><font color="DarkViolet"><b>GANSSsignalsInfo</b></font></a> ::= <font color="orange">SEQUENCE</font> <font color="orange">SIZE</font> (1..maxGANSS) <font color="orange">OF</font> GANSSSignalsDescription
+<a name="GANSSSignalsDescription"><font color="DarkViolet"><b>GANSSSignalsDescription</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  ganssId <font color="orange">INTEGER</font>(0..15), <font color="green"><i>-- coding according to parameter
+</i></font>  definition in section 10.10
+  gANSSSignals <a href="#GANSSSignals">GANSSSignals</a>,
+  ...}
+
+<a name="ResultCode"><font color="DarkViolet"><b>ResultCode</b></font></a> ::= <font color="orange">ENUMERATED</font> {outofradiocoverage(1), noposition(2),
+  nomeasurement(3), nopositionnomeasurement(4), outofmemory(5),
+  outofmemoryintermediatereporting(6), other(7), ...}
+
+<a name="TimeStamp"><font color="DarkViolet"><b>TimeStamp</b></font></a> ::= <font color="orange">CHOICE</font> {
+  absoluteTime UTCTime,
+  relativeTime <font color="orange">INTEGER</font> (0..31536000)} <font color="green"><i>-- relative time to when the SUPL REPORT
+</i></font>
+message is sent in units of 1 sec, where 0 signifies "now" and n signifies n
+seconds in the past
+<font color="orange">EXPORTS</font> <a href="#Ver2-SUPLTRIGGEREDSTOP">Ver2-SUPLTRIGGEREDSTOP</a>;
+<font color="orange">IMPORTS</font>
+<a href="#StatusCode">StatusCode</a>
+<font color="orange">FROM</font> ULP-Components;
+
+<a name="Ver2-SUPLTRIGGEREDSTOP"><font color="DarkViolet"><b>Ver2-SUPLTRIGGEREDSTOP</b></font></a>::= <font color="orange">SEQUENCE</font>{
+  statusCode <a href="#StatusCode">StatusCode</a> <font color="orange">OPTIONAL</font>,
+  ...}
+
+<font color="orange">EXPORTS</font>
+<a href="#Ver2-SUPL-INIT-extension">Ver2-SUPL-INIT-extension</a>, <a href="#Ver2-SUPL-START-extension">Ver2-SUPL-START-extension</a>, Ver2-SUPL-RESPONSE-
+extension, <a href="#Ver2-SUPL-POS-INIT-extension">Ver2-SUPL-POS-INIT-extension</a>, <a href="#Ver2-SUPL-POS-extension">Ver2-SUPL-POS-extension</a>, Ver2-SUPL-
+END-extension;
+<font color="orange">IMPORTS</font>
+<a href="#SLPAddress">SLPAddress</a>, <a href="#Position">Position</a>, <a href="#Ver">Ver</a>
+<font color="orange">FROM</font> ULP-Components
+    <a href="#SETCapabilities">SETCapabilities</a>
+<font color="orange">FROM</font> SUPL-START
+    <a href="#SupportedNetworkInformation">SupportedNetworkInformation</a>, <a href="#GNSSPosTechnology">GNSSPosTechnology</a>, <a href="#MultipleLocationIds">MultipleLocationIds</a>,
+<a href="#UTRAN-GPSReferenceTimeResult">UTRAN-GPSReferenceTimeResult</a>, <a href="#UTRAN-GANSSReferenceTimeResult">UTRAN-GANSSReferenceTimeResult</a>, UTRAN-
+GPSReferenceTimeAssistance, <a href="#UTRAN-GANSSReferenceTimeAssistance">UTRAN-GANSSReferenceTimeAssistance</a>, <a href="#SPCSETKey">SPCSETKey</a>,
+<a href="#SPCTID">SPCTID</a>, <a href="#SPCSETKeylifetime">SPCSETKeylifetime</a>, <a href="#ThirdParty">ThirdParty</a>, <a href="#ApplicationID">ApplicationID</a>
+<font color="orange">FROM</font> Ver2-ULP-Components
+    <a href="#TriggerType">TriggerType</a>
+<font color="orange">FROM</font> SUPL-TRIGGERED-START;
+
+<a name="Ver2-SUPL-INIT-extension"><font color="DarkViolet"><b>Ver2-SUPL-INIT-extension</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  notificationMode <a href="#NotificationMode">NotificationMode</a> <font color="orange">OPTIONAL</font>,
+  supportedNetworkInformation <a href="#SupportedNetworkInformation">SupportedNetworkInformation</a> <font color="orange">OPTIONAL</font>,
+  triggerType <a href="#TriggerType">TriggerType</a> <font color="orange">OPTIONAL</font>,
+  e-SLPAddress <a href="#SLPAddress">SLPAddress</a> <font color="orange">OPTIONAL</font>,
+  historicReporting <a href="#HistoricReporting">HistoricReporting</a> <font color="orange">OPTIONAL</font>,
+  protectionLevel <a href="#ProtectionLevel">ProtectionLevel</a> <font color="orange">OPTIONAL</font>,
+  gnssPosTechnology <a href="#GNSSPosTechnology">GNSSPosTechnology</a> <font color="orange">OPTIONAL</font>,
+  minimumMajorVersion <font color="orange">INTEGER</font> (0..255) <font color="orange">OPTIONAL</font>,
+  ...}
+
+<a name="NotificationMode"><font color="DarkViolet"><b>NotificationMode</b></font></a> ::= <font color="orange">ENUMERATED</font> {normal(0), basedOnLocation(1), ...}
+
+<a name="HistoricReporting"><font color="DarkViolet"><b>HistoricReporting</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  allowedReportingType <a href="#AllowedReportingType">AllowedReportingType</a>,
+  reportingCriteria <a href="#ReportingCriteria">ReportingCriteria</a> <font color="orange">OPTIONAL</font>, ...}
+
+<a name="AllowedReportingType"><font color="DarkViolet"><b>AllowedReportingType</b></font></a> ::= <font color="orange">ENUMERATED</font> {
+  positionsOnly(0), measurementsOnly(1), positionsAndMeasurements(2), ...}
+
+<a name="ReportingCriteria"><font color="DarkViolet"><b>ReportingCriteria</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  timeWindow <a href="#TimeWindow">TimeWindow</a> <font color="orange">OPTIONAL</font>,
+  maxNumberofReports <font color="orange">INTEGER</font>(1..65536) <font color="orange">OPTIONAL</font>,
+  minTimeInterval <font color="orange">INTEGER</font>(1..86400) <font color="orange">OPTIONAL</font>,
+  ...}
+
+<a name="TimeWindow"><font color="DarkViolet"><b>TimeWindow</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  startTime <font color="orange">INTEGER</font>(-525600..-1), <font color="green"><i>-- Time in minutes
+</i></font>  stopTime <font color="orange">INTEGER</font>(-525599..0)} <font color="green"><i>-- Time in minutes
+</i></font>
+<a name="ProtectionLevel"><font color="DarkViolet"><b>ProtectionLevel</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  protlevel <a href="#ProtLevel">ProtLevel</a>,
+  basicProtectionParams <a href="#BasicProtectionParams">BasicProtectionParams</a> <font color="orange">OPTIONAL</font>,
+  ...}
+
+<a name="ProtLevel"><font color="DarkViolet"><b>ProtLevel</b></font></a> ::= <font color="orange">ENUMERATED</font> {
+  nullProtection(0), basicProtection(1), ...}
+
+<a name="BasicProtectionParams"><font color="DarkViolet"><b>BasicProtectionParams</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  keyIdentifier <font color="orange">OCTET</font> <font color="orange">STRING</font>(<font color="orange">SIZE</font> (8)),
+  basicReplayCounter <font color="orange">INTEGER</font>(0..65535),
+  basicMAC <font color="orange">BIT</font> <font color="orange">STRING</font>(<font color="orange">SIZE</font> (32)),
+  ...}
+
+<a name="Ver2-SUPL-START-extension"><font color="DarkViolet"><b>Ver2-SUPL-START-extension</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  multipleLocationIds <a href="#MultipleLocationIds">MultipleLocationIds</a> <font color="orange">OPTIONAL</font>,
+  thirdParty <a href="#ThirdParty">ThirdParty</a> <font color="orange">OPTIONAL</font>,
+  applicationID <a href="#ApplicationID">ApplicationID</a> <font color="orange">OPTIONAL</font>,
+  position <a href="#Position">Position</a> <font color="orange">OPTIONAL</font>,
+  ...}
+
+<a name="Ver2-SUPL-RESPONSE-extension"><font color="DarkViolet"><b>Ver2-SUPL-RESPONSE-extension</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  supportedNetworkInformation <a href="#SupportedNetworkInformation">SupportedNetworkInformation</a> <font color="orange">OPTIONAL</font>,
+  sPCSETKey <a href="#SPCSETKey">SPCSETKey</a> <font color="orange">OPTIONAL</font>,
+  spctid <a href="#SPCTID">SPCTID</a> <font color="orange">OPTIONAL</font>,
+  sPCSETKeylifetime <a href="#SPCSETKeylifetime">SPCSETKeylifetime</a> <font color="orange">OPTIONAL</font>,
+  initialApproximateposition <a href="#Position">Position</a> <font color="orange">OPTIONAL</font>,
+  gnssPosTechnology <a href="#GNSSPosTechnology">GNSSPosTechnology</a> <font color="orange">OPTIONAL</font>,
+  ...}
+
+<a name="Ver2-SUPL-POS-INIT-extension"><font color="DarkViolet"><b>Ver2-SUPL-POS-INIT-extension</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  multipleLocationIds <a href="#MultipleLocationIds">MultipleLocationIds</a> <font color="orange">OPTIONAL</font>,
+  utran-GPSReferenceTimeResult <a href="#UTRAN-GPSReferenceTimeResult">UTRAN-GPSReferenceTimeResult</a> <font color="orange">OPTIONAL</font>,
+  utran-GANSSReferenceTimeResult <a href="#UTRAN-GANSSReferenceTimeResult">UTRAN-GANSSReferenceTimeResult</a> <font color="orange">OPTIONAL</font>,
+  ...}
+
+<a name="Ver2-SUPL-POS-extension"><font color="DarkViolet"><b>Ver2-SUPL-POS-extension</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  utran-GPSReferenceTimeAssistance <a href="#UTRAN-GPSReferenceTimeAssistance">UTRAN-GPSReferenceTimeAssistance</a> <font color="orange">OPTIONAL</font>,
+  utran-GPSReferenceTimeResult <a href="#UTRAN-GPSReferenceTimeResult">UTRAN-GPSReferenceTimeResult</a> <font color="orange">OPTIONAL</font>,
+  utran-GANSSReferenceTimeAssistance <a href="#UTRAN-GANSSReferenceTimeAssistance">UTRAN-GANSSReferenceTimeAssistance</a> <font color="orange">OPTIONAL</font>,
+  utran-GANSSReferenceTimeResult <a href="#UTRAN-GANSSReferenceTimeResult">UTRAN-GANSSReferenceTimeResult</a> <font color="orange">OPTIONAL</font>,
+  ...}
+
+<a name="Ver2-SUPL-END-extension"><font color="DarkViolet"><b>Ver2-SUPL-END-extension</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  sETCapabilities <a href="#SETCapabilities">SETCapabilities</a> <font color="orange">OPTIONAL</font>,
+  ...}
+
+<font color="orange">EXPORTS</font>
+<a href="#maxGANSS">maxGANSS</a>, <a href="#Ver2-Notification-extension">Ver2-Notification-extension</a>, <a href="#Ver2-SETCapabilities-extension">Ver2-SETCapabilities-extension</a>, Ver2-
+PosProtocol-extension, <a href="#Ver2-PosTechnology-extension">Ver2-PosTechnology-extension</a>, Ver2-RequestedAssistData-
+extension, <a href="#Ver2-PosPayLoad-extension">Ver2-PosPayLoad-extension</a>;
+<font color="orange">IMPORTS</font>
+<a href="#GANSSSignals">GANSSSignals</a>, <a href="#ReportingCap">ReportingCap</a>
+<font color="orange">FROM</font> Ver2-ULP-Components
+    <a href="#maxNumGeoArea">maxNumGeoArea</a>, <a href="#maxAreaId">maxAreaId</a>, <a href="#maxAreaIdList">maxAreaIdList</a>
+<font color="orange">FROM</font> SUPL-TRIGGERED-START;
+
+<a name="Ver2-Notification-extension"><font color="DarkViolet"><b>Ver2-Notification-extension</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  emergencyCallLocation NULL <font color="orange">OPTIONAL</font>,
+  ...}
+
+<a name="Ver2-SETCapabilities-extension"><font color="DarkViolet"><b>Ver2-SETCapabilities-extension</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  serviceCapabilities <a href="#ServiceCapabilities">ServiceCapabilities</a> <font color="orange">OPTIONAL</font>,
+  ...,
+  supportedBearers <a href="#SupportedBearers">SupportedBearers</a> <font color="orange">OPTIONAL</font>}
+
+<a name="ServiceCapabilities"><font color="DarkViolet"><b>ServiceCapabilities</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  servicesSupported <a href="#ServicesSupported">ServicesSupported</a>,
+  reportingCapabilities <a href="#ReportingCap">ReportingCap</a> <font color="orange">OPTIONAL</font>,
+  eventTriggerCapabilities <a href="#EventTriggerCapabilities">EventTriggerCapabilities</a> <font color="orange">OPTIONAL</font>,
+  sessionCapabilities <a href="#SessionCapabilities">SessionCapabilities</a>,
+  ...}
+
+<a name="ServicesSupported"><font color="DarkViolet"><b>ServicesSupported</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  periodicTrigger <font color="orange">BOOLEAN</font>,
+  areaEventTrigger <font color="orange">BOOLEAN</font>,
+  ...}
+
+<a name="EventTriggerCapabilities"><font color="DarkViolet"><b>EventTriggerCapabilities</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  geoAreaShapesSupported <a href="#GeoAreaShapesSupported">GeoAreaShapesSupported</a>,
+  maxNumGeoAreaSupported <font color="orange">INTEGER</font> (0..maxNumGeoArea) <font color="orange">OPTIONAL</font>,
+  maxAreaIdListSupported <font color="orange">INTEGER</font> (0..maxAreaIdList) <font color="orange">OPTIONAL</font>,
+  maxAreaIdSupportedPerList <font color="orange">INTEGER</font> (0..maxAreaId) <font color="orange">OPTIONAL</font>,
+  ...}
+
+<a name="GeoAreaShapesSupported"><font color="DarkViolet"><b>GeoAreaShapesSupported</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  ellipticalArea <font color="orange">BOOLEAN</font>,
+  polygonArea <font color="orange">BOOLEAN</font>,
+  ...}
+
+<a name="SessionCapabilities"><font color="DarkViolet"><b>SessionCapabilities</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  maxNumberTotalSessions <font color="orange">INTEGER</font> (1..128),
+  maxNumberPeriodicSessions <font color="orange">INTEGER</font> (1..32),
+  maxNumberTriggeredSessions <font color="orange">INTEGER</font> (1..32),
+  ...}
+
+<a name="SupportedBearers"><font color="DarkViolet"><b>SupportedBearers</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  gsm <font color="orange">BOOLEAN</font>,
+  wcdma <font color="orange">BOOLEAN</font>,
+  lte <font color="orange">BOOLEAN</font>,
+  cdma <font color="orange">BOOLEAN</font>,
+  hprd <font color="orange">BOOLEAN</font>,
+  umb <font color="orange">BOOLEAN</font>,
+  wlan <font color="orange">BOOLEAN</font>,
+  wiMAX <font color="orange">BOOLEAN</font>,
+  ...,
+  nr <font color="orange">BOOLEAN</font> <font color="orange">OPTIONAL</font>}
+
+<a name="Ver2-PosProtocol-extension"><font color="DarkViolet"><b>Ver2-PosProtocol-extension</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  lpp <font color="orange">BOOLEAN</font>,
+  posProtocolVersionRRLP <a href="#PosProtocolVersion3GPP">PosProtocolVersion3GPP</a> <font color="orange">OPTIONAL</font>,
+  posProtocolVersionRRC <a href="#PosProtocolVersion3GPP">PosProtocolVersion3GPP</a> <font color="orange">OPTIONAL</font>,
+  posProtocolVersionTIA801 <a href="#PosProtocolVersion3GPP2">PosProtocolVersion3GPP2</a> <font color="orange">OPTIONAL</font>,
+  posProtocolVersionLPP <a href="#PosProtocolVersion3GPP">PosProtocolVersion3GPP</a> <font color="orange">OPTIONAL</font>,
+  ...,
+  lppe <font color="orange">BOOLEAN</font> <font color="orange">OPTIONAL</font>,
+  posProtocolVersionLPPe <a href="#PosProtocolVersionOMA">PosProtocolVersionOMA</a> <font color="orange">OPTIONAL</font>}
+
+<a name="PosProtocolVersion3GPP"><font color="DarkViolet"><b>PosProtocolVersion3GPP</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  majorVersionField <font color="orange">INTEGER</font>(0..255),
+  technicalVersionField <font color="orange">INTEGER</font>(0..255),
+  editorialVersionField <font color="orange">INTEGER</font>(0..255),
+  ...}
+
+<a name="PosProtocolVersion3GPP2"><font color="DarkViolet"><b>PosProtocolVersion3GPP2</b></font></a> ::= <font color="orange">SEQUENCE</font> (<font color="orange">SIZE</font>(1..8)) <font color="orange">OF</font>
+<a href="#Supported3GPP2PosProtocolVersion">Supported3GPP2PosProtocolVersion</a>
+<a name="Supported3GPP2PosProtocolVersion"><font color="DarkViolet"><b>Supported3GPP2PosProtocolVersion</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  revisionNumber <font color="orange">BIT</font> <font color="orange">STRING</font>(<font color="orange">SIZE</font> (6)), <font color="green"><i>-- the location
+</i></font>  standard revision number the SET supports coded according to 3GPP2 C.S0022
+  pointReleaseNumber <font color="orange">INTEGER</font>(0..255),
+  internalEditLevel <font color="orange">INTEGER</font>(0..255),
+  ...}
+
+<a name="PosProtocolVersionOMA"><font color="DarkViolet"><b>PosProtocolVersionOMA</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  majorVersionField <font color="orange">INTEGER</font>(0..255),
+  minorVersionField <font color="orange">INTEGER</font>(0..255),
+  ...}
+
+<a name="Ver2-PosTechnology-extension"><font color="DarkViolet"><b>Ver2-PosTechnology-extension</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  gANSSPositionMethods <a href="#GANSSPositionMethods">GANSSPositionMethods</a> <font color="orange">OPTIONAL</font>,
+  ...,
+  additionalPositioningMethods <a href="#AdditionalPositioningMethods">AdditionalPositioningMethods</a> <font color="orange">OPTIONAL</font>}
+
+<a name="GANSSPositionMethods"><font color="DarkViolet"><b>GANSSPositionMethods</b></font></a> ::= <font color="orange">SEQUENCE</font> (<font color="orange">SIZE</font>(1..16)) <font color="orange">OF</font> GANSSPositionMethod
+<a name="GANSSPositionMethod"><font color="DarkViolet"><b>GANSSPositionMethod</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  ganssId <font color="orange">INTEGER</font>(0..15), <font color="green"><i>-- coding according to
+</i></font>  parameter definition in section 10.10
+  ganssSBASid <font color="orange">BIT</font> <font color="orange">STRING</font>(<font color="orange">SIZE</font>(3)) <font color="orange">OPTIONAL</font>, <font color="green"><i>--coding
+</i></font>  according to parameter definition in section 10.10
+  gANSSPositioningMethodTypes <a href="#GANSSPositioningMethodTypes">GANSSPositioningMethodTypes</a>,
+  gANSSSignals <a href="#GANSSSignals">GANSSSignals</a>,
+  ...}
+
+<a name="GANSSPositioningMethodTypes"><font color="DarkViolet"><b>GANSSPositioningMethodTypes</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  setAssisted <font color="orange">BOOLEAN</font>,
+  setBased <font color="orange">BOOLEAN</font>,
+  autonomous <font color="orange">BOOLEAN</font>,
+  ...}
+
+<a name="AdditionalPositioningMethods"><font color="DarkViolet"><b>AdditionalPositioningMethods</b></font></a> ::= <font color="orange">SEQUENCE</font> (<font color="orange">SIZE</font>(1..8)) <font color="orange">OF</font> AddPosSupport-Element
+<a name="AddPosSupport-Element"><font color="DarkViolet"><b>AddPosSupport-Element</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  addPosID <font color="orange">ENUMERATED</font> {
+    mBS,
+    ...
+    },
+  addPosMode <font color="orange">BIT</font> <font color="orange">STRING</font> {
+    standalone (0),
+    setBased (1),
+    setAssisted (2)} (<font color="orange">SIZE</font> (1..8)) <font color="orange">OPTIONAL</font>,
+  ...}
+
+<a name="Ver2-RequestedAssistData-extension"><font color="DarkViolet"><b>Ver2-RequestedAssistData-extension</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  ganssRequestedCommonAssistanceDataList
+  <a href="#GanssRequestedCommonAssistanceDataList">GanssRequestedCommonAssistanceDataList</a> <font color="orange">OPTIONAL</font>,
+  ganssRequestedGenericAssistanceDataList
+  <a href="#GanssRequestedGenericAssistanceDataList">GanssRequestedGenericAssistanceDataList</a> <font color="orange">OPTIONAL</font>,
+  extendedEphemeris <a href="#ExtendedEphemeris">ExtendedEphemeris</a> <font color="orange">OPTIONAL</font>,
+  extendedEphemerisCheck <a href="#ExtendedEphCheck">ExtendedEphCheck</a> <font color="orange">OPTIONAL</font>,
+  ...}
+
+<a name="GanssRequestedCommonAssistanceDataList"><font color="DarkViolet"><b>GanssRequestedCommonAssistanceDataList</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  ganssReferenceTime <font color="orange">BOOLEAN</font>,
+  ganssIonosphericModel <font color="orange">BOOLEAN</font>,
+  ganssAdditionalIonosphericModelForDataID00 <font color="orange">BOOLEAN</font>,
+  ganssAdditionalIonosphericModelForDataID11 <font color="orange">BOOLEAN</font>,
+  ganssEarthOrientationParameters <font color="orange">BOOLEAN</font>,
+  ...,
+  ganssAdditionalIonosphericModelForDataID01 <font color="orange">BOOLEAN</font> <font color="orange">OPTIONAL</font>}
+
+<a name="GanssRequestedGenericAssistanceDataList"><font color="DarkViolet"><b>GanssRequestedGenericAssistanceDataList</b></font></a> ::= <font color="orange">SEQUENCE</font>(<font color="orange">SIZE</font>(1..maxGANSS)) <font color="orange">OF</font>
+<a href="#GanssReqGenericData">GanssReqGenericData</a>
+<a name="GanssReqGenericData"><font color="DarkViolet"><b>GanssReqGenericData</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  ganssId <font color="orange">INTEGER</font>(0..15), <font color="green"><i>-- coding according to parameter definition in
+</i></font>  section 10.10
+  ganssSBASid <font color="orange">BIT</font> <font color="orange">STRING</font>(<font color="orange">SIZE</font>(3)) <font color="orange">OPTIONAL</font>, <font color="green"><i>--coding according to parameter
+</i></font>  definition in section 10.10
+  ganssRealTimeIntegrity <font color="orange">BOOLEAN</font>,
+  ganssDifferentialCorrection <a href="#DGANSS-Sig-Id-Req">DGANSS-Sig-Id-Req</a> <font color="orange">OPTIONAL</font>,
+  ganssAlmanac <font color="orange">BOOLEAN</font>,
+  ganssNavigationModelData <a href="#GanssNavigationModelData">GanssNavigationModelData</a> <font color="orange">OPTIONAL</font>,
+  ganssTimeModels <font color="orange">BIT</font> <font color="orange">STRING</font>(<font color="orange">SIZE</font>(16)) <font color="orange">OPTIONAL</font>,
+  ganssReferenceMeasurementInfo <font color="orange">BOOLEAN</font>,
+  ganssDataBits <a href="#GanssDataBits">GanssDataBits</a> <font color="orange">OPTIONAL</font>,
+  ganssUTCModel <font color="orange">BOOLEAN</font>,
+  ganssAdditionalDataChoices <a href="#GanssAdditionalDataChoices">GanssAdditionalDataChoices</a> <font color="orange">OPTIONAL</font>,
+  ganssAuxiliaryInformation <font color="orange">BOOLEAN</font>,
+  ganssExtendedEphemeris <a href="#ExtendedEphemeris">ExtendedEphemeris</a> <font color="orange">OPTIONAL</font>,
+  ganssExtendedEphemerisCheck <a href="#GanssExtendedEphCheck">GanssExtendedEphCheck</a> <font color="orange">OPTIONAL</font>,
+  ...,
+  bds-DifferentialCorrection <a href="#BDS-Sig-Id-Req">BDS-Sig-Id-Req</a> <font color="orange">OPTIONAL</font>,
+  bds-GridModelReq <font color="orange">BOOLEAN</font> <font color="orange">OPTIONAL</font>}
+
+<a name="DGANSS-Sig-Id-Req"><font color="DarkViolet"><b>DGANSS-Sig-Id-Req</b></font></a> ::= <font color="orange">BIT</font> <font color="orange">STRING</font> (<font color="orange">SIZE</font>(8)) <font color="green"><i>-- coding according to parameter
+</i></font>definition in section 10.9
+<a name="BDS-Sig-Id-Req"><font color="DarkViolet"><b>BDS-Sig-Id-Req</b></font></a> ::= <font color="orange">BIT</font> <font color="orange">STRING</font> (<font color="orange">SIZE</font>(8)) <font color="green"><i>-- coding according to parameter
+</i></font>definition in section 10.9
+<a name="GanssNavigationModelData"><font color="DarkViolet"><b>GanssNavigationModelData</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  ganssWeek <font color="orange">INTEGER</font>(0..4095),
+  ganssToe <font color="orange">INTEGER</font>(0..167),
+  t-toeLimit <font color="orange">INTEGER</font>(0..15),
+  satellitesListRelatedDataList <a href="#SatellitesListRelatedDataList">SatellitesListRelatedDataList</a> <font color="orange">OPTIONAL</font>,
+  ...}
+
+<a name="SatellitesListRelatedDataList"><font color="DarkViolet"><b>SatellitesListRelatedDataList</b></font></a> ::= <font color="orange">SEQUENCE</font>(<font color="orange">SIZE</font>(0..maxGANSSSat)) <font color="orange">OF</font>
+<a href="#SatellitesListRelatedData">SatellitesListRelatedData</a>
+<a name="SatellitesListRelatedData"><font color="DarkViolet"><b>SatellitesListRelatedData</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  satId <font color="orange">INTEGER</font>(0..63),
+  iod <font color="orange">INTEGER</font>(0..1023),
+  ...}
+
+<a name="maxGANSS"><font color="DarkViolet"><b>maxGANSS</b></font></a> <font color="orange">INTEGER</font> ::= 16
+<a name="maxGANSSSat"><font color="DarkViolet"><b>maxGANSSSat</b></font></a> <font color="orange">INTEGER</font> ::= 32
+<a name="GanssDataBits"><font color="DarkViolet"><b>GanssDataBits</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  ganssTODmin <font color="orange">INTEGER</font> (0..59),
+  reqDataBitAssistanceList <a href="#ReqDataBitAssistanceList">ReqDataBitAssistanceList</a>,
+  ...}
+
+<a name="ReqDataBitAssistanceList"><font color="DarkViolet"><b>ReqDataBitAssistanceList</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  gnssSignals <a href="#GANSSSignals">GANSSSignals</a>,
+  ganssDataBitInterval <font color="orange">INTEGER</font> (0..15),
+  ganssDataBitSatList <font color="orange">SEQUENCE</font> (<font color="orange">SIZE</font>(1..<a href="#maxGANSSSat">maxGANSSSat</a>)) <font color="orange">OF</font> <font color="orange">INTEGER</font>
+  (0..63) <font color="orange">OPTIONAL</font>,
+  ...}
+
+<a name="GanssAdditionalDataChoices"><font color="DarkViolet"><b>GanssAdditionalDataChoices</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  orbitModelID <font color="orange">INTEGER</font>(0..7) <font color="orange">OPTIONAL</font>,
+  clockModelID <font color="orange">INTEGER</font>(0..7) <font color="orange">OPTIONAL</font>,
+  utcModelID <font color="orange">INTEGER</font>(0..7) <font color="orange">OPTIONAL</font>,
+  almanacModelID <font color="orange">INTEGER</font>(0..7) <font color="orange">OPTIONAL</font>,
+  ...}
+
+<a name="ExtendedEphemeris"><font color="DarkViolet"><b>ExtendedEphemeris</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  validity <font color="orange">INTEGER</font> (1..256), <font color="green"><i>-- Requested validity in 4 hour steps
+</i></font>  ...}
+
+<a name="ExtendedEphCheck"><font color="DarkViolet"><b>ExtendedEphCheck</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  beginTime <a href="#GPSTime">GPSTime</a>, <font color="green"><i>-- Begin time of ephemeris extension held by SET
+</i></font>  endTime <a href="#GPSTime">GPSTime</a>, <font color="green"><i>-- End time of ephemeris extension held by SET
+</i></font>  ...}
+
+<a name="GanssExtendedEphCheck"><font color="DarkViolet"><b>GanssExtendedEphCheck</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  beginTime <a href="#GANSSextEphTime">GANSSextEphTime</a>, <font color="green"><i>-- Begin time of ephemeris extension held by SET
+</i></font>  endTime <a href="#GANSSextEphTime">GANSSextEphTime</a>, <font color="green"><i>-- End time of ephemeris extension held by SET
+</i></font>  ...}
+
+<a name="GPSTime"><font color="DarkViolet"><b>GPSTime</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  gPSWeek <font color="orange">INTEGER</font> (0..1023),
+  gPSTOWhour <font color="orange">INTEGER</font> (0..167),
+  ...}
+
+<a name="GANSSextEphTime"><font color="DarkViolet"><b>GANSSextEphTime</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  gANSSday <font color="orange">INTEGER</font> (0..8191),
+  gANSSTODhour <font color="orange">INTEGER</font> (0..23),
+  ...}
+
+<a name="Ver2-PosPayLoad-extension"><font color="DarkViolet"><b>Ver2-PosPayLoad-extension</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  lPPPayload <font color="orange">SEQUENCE</font> (<font color="orange">SIZE</font> (1..3)) <font color="orange">OF</font> <font color="orange">OCTET</font> <font color="orange">STRING</font>(SIZE (1..60000)) <font color="orange">OPTIONAL</font>,
+  tia801Payload <font color="orange">SEQUENCE</font> (<font color="orange">SIZE</font>(1..3)) <font color="orange">OF</font> <font color="orange">OCTET</font> <font color="orange">STRING</font>(SIZE (1..60000))
+  <font color="orange">OPTIONAL</font>,
+  ...}
+
+<font color="orange">EXPORTS</font> <a href="#Version">Version</a>, <a href="#SessionID">SessionID</a>, <a href="#IPAddress">IPAddress</a>, <a href="#SLPAddress">SLPAddress</a>, <a href="#LocationId">LocationId</a>, <a href="#Position">Position</a>,
+<a href="#StatusCode">StatusCode</a>, <a href="#Velocity">Velocity</a>, <a href="#QoP">QoP</a>, <a href="#PosMethod">PosMethod</a>, <a href="#Ver">Ver</a>, <a href="#SETId">SETId</a>, <a href="#PrimaryCPICH-Info">PrimaryCPICH-Info</a>,
+<a href="#CellParametersID">CellParametersID</a>, <a href="#FQDN">FQDN</a>;
+<font color="orange">IMPORTS</font>
+<a href="#Ver2-CellInfo-extension">Ver2-CellInfo-extension</a>
+<font color="orange">FROM</font> Ver2-ULP-Components;
+
+<font color="green"><i>-- protocol version expressed as x.y.z (e.g., 5.1.0)
+</i></font><a name="Version"><font color="DarkViolet"><b>Version</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  maj <font color="orange">INTEGER</font>(0..255),
+  min <font color="orange">INTEGER</font>(0..255),
+  servind <font color="orange">INTEGER</font>(0..255)}
+
+<a name="SessionID"><font color="DarkViolet"><b>SessionID</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  setSessionID <a href="#SetSessionID">SetSessionID</a> <font color="orange">OPTIONAL</font>, <font color="green"><i>-- the semantics of OPTIONAL applies to
+</i></font>  the encoding only. The parameter itself is MANDATORY. This is introduced only
+  to minimize bandwidth for the SUPL INIT message. Since the setSessionID is
+  allocated by the SET, there is no setSessionID to be transmitted in the SUPL
+  INIT message.
+  slpSessionID <a href="#SlpSessionID">SlpSessionID</a> <font color="orange">OPTIONAL</font> <font color="green"><i>-- the semantics of OPTIONAL applies to
+</i></font>  the encoding only. The parameter itself is MANDATORY. This is introduced only
+  to minimize bandwidth for the SUPL START, SUPL TRIGGERED START and SUPL SET
+  INIT messages. Since the slpSessionID is allocated by the SLP, there is no
+  slpSessionID to be transmitted in these messages (with the exception described
+  in section 10.14).
+  }
+
+<a name="SetSessionID"><font color="DarkViolet"><b>SetSessionID</b></font></a> ::= <font color="orange">SEQUENCE</font> {sessionId <font color="orange">INTEGER</font>(0..65535),
+  setId <a href="#SETId">SETId</a>}
+
+<a name="SETId"><font color="DarkViolet"><b>SETId</b></font></a> ::= <font color="orange">CHOICE</font> {
+  msisdn <font color="orange">OCTET</font> <font color="orange">STRING</font>(<font color="orange">SIZE</font> (8)),
+  mdn <font color="orange">OCTET</font> <font color="orange">STRING</font>(<font color="orange">SIZE</font> (8)),
+  min <font color="orange">BIT</font> <font color="orange">STRING</font>(<font color="orange">SIZE</font> (34)), <font color="green"><i>-- coded according to TIA-553
+</i></font>  imsi <font color="orange">OCTET</font> <font color="orange">STRING</font>(<font color="orange">SIZE</font> (8)),
+  nai <font color="orange">IA5String</font>(<font color="orange">SIZE</font> (1..1000)),
+  iPAddress <a href="#IPAddress">IPAddress</a>,
+  ...,
+  ver2-imei <font color="orange">OCTET</font> <font color="orange">STRING</font>(<font color="orange">SIZE</font>(8))}
+
+<font color="green"><i>-- msisdn, mnd, imsi and imei are a BCD (Binary Coded Decimal) string
+</i></font><font color="green"><i>-- represent digits from 0 through 9,
+</i></font><font color="green"><i>-- two digits per octet, each digit encoded 0000 to 1001 (0 to 9)
+</i></font><font color="green"><i>-- bits 8765 of octet n encoding digit 2n
+</i></font><font color="green"><i>-- bits 4321 of octet n encoding digit 2(n-1) +1
+</i></font><font color="green"><i>-- not used digits in the string shall be filled with 1111
+</i></font><font color="green"><i>-- imei SHALL NOT be used unless the SLP indicates support for SUPL ver 2.0.3
+</i></font><font color="green"><i>-- or greater
+</i></font><a name="SlpSessionID"><font color="DarkViolet"><b>SlpSessionID</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  sessionID <font color="orange">OCTET</font> <font color="orange">STRING</font>(<font color="orange">SIZE</font> (4)),
+  slpId <a href="#SLPAddress">SLPAddress</a>}
+
+<a name="IPAddress"><font color="DarkViolet"><b>IPAddress</b></font></a> ::= <font color="orange">CHOICE</font> {
+  ipv4Address <font color="orange">OCTET</font> <font color="orange">STRING</font>(<font color="orange">SIZE</font> (4)),
+  ipv6Address <font color="orange">OCTET</font> <font color="orange">STRING</font>(<font color="orange">SIZE</font> (16))}
+
+SLPAddress ::= <font color="orange">CHOICE</font> {iPAddress <a name="IPAddress"><font color="DarkViolet"><b>IPAddress</b></font></a>,
+  fqdn <a href="#FQDN">FQDN</a>,
+  ...}
+
+<a name="FQDN"><font color="DarkViolet"><b>FQDN</b></font></a> ::=
+<font color="orange">VisibleString</font>(<font color="orange">FROM</font> ("a".."z" | "A".."Z" | "0".."9" |".-"))(<font color="orange">SIZE</font> (1..255))
+    <a name="Ver"><font color="DarkViolet"><b>Ver</b></font></a> ::= <font color="orange">BIT</font> <font color="orange">STRING</font>(<font color="orange">SIZE</font> (64))
+<a name="LocationId"><font color="DarkViolet"><b>LocationId</b></font></a> ::= <font color="orange">SEQUENCE</font> {cellInfo CellInfo,
+  status <a href="#Status">Status</a>,
+  ...}
+
+<a name="Status"><font color="DarkViolet"><b>Status</b></font></a> ::= <font color="orange">ENUMERATED</font> {stale(0), current(1), unknown(2), ...}
+
+<a name="CellInfo"><font color="DarkViolet"><b>CellInfo</b></font></a> ::= <font color="orange">CHOICE</font> {
+  gsmCell <a href="#GsmCellInformation">GsmCellInformation</a>,
+  wcdmaCell <a href="#WcdmaCellInformation">WcdmaCellInformation</a>, <font color="green"><i>--WCDMA Cell Information/TD-SCDMA Cell
+</i></font>  Information
+  cdmaCell <a href="#CdmaCellInformation">CdmaCellInformation</a>,
+  ...,
+  ver2-CellInfo-extension <a href="#Ver2-CellInfo-extension">Ver2-CellInfo-extension</a>}
+
+<a name="Position"><font color="DarkViolet"><b>Position</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  timestamp UTCTime, <font color="green"><i>-- shall include seconds and shall use UTC time.
+</i></font>  positionEstimate <a href="#PositionEstimate">PositionEstimate</a>,
+  velocity <a href="#Velocity">Velocity</a> <font color="orange">OPTIONAL</font>,
+  ...}
+
+<a name="PositionEstimate"><font color="DarkViolet"><b>PositionEstimate</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  latitudeSign <font color="orange">ENUMERATED</font> {north, south},
+  latitude <font color="orange">INTEGER</font>(0..8388607),
+  longitude <font color="orange">INTEGER</font>(-8388608..8388607),
+  uncertainty
+  <font color="orange">SEQUENCE</font> {uncertaintySemiMajor <font color="orange">INTEGER</font>(0..127),
+    uncertaintySemiMinor <font color="orange">INTEGER</font>(0..127),
+    orientationMajorAxis <font color="orange">INTEGER</font>(0..180)} <font color="orange">OPTIONAL</font>, <font color="green"><i>-- angle in
+</i></font>  degree between major axis and North
+  confidence <font color="orange">INTEGER</font>(0..100) <font color="orange">OPTIONAL</font>,
+  altitudeInfo <a href="#AltitudeInfo">AltitudeInfo</a> <font color="orange">OPTIONAL</font>,
+  ...} <font color="green"><i>-- Coding as in [3GPP GAD]
+</i></font>
+<a name="AltitudeInfo"><font color="DarkViolet"><b>AltitudeInfo</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  altitudeDirection <font color="orange">ENUMERATED</font> {height, depth},
+  altitude <font color="orange">INTEGER</font>(0..32767),
+  altUncertainty <font color="orange">INTEGER</font>(0..127),
+  ... } <font color="green"><i>-- based on [3GPP GAD]
+</i></font>
+<a name="CdmaCellInformation"><font color="DarkViolet"><b>CdmaCellInformation</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  refNID <font color="orange">INTEGER</font>(0..65535), <font color="green"><i>-- Network Id
+</i></font>  refSID <font color="orange">INTEGER</font>(0..32767), <font color="green"><i>-- System Id
+</i></font>  refBASEID <font color="orange">INTEGER</font>(0..65535), <font color="green"><i>-- Base Station Id
+</i></font>  refBASELAT <font color="orange">INTEGER</font>(0..4194303), <font color="green"><i>-- Base Station Latitude
+</i></font>  reBASELONG <font color="orange">INTEGER</font>(0..8388607), <font color="green"><i>-- Base Station Longitude
+</i></font>  refREFPN <font color="orange">INTEGER</font>(0..511), <font color="green"><i>-- Base Station PN Code
+</i></font>  refWeekNumber <font color="orange">INTEGER</font>(0..65535), <font color="green"><i>-- GPS Week Number
+</i></font>  refSeconds <font color="orange">INTEGER</font>(0..4194303), <font color="green"><i>-- GPS Seconds
+</i></font>  ...}
+
+<a name="GsmCellInformation"><font color="DarkViolet"><b>GsmCellInformation</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  refMCC <font color="orange">INTEGER</font>(0..999), <font color="green"><i>-- Mobile Country Code
+</i></font>  refMNC <font color="orange">INTEGER</font>(0..999), <font color="green"><i>-- Mobile Network Code
+</i></font>  refLAC <font color="orange">INTEGER</font>(0..65535), <font color="green"><i>-- Location area code
+</i></font>  refCI <font color="orange">INTEGER</font>(0..65535), <font color="green"><i>-- Cell identity
+</i></font>  nmr <a href="#NMR">NMR</a> <font color="orange">OPTIONAL</font>,
+  ta <font color="orange">INTEGER</font>(0..255) <font color="orange">OPTIONAL</font>, <font color="green"><i>--Timing Advance
+</i></font>  ...}
+
+<a name="WcdmaCellInformation"><font color="DarkViolet"><b>WcdmaCellInformation</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  refMCC <font color="orange">INTEGER</font>(0..999), <font color="green"><i>-- Mobile Country Code
+</i></font>  refMNC <font color="orange">INTEGER</font>(0..999), <font color="green"><i>-- Mobile Network Code
+</i></font>  refUC <font color="orange">INTEGER</font>(0..268435455), <font color="green"><i>-- Cell identity
+</i></font>  frequencyInfo <a href="#FrequencyInfo">FrequencyInfo</a> <font color="orange">OPTIONAL</font>,
+  primaryScramblingCode <font color="orange">INTEGER</font>(0..511) <font color="orange">OPTIONAL</font>, <font color="green"><i>-- Not applicable for TDD
+</i></font>  measuredResultsList <a href="#MeasuredResultsList">MeasuredResultsList</a> <font color="orange">OPTIONAL</font>,
+  ...,
+  cellParametersId <font color="orange">INTEGER</font>(0..127) <font color="orange">OPTIONAL</font>, <font color="green"><i>-- Not applicable for FDD
+</i></font>  timingAdvance <a href="#TimingAdvance">TimingAdvance</a> <font color="orange">OPTIONAL</font> <font color="green"><i>-- Not applicable for FDD
+</i></font>  }
+
+<a name="TimingAdvance"><font color="DarkViolet"><b>TimingAdvance</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  ta <font color="orange">INTEGER</font> (0..8191),
+  tAResolution <a href="#TAResolution">TAResolution</a> <font color="orange">OPTIONAL</font>, <font color="green"><i>--If missing, resolution is 0.125 chips
+</i></font>  chipRate <a href="#ChipRate">ChipRate</a> <font color="orange">OPTIONAL</font>, <font color="green"><i>--If missing, chip rate is 1.28 Mchip/s
+</i></font>  ...}
+
+<a name="TAResolution"><font color="DarkViolet"><b>TAResolution</b></font></a> ::= <font color="orange">ENUMERATED</font> {res10chip(0),res05chip(1),res0125chip(2), ...} <font color="green"><i>--
+</i></font>
+Corresponding to 1.0-chip, 0.5-chip and 0.125-chip resolutions, respectively
+<a name="ChipRate"><font color="DarkViolet"><b>ChipRate</b></font></a> ::= <font color="orange">ENUMERATED</font> {tdd128(0),tdd384(1), tdd768(2), ...} <font color="green"><i>--Corresponding
+</i></font>
+to 1.28-Mchips/s, 3.84-Mchips/s and 7.68-Mchips/s chip rates, respectively
+<a name="FrequencyInfo"><font color="DarkViolet"><b>FrequencyInfo</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  modeSpecificInfo <font color="orange">CHOICE</font> {fdd <a href="#FrequencyInfoFDD">FrequencyInfoFDD</a>,
+    tdd <a href="#FrequencyInfoTDD">FrequencyInfoTDD</a>,
+    ...},
+  ...}
+
+<a name="FrequencyInfoFDD"><font color="DarkViolet"><b>FrequencyInfoFDD</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  uarfcn-UL <a href="#UARFCN">UARFCN</a> <font color="orange">OPTIONAL</font>,
+  uarfcn-DL <a href="#UARFCN">UARFCN</a>,
+  ...}
+
+<a name="FrequencyInfoTDD"><font color="DarkViolet"><b>FrequencyInfoTDD</b></font></a> ::= <font color="orange">SEQUENCE</font> {uarfcn-Nt UARFCN,
+  ...}
+
+<a name="UARFCN"><font color="DarkViolet"><b>UARFCN</b></font></a> ::= <font color="orange">INTEGER</font>(0..16383)
+<a name="NMR"><font color="DarkViolet"><b>NMR</b></font></a> ::= <font color="orange">SEQUENCE</font> (<font color="orange">SIZE</font> (1..15)) <font color="orange">OF</font> NMRelement
+<a name="NMRelement"><font color="DarkViolet"><b>NMRelement</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  arfcn <font color="orange">INTEGER</font>(0..1023),
+  bsic <font color="orange">INTEGER</font>(0..63),
+  rxLev <font color="orange">INTEGER</font>(0..63),
+  ...}
+
+<a name="MeasuredResultsList"><font color="DarkViolet"><b>MeasuredResultsList</b></font></a> ::= <font color="orange">SEQUENCE</font> (<font color="orange">SIZE</font> (1..maxFreq)) <font color="orange">OF</font> MeasuredResults
+<a name="MeasuredResults"><font color="DarkViolet"><b>MeasuredResults</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  frequencyInfo <a href="#FrequencyInfo">FrequencyInfo</a> <font color="orange">OPTIONAL</font>,
+  utra-CarrierRSSI <a href="#UTRA-CarrierRSSI">UTRA-CarrierRSSI</a> <font color="orange">OPTIONAL</font>,
+  cellMeasuredResultsList <a href="#CellMeasuredResultsList">CellMeasuredResultsList</a> <font color="orange">OPTIONAL</font>}
+
+<a name="CellMeasuredResultsList"><font color="DarkViolet"><b>CellMeasuredResultsList</b></font></a> ::=
+<font color="orange">SEQUENCE</font> (<font color="orange">SIZE</font> (1..<a href="#maxCellMeas">maxCellMeas</a>)) <font color="orange">OF</font> <a href="#CellMeasuredResults">CellMeasuredResults</a>
+<font color="green"><i>-- SPARE: <a href="#UTRA-CarrierRSSI">UTRA-CarrierRSSI</a>, Max = 76
+</i></font><font color="green"><i>-- Values above Max are spare
+</i></font><a name="UTRA-CarrierRSSI"><font color="DarkViolet"><b>UTRA-CarrierRSSI</b></font></a> ::= <font color="orange">INTEGER</font>(0..127)
+<a name="CellMeasuredResults"><font color="DarkViolet"><b>CellMeasuredResults</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  cellIdentity <font color="orange">INTEGER</font>(0..268435455) <font color="orange">OPTIONAL</font>,
+  modeSpecificInfo
+  <font color="orange">CHOICE</font> {fdd
+    <font color="orange">SEQUENCE</font> {primaryCPICH-Info <a href="#PrimaryCPICH-Info">PrimaryCPICH-Info</a>,
+      cpich-Ec-N0 <a href="#CPICH-Ec-N0">CPICH-Ec-N0</a> <font color="orange">OPTIONAL</font>,
+      cpich-RSCP <a href="#CPICH-RSCP">CPICH-RSCP</a> <font color="orange">OPTIONAL</font>,
+      pathloss <a href="#Pathloss">Pathloss</a> <font color="orange">OPTIONAL</font>},
+    tdd
+    <font color="orange">SEQUENCE</font> {cellParametersID <a href="#CellParametersID">CellParametersID</a>,
+      proposedTGSN <a href="#TGSN">TGSN</a> <font color="orange">OPTIONAL</font>,
+      primaryCCPCH-RSCP <a href="#PrimaryCCPCH-RSCP">PrimaryCCPCH-RSCP</a> <font color="orange">OPTIONAL</font>,
+      pathloss <a href="#Pathloss">Pathloss</a> <font color="orange">OPTIONAL</font>,
+      timeslotISCP-List <a href="#TimeslotISCP-List">TimeslotISCP-List</a> <font color="orange">OPTIONAL</font> <font color="green"><i>--NOTE:
+</i></font>      TimeSlotISCP measurement list cannot be interpreted without the knowledge of
+      Cell Info as defined in [3GPP RRC]
+      }}}
+
+<a name="CellParametersID"><font color="DarkViolet"><b>CellParametersID</b></font></a> ::= <font color="orange">INTEGER</font>(0..127)
+<a name="TGSN"><font color="DarkViolet"><b>TGSN</b></font></a> ::= <font color="orange">INTEGER</font>(0..14)
+<a name="PrimaryCCPCH-RSCP"><font color="DarkViolet"><b>PrimaryCCPCH-RSCP</b></font></a> ::= <font color="orange">INTEGER</font>(0..127)
+<font color="green"><i>-- SPARE: <a href="#TimeslotISCP">TimeslotISCP</a>, Max = 91
+</i></font><font color="green"><i>-- Values above Max are spare
+</i></font><a name="TimeslotISCP"><font color="DarkViolet"><b>TimeslotISCP</b></font></a> ::= <font color="orange">INTEGER</font>(0..127)
+<a name="TimeslotISCP-List"><font color="DarkViolet"><b>TimeslotISCP-List</b></font></a> ::= <font color="orange">SEQUENCE</font> (<font color="orange">SIZE</font> (1..maxTS)) <font color="orange">OF</font> TimeslotISCP
+<a name="PrimaryCPICH-Info"><font color="DarkViolet"><b>PrimaryCPICH-Info</b></font></a> ::= <font color="orange">SEQUENCE</font> {primaryScramblingCode <font color="orange">INTEGER</font>(0..511)}
+
+<font color="green"><i>-- SPARE: CPICH-Ec-No, Max = 49
+</i></font><font color="green"><i>-- Values above Max are spare
+</i></font><a name="CPICH-Ec-N0"><font color="DarkViolet"><b>CPICH-Ec-N0</b></font></a> ::= <font color="orange">INTEGER</font>(0..63)
+<font color="green"><i>-- SPARE: CPICH- RSCP, data range from 0 to 91 and from 123 to 127.
+</i></font><font color="green"><i>-- Values from 92 to 122 are spare
+</i></font><font color="green"><i>-- the encoding of cpich-RSCP is (as per [3GPP RRC] V5.11.0)
+</i></font><font color="green"><i>-- cpich-RSCP = 123 CPICH RSCP <-120 dBm
+</i></font><font color="green"><i>-- ... ... ...
+</i></font><a name="CPICH-RSCP"><font color="DarkViolet"><b>CPICH-RSCP</b></font></a> ::= <font color="orange">INTEGER</font>(0..127)
+<font color="green"><i>-- SPARE: <a href="#Pathloss">Pathloss</a>, Max = 158
+</i></font><font color="green"><i>-- Values above Max are spare
+</i></font><a name="Pathloss"><font color="DarkViolet"><b>Pathloss</b></font></a> ::= <font color="orange">INTEGER</font>(46..173)
+<a name="maxCellMeas"><font color="DarkViolet"><b>maxCellMeas</b></font></a> <font color="orange">INTEGER</font> ::= 32
+<a name="maxFreq"><font color="DarkViolet"><b>maxFreq</b></font></a> <font color="orange">INTEGER</font> ::= 8
+<a name="maxTS"><font color="DarkViolet"><b>maxTS</b></font></a> <font color="orange">INTEGER</font> ::= 14
+<a name="StatusCode"><font color="DarkViolet"><b>StatusCode</b></font></a> ::= <font color="orange">ENUMERATED</font> {
+  unspecified(0), systemFailure(1), unexpectedMessage(2), protocolError(3),
+  dataMissing(4), unexpectedDataValue(5), posMethodFailure(6),
+  posMethodMismatch(7), posProtocolMismatch(8), targetSETnotReachable(9),
+  versionNotSupported(10), resourceShortage(11), invalidSessionId(12),
+  nonProxyModeNotSupported(13), proxyModeNotSupported(14),
+  positioningNotPermitted(15), authNetFailure(16), authSuplinitFailure(17),
+  consentDeniedByUser(100), consentGrantedByUser(101), ..., ver2-
+  incompatibleProtectionLevel(18), ver2-serviceNotSupported(19), ver2-
+  insufficientInterval(20), ver2-noSUPLCoverage(21), ver2-sessionStopped(102),
+  ver2-appIdDenied(103)}
+
+<a name="QoP"><font color="DarkViolet"><b>QoP</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  horacc <font color="orange">INTEGER</font>(0..127),
+  veracc <font color="orange">INTEGER</font>(0..127) <font color="orange">OPTIONAL</font>, <font color="green"><i>-- as defined in [3GPP GAD] "uncertainty
+</i></font>  altitude"
+  maxLocAge <font color="orange">INTEGER</font>(0..65535) <font color="orange">OPTIONAL</font>,
+  delay <font color="orange">INTEGER</font>(0..7) <font color="orange">OPTIONAL</font>, <font color="green"><i>-- as defined in [3GPP RRLP]
+</i></font>  ...,
+  ver2-responseTime <font color="orange">INTEGER</font> (1..128) <font color="orange">OPTIONAL</font>}
+
+<a name="Velocity"><font color="DarkViolet"><b>Velocity</b></font></a> ::= <font color="orange">CHOICE</font> { <font color="green"><i>-- velocity definition as per [3GPP GAD]
+</i></font>  horvel <a href="#Horvel">Horvel</a>,
+  horandvervel <a href="#Horandvervel">Horandvervel</a>,
+  horveluncert <a href="#Horveluncert">Horveluncert</a>,
+  horandveruncert <a href="#Horandveruncert">Horandveruncert</a>,
+  ...}
+
+<a name="Horvel"><font color="DarkViolet"><b>Horvel</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  bearing <font color="orange">BIT</font> <font color="orange">STRING</font>(<font color="orange">SIZE</font> (9)),
+  horspeed <font color="orange">BIT</font> <font color="orange">STRING</font>(<font color="orange">SIZE</font> (16)),
+  ...}
+
+<a name="Horandvervel"><font color="DarkViolet"><b>Horandvervel</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  verdirect <font color="orange">BIT</font> <font color="orange">STRING</font>(<font color="orange">SIZE</font> (1)),
+  bearing <font color="orange">BIT</font> <font color="orange">STRING</font>(<font color="orange">SIZE</font> (9)),
+  horspeed <font color="orange">BIT</font> <font color="orange">STRING</font>(<font color="orange">SIZE</font> (16)),
+  verspeed <font color="orange">BIT</font> <font color="orange">STRING</font>(<font color="orange">SIZE</font> (8)),
+  ...}
+
+<a name="Horveluncert"><font color="DarkViolet"><b>Horveluncert</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  bearing <font color="orange">BIT</font> <font color="orange">STRING</font>(<font color="orange">SIZE</font> (9)),
+  horspeed <font color="orange">BIT</font> <font color="orange">STRING</font>(<font color="orange">SIZE</font> (16)),
+  uncertspeed <font color="orange">BIT</font> <font color="orange">STRING</font>(<font color="orange">SIZE</font> (8)),
+  ...}
+
+<a name="Horandveruncert"><font color="DarkViolet"><b>Horandveruncert</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  verdirect <font color="orange">BIT</font> <font color="orange">STRING</font>(<font color="orange">SIZE</font> (1)),
+  bearing <font color="orange">BIT</font> <font color="orange">STRING</font>(<font color="orange">SIZE</font> (9)),
+  horspeed <font color="orange">BIT</font> <font color="orange">STRING</font>(<font color="orange">SIZE</font> (16)),
+  verspeed <font color="orange">BIT</font> <font color="orange">STRING</font>(<font color="orange">SIZE</font> (8)),
+  horuncertspeed <font color="orange">BIT</font> <font color="orange">STRING</font>(<font color="orange">SIZE</font> (8)),
+  veruncertspeed <font color="orange">BIT</font> <font color="orange">STRING</font>(<font color="orange">SIZE</font> (8)),
+  ...}
+
+<a name="PosMethod"><font color="DarkViolet"><b>PosMethod</b></font></a> ::= <font color="orange">ENUMERATED</font> {
+  agpsSETassisted(0), agpsSETbased(1), agpsSETassistedpref(2),
+  agpsSETbasedpref(3), autonomousGPS(4), aflt(5), ecid(6), eotd(7), otdoa(8),
+  noPosition(9), ..., ver2-historicalDataRetrieval(10), ver2-
+  agnssSETassisted(11), ver2-agnssSETbased(12), ver2-agnssSETassistedpref(13),
+  ver2-agnssSETbasedpref(14), ver2-autonomousGNSS(15), ver2-sessioninfoquery(16),
+  ver2-mbs(17)}
+
+<font color="orange">EXPORTS</font> <a href="#Ver2-CellInfo-extension">Ver2-CellInfo-extension</a>, <a href="#MultipleLocationIds">MultipleLocationIds</a>,
+<a href="#SupportedNetworkInformation">SupportedNetworkInformation</a>, <a href="#CauseCode">CauseCode</a>, <a href="#UTRAN-GPSReferenceTimeAssistance">UTRAN-GPSReferenceTimeAssistance</a>,
+<a href="#UTRAN-GPSReferenceTimeResult">UTRAN-GPSReferenceTimeResult</a>, <a href="#SPCSETKey">SPCSETKey</a>, <a href="#SPCTID">SPCTID</a>, <a href="#SPCSETKeylifetime">SPCSETKeylifetime</a>, UTRAN-
+GANSSReferenceTimeAssistance, <a href="#UTRAN-GANSSReferenceTimeResult">UTRAN-GANSSReferenceTimeResult</a>,
+<a href="#GNSSPosTechnology">GNSSPosTechnology</a>, <a href="#GANSSSignals">GANSSSignals</a>, <a href="#ThirdParty">ThirdParty</a>, <a href="#ApplicationID">ApplicationID</a>, <a href="#ReportingCap">ReportingCap</a>,
+<a href="#Coordinate">Coordinate</a>, <a href="#CircularArea">CircularArea</a>, <a href="#EllipticalArea">EllipticalArea</a>, <a href="#PolygonArea">PolygonArea</a>;
+<font color="orange">IMPORTS</font>
+<a href="#LocationId">LocationId</a>, <a href="#PrimaryCPICH-Info">PrimaryCPICH-Info</a>, <a href="#CellParametersID">CellParametersID</a>, <a href="#FQDN">FQDN</a>
+<font color="orange">FROM</font> ULP-Components;
+
+<a name="MultipleLocationIds"><font color="DarkViolet"><b>MultipleLocationIds</b></font></a> ::= <font color="orange">SEQUENCE</font> <font color="orange">SIZE</font> (1..maxLidSize) <font color="orange">OF</font> LocationIdData
+<a name="LocationIdData"><font color="DarkViolet"><b>LocationIdData</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  locationId <a href="#LocationId">LocationId</a>,
+  relativetimestamp <a href="#RelativeTime">RelativeTime</a> <font color="orange">OPTIONAL</font>, <font color="green"><i>-- if relativetimestamp is
+</i></font>  present, then data represents historical measurement, if absent, data
+  represents current measurements
+  servingFlag <font color="orange">BOOLEAN</font>, <font color="green"><i>-- if "true" measurements represent serving cell
+</i></font>  ...}
+
+<a name="RelativeTime"><font color="DarkViolet"><b>RelativeTime</b></font></a> ::= <font color="orange">INTEGER</font> (0..65535) <font color="green"><i>-- relative time to "current" Location Id
+</i></font>in multiples of 0.01sec
+<a name="maxLidSize"><font color="DarkViolet"><b>maxLidSize</b></font></a> <font color="orange">INTEGER</font> ::= 64
+<a name="SupportedNetworkInformation"><font color="DarkViolet"><b>SupportedNetworkInformation</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  wlan <font color="orange">BOOLEAN</font>,
+  supportedWLANInfo <a href="#SupportedWLANInfo">SupportedWLANInfo</a> <font color="orange">OPTIONAL</font>,
+  supportedWLANApsList <a href="#SupportedWLANApsList">SupportedWLANApsList</a> <font color="orange">OPTIONAL</font>,
+  gsm <font color="orange">BOOLEAN</font>,
+  wcdma <font color="orange">BOOLEAN</font>,
+  supportedWCDMAInfo <a href="#SupportedWCDMAInfo">SupportedWCDMAInfo</a> <font color="orange">OPTIONAL</font>,
+  cdma <font color="orange">BOOLEAN</font>,
+  hrdp <font color="orange">BOOLEAN</font>,
+  umb <font color="orange">BOOLEAN</font>,
+  lte <font color="orange">BOOLEAN</font>,
+  wimax <font color="orange">BOOLEAN</font>,
+  historic <font color="orange">BOOLEAN</font>,
+  nonServing <font color="orange">BOOLEAN</font>,
+  uTRANGPSReferenceTime <font color="orange">BOOLEAN</font>,
+  uTRANGANSSReferenceTime <font color="orange">BOOLEAN</font>,
+  ...,
+  nr <font color="orange">BOOLEAN</font> <font color="orange">OPTIONAL</font>}
+
+<a name="SupportedWLANInfo"><font color="DarkViolet"><b>SupportedWLANInfo</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  apTP <font color="orange">BOOLEAN</font>, <font color="green"><i>-- AP transmit power
+</i></font>  apAG <font color="orange">BOOLEAN</font>, <font color="green"><i>-- AP antenna gain
+</i></font>  apSN <font color="orange">BOOLEAN</font>, <font color="green"><i>-- AP S/N received at SET
+</i></font>  apDevType <font color="orange">BOOLEAN</font>, <font color="green"><i>-- Device type
+</i></font>  apRSSI <font color="orange">BOOLEAN</font>, <font color="green"><i>-- AP signal strength at SET
+</i></font>  apChanFreq <font color="orange">BOOLEAN</font>, <font color="green"><i>-- AP channel/frequency of Tx/Rx
+</i></font>  apRTD <font color="orange">BOOLEAN</font>, <font color="green"><i>-- Round Trip Delay between SET and AP
+</i></font>  setTP <font color="orange">BOOLEAN</font>, <font color="green"><i>-- SET transmit power
+</i></font>  setAG <font color="orange">BOOLEAN</font>, <font color="green"><i>-- SET antenna gain
+</i></font>  setSN <font color="orange">BOOLEAN</font>, <font color="green"><i>-- SET S/N received at AP
+</i></font>  setRSSI <font color="orange">BOOLEAN</font>, <font color="green"><i>-- SET signal strength at AP
+</i></font>  apRepLoc <font color="orange">BOOLEAN</font>, <font color="green"><i>-- AP Location as reported by AP (legacy encoding)
+</i></font>  ...,
+  apRL <font color="orange">BOOLEAN</font> <font color="orange">OPTIONAL</font>, <font color="green"><i>-- AP Location as reported by AP (as per
+</i></font>  IEEE802.11)
+  opClass <font color="orange">BOOLEAN</font> <font color="orange">OPTIONAL</font>, <font color="green"><i>-- operating class as defined in IEEE 802.11
+</i></font>  apSSID <font color="orange">BOOLEAN</font> <font color="orange">OPTIONAL</font>, <font color="green"><i>-- SSID of the wireless network served by AP
+</i></font>  apPHYType <font color="orange">BOOLEAN</font> <font color="orange">OPTIONAL</font>, <font color="green"><i>-- AP PHY Type as defined in IEEE 802.11
+</i></font>  setMACAddress <font color="orange">BOOLEAN</font> <font color="orange">OPTIONAL</font> <font color="green"><i>-- SET <a href="#MAC">MAC</a> Address as known to the WLAN AP
+</i></font>  }
+
+<a name="maxWLANApDataSize"><font color="DarkViolet"><b>maxWLANApDataSize</b></font></a> <font color="orange">INTEGER</font> ::= 128
+<a name="SupportedWLANApsList"><font color="DarkViolet"><b>SupportedWLANApsList</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  supportedWLANApDataList <font color="orange">SEQUENCE</font> (<font color="orange">SIZE</font> (1..<a href="#maxWLANApDataSize">maxWLANApDataSize</a>)) <font color="orange">OF</font>
+  <a href="#SupportedWLANApData">SupportedWLANApData</a>,
+  supportedWLANapsChannel11a <a href="#SupportedWLANApsChannel11a">SupportedWLANApsChannel11a</a> <font color="orange">OPTIONAL</font>,
+  supportedWLANapsChannel11bg <a href="#SupportedWLANApsChannel11bg">SupportedWLANApsChannel11bg</a> <font color="orange">OPTIONAL</font>,
+  ...
+  }
+
+<a name="SupportedWLANApsChannel11a"><font color="DarkViolet"><b>SupportedWLANApsChannel11a</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  ch34 <font color="orange">BOOLEAN</font>,
+  ch36 <font color="orange">BOOLEAN</font>,
+  ch38 <font color="orange">BOOLEAN</font>,
+  ch40 <font color="orange">BOOLEAN</font>,
+  ch42 <font color="orange">BOOLEAN</font>,
+  ch44 <font color="orange">BOOLEAN</font>,
+  ch46 <font color="orange">BOOLEAN</font>,
+  ch48 <font color="orange">BOOLEAN</font>,
+  ch52 <font color="orange">BOOLEAN</font>,
+  ch56 <font color="orange">BOOLEAN</font>,
+  ch60 <font color="orange">BOOLEAN</font>,
+  ch64 <font color="orange">BOOLEAN</font>,
+  ch149 <font color="orange">BOOLEAN</font>,
+  ch153 <font color="orange">BOOLEAN</font>,
+  ch157 <font color="orange">BOOLEAN</font>,
+  ch161 <font color="orange">BOOLEAN</font>
+  }
+
+<a name="SupportedWLANApsChannel11bg"><font color="DarkViolet"><b>SupportedWLANApsChannel11bg</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  ch1 <font color="orange">BOOLEAN</font>,
+  ch2 <font color="orange">BOOLEAN</font>,
+  ch3 <font color="orange">BOOLEAN</font>,
+  ch4 <font color="orange">BOOLEAN</font>,
+  ch5 <font color="orange">BOOLEAN</font>,
+  ch6 <font color="orange">BOOLEAN</font>,
+  ch7 <font color="orange">BOOLEAN</font>,
+  ch8 <font color="orange">BOOLEAN</font>,
+  ch9 <font color="orange">BOOLEAN</font>,
+  ch10 <font color="orange">BOOLEAN</font>,
+  ch11 <font color="orange">BOOLEAN</font>,
+  ch12 <font color="orange">BOOLEAN</font>,
+  ch13 <font color="orange">BOOLEAN</font>,
+  ch14 <font color="orange">BOOLEAN</font>
+  }
+
+<a name="SupportedWLANApData"><font color="DarkViolet"><b>SupportedWLANApData</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  apMACAddress <font color="orange">BIT</font> <font color="orange">STRING</font> (<font color="orange">SIZE</font> (48)),
+  apDevType <font color="orange">ENUMERATED</font> {wlan802-11a(0), wlan802-11b(1), wlan802-11g(2), ...},
+  ...}
+
+<a name="SupportedWCDMAInfo"><font color="DarkViolet"><b>SupportedWCDMAInfo</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  mrl <font color="orange">BOOLEAN</font>, <font color="green"><i>-- Measured Results List
+</i></font>  ...}
+
+<a name="Ver2-CellInfo-extension"><font color="DarkViolet"><b>Ver2-CellInfo-extension</b></font></a> ::= <font color="orange">CHOICE</font> {
+  hrpdCell <a href="#HrpdCellInformation">HrpdCellInformation</a>,
+  umbCell <a href="#UmbCellInformation">UmbCellInformation</a>,
+  lteCell <a href="#LteCellInformation">LteCellInformation</a>,
+  wlanAP <a href="#WlanAPInformation">WlanAPInformation</a>,
+  wimaxBS <a href="#WimaxBSInformation">WimaxBSInformation</a>,
+  ...,
+  nrCell <a href="#NRCellInformation">NRCellInformation</a>}
+
+<a name="HrpdCellInformation"><font color="DarkViolet"><b>HrpdCellInformation</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  refSECTORID <font color="orange">BIT</font> <font color="orange">STRING</font>(<font color="orange">SIZE</font> (128)) <font color="orange">OPTIONAL</font>, <font color="green"><i>-- HRPD Sector Id
+</i></font>  refBASELAT <font color="orange">INTEGER</font>(0..4194303), <font color="green"><i>-- Base Station Latitude
+</i></font>  reBASELONG <font color="orange">INTEGER</font>(0..8388607), <font color="green"><i>-- Base Station Longitude
+</i></font>  refWeekNumber <font color="orange">INTEGER</font>(0..65535), <font color="green"><i>-- GPS Week Number
+</i></font>  refSeconds <font color="orange">INTEGER</font>(0..4194303), <font color="green"><i>-- GPS Seconds
+</i></font>  ...}
+
+<a name="UmbCellInformation"><font color="DarkViolet"><b>UmbCellInformation</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  refSECTORID <font color="orange">BIT</font> <font color="orange">STRING</font>(<font color="orange">SIZE</font> (128)), <font color="green"><i>-- UMB Sector Id
+</i></font>  refMCC <font color="orange">INTEGER</font>(0..999), <font color="green"><i>-- Mobile Country Code
+</i></font>  refMNC <font color="orange">INTEGER</font>(0..999), <font color="green"><i>-- Mobile Network Code
+</i></font>  refBASELAT <font color="orange">INTEGER</font>(0..4194303), <font color="green"><i>-- Base Station Latitude
+</i></font>  reBASELONG <font color="orange">INTEGER</font>(0..8388607), <font color="green"><i>-- Base Station Longitude
+</i></font>  refWeekNumber <font color="orange">INTEGER</font>(0..65535), <font color="green"><i>-- GPS Week Number
+</i></font>  refSeconds <font color="orange">INTEGER</font>(0..4194303), <font color="green"><i>-- GPS Seconds
+</i></font>  ...}
+
+<font color="green"><i>-- LTE Cell info per 3GPP TS 36.331.
+</i></font><font color="green"><i>-- If not otherwise stated info is related to serving cell
+</i></font><a name="LteCellInformation"><font color="DarkViolet"><b>LteCellInformation</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  cellGlobalIdEUTRA <a href="#CellGlobalIdEUTRA">CellGlobalIdEUTRA</a>,
+  physCellId <a href="#PhysCellId">PhysCellId</a>,
+  trackingAreaCode <a href="#TrackingAreaCode">TrackingAreaCode</a>,
+  rsrpResult <a href="#RSRP-Range">RSRP-Range</a> <font color="orange">OPTIONAL</font>,
+  rsrqResult <a href="#RSRQ-Range">RSRQ-Range</a> <font color="orange">OPTIONAL</font>,
+  ta <font color="orange">INTEGER</font>(0..1282) <font color="orange">OPTIONAL</font>, <font color="green"><i>-- Currently used Timing Advance value
+</i></font>  (N_TA/16 as per [3GPP 36.213])
+  measResultListEUTRA <a href="#MeasResultListEUTRA">MeasResultListEUTRA</a> <font color="orange">OPTIONAL</font>, <font color="green"><i>--Neighbour measurements
+</i></font>  ...,
+  earfcn <font color="orange">INTEGER</font>(0..65535) <font color="orange">OPTIONAL</font>, <font color="green"><i>-- see Table 37
+</i></font>  earfcn-ext <font color="orange">INTEGER</font> (65536..262143) <font color="orange">OPTIONAL</font>, <font color="green"><i>-- see Table 37
+</i></font>  rsrpResult-ext <a href="#RSRP-Range-Ext">RSRP-Range-Ext</a> <font color="orange">OPTIONAL</font>,
+  rsrqResult-ext <a href="#RSRQ-Range-Ext">RSRQ-Range-Ext</a> <font color="orange">OPTIONAL</font>,
+  rs-sinrResult <a href="#RS-SINR-Range">RS-SINR-Range</a> <font color="orange">OPTIONAL</font>,
+  servingInformation5G <a href="#ServingInformation5G">ServingInformation5G</a> <font color="orange">OPTIONAL</font>
+  }
+
+<font color="green"><i>-- If rsrpResult-ext is included, rsrpResult shall be excluded or set to 0
+</i></font><font color="green"><i>-- If rsrqResult-ext is included and in the range 0 to 34, rsrqResult shall
+</i></font><font color="green"><i>-- be included and set equal to rsrqResult-ext
+</i></font><font color="green"><i>-- If rsrqResult-ext is included and outside the range 0 to 34, rsrqResult
+</i></font>shall
+<font color="green"><i>-- be excluded or set to 0 when rsrqResult-ext is negative or to 34 when
+</i></font><font color="green"><i>-- rsrqResult-ext is positive
+</i></font><font color="green"><i>-- servingInformation5G shall be included for a serving cell connected to 5GCN
+</i></font><font color="green"><i>-- Measured results of neighbours cells per 3GPP TS 36.331
+</i></font><a name="MeasResultListEUTRA"><font color="DarkViolet"><b>MeasResultListEUTRA</b></font></a> ::= <font color="orange">SEQUENCE</font> (<font color="orange">SIZE</font> (1..maxCellReport)) <font color="orange">OF</font> MeasResultEUTRA
+<a name="MeasResultEUTRA"><font color="DarkViolet"><b>MeasResultEUTRA</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  physCellId <a href="#PhysCellId">PhysCellId</a>,
+  cgi-Info <font color="orange">SEQUENCE</font> {
+    cellGlobalId <a href="#CellGlobalIdEUTRA">CellGlobalIdEUTRA</a>,
+    trackingAreaCode <a href="#TrackingAreaCode">TrackingAreaCode</a>
+    } <font color="orange">OPTIONAL</font>,
+  measResult <font color="orange">SEQUENCE</font> {
+    rsrpResult <a href="#RSRP-Range">RSRP-Range</a> <font color="orange">OPTIONAL</font>, <font color="green"><i>-- Mapping to measured values
+</i></font>    rsrqResult <a href="#RSRQ-Range">RSRQ-Range</a> <font color="orange">OPTIONAL</font>, <font color="green"><i>-- in 3GPP TS 36.133
+</i></font>    ...,
+    earfcn <font color="orange">INTEGER</font>(0..65535) <font color="orange">OPTIONAL</font>, <font color="green"><i>-- see Table 37
+</i></font>    earfcn-ext <font color="orange">INTEGER</font> (65536..262143) <font color="orange">OPTIONAL</font>, <font color="green"><i>-- see Table 37
+</i></font>    rsrpResult-ext <a href="#RSRP-Range-Ext">RSRP-Range-Ext</a> <font color="orange">OPTIONAL</font>,
+    rsrqResult-ext <a href="#RSRQ-Range-Ext">RSRQ-Range-Ext</a> <font color="orange">OPTIONAL</font>,
+    rs-sinrResult <a href="#RS-SINR-Range">RS-SINR-Range</a> <font color="orange">OPTIONAL</font>,
+    neighbourInformation5G <a href="#NeighbourInformation5G">NeighbourInformation5G</a> <font color="orange">OPTIONAL</font>
+    }
+  }
+
+<font color="green"><i>-- If rsrpResult-ext is included, rsrpResult shall be excluded or set to 0
+</i></font><font color="green"><i>-- If rsrqResult-ext is included and in the range 0 to 34, rsrqResult shall
+</i></font><font color="green"><i>-- be included and set equal to rsrqResult-ext
+</i></font><font color="green"><i>-- If rsrqResult-ext is included and outside the range 0 to 34, rsrqResult
+</i></font>shall
+<font color="green"><i>-- be excluded or set to 0 when rsrqResult-ext is negative or to 34 when
+</i></font><font color="green"><i>-- rsrqResult-ext is positive
+</i></font><font color="green"><i>-- neighbourInformation5G may only be included for a cell connected to 5GCN
+</i></font><a name="PhysCellId"><font color="DarkViolet"><b>PhysCellId</b></font></a> ::= <font color="orange">INTEGER</font> (0..503)
+<a name="TrackingAreaCode"><font color="DarkViolet"><b>TrackingAreaCode</b></font></a> ::= <font color="orange">BIT</font> <font color="orange">STRING</font> (<font color="orange">SIZE</font> (16))
+<a name="CellGlobalIdEUTRA"><font color="DarkViolet"><b>CellGlobalIdEUTRA</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  plmn-Identity <a href="#PLMN-Identity">PLMN-Identity</a>,
+  cellIdentity <a href="#CellIdentity">CellIdentity</a>,
+  ...
+  }
+
+<a name="PLMN-Identity"><font color="DarkViolet"><b>PLMN-Identity</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  mcc <a href="#MCC">MCC</a> <font color="orange">OPTIONAL</font>,
+  mnc <a href="#MNC">MNC</a>
+  }
+
+<a name="CellIdentity"><font color="DarkViolet"><b>CellIdentity</b></font></a> ::= <font color="orange">BIT</font> <font color="orange">STRING</font> (<font color="orange">SIZE</font> (28))
+<a name="MCC"><font color="DarkViolet"><b>MCC</b></font></a> ::= <font color="orange">SEQUENCE</font> (<font color="orange">SIZE</font> (3)) <font color="orange">OF</font> MCC-MNC-Digit
+<a name="MNC"><font color="DarkViolet"><b>MNC</b></font></a> ::= <font color="orange">SEQUENCE</font> (<font color="orange">SIZE</font> (2..3)) <font color="orange">OF</font> MCC-MNC-Digit
+<a name="MCC-MNC-Digit"><font color="DarkViolet"><b>MCC-MNC-Digit</b></font></a> ::= <font color="orange">INTEGER</font> (0..9)
+<a name="RSRP-Range"><font color="DarkViolet"><b>RSRP-Range</b></font></a> ::= <font color="orange">INTEGER</font>(0..97)
+<a name="RSRQ-Range"><font color="DarkViolet"><b>RSRQ-Range</b></font></a> ::= <font color="orange">INTEGER</font>(0..34)
+<a name="RSRP-Range-Ext"><font color="DarkViolet"><b>RSRP-Range-Ext</b></font></a> ::= <font color="orange">INTEGER</font>(-17..-1)
+<a name="RSRQ-Range-Ext"><font color="DarkViolet"><b>RSRQ-Range-Ext</b></font></a> ::= <font color="orange">INTEGER</font>(-30..46)
+<a name="RS-SINR-Range"><font color="DarkViolet"><b>RS-SINR-Range</b></font></a> ::= <font color="orange">INTEGER</font>(0..127)
+<a name="ServingInformation5G"><font color="DarkViolet"><b>ServingInformation5G</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  trackingAreaCode <a href="#TrackingAreaCodeNR">TrackingAreaCodeNR</a>,
+  ...
+  }
+
+<a name="NeighbourInformation5G"><font color="DarkViolet"><b>NeighbourInformation5G</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  trackingAreaCode <a href="#TrackingAreaCodeNR">TrackingAreaCodeNR</a> <font color="orange">OPTIONAL</font>,
+  ...
+  }
+
+<a name="maxCellReport"><font color="DarkViolet"><b>maxCellReport</b></font></a> <font color="orange">INTEGER</font> ::= 8
+<a name="WlanAPInformation"><font color="DarkViolet"><b>WlanAPInformation</b></font></a> ::= <font color="orange">SEQUENCE</font> { <font color="green"><i>-- as per [IEEE 802.11]
+</i></font>  apMACAddress <font color="orange">BIT</font> <font color="orange">STRING</font>(<font color="orange">SIZE</font> (48)), <font color="green"><i>-- AP <a href="#MAC">MAC</a> Address
+</i></font>  apTransmitPower <font color="orange">INTEGER</font>(-127..128) <font color="orange">OPTIONAL</font>, <font color="green"><i>-- AP transmit power in dbm
+</i></font>  apAntennaGain <font color="orange">INTEGER</font>(-127..128) <font color="orange">OPTIONAL</font>, <font color="green"><i>-- AP antenna gain in dBi
+</i></font>  apSignaltoNoise <font color="orange">INTEGER</font>(-127..128) <font color="orange">OPTIONAL</font>, <font color="green"><i>-- AP S/N received at SET
+</i></font>  apDeviceType <font color="orange">ENUMERATED</font> {wlan802-11a(0), wlan802-11b(1), wlan802-
+    11g(2), ..., wlan802-11n(3), wlan802-11ac(4), wlan802-11ad(5)} <font color="orange">OPTIONAL</font>,
+  apSignalStrength <font color="orange">INTEGER</font>(-127..128) <font color="orange">OPTIONAL</font>, <font color="green"><i>-- AP signal strength at SET
+</i></font>  apChannelFrequency <font color="orange">INTEGER</font>(0..256) <font color="orange">OPTIONAL</font>, <font color="green"><i>-- AP channel/frequency of Tx/Rx
+</i></font>  apRoundTripDelay <a href="#RTD">RTD</a> <font color="orange">OPTIONAL</font>, <font color="green"><i>-- Round Trip Delay between SET and AP
+</i></font>  setTransmitPower <font color="orange">INTEGER</font>(-127..128) <font color="orange">OPTIONAL</font>, <font color="green"><i>-- SET transmit power in dBm
+</i></font>  setAntennaGain <font color="orange">INTEGER</font> (-127..128) <font color="orange">OPTIONAL</font>, <font color="green"><i>-- SET antenna gain in dBi
+</i></font>  setSignaltoNoise <font color="orange">INTEGER</font> (-127..128) <font color="orange">OPTIONAL</font>, <font color="green"><i>-- SET S/N received at AP
+</i></font>  setSignalStrength <font color="orange">INTEGER</font>(-127..128) <font color="orange">OPTIONAL</font>, <font color="green"><i>-- SET signal strength at AP
+</i></font>  apReportedLocation <a href="#ReportedLocation">ReportedLocation</a> <font color="orange">OPTIONAL</font>, <font color="green"><i>-- AP Location reported by AP
+</i></font>  (legacy encoding)
+  ...,
+  apRepLocation <a href="#RepLocation">RepLocation</a> <font color="orange">OPTIONAL</font>, <font color="green"><i>-- AP Location reported by AP
+</i></font>  apSignalStrengthDelta <font color="orange">INTEGER</font> (0..1) <font color="orange">OPTIONAL</font>, <font color="green"><i>-- see Table 41
+</i></font>  apSignaltoNoiseDelta <font color="orange">INTEGER</font> (0..1) <font color="orange">OPTIONAL</font>, <font color="green"><i>-- see Table 41
+</i></font>  setSignalStrengthDelta <font color="orange">INTEGER</font> (0..1) <font color="orange">OPTIONAL</font>, <font color="green"><i>-- see Table 41
+</i></font>  setSignaltoNoiseDelta <font color="orange">INTEGER</font> (0..1) <font color="orange">OPTIONAL</font>, <font color="green"><i>-- see Table 41
+</i></font>  operatingClass <font color="orange">INTEGER</font> (0..255) <font color="orange">OPTIONAL</font>,
+  apSSID <font color="orange">OCTET</font> <font color="orange">STRING</font> (<font color="orange">SIZE</font> (1..32)) <font color="orange">OPTIONAL</font>,
+  apPHYType <font color="orange">ENUMERATED</font> {unknown(0), any(1), fhss(2), dsss(3),
+    irbaseband(4), ofdm(5), hrdsss(6), erp(7), ht(8), ihv(9), ...} <font color="orange">OPTIONAL</font>,
+  setMACAddress <font color="orange">BIT</font> <font color="orange">STRING</font>(<font color="orange">SIZE</font> (48)) <font color="orange">OPTIONAL</font> <font color="green"><i>-- <a href="#MAC">MAC</a> Address used by
+</i></font>  SET to connect to AP
+  }
+
+<a name="RTD"><font color="DarkViolet"><b>RTD</b></font></a> ::= <font color="orange">SEQUENCE</font> { <font color="green"><i>-- as per [IEEE 802.11]
+</i></font>  rTDValue <font color="orange">INTEGER</font>(0..16777216), <font color="green"><i>-- measured <a href="#RTD">RTD</a> value corresponding to
+</i></font>  <font color="green"><i>-- about 500km in units of 1/10 of nanoseconds
+</i></font>  rTDUnits <a href="#RTDUnits">RTDUnits</a>, <font color="green"><i>-- units of RTD
+</i></font>  rTDAccuracy <font color="orange">INTEGER</font>(0..255) <font color="orange">OPTIONAL</font>, <font color="green"><i>-- <a href="#RTD">RTD</a> accuracy
+</i></font>  ...}
+
+<a name="RTDUnits"><font color="DarkViolet"><b>RTDUnits</b></font></a> ::= <font color="orange">ENUMERATED</font> {
+  microseconds(0), hundredsofnanoseconds(1), tensofnanoseconds(2),
+  nanoseconds(3), tenthsofnanoseconds(4), ...}
+
+<a name="ReportedLocation"><font color="DarkViolet"><b>ReportedLocation</b></font></a> ::= <font color="orange">SEQUENCE</font> { <font color="green"><i>-- as per [IEEE 802.11v]
+</i></font>  locationEncodingDescriptor <a href="#LocationEncodingDescriptor">LocationEncodingDescriptor</a>,
+  locationData <a href="#LocationData">LocationData</a>, <font color="green"><i>-- location data field
+</i></font>  ...}
+
+<a name="LocationEncodingDescriptor"><font color="DarkViolet"><b>LocationEncodingDescriptor</b></font></a> ::= <font color="orange">ENUMERATED</font> {
+  lci(0), asn1(1), ...}
+
+<a name="LocationData"><font color="DarkViolet"><b>LocationData</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  locationAccuracy <font color="orange">INTEGER</font>(0..4294967295) <font color="orange">OPTIONAL</font>,
+  locationValue <font color="orange">OCTET</font> <font color="orange">STRING</font> (<font color="orange">SIZE</font>(1..128)),
+  ...}
+
+<a name="RepLocation"><font color="DarkViolet"><b>RepLocation</b></font></a> ::= <font color="orange">CHOICE</font> {
+  lciLocData <a href="#LciLocData">LciLocData</a>, <font color="green"><i>-- location data field as per
+</i></font>  [IEEE 802.11] and [RFC 3825]
+  ... <font color="green"><i>-- future formats may be added here
+</i></font>  }
+
+<a name="LciLocData"><font color="DarkViolet"><b>LciLocData</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  locationDataLCI <a href="#LocationDataLCI">LocationDataLCI</a> <font color="orange">OPTIONAL</font>,
+  ...}
+
+<a name="LocationDataLCI"><font color="DarkViolet"><b>LocationDataLCI</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  latitudeResolution <font color="orange">BIT</font> <font color="orange">STRING</font> (<font color="orange">SIZE</font> (6)),
+  latitude <font color="orange">BIT</font> <font color="orange">STRING</font> (<font color="orange">SIZE</font> (34)),
+  longitudeResolution <font color="orange">BIT</font> <font color="orange">STRING</font> (<font color="orange">SIZE</font> (6)),
+  longitude <font color="orange">BIT</font> <font color="orange">STRING</font> (<font color="orange">SIZE</font> (34)),
+  altitudeType <font color="orange">BIT</font> <font color="orange">STRING</font> (<font color="orange">SIZE</font> (4)),
+  altitudeResolution <font color="orange">BIT</font> <font color="orange">STRING</font> (<font color="orange">SIZE</font> (6)),
+  altitude <font color="orange">BIT</font> <font color="orange">STRING</font> (<font color="orange">SIZE</font> (30)),
+  datum <font color="orange">BIT</font> <font color="orange">STRING</font> (<font color="orange">SIZE</font> (8)),
+  ...}
+
+<a name="WimaxBSInformation"><font color="DarkViolet"><b>WimaxBSInformation</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  wimaxBsID <a href="#WimaxBsID">WimaxBsID</a>, <font color="green"><i>-- WiMax serving base station ID
+</i></font>  wimaxRTD <a href="#WimaxRTD">WimaxRTD</a> <font color="orange">OPTIONAL</font>, <font color="green"><i>-- Round Trip Delay measurements
+</i></font>  wimaxNMRList <a href="#WimaxNMRList">WimaxNMRList</a> <font color="orange">OPTIONAL</font>, <font color="green"><i>-- Network measurements
+</i></font>  ...}
+
+<a name="WimaxBsID"><font color="DarkViolet"><b>WimaxBsID</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  bsID-MSB <font color="orange">BIT</font> <font color="orange">STRING</font> (<font color="orange">SIZE</font>(24)) <font color="orange">OPTIONAL</font>,
+  bsID-LSB <font color="orange">BIT</font> <font color="orange">STRING</font> (<font color="orange">SIZE</font>(24)),
+  ...}
+
+<font color="green"><i>-- if only LSB is present, MSB is assumed to be identical to the current
+</i></font>serving BS or clamped on network value
+<a name="WimaxRTD"><font color="DarkViolet"><b>WimaxRTD</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  rtd <font color="orange">INTEGER</font> (0..65535), <font color="green"><i>-- Round trip delay of serving BS in units of 10
+</i></font>  ns
+  rTDstd <font color="orange">INTEGER</font> (0..1023) <font color="orange">OPTIONAL</font>, <font color="green"><i>-- Standard deviation of round trip delay
+</i></font>  in units of 10 ns
+  ...}
+
+<a name="WimaxNMRList"><font color="DarkViolet"><b>WimaxNMRList</b></font></a> ::= <font color="orange">SEQUENCE</font> (<font color="orange">SIZE</font> (1..maxWimaxBSMeas)) <font color="orange">OF</font> WimaxNMR
+<a name="WimaxNMR"><font color="DarkViolet"><b>WimaxNMR</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  wimaxBsID <a href="#WimaxBsID">WimaxBsID</a>, <font color="green"><i>-- WiMax BS ID for the measurement
+</i></font>  relDelay <font color="orange">INTEGER</font> (-32768..32767) <font color="orange">OPTIONAL</font>, <font color="green"><i>-- Relative delay for this
+</i></font>  neighbouring BSs to the serving cell in units of 10 ns
+  relDelaystd <font color="orange">INTEGER</font> (0..1023) <font color="orange">OPTIONAL</font>, <font color="green"><i>-- Standard deviation of Relative
+</i></font>  delay in units of 10 ns
+  rssi <font color="orange">INTEGER</font> (0..255) <font color="orange">OPTIONAL</font>, <font color="green"><i>-- RSSI in 0.25 dBm steps, starting
+</i></font>  from -103.75 dBm
+  rSSIstd <font color="orange">INTEGER</font> (0..63) <font color="orange">OPTIONAL</font>, <font color="green"><i>-- Standard deviation of RSSI in dB
+</i></font>  bSTxPower <font color="orange">INTEGER</font> (0..255) <font color="orange">OPTIONAL</font>, <font color="green"><i>-- BS transmit power in 0.25 dBm
+</i></font>  steps, starting from -103.75 dBm
+  cinr <font color="orange">INTEGER</font> (0..255) <font color="orange">OPTIONAL</font>, <font color="green"><i>-- in dB
+</i></font>  cINRstd <font color="orange">INTEGER</font> (0..63) <font color="orange">OPTIONAL</font>, <font color="green"><i>-- Standard deviation of CINR in dB
+</i></font>  bSLocation <a href="#ReportedLocation">ReportedLocation</a> <font color="orange">OPTIONAL</font>, <font color="green"><i>-- Reported location of the BS
+</i></font>  ...}
+
+<a name="maxWimaxBSMeas"><font color="DarkViolet"><b>maxWimaxBSMeas</b></font></a> <font color="orange">INTEGER</font> ::= 32
+<a name="NRCellInformation"><font color="DarkViolet"><b>NRCellInformation</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  servingCellInformation <a href="#ServingCellInformationNR">ServingCellInformationNR</a>, <font color="green"><i>--Serving cell
+</i></font>  information
+  measuredResultsListNR <a href="#MeasResultListNR">MeasResultListNR</a> <font color="orange">OPTIONAL</font>, <font color="green"><i>--Neighbour
+</i></font>  measurements
+  ...
+  }
+
+<font color="green"><i>-- Information for serving cells per 3GPP TS 38.331
+</i></font><a name="ServingCellInformationNR"><font color="DarkViolet"><b>ServingCellInformationNR</b></font></a> ::= <font color="orange">SEQUENCE</font> (<font color="orange">SIZE</font> (1..maxNRServingCell)) <font color="orange">OF</font>
+<a href="#ServCellNR">ServCellNR</a>
+<font color="green"><i>-- The first listed serving cell shall be the primary cell
+</i></font><a name="ServCellNR"><font color="DarkViolet"><b>ServCellNR</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  physCellId <a href="#PhysCellIdNR">PhysCellIdNR</a>,
+  arfcn-NR <a href="#ARFCN-NR">ARFCN-NR</a>,
+  cellGlobalId <a href="#CellGlobalIdNR">CellGlobalIdNR</a>,
+  trackingAreaCode <a href="#TrackingAreaCodeNR">TrackingAreaCodeNR</a>,
+  ssb-Measurements <a href="#NR-Measurements">NR-Measurements</a> <font color="orange">OPTIONAL</font>,
+  csi-rs-Measurements <a href="#NR-Measurements">NR-Measurements</a> <font color="orange">OPTIONAL</font>,
+  ta <font color="orange">INTEGER</font>(0..3846) <font color="orange">OPTIONAL</font>, <font color="green"><i>--Timing Advance
+</i></font>  value
+  ...
+  }
+
+<font color="green"><i>-- Measured results of neighbours cells per 3GPP TS 38.331
+</i></font><a name="MeasResultListNR"><font color="DarkViolet"><b>MeasResultListNR</b></font></a> ::= <font color="orange">SEQUENCE</font> (<font color="orange">SIZE</font> (1..maxCellReportNR)) <font color="orange">OF</font> MeasResultNR
+<a name="MeasResultNR"><font color="DarkViolet"><b>MeasResultNR</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  physCellId <a href="#PhysCellIdNR">PhysCellIdNR</a>,
+  arfcn-NR <a href="#ARFCN-NR">ARFCN-NR</a>,
+  cellGlobalId <a href="#CellGlobalIdNR">CellGlobalIdNR</a> <font color="orange">OPTIONAL</font>,
+  trackingAreaCode <a href="#TrackingAreaCodeNR">TrackingAreaCodeNR</a> <font color="orange">OPTIONAL</font>,
+  ssb-Measurements <a href="#NR-Measurements">NR-Measurements</a> <font color="orange">OPTIONAL</font>,
+  csi-rs-Measurements <a href="#NR-Measurements">NR-Measurements</a> <font color="orange">OPTIONAL</font>,
+  ...
+  }
+
+<a name="PhysCellIdNR"><font color="DarkViolet"><b>PhysCellIdNR</b></font></a> ::= <font color="orange">INTEGER</font> (0..1007)
+<a name="ARFCN-NR"><font color="DarkViolet"><b>ARFCN-NR</b></font></a> ::= <font color="orange">INTEGER</font> (0.. 3279165)
+<a name="TrackingAreaCodeNR"><font color="DarkViolet"><b>TrackingAreaCodeNR</b></font></a> ::= <font color="orange">BIT</font> <font color="orange">STRING</font> (<font color="orange">SIZE</font> (24))
+<a name="CellGlobalIdNR"><font color="DarkViolet"><b>CellGlobalIdNR</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  plmn-Identity <a href="#PLMN-Identity">PLMN-Identity</a>,
+  cellIdentityNR <a href="#CellIdentityNR">CellIdentityNR</a>,
+  ...
+  }
+
+<a name="CellIdentityNR"><font color="DarkViolet"><b>CellIdentityNR</b></font></a> ::= <font color="orange">BIT</font> <font color="orange">STRING</font> (<font color="orange">SIZE</font> (36))
+<a name="NR-Measurements"><font color="DarkViolet"><b>NR-Measurements</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  rsrp-Range <font color="orange">INTEGER</font> (0..127) <font color="orange">OPTIONAL</font>,
+  rsrq-Range <font color="orange">INTEGER</font> (0..127) <font color="orange">OPTIONAL</font>,
+  sinr-Range <font color="orange">INTEGER</font> (0..127) <font color="orange">OPTIONAL</font>,
+  ...
+  }
+
+<a name="maxNRServingCell"><font color="DarkViolet"><b>maxNRServingCell</b></font></a> <font color="orange">INTEGER</font> ::= 32
+<a name="maxCellReportNR"><font color="DarkViolet"><b>maxCellReportNR</b></font></a> <font color="orange">INTEGER</font> ::= 32
+<a name="UTRAN-GPSReferenceTimeAssistance"><font color="DarkViolet"><b>UTRAN-GPSReferenceTimeAssistance</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  utran-GPSReferenceTime <a href="#UTRAN-GPSReferenceTime">UTRAN-GPSReferenceTime</a>,
+  gpsReferenceTimeUncertainty <font color="orange">INTEGER</font> (0..127) <font color="orange">OPTIONAL</font>,
+  utranGPSDriftRate <a href="#UTRANGPSDriftRate">UTRANGPSDriftRate</a> <font color="orange">OPTIONAL</font>}
+
+<a name="UTRAN-GPSReferenceTime"><font color="DarkViolet"><b>UTRAN-GPSReferenceTime</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  <font color="green"><i>-- For utran-GPSTimingOfCell values above 2322431999999 are not used in this
+</i></font>  version of the specification. Actual value utran-GPSTimingOfCell = (ms-part *
+  4294967296) + ls-part used on the downlink i.e. sent from the SLP to the SET
+  utran-GPSTimingOfCell <font color="orange">SEQUENCE</font> {
+    ms-part <font color="orange">INTEGER</font> (0..1023),
+    ls-part <font color="orange">INTEGER</font> (0..4294967295)},
+  modeSpecificInfo <font color="orange">CHOICE</font> {
+    fdd <font color="orange">SEQUENCE</font> {
+      referenceIdentity <a href="#PrimaryCPICH-Info">PrimaryCPICH-Info</a>},
+    tdd <font color="orange">SEQUENCE</font> {
+      referenceIdentity <a href="#CellParametersID">CellParametersID</a>}} <font color="orange">OPTIONAL</font>,
+  sfn <font color="orange">INTEGER</font> (0..4095)}
+
+<a name="UTRANGPSDriftRate"><font color="DarkViolet"><b>UTRANGPSDriftRate</b></font></a> ::= <font color="orange">ENUMERATED</font> {
+  utran-GPSDrift0, utran-GPSDrift1, utran-GPSDrift2,
+  utran-GPSDrift5, utran-GPSDrift10, utran-GPSDrift15,
+  utran-GPSDrift25, utran-GPSDrift50, utran-GPSDrift-1,
+  utran-GPSDrift-2, utran-GPSDrift-5, utran-GPSDrift-10,
+  utran-GPSDrift-15, utran-GPSDrift-25, utran-GPSDrift-50}
+
+<a name="UTRAN-GPSReferenceTimeResult"><font color="DarkViolet"><b>UTRAN-GPSReferenceTimeResult</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  <font color="green"><i>-- For ue-GPSTimingOfCell values above 37158911999999 are not used in this
+</i></font>  version of the specification. Actual value utran-GPSTimingOfCell = (ms-part *
+  4294967296) + ls-part used on the uplink i.e. reported by the SET to the SLP
+  set-GPSTimingOfCell <font color="orange">SEQUENCE</font> {
+    ms-part <font color="orange">INTEGER</font> (0.. 16383),
+    ls-part <font color="orange">INTEGER</font> (0..4294967295)},
+  modeSpecificInfo <font color="orange">CHOICE</font> {
+    fdd <font color="orange">SEQUENCE</font> {
+      referenceIdentity <a href="#PrimaryCPICH-Info">PrimaryCPICH-Info</a>},
+    tdd <font color="orange">SEQUENCE</font> {
+      referenceIdentity <a href="#CellParametersID">CellParametersID</a>}} <font color="orange">OPTIONAL</font>,
+  sfn <font color="orange">INTEGER</font> (0..4095),
+  gpsReferenceTimeUncertainty <font color="orange">INTEGER</font> (0..127) <font color="orange">OPTIONAL</font>,
+  ...}
+
+<a name="UTRAN-GANSSReferenceTimeAssistance"><font color="DarkViolet"><b>UTRAN-GANSSReferenceTimeAssistance</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  ganssDay <font color="orange">INTEGER</font> (0..8191) <font color="orange">OPTIONAL</font>,
+  ganssTimeID <font color="orange">INTEGER</font> (0..15),
+  utran-GANSSReferenceTime <a href="#UTRAN-GANSSReferenceTime">UTRAN-GANSSReferenceTime</a>,
+  utranGANSSDriftRate <a href="#UTRANGANSSDriftRate">UTRANGANSSDriftRate</a> <font color="orange">OPTIONAL</font>}
+
+<a name="UTRAN-GANSSReferenceTime"><font color="DarkViolet"><b>UTRAN-GANSSReferenceTime</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  ganssTOD <font color="orange">INTEGER</font> (0..86399),
+  utran-GANSSTimingOfCell <font color="orange">INTEGER</font> (0..3999999)<font color="orange">OPTIONAL</font>,
+  modeSpecificInfo <font color="orange">CHOICE</font> {
+    fdd <font color="orange">SEQUENCE</font> {
+      referenceIdentity <a href="#PrimaryCPICH-Info">PrimaryCPICH-Info</a>},
+    tdd <font color="orange">SEQUENCE</font> {
+      referenceIdentity <a href="#CellParametersID">CellParametersID</a>}} <font color="orange">OPTIONAL</font>,
+  sfn <font color="orange">INTEGER</font> (0..4095),
+  ganss-TODUncertainty <font color="orange">INTEGER</font> (0..127) <font color="orange">OPTIONAL</font>,
+  ...}
+
+<a name="UTRANGANSSDriftRate"><font color="DarkViolet"><b>UTRANGANSSDriftRate</b></font></a> ::= <font color="orange">ENUMERATED</font> {
+  utran-GANSSDrift0, utran-GANSSDrift1, utran-GANSSDrift2,
+  utran-GANSSDrift5, utran-GANSSDrift10, utran-GANSSDrift15,
+  utran-GANSSDrift25, utran-GANSSDrift50, utran-GANSSDrift-1,
+  utran-GANSSDrift-2, utran-GANSSDrift-5, utran-GANSSDrift-10,
+  utran-GANSSDrift-15, utran-GANSSDrift-25, utran-GANSSDrift-50}
+
+<a name="UTRAN-GANSSReferenceTimeResult"><font color="DarkViolet"><b>UTRAN-GANSSReferenceTimeResult</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  ganssTimeID <font color="orange">INTEGER</font> (0..15),
+  set-GANSSReferenceTime <a href="#SET-GANSSReferenceTime">SET-GANSSReferenceTime</a>,
+  ...}
+
+<a name="SET-GANSSReferenceTime"><font color="DarkViolet"><b>SET-GANSSReferenceTime</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  <font color="green"><i>-- Actual value [ns] = (ms-Part * 4294967296 + ls-Part) * 250
+</i></font>  <font color="green"><i>-- Actual values [ns] > 86399999999750 are reserved and are considered a
+</i></font>  <font color="green"><i>-- protocol error
+</i></font>  set-GANSSTimingOfCell <font color="orange">SEQUENCE</font> {
+    ms-part <font color="orange">INTEGER</font> (0..80),
+    ls-part <font color="orange">INTEGER</font> (0..4294967295)} <font color="orange">OPTIONAL</font>,
+  modeSpecificInfo <font color="orange">CHOICE</font> {
+    fdd <font color="orange">SEQUENCE</font> {
+      referenceIdentity <a href="#PrimaryCPICH-Info">PrimaryCPICH-Info</a>},
+    tdd <font color="orange">SEQUENCE</font> {
+      referenceIdentity <a href="#CellParametersID">CellParametersID</a>}} <font color="orange">OPTIONAL</font>,
+  sfn <font color="orange">INTEGER</font> (0..4095),
+  ganss-TODUncertainty <font color="orange">INTEGER</font> (0..127) <font color="orange">OPTIONAL</font>,
+  ...}
+
+<a name="GNSSPosTechnology"><font color="DarkViolet"><b>GNSSPosTechnology</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  gps <font color="orange">BOOLEAN</font>,
+  galileo <font color="orange">BOOLEAN</font>,
+  sbas <font color="orange">BOOLEAN</font>,
+  modernized-gps <font color="orange">BOOLEAN</font>,
+  qzss <font color="orange">BOOLEAN</font>,
+  glonass <font color="orange">BOOLEAN</font>,
+  ...,
+  bds <font color="orange">BOOLEAN</font> <font color="orange">OPTIONAL</font>}
+
+<font color="green"><i>-- indicates MS support for particular GANSS signals and frequencies coding
+</i></font>according to parameter definition in section 10.9
+<a name="GANSSSignals"><font color="DarkViolet"><b>GANSSSignals</b></font></a> ::= <font color="orange">BIT</font> <font color="orange">STRING</font> {
+  signal1 (0),
+  signal2 (1),
+  signal3 (2),
+  signal4 (3),
+  signal5 (4),
+  signal6 (5),
+  signal7 (6),
+  signal8 (7)} (<font color="orange">SIZE</font> (1..8))
+
+<a name="SPCSETKey"><font color="DarkViolet"><b>SPCSETKey</b></font></a> ::= <font color="orange">BIT</font> <font color="orange">STRING</font>(<font color="orange">SIZE</font> (128))
+<a name="SPCTID"><font color="DarkViolet"><b>SPCTID</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  rand <font color="orange">BIT</font> <font color="orange">STRING</font>(<font color="orange">SIZE</font> (128)),
+  slpFQDN <a href="#FQDN">FQDN</a>,
+  ...}
+
+<a name="SPCSETKeylifetime"><font color="DarkViolet"><b>SPCSETKeylifetime</b></font></a> ::= <font color="orange">INTEGER</font> (1..24) <font color="green"><i>-- units in hours
+</i></font><a name="CauseCode"><font color="DarkViolet"><b>CauseCode</b></font></a> ::= <font color="orange">ENUMERATED</font> {
+  servingNetWorkNotInAreaIdList(0), sETCapabilitiesChanged(1),
+  noSUPLCoverage(2), ...}
+
+<a name="ThirdParty"><font color="DarkViolet"><b>ThirdParty</b></font></a> ::= <font color="orange">SEQUENCE</font> (<font color="orange">SIZE</font> (1..64)) <font color="orange">OF</font> ThirdPartyID
+<a name="ThirdPartyID"><font color="DarkViolet"><b>ThirdPartyID</b></font></a> ::= <font color="orange">CHOICE</font> {
+  logicalName <font color="orange">IA5String</font>(<font color="orange">SIZE</font> (1..1000)),
+  msisdn <font color="orange">OCTET</font> <font color="orange">STRING</font>(<font color="orange">SIZE</font> (8)),
+  emailaddr <font color="orange">IA5String</font>(<font color="orange">SIZE</font> (1..1000)),
+  sip-uri <font color="orange">VisibleString</font>(<font color="orange">FROM</font> ("a".."z" | "A".."Z" | "0".."9" |
+      ":./-_~%#@?")) (<font color="orange">SIZE</font> (1..255)),
+  ims-public-identity <font color="orange">VisibleString</font>(<font color="orange">FROM</font> ("a".."z" | "A".."Z" |
+      "0".."9" | ":./-_~%#@?")) (<font color="orange">SIZE</font> (1..255)),
+  min <font color="orange">BIT</font> <font color="orange">STRING</font>(<font color="orange">SIZE</font> (34)), <font color="green"><i>-- coded according to TIA-553
+</i></font>  mdn <font color="orange">OCTET</font> <font color="orange">STRING</font>(<font color="orange">SIZE</font> (8)),
+  uri <font color="orange">VisibleString</font>(<font color="orange">FROM</font> ("a".."z" | "A".."Z" | "0".."9" | "./-
+      _~%#")) (<font color="orange">SIZE</font> (1..255)),
+  ...}
+
+<a name="ApplicationID"><font color="DarkViolet"><b>ApplicationID</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  appProvider <font color="orange">IA5String</font>(<font color="orange">SIZE</font> (1..24)), <font color="green"><i>-- The application provider
+</i></font>  appName <font color="orange">IA5String</font>(<font color="orange">SIZE</font> (1..32)), <font color="green"><i>-- The application name
+</i></font>  appVersion <font color="orange">IA5String</font>(<font color="orange">SIZE</font> (1..8)) <font color="orange">OPTIONAL</font>, <font color="green"><i>-- The application
+</i></font>  version
+  ...}
+
+<a name="ReportingCap"><font color="DarkViolet"><b>ReportingCap</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  minInt <font color="orange">INTEGER</font> (1..3600), <font color="green"><i>-- units in seconds
+</i></font>  maxInt <font color="orange">INTEGER</font> (1..1440) <font color="orange">OPTIONAL</font>, <font color="green"><i>-- units in minutes
+</i></font>  repMode <a href="#RepMode">RepMode</a>,
+  batchRepCap <a href="#BatchRepCap">BatchRepCap</a> <font color="orange">OPTIONAL</font>, <font color="green"><i>-- only used for batch and quasi
+</i></font>  real time reporting
+  ...}
+
+<a name="RepMode"><font color="DarkViolet"><b>RepMode</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  realtime <font color="orange">BOOLEAN</font>,
+  quasirealtime <font color="orange">BOOLEAN</font>,
+  batch <font color="orange">BOOLEAN</font>,
+  ...}
+
+<a name="BatchRepCap"><font color="DarkViolet"><b>BatchRepCap</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  report-position <font color="orange">BOOLEAN</font>, <font color="green"><i>-- set to "true" if reporting of position is
+</i></font>  supported
+  report-measurements <font color="orange">BOOLEAN</font>, <font color="green"><i>-- set to "true" if reporting of measurements is
+</i></font>  supported
+  max-num-positions <font color="orange">INTEGER</font> (1..1024) <font color="orange">OPTIONAL</font>,
+  max-num-measurements <font color="orange">INTEGER</font> (1..1024) <font color="orange">OPTIONAL</font>,
+  ...}
+
+<a name="Coordinate"><font color="DarkViolet"><b>Coordinate</b></font></a>::= <font color="orange">SEQUENCE</font> {
+  latitudeSign <font color="orange">ENUMERATED</font> {north(0), south(1)},
+  latitude <font color="orange">INTEGER</font>(0..8388607),
+  longitude <font color="orange">INTEGER</font>(-8388608..8388607)} <font color="green"><i>-- Coding as in [3GPP GAD]
+</i></font>
+<a name="CircularArea"><font color="DarkViolet"><b>CircularArea</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  coordinate <a href="#Coordinate">Coordinate</a>,
+  radius <font color="orange">INTEGER</font>(1..1000000), <font color="green"><i>-- radius in meters
+</i></font>  radius-min <font color="orange">INTEGER</font>(1..1000000) <font color="orange">OPTIONAL</font>, <font color="green"><i>-- hysteresis minimum
+</i></font>  radius
+  radius-max <font color="orange">INTEGER</font>(1..1500000) <font color="orange">OPTIONAL</font>} <font color="green"><i>-- hysteresis maximum
+</i></font>
+radius
+<a name="EllipticalArea"><font color="DarkViolet"><b>EllipticalArea</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  coordinate <a href="#Coordinate">Coordinate</a>,
+  semiMajor <font color="orange">INTEGER</font>(1..1000000), <font color="green"><i>-- units in meters
+</i></font>  semiMajor-min <font color="orange">INTEGER</font>(1..1000000) <font color="orange">OPTIONAL</font>, <font color="green"><i>-- hysteresis minimum
+</i></font>  semiMajor
+  semiMajor-max <font color="orange">INTEGER</font>(1..1500000) <font color="orange">OPTIONAL</font>, <font color="green"><i>-- hysteresis maximum
+</i></font>  semiMajor
+  semiMinor <font color="orange">INTEGER</font>(1..1000000), <font color="green"><i>-- units in meters
+</i></font>  semiMinor-min <font color="orange">INTEGER</font>(1..1000000) <font color="orange">OPTIONAL</font>, <font color="green"><i>-- hysteresis minimum
+</i></font>  semiMinor
+  semiMinor-max <font color="orange">INTEGER</font>(1..1500000) <font color="orange">OPTIONAL</font>, <font color="green"><i>-- hysteresis maximum
+</i></font>  semiMinor
+  angle <font color="orange">INTEGER</font>(0.. 179)} <font color="green"><i>-- units in degrees. The angle is
+</i></font>
+defined as the angle between the semi-major axis and North, increasing in a
+clockwise direction. An angle of 0 represents an ellipse with the semi-major
+axis pointing North/South while an angle of 90 represents an ellipse with the
+semi-major axis pointing East/West.
+<a name="PolygonArea"><font color="DarkViolet"><b>PolygonArea</b></font></a> ::= <font color="orange">SEQUENCE</font> {
+  polygonDescription <a href="#PolygonDescription">PolygonDescription</a>,
+  polygonHysteresis <font color="orange">INTEGER</font>(1..100000) <font color="orange">OPTIONAL</font>} <font color="green"><i>--units in meters
+</i></font>
+PolygonDescription ::= <font color="orange">SEQUENCE</font> (<font color="orange">SIZE</font> (3..15)) <font color="orange">OF</font> <a name="Coordinate"><font color="DarkViolet"><b>Coordinate</b></font></a>
+</pre></body>
+</html>
