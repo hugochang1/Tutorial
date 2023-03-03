@@ -45,6 +45,24 @@ def ModifyHtml(html, items):
             line = InsertLink(line, items)
         if '--' in line:
             line = InsertComment(line)
+
+        color = "orange"
+        line = InsertColor(line, "FROM", color)
+        line = InsertColor(line, "IMPORTS", color)
+        line = InsertColor(line, "EXPORTS", color)
+        line = InsertColor(line, "ENUMERATED", color)
+        line = InsertColor(line, "BIT", color)
+        line = InsertColor(line, "STRING", color)
+        line = InsertColor(line, "BOOLEAN", color)
+        line = InsertColor(line, "SIZE", color)
+        line = InsertColor(line, "OPTIONAL", color)
+        line = InsertColor(line, "CHOICE", color)
+        line = InsertColor(line, "SEQUENCE", color)
+        line = InsertColor(line, "INTEGER", color)
+        line = InsertColor(line, "OCTET", color)
+        line = InsertColor(line, "OF", color)
+        line = InsertColor(line, "VisibleString", color)
+        line = InsertColor(line, "IA5String", color)
         f.write('%s' % line)
     f.write("</pre></body>\n</html>");
 
@@ -73,9 +91,13 @@ def InsertComment(line):
         line = line[:pos] + '<font color="green"><i>' + line[pos:] + '</i></font>'
     return line
 
+def InsertColor(line, keyword, color):
+    pos = line.find(keyword)
+    if pos >= 0:
+        line = line[:pos] + '<font color="' + color + '">' + line[pos:pos+len(keyword)] + '</font>' + line[pos+len(keyword):]
+
+    return line
+
 if __name__ == '__main__':
     items = ParseASN(sys.argv[1])
     ModifyHtml(sys.argv[1], items)
-
-    #test = r'&nbsp;&nbsp;&nbsp;&nbsp;message&nbsp;&nbsp;[<font color="#ffa0a0">3</font>] <font color="#40ffff">EXPLICIT</font>&nbsp;UlpMessage<br>'
-    #print HasItem(test, 'UlpMessage')
