@@ -5,8 +5,8 @@
 # Positioning Method
 * GNSS
 * ECID
-  * serving cell + neighbor cells (up to 64, cid, RSSI)
-* Cell Trilateration 
+  * serving cell + neighbor cells (up to 64, cid, RSSI, timing advance)
+* Cell Multilateration 
   * 2G: EOTD (Enhanced Obersved Time Different)
   * 3G/4G/5G: OTDOA (Observed Time Different of Arrival)
   * reference cell (1)
