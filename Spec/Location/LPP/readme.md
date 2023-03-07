@@ -34,8 +34,8 @@
   * TBS (ID, MSB config, code index, freq, 1..64 per cell)
   * WLAN (support channel for 11a and 11bg, 1..8 per dataSet, 1..64 per AP)
   * BT (None)
-  * 5G DL RTT (PRS ID, CID, SFN offset, RTD, 1..4 per freqLayer, 1..64 per TRP)
-  * 5G DL AoD (PRS ID, CID, SFN offset, RTD, PRS info, 1..4 per freqLayer, 1..64 per TRP)
+  * 5G DL RTT (PRS ID, CID, SFN offset, RTD, 1..4 per freqLayer, 1..64 per cell)
+  * 5G DL AoD (PRS ID, CID, SFN offset, RTD, PRS info, 1..4 per freqLayer, 1..64 per cell)
 * ProvideLocationInformation
   * Common (HighAccLocation, HighAccVelocity)
   * AGNSS 
