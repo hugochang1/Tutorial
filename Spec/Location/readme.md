@@ -1,6 +1,10 @@
 # Good reference
-- https://scdn.rohde-schwarz.com/ur/pws/dl_downloads/dl_common_library/dl_brochures_and_datasheets/pdf_1/LTE_LBS_White_Paper.pdf
-- https://developers.google.com/location-context/
+- R&S
+  - https://scdn.rohde-schwarz.com/ur/pws/dl_downloads/dl_common_library/dl_brochures_and_datasheets/pdf_1/LTE_LBS_White_Paper.pdf
+- Location API (Android device)
+  - https://developers.google.com/location-context/
+- GPS know-how
+  - https://www.novastars.com/gps/
 
 # Positioning Method
 * GNSS
