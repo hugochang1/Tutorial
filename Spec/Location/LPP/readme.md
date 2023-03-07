@@ -21,10 +21,28 @@
 * ![image](https://user-images.githubusercontent.com/6143237/221423430-b28afc53-43a2-4997-bc1b-80138b3f9027.png)
 
 # Functionality
-* a_gnss
-* otdoa
-* ecid
-* epdu
+* ProvideAssistanceData
+  * AGNSS
+    * MSA
+    * MSB
+  * 4G OTDOA/5G TDOA
+  * Sensor
+  * WLAN
+  * BT
+  * 5G DL RTT
+  * 5G DL AoD
+* ProvideLocationInformation
+  * Common (HighAccLocation, HighAccVelocity)
+  * AGNSS (MSA code phase)
+  * 4G OTDOA/5G TODA (RSTD)
+  * 4G/5G ECID (Serving cell + Neighbor cell, RSRP, RSRQ)
+  * EPDU (LPPe)
+  * Sensor (Barometer, Motion sensor)
+  * TBS (MSA code phase)
+  * WLAN (BSSID, RSSI, RTT, ChanFreq)
+  * BT (MAC, RSSI)
+  * 5G DL RTT (CID, PRS_ID, TxRxTimeDiff)
+  * 5G DL AoD (CID, PRS_ID, RSRP)
 
 # Capability Transfer procedure
 ### Server request UE capability
