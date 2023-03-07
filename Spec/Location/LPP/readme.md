@@ -17,26 +17,38 @@
 # Functionality
 * ProvideAssistanceData
   * AGNSS
-    * MSA
     * MSB
-  * 4G OTDOA/5G TDOA
+      * Common (reference time, reference location, ionospheric model, earth orientation params)
+      * Generic (GNSS ID, TimeModel, DiffCorrection, Real Time Integrity, NavigationModel, Alamanc, UTC Model)
+    * MSA
+      * Common (reference time, reference location, ionospheric model, earth orientation params)
+      * Generic (acquisition assistance)
+  * 4G OTDOA
+    * reference cell (CID, PRS info (bandwidth, config, muting info) )
+    * neighbor cells (CID, PRS info (bandwidth, config, muting info), 1..3 per freqLayer, 1..24 per cell)
+  * 5G TDOA
+    * reference cell (CID, PRS info (bandwidth, config, muting info) )
+    * neighbor cells (CID, PRS info (bandwidth, config, muting info), 1..4 per freqLayer, 1..64 per cell)
   * Sensor
-  * WLAN
-  * BT
-  * 5G DL RTT
-  * 5G DL AoD
+    * Barometer (ref pressure, ref position, ref temperature)
+  * TBS (ID, MSB config, code index, freq, 1..64 per cell)
+  * WLAN (support channel for 11a and 11bg, 1..8 per dataSet, 1..64 per AP)
+  * BT (None)
+  * 5G DL RTT (PRS ID, CID, SFN offset, RTD, 1..4 per freqLayer, 1..64 per TRP)
+  * 5G DL AoD (PRS ID, CID, SFN offset, RTD, PRS info, 1..4 per freqLayer, 1..64 per TRP)
 * ProvideLocationInformation
   * Common (HighAccLocation, HighAccVelocity)
-  * AGNSS (MSA code phase)
-  * 4G OTDOA/5G TODA (RSTD)
-  * 4G/5G ECID (Serving cell + Neighbor cell, RSRP, RSRQ)
+  * AGNSS (MSA code phase, 1..16 per OneGNSS, 1..8 per SignalID, 1..64 per svID)
+  * 4G OTDOA (RSTD, 1..24 per neighbor cell)
+  * 5G TODA (RSTD, 1..256 per neighbor cell)
+  * 4G/5G ECID (Serving cell + Neighbor cell, RSRP, RSRQ, 1..32 per neighbor cell)
   * EPDU (LPPe)
   * Sensor (Barometer, Motion sensor)
-  * TBS (MSA code phase)
-  * WLAN (BSSID, RSSI, RTT, ChanFreq)
-  * BT (MAC, RSSI)
-  * 5G DL RTT (CID, PRS_ID, TxRxTimeDiff)
-  * 5G DL AoD (CID, PRS_ID, RSRP)
+  * TBS (MSA code phase, 1..64 per cell)
+  * WLAN (BSSID, RSSI, RTT, ChanFreq, 1..64 per AP)
+  * BT (MAC, RSSI, 1..32 per BT device)
+  * 5G DL RTT (CID, PRS_ID, TxRxTimeDiff, 1..256 per cell)
+  * 5G DL AoD (CID, PRS_ID, RSRP, 1..256 per cell)
 
 # Protocol Stack
 * Control Plane
