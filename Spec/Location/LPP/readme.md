@@ -14,12 +14,6 @@
 * SMLC <-> UE: Error
 * SMLC <-> UE: Abort
 
-# Control Plane
-* ![image](https://user-images.githubusercontent.com/6143237/221423237-0d37b969-00a9-44b1-a85f-4c4bdf979515.png)
-
-# User Plane
-* ![image](https://user-images.githubusercontent.com/6143237/221423430-b28afc53-43a2-4997-bc1b-80138b3f9027.png)
-
 # Functionality
 * ProvideAssistanceData
   * AGNSS
@@ -43,6 +37,12 @@
   * BT (MAC, RSSI)
   * 5G DL RTT (CID, PRS_ID, TxRxTimeDiff)
   * 5G DL AoD (CID, PRS_ID, RSRP)
+
+# Protocol Stack
+* Control Plane
+  * ![image](https://user-images.githubusercontent.com/6143237/221423237-0d37b969-00a9-44b1-a85f-4c4bdf979515.png)
+* User Plane
+  * ![image](https://user-images.githubusercontent.com/6143237/221423430-b28afc53-43a2-4997-bc1b-80138b3f9027.png)
 
 # Capability Transfer procedure
 ### Server request UE capability
