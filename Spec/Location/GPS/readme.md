@@ -41,18 +41,18 @@
 ### PPP (Precise Point Positioning)
 - GPS receiver observe the carrier phase instead of GPS pseudo code
 - use GPS L1 + L5 to elimiate ionospheric delay
-### SSR vs OSR
-- OSR is Observation Space Representation
-  - provide the lump sum of all these errors is observed by a network of reference stations
-  - require the rover to send its approximate position to the service provide to generate the correction periodically
-- SSR is State Space Representation
-  - provide the different GNSS error components respectively such as satellite clocks, satellite orbits, satellite signal biases, ionospheric delay, tropospheric delay
-  - the service provide sends the only one data to the rover
-- https://www.geopp.de/ssr-vs-osr/
+
 
 # AGNSS
 - DGPS (Differential GPS)
   - use a fixed base GPS receiver with knowing its precision location to correct GPS errors and send this GPS correction info to the nearby UE (ex: SUPL, LPP, ...etc.)
 - RTK (Real Time Kinematic)
   - one of DGPS but it can provide the GPS correction level in the carrier phase 
-
+  - SSR vs OSR
+    - https://www.geopp.de/ssr-vs-osr/
+    - OSR is Observation Space Representation
+      - provide the lump sum of all these errors is observed by a network of reference stations
+      - require the rover to send its approximate position to the service provide to generate the correction periodically
+    - SSR is State Space Representation
+      - provide the different GNSS error components respectively such as satellite clocks, satellite orbits, satellite signal biases, ionospheric delay, tropospheric delay
+      - require the rover to send its approximate position to the service provide to generate the correction once
