@@ -41,6 +41,12 @@
 ### PPP (Precise Point Positioning)
 - GPS receiver observe the carrier phase instead of GPS pseudo code
 - use GPS L1 + L5 to elimiate ionospheric delay
+### SSR vs OSR
+- OSR is Observation Space Representation
+  - provide the lump sum of all these errors is observed by a network of reference stations
+- SSR is State Space Representation
+  - provide the different GNSS error components respectively such as satellite clocks, satellite orbits, satellite signal biases, ionospheric delay, tropospheric delay
+- https://www.geopp.de/ssr-vs-osr/
 
 # AGNSS
 - DGPS (Differential GPS)
