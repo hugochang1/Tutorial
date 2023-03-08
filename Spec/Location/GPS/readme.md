@@ -44,8 +44,10 @@
 ### SSR vs OSR
 - OSR is Observation Space Representation
   - provide the lump sum of all these errors is observed by a network of reference stations
+  - require the rover to send its approximate position to the service provide to generate the correction periodically
 - SSR is State Space Representation
   - provide the different GNSS error components respectively such as satellite clocks, satellite orbits, satellite signal biases, ionospheric delay, tropospheric delay
+  - the service provide sends the only one data to the rover
 - https://www.geopp.de/ssr-vs-osr/
 
 # AGNSS
