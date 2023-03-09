@@ -17,12 +17,9 @@
 # Functionality
 * ProvideAssistanceData
   * AGNSS
-    * MSB
-      * Common (reference time, reference location, ionospheric model, earth orientation params)
-      * Generic (GNSS ID, TimeModel, DiffCorrection, Real Time Integrity, NavigationModel, Alamanc, UTC Model)
-    * MSA
-      * Common (reference time, reference location, ionospheric model, earth orientation params)
-      * Generic (acquisition assistance (svid, doppler, code phase) )
+    * Common (reference time, reference location, ionospheric model, earth orientation params)
+    * MSB Generic (GNSS ID, TimeModel, DiffCorrection, Real Time Integrity, NavigationModel, Alamanc, UTC Model, 1..16 per OneGNSS)
+    * MSA Generic (acquisition assistance (svid, doppler, code phase) , 1..16 per OneGNSS, 1..64 per satellite)
   * 4G OTDOA
     * reference cell (CID, PRS info (bandwidth, config, muting info) )
     * neighbor cells (CID, PRS info (bandwidth, config, muting info), 1..3 per freqLayer, 1..24 per cell)
