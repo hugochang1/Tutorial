@@ -15,6 +15,29 @@
 * SMLC <-> UE: Abort
 
 # Functionality
+* ProvideCapabilities
+  * AGNSS
+    * GNSS support list (GNSS ID, Mode (standalone, UEA, UEB), Signals assistance data support, ...etc.)
+  * OTDOA
+    * mode (UEA, UEA-NB, UEA-NB-TDD), support 4G bands, interfreqRSTDMeasSupport, interRATSupport, ...etc.
+  * ECID
+    * support RSRP, RSRQ
+  * Sensor
+    * mode (standalone, UEA, UEB), assistanceDataSupport (validityPeriod, validityArea), motion
+  * TBS
+    * mode (standalone, UEA, UEB), assistanceDataSupportList (acquisition, almanac)
+  * WLAN
+    * mode (standalone, UEA, UEB), RSSI, RTT, assistanceDataSupport
+  * BT
+    * mode (standalone, UEA), RSSI
+  * NR-ECID
+    * rsrp, rsrq
+  * NR-RTT
+    * PRS capability (band list), measurement capability (max num over FR1/FR2)
+  * NR-DL-AoD
+    * mode (standalone, UEA, UEB), PRS capability (band list), measurement capability (max PRS RSRP over FR1/FR2)
+  * NR-DL-TODA
+    * mode (standalone, UEA, UEB), PRS capability (band list), measurement capability (dl-RSTD-measurementPerPairOfTRP over FR1/FR2)
 * ProvideAssistanceData
   * AGNSS
     * Common (reference time, reference location, ionospheric model, earth orientation params)
