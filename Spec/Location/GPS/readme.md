@@ -8,7 +8,8 @@
 
 # The reasons cause GPS inaccurate
 - GPS satellite
-  - GPS satellite clock is accurate but not perfect
+  - GPS satellite clock drift
+    - although atomic clock is accurate but not perfect
   - GPS satellite ephemeric inaccurate
   - GPS satellite signal bias
 - GPS signal traval
