@@ -20,6 +20,7 @@
   - frequency interference (same frequency band or harmonics from lower frequency bands)
   - GPS HW capability
   - positioning algorithm
+  - Geodetic System (ex: WGS84, BJZ54, 安西80)
 
 # GNSS
 - GPS movement
