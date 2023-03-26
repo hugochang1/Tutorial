@@ -1,3 +1,7 @@
+# Good Reference
+- GPS background
+  - https://www.youtube.com/watch?v=8eTlI19_57g
+
 # GPS equations
 - UE **latitude, longitude and altitude** are unknown
 - UE does not know the **accurate GPS time** is also unknown
