@@ -17,6 +17,31 @@
   - 16QAM: 16 db
   - 256QAM: 30 db
   - 1024QAM: 35 db
+# LTE transport channel mapping
+- Radio Link Control Layer
+  - PCCH (Paging Control Channel) - eNB -> UE: idle/sleep state
+  - BCCH (Broadcast Control Channel) - eNB -> UE: DL BW, Antenna config, Ref Signal Power, ...etc.
+    - MIB (Master Information Block) - System critical info to accquire the cell
+    - SIB (System Information Block) - Dynamic information to access the cell
+  - CCCH (Common Control Channel) - UE -> eNB: to establish radio connection
+  - DCCH (Dedicated Control Channel) - eNB -> UE: use to tranfer control info after bearer setup
+  - MCCH (Multicast Control Channel) - eNB -> UE: for multicast or broadcast message
+  - DTCH (Dedicated Traffic Channel) - eNB <-> UE: for DL/UL of user data
+  - MTCH (Multicast Traffic Channel) - eNB -> UE: real time broadcasting of sports, events, ...etc.
+- Physical layer
+  - PCH (Paging Channel)
+    - no uplink direction
+    - MIB
+  - BCH (Broadcast Channel)
+    - no uplink direction
+    - SIB
+  - DL-SCH (Downlink Shared Channel)
+  - UL-SCH (Uplink Shared Channel)
+  - RACH (Random Access Channel)
+    - for uplink direction for the initiated phase 
+  - MCH (Multicast Channel)
+    - no uplink direction
+
 # Terms
 - 3rd Generation Partnership Project (3GPP)
   - Global System for Mobile Communications (GSM)
