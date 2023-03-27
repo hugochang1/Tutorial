@@ -1,7 +1,6 @@
 # Good
 - RF HW
   - https://www.youtube.com/watch?v=ZSNt2qUuU_U
-  - RF HW
 - RnS 5G
   - https://www.youtube.com/watch?v=qerqp69ojQw&t=85s
 - 1G~5G introduction
