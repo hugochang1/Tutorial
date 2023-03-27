@@ -7,6 +7,11 @@
   - https://www.youtube.com/watch?v=g-gGeAe-PJA
 - LTE tutorials
   - https://www.tutorialspoint.com/lte/index.htm
+- RF
+  - Modulation & QAM Basics
+    - https://www.youtube.com/watch?v=vzIk9ungyvc
+  - Understanding APSK and QAM
+    - https://www.youtube.com/watch?v=1xGncBvWv6U
 # NR air interface
 - ![image](https://user-images.githubusercontent.com/6143237/224556390-9cfe8fe6-a1ce-4c4c-962b-c2b4df66f8a4.png)
 # Modulation schemes
