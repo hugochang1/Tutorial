@@ -1,5 +1,5 @@
 # Good
-- RF HW
+- LTE transport channel mapping
   - https://www.youtube.com/watch?v=ZSNt2qUuU_U
 - RnS 5G
   - https://www.youtube.com/watch?v=qerqp69ojQw&t=85s
