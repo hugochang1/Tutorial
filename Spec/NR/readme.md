@@ -22,6 +22,21 @@
   - 16QAM: 16 db
   - 256QAM: 30 db
   - 1024QAM: 35 db
+# CARRIER AGGREGATION (CA)
+- https://www.youtube.com/watch?v=tZ50CSADKIY&list=PLE6yE0jB6BTOY6Z1DKEkQ8yZ8fFPUiCD8&index=9
+- Terms
+  - CC (Component Carrier)
+  - SCC (Second Component Carrier)
+  - ATBC (Aggregated Transmission Bandwidth Configuration
+  - PRB (Physical Resource Blocks)
+- CA bandwidth class
+  - Class A: ATBC <= 100, max number of CC=1
+  - Class B: ATBC <= 100, max number of CC=2
+  - Class C: 100 < ATBC <= 200, max number of CC=2
+- CA configuration
+  - CA_40C: Intra Band Contiguous
+  - CA_3A_3A: Intra Band Non-Contiguous
+  - CA_3A-5B: Inter Band CA
 # LTE transport channel mapping
 - Radio Link Control Layer
   - PCCH (Paging Control Channel) - eNB -> UE: idle/sleep state
