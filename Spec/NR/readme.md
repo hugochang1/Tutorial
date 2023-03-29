@@ -22,7 +22,7 @@
   - 16QAM: 16 db
   - 256QAM: 30 db
   - 1024QAM: 35 db
-# CARRIER AGGREGATION (CA)
+# Carrier Aggregation (CA)
 - https://www.youtube.com/watch?v=tZ50CSADKIY&list=PLE6yE0jB6BTOY6Z1DKEkQ8yZ8fFPUiCD8&index=9
 - Terms
   - CC (Component Carrier)
