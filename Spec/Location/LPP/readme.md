@@ -316,3 +316,108 @@
     * requestedMeasurementNotAvailable
     * notAllrequestedMeasurementsPossible
 * epdu_ProvideLocationInformation
+
+# Terms
+- RTD Relative Time Difference
+- OTDOA Observed Time Difference Of Arrival
+- ARFCN Absolute Radio Frequency Channel Number
+- ARP Antenna Reference Point
+- BIPM Bureau International des Poids et Mesures (International Bureau of Weights and Measures)
+- BTS Base Transceiver Station (GERAN)
+- CNAV Civil Navigation
+- CRS Cell-specific Reference Signals
+- DL-AoD Downlink Angle-of-Departure
+- DL-TDOA Downlink Time Difference Of Arrival
+- ECEF Earth-Centered, Earth-Fixed
+- ECGI Evolved Cell Global Identifier
+- ECI Earth-Centered-Inertial
+- EGNOS European Geostationary Navigation Overlay Service
+- E-SMLC Enhanced Serving Mobile Location Centre
+- EOP Earth Orientation Parameters
+- EPDU External Protocol Data Unit
+- FEC Forward Error Correction
+- FKP (German) Flächen-Korrektur-Parameter (area correction parameter)
+- FTA Fine Time Assistance
+- GAGAN GPS Aided Geo Augmented Navigation
+- HA GNSS High-Accuracy GNSS (RTK, PPP)
+- ICD Interface Control Document
+- IGS International GNSS Service
+- IOD Issue of Data
+- IRNSS Indian Regional Navigation Satellite System
+- IS Interface Specification
+- LLA Latitude Longitude Altitude
+- LMF Location Management Function
+- LPPa LTE Positioning Protocol Annex
+- LSB Least Significant Bit
+- MAC Master Auxiliary Concept
+- MBS Metropolitan Beacon System
+- MO-LR Mobile Originated Location Request
+- MSAS Multi-functional Satellite Augmentation System
+- MSB Most Significant Bit
+- msd mean solar day
+- MT-LR Mobile Terminated Location Request
+- Multi-RTT Multiple-Round Trip Time
+- NAV Navigation
+- NavIC NAVigation with Indian Constellation
+- NB-IoT NarrowBand Internet of Things
+- NCGI NR Cell Global Identifier
+- NICT National Institute of Information and Communications Technology
+- NI-LR Network Induced Location Request
+- NPRS Narrowband Positioning Reference Signals
+- NR NR Radio Access
+- NRSRP Narrowband Reference Signal Received Power
+- NRSRQ Narrowband Reference Signal Received Quality
+- NTSC National Time Service Center of Chinese Academy of Sciences
+- OSR Observation Space Representation
+- PBCH Physical Broadcast Channel
+- PDU Protocol Data Unit
+- PPP Precise Point Positioning
+- PRB Physical Resource Block
+- PRC Pseudo-Range Correction
+- PRS Positioning Reference Signals
+- posSIB Positioning System Information Block
+- PZ-90 Parametry Zemli 1990 Goda – Parameters of the Earth Year 1990
+- QZS Quasi Zenith Satellite
+- QZSS Quasi-Zenith Satellite System
+- QZST Quasi-Zenith System Time
+- RF Radio Frequency
+- RP Reception Point
+- RRC Range-Rate Correction
+- RRC Radio Resource Control
+- RSRP Reference Signal Received Power
+- RSRQ Reference Signal Received Quality
+- RSTD Reference Signal Time Difference
+- RTK Real-Time Kinematic
+- RTT Round Trip Time
+- RU Russia
+- SBAS Space Based Augmentation System
+- SET SUPL Enabled Terminal
+- SFN System Frame Number
+- SLP SUPL Location Platform
+- SRS Sounding Reference Signal
+- SS Synchronization Signal
+- SSB Synchronization Signal Block, SS/PBCH Block
+- SSID Service Set Identifier
+- SSR State Space Representation
+- STEC Slant TEC
+- SUPL Secure User Plane Location
+- SV Space Vehicle
+- TB Terrestrial Beacon
+- TBS Terrestrial Beacon System
+- TEC Total Electron Content
+- TECU TEC Units
+- TLM Telemetry
+- TOA Time Of Arrival
+- TOD Time Of Day
+- TOW Time Of Week
+- TP Transmission Point
+- TRP Transmission-Reception Point
+- UDRE User Differential Range Error
+- ULP User Plane Location Protocol
+- URA User Range Accuracy
+- USNO US Naval Observatory
+- UT1 Universal Time No.1
+- UTC Coordinated Universal Time
+- WAAS Wide Area Augmentation System
+- WGS-84 World Geodetic System 1984
+- WLAN Wireless Local Area Network
