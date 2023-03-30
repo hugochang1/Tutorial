@@ -58,9 +58,13 @@
   - flow
     - articulate the problem
     - come up with at least two solutions
+      - which protoocls or algorithms we use and why
     - discuss the trade-offs of the solutions
     - pick a solution and discuss it with the interviewer
 
 - step4: wrap up (5 min)
   - summarize the design
-
+    - end to end flow
+    - potential bottleneck
+    - trade-off
+    - improvement opportunities
