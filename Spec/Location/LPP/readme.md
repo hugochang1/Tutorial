@@ -57,9 +57,10 @@
   * 5G DL RTT (PRS ID, CID, SFN offset, RTD, 1..4 per freqLayer, 1..64 per cell)
   * 5G DL AoD (PRS ID, CID, SFN offset, RTD, PRS info, 1..4 per freqLayer, 1..64 per cell)
 * ProvideLocationInformation
-  * Common (HighAccLocation, HighAccVelocity)
-  * AGNSS 
-    * MSA: SVID, CNo, doppler, code phase, accumalated carrier phase(ADR) 1..16 per OneGNSS, 1..8 per SignalID, 1..64 per svID
+  * Common (LocationEstimate, Velocity, UTC, Location Source)
+  * AGNSS (MSA)
+    * Time
+    * SignalMeasurements: SVID, CNo, doppler, code phase, accumalated carrier phase(ADR) 1..16 per OneGNSS, 1..8 per SignalID, 1..64 per svID
   * 4G OTDOA (RSTD, 1..24 per neighbor cell)
   * 5G TODA (RSTD, 1..256 per neighbor cell)
   * 4G/5G ECID (Serving cell + Neighbor cell, RSRP, RSRQ, 1..32 per neighbor cell)
