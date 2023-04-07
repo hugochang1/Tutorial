@@ -39,4 +39,7 @@
   - Measures the air interface to know channel quality (due to mobility, air interference)
 
 ### Misc
-- EPS (Evolved Packet System) = UE + LTE RAN + EPC (Evolved Packet Core)
+- UE (User Equipment)
+- E-UTRAN (Evolved Universal Terrestrial Radio Access Network)
+- EPC (Evolved Packet Core)
+- EPS (Evolved Packet System) = UE + E-UTRAN + EPC
