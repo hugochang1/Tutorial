@@ -38,3 +38,5 @@
   - Encodes raw data before modulation
   - Measures the air interface to know channel quality (due to mobility, air interference)
 
+### Misc
+- EPS (Evolved Packet System) = UE + LTE RAN + EPC (Evolved Packet Core)
