@@ -9,6 +9,17 @@
 - because all GPS satellites are synced together by using the atomic clocks
   - If UE receives 3 satellites then latitude, longitude and accurate GPS time can be calculated
   - If UE receives 4 satellites then altitude can also be calculated
+- math
+  - Unknown
+    - UE position = x, y, z
+    - GPS time = t
+    - the distance between UE and GPS satellite i = di
+  - Known
+    - GPS satellite i position = Gix, Giy, Giz (known)
+    - speed of the light = c = 3x10^8
+    - the time which UE receives GPS satellite i = ti
+  - Equation
+    - di = (ti - t) x c = sqrt((x-Gix)^2 + (y-Giy)^2 + (z-Giz)^2)
 
 # The reasons cause GPS inaccurate
 - GPS satellite
