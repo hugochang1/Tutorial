@@ -28,7 +28,7 @@
 * SLP ->  SET: SUPL REPORT(session-id, **position** for MSA) 1st position for MSA
 * (wait for next periodic report)
 * SLP <-  SET: SUPL REPORT(session-id, **positions**) 2nd psoition for MSB
-* (repat and SET sends SUPL REPORT periodic)
+* (repeat and SET sends SUPL REPORT periodic)
 * (reach to number of fixes)
 * SLP ->  SET: SUPL END (session-id)
 
