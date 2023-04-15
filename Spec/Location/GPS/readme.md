@@ -5,7 +5,7 @@
 # GPS equations
 - UE **latitude, longitude and altitude** are unknown
 - UE does not know the **accurate GPS time**
-- The position of GPS satellites are known from their **ephemric**
+- The position of GPS satellites are known from their **ephemeris**
 - because all GPS satellites are synced together by using the atomic clocks
   - If UE receives 3 satellites then latitude, longitude and accurate GPS time can be calculated
   - If UE receives 4 satellites then altitude can also be calculated
