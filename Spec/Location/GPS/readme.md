@@ -39,9 +39,9 @@
   - Geodetic System (ex: WGS84, BJZ54, 安西80)
 
 # GNSS
-- GPS movement
+- the animation of GPS satellites and earth
   - https://upload.wikimedia.org/wikipedia/commons/9/9c/ConstellationGPS.gif
-- GNSS height
+- the height between GNSS satellites and earth
   - https://www.google.com/url?sa=i&url=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FList_of_orbits&psig=AOvVaw0uOotC3VfngWt87yYVrwO-&ust=1678286485099000&source=images&cd=vfe&ved=0CBAQjRxqFwoTCLj1y7-Gyv0CFQAAAAAdAAAAABAJ
 
 # GNSS Technology
