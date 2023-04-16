@@ -1,6 +1,10 @@
 # LocationManager
 * provide to access to the system location services
-  * provider: GNSS, Network Location Provider (ex: provided by GMS=Google Mobile Services), Fused Location Provider
+  * provider
+    * GPS
+    * Network Location Provider (ex: provided by GMS=Google Mobile Services)
+    * Fused Location Provider (GPS + NLP)
+    * Passive
   * requestLocationUpdates/removeUpdates
   * register/unregister to listen GnssStatus, NmeaMessage, GnssMeasurements, GnssNavigation
   * getLastKnownLocation
