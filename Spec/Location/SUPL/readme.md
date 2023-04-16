@@ -38,7 +38,7 @@
 * SLP ->  SET: SUPL TRIGGERED RESPONSE(session-id, posmethod, **trigger_params**)
   * **geographicTargetAreaList** provided
 * (wait until start time)
-* (compare current cell with geographicTargetAreaList, if condition met then start below procedure)
+* (compare current cell with areaIdSet, if condition met then start below procedure)
 * SLP <-  SET: SUPL POS INIT(session-id, lid, SET Capabilities)
 * SLP <-> SET: SUPL POS (session-id, RRLP/RRC/TIA-801/LPP/LPPe)
 * SLP ->  SET: SUPL REPORT(session-id)
