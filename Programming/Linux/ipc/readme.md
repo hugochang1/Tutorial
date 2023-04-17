@@ -4,8 +4,8 @@
 |method|pros|cons|notes|
 |-|-|-|-|
 |shared memory|fast|non-synchronized|lifecycle: kernel|
-|socket|synchronized, can be used for Internet or IPC||lifecycle: process|
+|socket|synchronized, can be used for Internet or IPC||lifecycle: process, tcp: streaming, udp: message|
 |pipe|synchronized|only used for fork()|lifecycle: process|
-|fifo|synchronized, similar with pipe||lifecycle: process|
+|fifo|synchronized, similar with pipe||lifecycle: process, streaming|
 |signal||non-synchronized, can only carry few data|triggered by system|
 |message queue|synchronized||lifecycle: process|
