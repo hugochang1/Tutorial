@@ -9,23 +9,22 @@
 
 
 - step1: understand the problem and establish design scope (5 min)
-  - ask questions to fully understand the problems
-    - clarify the requirements
-      - why to build this system?
-      - who are users?
-      - what features we need?
-        - prioritize the order of each feature and focus on the top few features
-        - make sure interviewer agrees to the feature lists
-      - ask non-functional requirements
-        - major: performance, scale
-        - minor: accuracy, security, consistency
+  - ask questions to fully understand the problems and clarify the requirements
+    - why to build this system?
+    - who are users?
+    - what features we need?
+      - prioritize the order of each feature and focus on the top few features
+      - make sure interviewer agrees to the feature lists
+    - ask non-functional requirements
+      - major: performance, scale
+      - minor: accuracy, security, consistency
   - output of this stage
     - features requirements
     - non-functional requirements
 
 
 - step2: propose high-level design and get buy-in (20 min)
-  - Don't explain to detail in this phase
+  - Don't explain to detail in this phase (depends on situation)
   - 1. API design
     - define API input parameters and output response
     - what is underlying communication approach
