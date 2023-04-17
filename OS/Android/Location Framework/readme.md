@@ -1,4 +1,6 @@
 # LocationManager
+* Location and Context API
+  * https://developers.google.com/location-context
 * provide to access to the system location services
   * provider
     * GPS
