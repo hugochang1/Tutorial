@@ -21,7 +21,7 @@
   - 5G AoD
 - non-functional requirements
   - recovery for failure
-  - test case
+  - test methodology
 
 ### Architecture
 - Location Framework, LPPe Service
