@@ -1,0 +1,118 @@
+# Design a LPPe system for E911
+### requirement
+- where is GPS chip? is it inside MD? (like Q* solution) or standalone GNSS chip?
+  - assume it's a standalone GNSS
+- which OS we're using?
+  - Android OS
+- what're user scenarios?
+  - NILR (E911, SUPL INIT over WAP Push)
+  - MOLR
+  - MTLR
+- which protocol should we support?
+  - SUPL2.0, RRLP, RRC, LPP, LPPe
+- functional requirements (what kind of position method we need to support)
+  - GNSS
+  - WiFi RSSI
+  - BT RSSI
+  - Sensor
+  - 4G/5G ECID
+  - 4G OTDOA, 5G TDOA
+  - 5G RTT
+  - 5G AoD
+- non-functional requirements
+  - recovery for failure
+  - test case
+
+### Architecture
+- Location Framework, LPPe Service
+- GNSS daemon (PE, SUPL, RRLP, RRC, LPP, LPPe)
+- GNSS kernel, MD SW
+- GNSS HW (ME), MD HW
+
+### Interface design
+- LPPe Service and WiFi/BT/Sensor
+  - LPPe service -> WiFi/BT/Sensor manager: request to start/stop
+  - LPPe service <- WiFi/BT/Sensor manager: provide scan result or data
+- LPPe Service and GNSS daemon
+  - LPPe service <- GNSS daemon: request to start/stop WiFi/BT/Sensor
+  - LPPe service -> GNSS daemon: provide WiFi/BT/Sensor data
+- GNSS daemon and MD SW
+  - GNSS daemon <-> MD SW: RRLP, RRC, LPP message
+  - GNSS daemon -> MD SW: get MD capability
+  - GNSS daemon <- MD SW: provide MD capability
+  - GNSS daemon -> MD SW: register/deregister cell info change
+  - GNSS daemon <- MD SW: provide cell info change
+  - GNSS daemon -> MD SW: start OTODA measurement (reference cell + neighbor cells)
+  - GNSS daemon <- MD SW: trigger OTDOA measurement (RSTD)
+  - GNSS daemon -> MD SW: trigger RTT (PRS ID, ResourceSetIndex)
+  - GNSS daemon <- MD SW: provide RTT (PRS ID, TxRxDiff)
+  - GNSS daemon -> MD SW: trigger AoD (PRS ID)
+  - GNSS daemon <- MD SW: provide AoD (PRS ID, RSRP, time)
+- Location Framework and GNSS daemon
+  - Location Framework -> GNSS daemon: SUPL INIT over SMS or WAP Push
+  - Location Framework <- GNSS daemon: establish APN
+  - Location Framework <- GNSS daemon: release APN
+  - Location Framework <- GNSS daemon: bind a IP to a specific APN
+  - Location Framework -> GNSS daemon: start/stop GNSS
+  - Location Framework -> GNSS daemon: report location
+  - Location Framework -> GNSS daemon: delete aiding data
+- GNSS daemon and GNSS HW
+  - GNSS daemon -> GNSS HW: start/stop GNSS measurement
+  - GNSS daemon <- GNSS HW: provide GNSS measurement
+  - GNSS daemon -> GNSS HW: provide health GNSS satellite list
+
+### Flow
+- E911 location flow
+  - the user dials an 911 call
+  - NW sends SUPL INIT over WAP Push to UE
+  - UE receives SUPL INIT
+    - Location Framework -> GNSS daemon: SUPL INIT over SMS or WAP Push
+  - GNSS daemon starts E911 location session
+    - Location Framework -> GNSS daemon: start GNSS
+      - GNSS daemon -> GNSS HW: start GNSS measurement
+    - Location Framework <- GNSS daemon: establish APN
+    - Location Framework <- GNSS daemon: bind a IP to a specific APN
+    - GNSS daemon connect to SUPL server
+      - start TLS handshake procedure
+        - UE -> SLP: SUPL POS INIT
+        - UE <-> SLP: SUPL POS (RRLP, RRC, LPP, LPPe)
+          - LPPe service -> WiFi/BT/Sensor manager: request to start
+            - LPPe service <- WiFi/BT/Sensor manager: provide scan result or data
+          - GNSS daemon -> MD SW: register cell info change
+            - GNSS daemon <- MD SW: provide cell info change
+          - GNSS daemon -> MD SW: start OTODA measurement (reference cell + neighbor cells)
+            - GNSS daemon <- MD SW: trigger OTDOA measurement (RSTD)
+          - GNSS daemon -> MD SW: trigger RTT (PRS ID, ResourceSetIndex)
+            - GNSS daemon <- MD SW: provide RTT (PRS ID, TxRxDiff)
+          - GNSS daemon -> MD SW: trigger AoD (PRS ID)
+            - GNSS daemon <- MD SW: provide AoD (PRS ID, RSRP, time)
+          - ...(reach to response time given by NW) 
+          - GNSS daemon -> MD SW: deregister cell info change
+          - LPPe service -> WiFi/BT/Sensor manager: request to stop
+        - UE <- SLP: SUPL END
+  - GNSS daemon ends E911 location session
+    - GNSS daemon disconnect with SUPL server
+    - Location Framework <- GNSS daemon: release APN
+    - Location Framework -> GNSS daemon: stop GNSS
+      - GNSS daemon -> GNSS HW: stop GNSS measurement
+
+### Others
+- recovery for failure
+  - if location framework crash
+    - Android reboot
+    - GNSS daemon abort the onging session
+  - if GNSS daemon crash
+    - GNSS daemon re-start
+    - GNSS daemon notifies Location Framework, LPPe Service, GNSS kernel and MD SW to abort the ongoing session
+  - if GNSS kernel crash
+    - whole UE is rebooting
+  - if MD SW crash
+    - MD SW reboot
+    - MD SW notifies GNSS daemon to abort the ongoing session
+- test methodology
+  - E911 field test
+  - test machine 
+  - unit test for GNSS daemon
+    - it's a self test mode within GNSS daemon
+    - we need to collect all input data and flows
+    - once this one is implemented, we can save a lot time for E911 field test or book the machine resource for verification
