@@ -19,9 +19,9 @@
         - SUPL, RRLP, RRC, LPP/LPPe
       - which positioning technologies we need to support?
         - AGNSS, ECID, OTDOA, WIFI, BT, Pressure, 5G DL AoD, 5G DL RTT
-     - non-functional requirements
-        - recovery for crash
-        - test methodology
+       - non-functional requirements
+          - recovery for crash
+          - test methodology
     - SW
       - why to build this system?
       - who are users?
