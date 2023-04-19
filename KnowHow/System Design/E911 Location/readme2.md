@@ -1,5 +1,5 @@
-
-# Requirement
+# # Design a AGNSS system which can support E911 location (GNSS HW and MD HW are on the same SoC)
+### Requirement
 - are GNSS HW and MD on the same SoC?
   - yes
 - OS?
@@ -26,13 +26,13 @@
   - recovery for crash case
   - test methodology
 
-# Architecture
+### Architecture
 - Location Framework (receive SUPL_INIT)   LPPe Service
 - GNSS daemon (SUPL connection send/receive)
 - MD SW (PE, SUPL, RRC, LPP/LPPe stack)
 - GNSS HW (ME) & MD HW
 
-# Interface
+### Interface
 - Location Framework / GNSS daemon (HIDL)
   - Location Framework -> GNSS daemon: recevice_supl_init(raw_data, raw_data_len)
   - Location Framework <- GNSS daemon: request apn connection(apn_name)
@@ -70,7 +70,7 @@
   - GNSS daemon -> MD SW: clear ongoing session()
   - GNSS daemon <- MD SW: clear ongoing session()
 
-# flow
+### Flow
 - user dials E911 call
   - NW sends SUPL INIT msg to UE
   - Location Framework receives SUPL INIT msg
@@ -114,7 +114,7 @@
     - GNSS daemon <- MD SW: release apn connection(apn_name)
     - MD turns off GNSS HW
 
-# non-functional requirements
+### non-functional requirements
 - recovery for crash case
   - if Android Framework crash
     - Android framework reboot
