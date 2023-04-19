@@ -1,4 +1,4 @@
-# Design a LPPe system for E911
+# Design a AGNSS system which can support E911 location (GNSS HW and MD HW are separated)
 ### requirement
 - where is GPS chip? is it inside MD? (like Q* solution) or standalone GNSS chip?
   - assume it's a standalone GNSS
