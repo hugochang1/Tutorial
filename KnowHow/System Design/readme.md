@@ -10,17 +10,30 @@
 
 - step1: understand the problem and establish design scope (5 min)
   - ask questions to fully understand the problems and clarify the requirements
-    - why to build this system?
-    - who are users?
-    - what features we need?
-      - prioritize the order of each feature and focus on the top few features
-      - make sure interviewer agrees to the feature lists
-    - ask non-functional requirements
-      - major: performance, scale
-      - minor: accuracy, security, consistency
-  - output of this stage
-    - features requirements
-    - non-functional requirements
+    - FW
+      - are GNSS HW and MD on the same SoC?
+      - which OS? (Android)
+      - user scenarios?
+        - E911 NILR, MTLR, MOLR
+      - which positioning protocol we should support?
+        - SUPL, RRLP, RRC, LPP/LPPe
+      - which positioning technologies we need to support?
+        - AGNSS, ECID, OTDOA, WIFI, BT, Pressure, 5G DL AoD, 5G DL RTT
+     - non-functional requirements
+        - recovery for crash
+        - test methodology
+    - SW
+      - why to build this system?
+      - who are users?
+      - what features we need?
+        - prioritize the order of each feature and focus on the top few features
+        - make sure interviewer agrees to the feature lists
+      - ask non-functional requirements
+        - major: performance, scale
+        - minor: accuracy, security, consistency
+    - output of this stage
+      - features requirements
+      - non-functional requirements
 
 
 - step2: propose high-level design and get buy-in (20 min)
