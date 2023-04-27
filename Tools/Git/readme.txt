@@ -66,7 +66,7 @@ file1.txt
 $ git blame fileName
 
 to check a range of specific lines
-$ git branch -L 3,10 fileName
+$ git blame -L 3,10 fileName
 
 # ----------------- Rollback the file for working directory -----------------
 $ git checkout fileName
