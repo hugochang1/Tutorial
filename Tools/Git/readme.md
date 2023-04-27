@@ -76,6 +76,22 @@ Date:   Thu Apr 27 09:16:31 2023 +0800
 
     init commit
 ````
+- `$ git log -p`
+````
+commit 7097d33cffe9d838ece10f5c988e1d3ca0ea89fc
+Author: Hugo Chang <hugo@gmail.com>
+Date:   Thu Apr 27 09:16:31 2023 +0800
+
+    init commit
+
+diff --git a/test.txt b/test.txt
+new file mode 100644
+index 0000000..ce01362
+--- /dev/null
++++ b/test.txt
+@@ -0,0 +1 @@
++hello
+````
 - `$ git log --oneline --graph`
 ````
 * 07a459a (HEAD -> master) add new file
