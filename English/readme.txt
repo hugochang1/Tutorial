@@ -1,28 +1,35 @@
-Luxury Campsite in Texas Will Offer 3D-Printed Hotel Rooms
+ANA to Introduce Cheaper Flights to Southeast Asia
 
-1. What sort of accommodations does hotel and campsite El Cosmico offer?
-El Cosmico is a hotel and campsite in Texas offering unique
-accommodations, such as yurts, trailers, and tiny homes
+1. What does Japan's largest airline plan to offer from February 2024?
+Japan's largest airline plans to offer a new service with lower prices.
 
-2. How will the new structures look?
-The new structures will look completely different from traditional buildings.
-They will be printed with slopes, arches, and domes to create a uniquely organic design
+2. Where will the new airline eventually fly to after they start flights to Southeast Asia?
+Eventually, the new airline will fly to Australia and other Pacific airports
 
-3. When will reservations for the homes open?
-Reservations for the homes will open in the summer of 2023.
+3. Why will cheaper flights be good for Japan?
+Cheaper flights will also encourage travel to Japan.
+This will be good for Japanese tourism and will help the Japanese economy.
 
-Texas n 地名
-expanion n 擴張
-uniquely adv 
-excrete v 排泄
-toxin n 毒素
-accommodation n 住宿
-El Cosmico n 人名
-yurt n 蒙古包
-trailer n 拖車
-Bjarke Ingels n 人名
-Ballard n 人名
-arche n 拱門
-dome n 穹頂
-Vulcan n 火神
-lavacrete n 熔岩混泥土
+economy adj 經濟的
+Hideki Mineguchi n 人名
+
+------------------------------------------------------------
+
+Silicon Valley Bank Collapse Affecting Companies Worldwide
+
+1. What is affecting companies around the world?
+The collapse of Silicon Valley Bank is affecting companies around the world
+
+2. What did California Senator Alex Padilla write about the collapse?
+California Senator Alex Padilla wrote that the collapse could have
+widespread consequences for small businesses, startups, and nonprofits,
+as well as the broader economy.
+
+3. What is Stefan Kalb, the CEO of the startup company Shelf Engine, hoping for?
+he is just hoping the bank gets sold.
+
+collapse n 倒閉
+stabilize v 穩定
+paychecks n 薪水
+spokesperson n 發言人
+Padilla n 人名
