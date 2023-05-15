@@ -1,24 +1,3 @@
-Japan Aims To Host 400,000 Foreign Students Annually by 2033
-
-1. What is the Japanese government's goal?
-The Japanese government has a goal to attract 400,000 
-overseas students annually by 2033
-
-2. In 2018, what did Japan's Ministry of Education aim to do?
-In 2018, Japan's Ministry of Education aimed to host about
-300,000 international students in 2020.
-
-3. When did Japan relax its entry rules after more than two years of closed borders?
-In September 2022, Japan relaxed its entry rules after more than
-two years of closed borders
-
-Prime Minister n 總理
-Fumio Kishida n 人名
-Hiroshima n 廣島
-Vietnam n 越南
-
-
-------------------------------------------
 Bali Bans Tourists from Renting Motorbikes
 
 1. What announcement did Bali governor Wayan Koster recently make?
@@ -46,3 +25,32 @@ stunt n 特技 噱頭
 viral adj 病毒性的
 attorney n 律師
 enact v 制定
+
+----------------------------------------
+'Robot Lawyer' Being Sued By Real Law Firm
+
+1. What charge is DoNotPay facing?
+The company is now being charged with practicing law without a license.
+
+2. Why did Joshua Browder start DoNotPay as a company?
+the reason he started the company in 2015 was to empower
+people to navigate the legal system without using a lawyer.
+
+3. Why did DoNotPay discontinue its effort to help a client in traffic court?
+because Browder received legal threats.
+
+possess v 擁有
+bully v 欺負
+shelve v. to not take action on something until a later time
+Edelson n 人名
+lawsuit n 訴訟
+Faridian n 人名
+Joshua Browder n 人名
+empower v 授權
+distract v 轉移
+
+----------------------------------------
+
+----------------------------------------
+----------------------------------------
+----------------------------------------
