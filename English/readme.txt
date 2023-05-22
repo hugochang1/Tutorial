@@ -172,4 +172,83 @@ workforce n 勞動力
 gig n 演出
 
 ----------------------------------------
+Female Business Leaders on the Rise in Singapore
+
+1. How is the Grant Thornton survey conducted?
+Grant Thornton makes a bi-annual survey of mid-market businesses around the world.
+
+2. How is a mid-range company defined in Singaporean business?
+mid-range is defined as firms with 50-499 employees.
+
+3. What is a culture of speaking up?
+a culture of speaking up means employees, 
+including women, feel comfortable expressing their own opinions
+
+succession n 繼承性
+foster v 促進
+
+----------------------------------------------------
+Liquid Rules To Be Scrapped at UK Airport
+
+1. What rule will London's City Airport end before Easter 2023?
+ondon's City Airport will end the 100ml liquid rule before Easter 2023
+
+2. What does Robert Sinclair say the new policy will do for travelers?
+Robert Sinclair, the airport CEO, says this is good news for travelers.
+"The new lanes will not only cut hassle but also queuing times,
+which I know passengers will love," he said.
+
+3. What incident resulted in the current UK airport restrictions being put in place?
+The current restrictions are the result of a 2006 incident that involved
+liquid explosives being discovered on a plane from London.
+
+scrap v discard
+hassle n 麻煩
+explosive n 爆炸物
+dynamite n 炸藥
+Sinclair n 人名
+
+---------------------------------------------------
+Canada Sees Record-Breaking Population Increase
+
+1. What does the increase figure of one million people include?
+this figure includes permanent and temporary residents and net new births.
+
+2. What is the position that Canada continues to hold among the G7?
+Canada continues to hold the position of the fastest-growing country among the G7
+
+3. What has been one of Prime Minister Justin Trudeau's main focuses since entering office in 2015?
+It has been one of Prime Minister Justin Trudeau’s main focuses since entering office in 2015,
+as the country is continuously creating programs to host refugees.
+
+refugee n 難民
+break out v 發生
+Trudeau n 人名
+Syria n 國家
+Afghanistan n 阿富汗
+Ukrainian n 烏克蘭
+Turkish adj 土耳其
+
+---------------------------------------------------
+The Connection Between Time and Our Heartbeats
+
+1. What did the psychologists at Cornell University find from their study regarding the different experiences of time?
+Psychologists at Cornell University did a study, and they found thatthe different experiences
+ of time can be correlated with the inconsistent lengths of heartbeats
+
+2. What did the psychologists measure using electrocardiograms?
+They attached electrocardiograms to them and measured the length of each heartbeat.
+They then played short sounds and asked them to guess how long these sounds were.
+
+3. Which participants were better at guessing the lengths of sounds?
+participants with a lower heart rate were better at guessing the length of the sounds.
+
+correlate v 關聯
+inconsistent adj 不一致
+electrocardiogram n 心電圖
+
 ----------------------------------------
+----------------------------------------
+----------------------------------------
+----------------------------------------
+
