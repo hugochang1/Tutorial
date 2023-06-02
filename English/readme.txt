@@ -1,15 +1,29 @@
----------------------------------------------------
-Exercise Helps To Treat Depression
+Why Ancient Roman Buildings Lasted Longer
 
-moderate adj 溫和的
+1. What are the structures of ancient Rome that have existed for thousands of years a testament of?
+This is a testament to the ingenuity of the ancient 
+Roman engineers who mastered the use of concrete.
 
-1. What did a 2023 study claim exercise is better at doing?
-A 2023 study claimed exercise is better at treating depression
-than medicine or therapy.
+2. What did a team of scientists who analyzed 2,000-year-old concrete samples from the walls of Priverno find?
+They found that white lumps in concrete, called “lime crust,”
+give concrete the ability to repair cracks that develop over time
 
-2. How many people with depression were involved in the 41 studies?
-The study used data from 41 studies involving 2,265 people with depression 
+3. What did researchers find after an experiment of two concrete samples?
+the Roman-style concrete was impermeable,
+but the other concrete block was permeable.
 
-3. What is important to remember about the simple exercises recommended for people with depression?
-It is important to remember that these exercises are for their mind,
-not their body
+concrete n building
+lump n 塊
+deliberately adv 故意地
+scratch v 抓痕
+sustainable adj 可維持的
+testament n 遺屬
+Priverno n a place
+magnificent adj 壯觀的
+ingenuity n 創造力
+Pantheon n a building
+Colosseum n 鬥獸場
+lime crust n 石灰殼
+quicklime n 生石灰
+impermeable adj 不透水
+permeable adj 透水
