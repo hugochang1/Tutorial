@@ -25,3 +25,16 @@
   - Traffic efficiency
   - Autonomous driving
   - Smart city integration
+
+# C-V2X applications
+- Collision avoidance
+  - share information about their position, speed, and direction
+- Intersection safety
+  - communicate with traffic signals and other infrastructure
+- Emergency vehicle warning
+  - alert drivers of approaching emergency vehicles
+- Road hazard warnings
+  - to share information about road hazards, such as accidents, roadworks, or weather-related issues
+- Traffic management
+- Platooning (列隊行駛)
+- Autonomous driving
