@@ -1,5 +1,6 @@
 # overview
 ### DSRC (Dedicated Short-Range Communications)
+- ![image](https://github.com/hugochang1/Tutorial/assets/6143237/b441b44c-08ad-469f-a834-c0da6d22d94b)
 - is a wireless communication technology designed specifically for automotive applications
 - V2V, V2I
 - operates in 5.9 GHz frequency band
