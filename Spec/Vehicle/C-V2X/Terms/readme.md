@@ -100,11 +100,11 @@
   - Validation and confirmation
   - Continuous improvement
 
-### ITS (Intelligent Transportation System)
+#### ITS (Intelligent Transportation System)
 - based on IEEE 802.11p
 - the integration of advanced information and communication technologies into transportation infrastructure and vehicles to improve the safety, efficiency, and sustainability of transportation networks
 
-# Radar (Radio Detection and Ranging) vs Lidar (光達使用多重紅外光脈衝來量測物體的距離和速度)
+#### Radar (Radio Detection and Ranging) vs Lidar (光達使用多重紅外光脈衝來量測物體的距離和速度)
 - accuarcy: Lidar is good
 - weather impact: Radar is good
 
@@ -167,46 +167,3 @@
 #### RSU (Road Side Unit)
 - a critical component of Intelligent Transportation Systems (ITS) and Vehicle-to-Infrastructure (V2I) communication systems
 - RSUs are fixed infrastructure devices installed along roads, at intersections, or other strategic locations to facilitate communication between vehicles and the transportation infrastructure
-
-
---------------------------------------------------------------
-## Security
-
-#### EAL4 (Evaluation Assurance Level 4)
-- a security certification level defined by the Common Criteria for Information Technology Security Evaluation, an international standard (ISO/IEC 15408) for evaluating the security of IT products and systems
-
-#### FIPS 140-2 (Federal Information Processing Standard 140-2)
-- a U.S. government standard that defines the security requirements for cryptographic modules used to protect sensitive information in computer and telecommunication systems
-
-#### HSM (Hardware Security Module)
-- a physical computing device designed to safeguard and manage digital keys, perform encryption and decryption, and provide cryptographic services
-
-#### eHSM (Embedded Hardware Security Module)
-- a smaller, embedded hardware module that is integrated directly into a host system
-
-#### ECDSA (Elliptic Curve Digital Signature Algorithm)
-- a cryptographic algorithm used for generating digital signatures in public-key cryptography
-
-#### ECC accelerators (Elliptic Curve Cryptography)
-- specialized hardware components or co-processors designed to perform ECC operations more efficiently and faster than general-purpose processors
-
-#### SM2
-- a public key cryptographic algorithm based on elliptic curve cryptography (ECC) that was developed by the Chinese State Cryptography Administration (SCA)
-
-#### Secure OTP (One-Time Password)
-- a method of authentication that uses a unique, single-use password to verify a user's identity during a login or transaction process
-- two-factor authentication (2FA)
-- multi-factor authentication (MFA)
-
-#### AES (Advanced Encryption Standard)
-#### PKA (Public Key Acceleration)
-#### SHE (Secure Hardware Extension)
-#### TRNG (True Random Number Generator)
-- a hardware-based device or component that generates truly random numbers derived from a physical process, such as electronic noise, thermal noise, or radioactive decay
-
-#### Secure GPIOs (General Purpose Input/Outputs)
-- hardware pins on a microcontroller, microprocessor, or other integrated circuit that provide enhanced security features for input and output operations
-
-#### SHA-2 (Secure Hash Algorithm 2)
-- a family of cryptographic hash functions designed by the National Security Agency (NSA) and published by the National Institute of Standards and Technology (NIST) as a U.S. Federal Information Processing Standard (FIPS)
-- is widely used for data integrity verification, digital signatures, and password hashing.
