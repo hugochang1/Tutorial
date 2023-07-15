@@ -11,6 +11,7 @@
 - an open international community of network designers, operators, vendors, and researchers who contribute to the development and standardization of protocols and technologies for the internet
 
 #### ETSI (European Telecommunications Standards Institute)
+- an independent, not-for-profit organization based in Sophia Antipolis, France.
 
 #### GCF (Global Certification Forum)
 
