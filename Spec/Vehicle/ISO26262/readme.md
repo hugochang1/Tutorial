@@ -41,3 +41,7 @@
 
 ### RedHat
 - https://www.redhat.com/en/solutions/automotive
+
+### Terms
+- RPN (Risk Priority Number)
+  - show the probability of potential risk
