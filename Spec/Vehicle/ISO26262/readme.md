@@ -42,6 +42,9 @@
 ### RedHat
 - https://www.redhat.com/en/solutions/automotive
 
+### Zephyr
+- https://www.zephyrproject.org/safety-and-zephyr-rtos/
+
 ### Terms
 - RPN (Risk Priority Number)
   - show the probability of potential risk
