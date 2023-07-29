@@ -9,7 +9,7 @@
 - https://www.synopsys.com/automotive/what-is-iso-26262.html
 
 ### ASIL Operating Systems
-- https://www.functionalsafetyfirst.com/2021/02/asil-operating-systems-which-is-your.html
+- February 07, 2021 https://www.functionalsafetyfirst.com/2021/02/asil-operating-systems-which-is-your.html
 - What ASIL OS we expected
   - High availability and reliability (Guaranteed and correct execution of not only safety components, but also non-safety components)
   - Maximum Performance (minimal latencies for interrupts, events, tasks etc)
