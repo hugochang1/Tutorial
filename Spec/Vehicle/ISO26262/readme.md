@@ -33,4 +33,11 @@
   - Microcontrollers supported
   - security
 
+### ELISA (Enabling Linux In Safety Applications)
+- https://elisa.tech/
 
+### AGL (Automotive Grade Linux)
+- https://www.automotivelinux.org/
+
+### RedHat
+- https://www.redhat.com/en/solutions/automotive
