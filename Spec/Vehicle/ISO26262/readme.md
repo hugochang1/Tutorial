@@ -74,7 +74,25 @@
 
 #### ISO 26262 – Functional Safety at the System level
 - https://www.youtube.com/watch?v=NhJX6JPI0_8
-- TBD
+- R&R
+  - concept phase (part 3): carmaker
+  - system phase (part 4): tier-1
+- System engineer
+  - designs this level including mechanisms for error detection and handling
+- Safety activities need to be coordinated at a system level
+- ![image](https://github.com/hugochang1/Tutorial/assets/6143237/41ce02d2-f15a-4a28-939c-a020de88a5cf)
+- Test iteratively
+  - HW samples with SW releases
+- Technical safety concept (4-6)
+  - technical safety requirements are mainly derived from the functional safety requirements defined by carmaker
+  - safety mechanism are used to detect, indicae and control faults
+  - specify which safe state the system has to change to if an error is detected
+  - tolerance times which depend on the specific application and safety mechanisms
+  - prevent faults from being latent
+  - define production, operation and service
+- System and item integration and testing (4-7)
+- Safety validation (4-8)
+
 
 ### Wiki
 - https://en.wikipedia.org/wiki/ISO_26262
