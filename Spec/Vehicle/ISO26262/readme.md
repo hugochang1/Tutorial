@@ -90,9 +90,31 @@
   - tolerance times which depend on the specific application and safety mechanisms
   - prevent faults from being latent
   - define production, operation and service
+  - develop the system architecture
+  - perform safety analysis
+    - Failure mode and effects analysis (FMEAs)
+    - Fault tree analysis (FTAs)
+      - systematic failures need to taken account (ex: incorrect SW, random HW faults)
+    - allocate safety requirements to HW and SW
+    - specify he interface between HW and SW
+    - verify technical safety requirements and the system architecture
 - System and item integration and testing (4-7)
+  - specify the integration and test strategy
+  - specify test cases using methods
+  - integrate and test at three levels
+    - SW/HW level
+    - System level
+    - vehicel level
+  - provide evidence of implementation of safety mechanisms
+    - performance, effectiveness and robustness must be demonstrated
+  - provide evidence that safety requirements are being met
 - Safety validation (4-8)
-
+  - are the implemented safety measures adequate for the intended use of the vehicles?
+  - Validation at the vehicle level
+    - through long-term tests of vehicles under real-life conditions
+  - provide evidence that safety goals are achieved and that the item is functionally safe
+- development results must be systematically integrated and tested, in order to demostrate the fulfilment of safety requirements and safety goals
+- 
 
 ### Wiki
 - https://en.wikipedia.org/wiki/ISO_26262
