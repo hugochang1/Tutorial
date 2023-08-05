@@ -74,7 +74,7 @@
 
 #### ISO 26262 – Functional Safety at the System level
 - https://www.youtube.com/watch?v=NhJX6JPI0_8
-- 
+- TBD
 
 ### Wiki
 - https://en.wikipedia.org/wiki/ISO_26262
