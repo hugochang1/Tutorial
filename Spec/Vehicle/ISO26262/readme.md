@@ -117,46 +117,42 @@
 
 #### ISO 26262 - Software Level of Functional Safety
 - https://www.youtube.com/watch?v=bGarXE_EaLk
-- which strategy leads to error-free software?
-  - SW erros are defined to be systematic faults
-    - incomplete tests
-    - wrong assumptions
-    - imcomplete specifications
-  - Software faults must be avoided through systematic development
-  - the occurrence of faults must be countered by mechanisms for fault tolerance
-    - checksums for messages or memory areas
-    - checks on permissible value ranges when entering a SW function
-    - SW that runs on safety microcontrollers and is used to monitor whether the actual application SW is still running correctly on another microcontroller
 - ![image](https://github.com/hugochang1/Tutorial/assets/6143237/139bb2e1-fdae-4a93-9a8b-b0583430fc44)
-- General topics for SW development
+- Point 1: Safety of vehicles depends more and more on error-free SW
+  - incomplete tests, wrong assumptions, imcomplete specifications
+- Point 2: SW faults must be avoided through systematic development
+- Point 3: the occurrence of faults must be countered by mechanisms for fault tolerance
+  - checksums for messages or memory areas
+  - checks on permissible value ranges when entering a SW function
+  - SW that runs on safety microcontrollers and is used to monitor whether the actual application SW is still running correctly on another microcontroller
+    - such SW must bring the entire system and vehicle into a previously defined safe state when errors are detected
+- Point 4: functional safety requires the SW development process to be adapted to the content and requirements of ISO 26262
   - Sutiable SW development process
   - Suitable SW development environment
-  - Modeling and coding guidelines (MISRA rules)
+  - Modeling and coding guidelines
+    - MISRA rules: Unambiguous, Comprehensible, Enforce low complexity
   - Functional safety with agile approaches and continous integration
     - Oberve documentation
     - Proceed with process rigour for releasing safety-related work products
   - Configuration and calibration data must be developed like SW itself
   - Interface with cybersecurity
     - Thread analysis and risk assessments
-- Technical safety requirements must be detailed down to quality SW safety requirements
-- Specify SW FS requirements
+- Point 5: technical FS requirements must be detailed down to quality SW safety ones
   - SW self-test and monitoring functions for operating system, basic & application software
   - detection, indication and control of faults of safety-related HW
   - Achieving and maintaining safe state or degraded state
   - fault tolerance
   - performance
-    - how often test algorithms run and how quickly error reactions is implemented at runtime?
-- Refine interface between HW and SW
-- SW architecture
+    - how often must test algorithms run and how quickly must error reactions be implemented at runtime?
+  - Refine interface between HW and SW
+- Point 6: the SW architecture must implement all functional requirements as well as safety mechanisms
   - implement all functional requirements as well as safety mechanisms
     - Automotive SPICE SWE.2
   - Perform safety analysis
     - dependent failures
     - freedom from interference in cases of different ASILs
     - timing, memory, messages
-- Safety analysis must be performed to understand the dependencies between SW components and validate the SW design
-- SW unit design and implementation
-  - Automotive SPICE SWE.3
+- Point 7: safety analysis must be performed to understand the dependencies between SW components and validate the SW design
   - Pattern for model-based development if applied
   - Observe guidelines
 - Point 8: SW integration and tests must be specified in terms of methodology and carried out successfully
@@ -175,21 +171,28 @@
       - availability of resources
     - Conformity with ISO 26262 methods for test case specification and integration testing
     - Measure function and call coverage and give rationale for sufficient integration tests
-    - testing of the embedded SW
-      - verify that embedded SW fulfills SW FS requirements in target environment
-      - test case specification
-      - tests
-        - requirements-based tests faults injection tests
+  - testing of the embedded SW
+    - verify that embedded SW fulfills SW FS requirements in target environment
+    - test case specification
+      - requirements
+      - equivalence classes
+      - boundary values
+      - use cases
+      - functional dependencies
+    - tests
+      - requirements-based tests
+      - faults injection tests
 - Summary
-  - Safety of vehicles depends more and more on error-free SW
-  - SW faults must be avoided through systematic development
-  - the occurrence of faults must be countered by mechanisms for fault tolerance
-  - functional safety requires the SW development process to be adapted to the content and requirements of ISO 26262
-  - technical FS requirements must be detailed down to quality SW safety ones
-  - the SW architecture must implement all functional requirements as well as safety mechanisms
-  - safety analysis must be performed to understand the dependencies between SW components and validate the SW design
-  - SW integration and tests must be specified in terms of methodology and carried out successfully
-  - test coverage must be measured to understand the completeness of tests, and to support the rationale for having achieved test goals
+  - Point 1: Safety of vehicles depends more and more on error-free SW
+  - Point 2: SW faults must be avoided through systematic development
+  - Point 3: the occurrence of faults must be countered by mechanisms for fault tolerance
+  - Point 4: functional safety requires the SW development process to be adapted to the content and requirements of ISO 26262
+  - Point 5: technical FS requirements must be detailed down to quality SW safety ones
+  - Point 6: the SW architecture must implement all functional requirements as well as safety mechanisms
+  - Point 7: safety analysis must be performed to understand the dependencies between SW components and validate the SW design
+  - Point 8: SW integration and tests must be specified in terms of methodology and carried out successfully
+  - Point 9: test coverage must be measured to understand the completeness of tests, and to support the rationale for having achieved test goals
+
 
 ### Wiki
 - https://en.wikipedia.org/wiki/ISO_26262
