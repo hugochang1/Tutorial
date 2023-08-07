@@ -94,96 +94,96 @@
 - https://www.youtube.com/watch?v=UPj6rNMPB8Y
 - ![image](https://github.com/hugochang1/Tutorial/assets/6143237/aaac8ed4-ec60-41e0-bd0d-0d6be0ab935b)
 - Item definition
-  - your product
-  - there are one or more interacting E/E systems that implement the desired fucntion
-  - make available all kinds of requirements for the item
-  - define the boundary of the item
-- impact analysis
-  - shows how you should adjust the safety lifecycle and which safety activities you need
-  - the item is either a new development, modification, or the existing item in a modified environment
-  - perform an impact analysis to determine the necessary safety activities
-  - this one is usually performed by carmaker
+  - Your product
+  - There are one or more interacting E/E systems that implement the desired fucntion
+  - Make available all kinds of requirements for the item
+  - Define the boundary of the item
+- Impact analysis
+  - Shows how you should adjust the safety lifecycle and which safety activities you need
+  - The item is either a new development, modification, or the existing item in a modified environment
+  - Perform an impact analysis to determine the necessary safety activities
+  - This one is usually performed by carmaker
 - Hazard analysis and risk assessment (HARA)
-  - describe operational situations and operating modes
-  - determine the hazards in case of faults
-  - for relevant harzardous events determine the ASIL with which the item needs to be developed
+  - Describe operational situations and operating modes
+  - Determine the hazards in case of faults
+  - For relevant harzardous events determine the ASIL with which the item needs to be developed
     - Severity of harm (S)
     - Probability of exposure to the operational situation (E)
     - Controllability to avoid harm (C)
     - ![image](https://github.com/hugochang1/Tutorial/assets/6143237/06b14582-2085-4bd1-8ecd-de31ad793003)
   - Safety Goals
-  - perform a hazard analysis and risk assessment to scale the safety activities
-  - formulate safety goals
-- functional safety concept
-  - derive functional safety requirements from safety goals
-    - fault avoidance
-    - fault detection
-    - fault control
-    - safe state
-    - degraded functionality
-    - driver warnings
-  - functional safety requirements (FSR)
-    - verify the functional safety concept for its ability to mitigate the hazards
-    - a. architectural elements
-    - b. measures external of the item
-    - assign functional safety requirements to systems for implementation
-    - describes in a comprehensive way how the hazards should be mitigated
+  - Perform a hazard analysis and risk assessment to scale the safety activities
+  - Formulate safety goals
+- Functional safety concept
+  - Derive functional safety requirements from safety goals
+    - Fault avoidance
+    - Fault detection
+    - Fault control
+    - Safe state
+    - Degraded functionality
+    - Driver warnings
+  - Functional safety requirements (FSR)
+    - Verify the functional safety concept for its ability to mitigate the hazards
+      - Architectural elements
+      - Measures external of the item
+    - Assign functional safety requirements to systems for implementation
+    - Describes in a comprehensive way how the hazards should be mitigated
 
 #### ISO 26262 – Functional Safety at the System level
 - https://www.youtube.com/watch?v=NhJX6JPI0_8
 - R&R
-  - concept phase (part 3): carmaker
-  - system phase (part 4): tier-1
+  - Concept phase (part 3): carmaker
+  - System phase (part 4): tier-1
 - System engineer
-  - designs this level including mechanisms for error detection and handling
+  - Designs this level including mechanisms for error detection and handling
 - Safety activities need to be coordinated at a system level
 - ![image](https://github.com/hugochang1/Tutorial/assets/6143237/41ce02d2-f15a-4a28-939c-a020de88a5cf)
 - Test iteratively
   - HW samples with SW releases
 - Technical safety concept (4-6)
-  - technical safety requirements are mainly derived from the functional safety requirements defined by carmaker
-  - safety mechanism are used to detect, indicae and control faults
-  - specify which safe state the system has to change to if an error is detected
-  - tolerance times which depend on the specific application and safety mechanisms
-  - prevent faults from being latent
-  - define production, operation and service
-  - develop the system architecture
-  - perform safety analysis
+  - Technical safety requirements are mainly derived from the functional safety requirements defined by carmaker
+  - Safety mechanism are used to detect, indicate and control faults
+  - Specify which safe state the system has to change to if an error is detected
+  - Tolerance times which depend on the specific application and safety mechanisms
+  - Prevent faults from being latent
+  - Define production, operation and service
+  - Develop the system architecture
+  - Perform safety analysis
     - Failure mode and effects analysis (FMEAs)
     - Fault tree analysis (FTAs)
-      - systematic failures need to taken account (ex: incorrect SW, random HW faults)
-    - allocate safety requirements to HW and SW
-    - specify he interface between HW and SW
-    - verify technical safety requirements and the system architecture
+      - Systematic failures need to taken account (ex: incorrect SW, random HW faults)
+    - Allocate safety requirements to HW and SW
+    - Specify he interface between HW and SW
+    - Verify technical safety requirements and the system architecture
 - System and item integration and testing (4-7)
-  - specify the integration and test strategy
-  - specify test cases using methods
-  - integrate and test at three levels
+  - Specify the integration and test strategy
+  - Specify test cases using methods
+  - Integrate and test at three levels
     - SW/HW level
     - System level
-    - vehicel level
-  - provide evidence of implementation of safety mechanisms
-    - performance, effectiveness and robustness must be demonstrated
-  - provide evidence that safety requirements are being met
+    - Vehicel level
+  - Provide evidence of implementation of safety mechanisms
+    - Performance, effectiveness and robustness must be demonstrated
+  - Provide evidence that safety requirements are being met
 - Safety validation (4-8)
-  - are the implemented safety measures adequate for the intended use of the vehicles?
+  - Are the implemented safety measures adequate for the intended use of the vehicles?
   - Validation at the vehicle level
-    - through long-term tests of vehicles under real-life conditions
-  - provide evidence that safety goals are achieved and that the item is functionally safe
-- development results must be systematically integrated and tested, in order to demostrate the fulfilment of safety requirements and safety goals
+    - Through long-term tests of vehicles under real-life conditions
+  - Provide evidence that safety goals are achieved and that the item is functionally safe
+- Development results must be systematically integrated and tested, in order to demostrate the fulfilment of safety requirements and safety goals
 
 #### ISO 26262 - Software Level of Functional Safety
 - https://www.youtube.com/watch?v=bGarXE_EaLk
 - ![image](https://github.com/hugochang1/Tutorial/assets/6143237/139bb2e1-fdae-4a93-9a8b-b0583430fc44)
 - Point 1: Safety of vehicles depends more and more on error-free SW
-  - incomplete tests, wrong assumptions, imcomplete specifications
+  - Incomplete tests, wrong assumptions, imcomplete specifications
 - Point 2: SW faults must be avoided through systematic development
-- Point 3: the occurrence of faults must be countered by mechanisms for fault tolerance
-  - checksums for messages or memory areas
-  - checks on permissible value ranges when entering a SW function
+- Point 3: The occurrence of faults must be countered by mechanisms for fault tolerance
+  - Checksums for messages or memory areas
+  - Checks on permissible value ranges when entering a SW function
   - SW that runs on safety microcontrollers and is used to monitor whether the actual application SW is still running correctly on another microcontroller
-    - such SW must bring the entire system and vehicle into a previously defined safe state when errors are detected
-- Point 4: functional safety requires the SW development process to be adapted to the content and requirements of ISO 26262
+    - Such SW must bring the entire system and vehicle into a previously defined safe state when errors are detected
+- Point 4: Functional safety requires the SW development process to be adapted to the content and requirements of ISO 26262
   - Sutiable SW development process
   - Suitable SW development environment
   - Modeling and coding guidelines
@@ -194,61 +194,61 @@
   - Configuration and calibration data must be developed like SW itself
   - Interface with cybersecurity
     - Thread analysis and risk assessments
-- Point 5: technical FS requirements must be detailed down to quality SW safety ones
-  - SW self-test and monitoring functions for operating system, basic & application software
-  - detection, indication and control of faults of safety-related HW
+- Point 5: Technical functional safety requirements must be detailed down to quality SW safety ones
+  - SW self-test and monitoring functions for operating system, basic and application software
+  - Detection, indication and control of faults of safety-related HW
   - Achieving and maintaining safe state or degraded state
-  - fault tolerance
-  - performance
-    - how often must test algorithms run and how quickly must error reactions be implemented at runtime?
+  - Fault tolerance
+  - Performance
+    - How often must test algorithms run and how quickly must error reactions be implemented at runtime?
   - Refine interface between HW and SW
-- Point 6: the SW architecture must implement all functional requirements as well as safety mechanisms
-  - implement all functional requirements as well as safety mechanisms
+- Point 6: The SW architecture must implement all functional requirements as well as safety mechanisms
+  - Implement all functional requirements as well as safety mechanisms
     - Automotive SPICE SWE.2
   - Perform safety analysis
-    - dependent failures
-    - freedom from interference in cases of different ASILs
-    - timing, memory, messages
-- Point 7: safety analysis must be performed to understand the dependencies between SW components and validate the SW design
+    - Dependent failures
+    - Freedom from interference in cases of different ASILs
+    - Timing, memory, messages
+- Point 7: Safety analysis must be performed to understand the dependencies between SW components and validate the SW design
   - Pattern for model-based development if applied
   - Observe guidelines
 - Point 8: SW integration and tests must be specified in terms of methodology and carried out successfully
 - Point 9: Test coverage must be measured to underatnd the completeness of tests and to support the rationale for having achieved test goals
   - 6-9 SW unit verification
-    - verification
-      - implementation of safety mechanisms
-      - not having unintended functionality
-      - sufficient resources (execution time, memory, communication throughput)
+    - Verification
+      - Implementation of safety mechanisms
+      - Not having unintended functionality
+      - Sufficient resources (execution time, memory, communication throughput)
     - Conform with ISO 26262 methods for test case specification and tests
     - Measure test coverage and give rationale for sufficient unit tests
   - 6-10 SW integration and verification
-    - verification of
-      - effectiveness of safety mechanisms
-      - absence of unintended functionality
-      - availability of resources
+    - Verification of
+      - Effectiveness of safety mechanisms
+      - Absence of unintended functionality
+      - Availability of resources
     - Conformity with ISO 26262 methods for test case specification and integration testing
     - Measure function and call coverage and give rationale for sufficient integration tests
-  - testing of the embedded SW
-    - verify that embedded SW fulfills SW FS requirements in target environment
-    - test case specification
-      - requirements
-      - equivalence classes
-      - boundary values
-      - use cases
-      - functional dependencies
-    - tests
-      - requirements-based tests
-      - faults injection tests
+  - Testing of the embedded SW
+    - Verify that embedded SW fulfills SW functional safety requirements in target environment
+    - Test case specification
+      - Requirements
+      - Equivalence classes
+      - Boundary values
+      - Use cases
+      - Functional dependencies
+    - Tests
+      - Requirements-based tests
+      - Faults injection tests
 - Summary
   - Point 1: Safety of vehicles depends more and more on error-free SW
   - Point 2: SW faults must be avoided through systematic development
-  - Point 3: the occurrence of faults must be countered by mechanisms for fault tolerance
-  - Point 4: functional safety requires the SW development process to be adapted to the content and requirements of ISO 26262
-  - Point 5: technical FS requirements must be detailed down to quality SW safety ones
-  - Point 6: the SW architecture must implement all functional requirements as well as safety mechanisms
-  - Point 7: safety analysis must be performed to understand the dependencies between SW components and validate the SW design
+  - Point 3: The occurrence of faults must be countered by mechanisms for fault tolerance
+  - Point 4: Functional safety requires the SW development process to be adapted to the content and requirements of ISO 26262
+  - Point 5: Technical FS requirements must be detailed down to quality SW safety ones
+  - Point 6: The SW architecture must implement all functional requirements as well as safety mechanisms
+  - Point 7: Safety analysis must be performed to understand the dependencies between SW components and validate the SW design
   - Point 8: SW integration and tests must be specified in terms of methodology and carried out successfully
-  - Point 9: test coverage must be measured to understand the completeness of tests, and to support the rationale for having achieved test goals
+  - Point 9: Test coverage must be measured to understand the completeness of tests, and to support the rationale for having achieved test goals
 
 #### ISO 26262 – Hardware Level of Functional Safety
 - https://www.youtube.com/watch?v=y_wYROXLLUk
