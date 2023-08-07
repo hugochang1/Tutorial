@@ -193,6 +193,8 @@
   - Point 8: SW integration and tests must be specified in terms of methodology and carried out successfully
   - Point 9: test coverage must be measured to understand the completeness of tests, and to support the rationale for having achieved test goals
 
+#### ISO 26262 – Hardware Level of Functional Safety
+- https://www.youtube.com/watch?v=y_wYROXLLUk
 
 ### Wiki
 - https://en.wikipedia.org/wiki/ISO_26262
