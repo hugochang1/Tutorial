@@ -4,91 +4,91 @@
 - ISO 26262
   - Guidelines to protect road users (drivers and pedestrians) from injuries caused by faults in vehicle electronics and software
 - Item
-  - scope of your development
+  - Scope of your development
 - HARA (Hazard Analysis and Risk Assessment)
-  - judge the risk to human life if your item is faulty
-  - define a set of ```Safety Goals``` (high level safety requirements)
+  - Judge the risk to human life if your item is faulty
+  - Define a set of ```Safety Goals``` (high level safety requirements)
 - Safety Goals
-  - define ```ASIL``` (Automotive Safety Integrity Level)
+  - Define ```ASIL``` (Automotive Safety Integrity Level)
   - ASIL A (lowest stringent), ASIL B, ASIL C, ASIL D (highest stringent)
-  - define ```functional safety concepts``` and ```functional safety requirements```
-    - when detecting faulty situation and how to react it
-  - define ```technical safety concepts``` and ```technical safety requirements```
-  - ```safety mechanism```
-    - implementation of safety requirements in system, HW, SW with V-model 
-- production, operation, service and decommissioning
-  - part 7
+  - Define ```functional safety concepts``` and ```functional safety requirements```
+    - When detecting faulty situation and how to react it
+  - Define ```technical safety concepts``` and ```technical safety requirements```
+  - ```Safety mechanism```
+    - Implementation of safety requirements in system, HW, SW with V-model 
+- Production, operation, service and decommissioning
+  - Part 7
 - Configuration management (Automotive SPICE)
-  - part 8
-- for semiconductor
-  - part 11
+  - Part 8
+- For semiconductor
+  - Part 11
 - Summary
-  - functional safety prevents people from harm caused by malfunctioning electronics
-  - the development steps and efforts depend on the ASIL
-  - develop a safety concept with safety requirements
-  - implement and test these requirements on all levels
-  - perofrm safety analysis
-  - have an independent person confirm the results of important development activities
-  - provide an argumentation for safety in a safety case
-  - functional safety requires appropriate measures to assure functional safety throughout the whole lifetime of vehicles
-  - there is no functional safety without safety management
+  - Functional safety prevents people from harm caused by malfunctioning electronics
+  - The development steps and efforts depend on the ASIL
+  - Develop a safety concept with safety requirements
+  - Implement and test these requirements on all levels
+  - Perofrm safety analysis
+  - Have an independent person confirm the results of important development activities
+  - Provide an argumentation for safety in a safety case
+  - Functional safety requires appropriate measures to assure functional safety throughout the whole lifetime of vehicles
+  - There is no functional safety without safety management
 
 #### ISO 26262 – Management of Functional Safety
 - https://www.youtube.com/watch?v=BF8DAvAuYNM
-- there is functional safety if you don't manage functional safety
-- Point 1: safety lifecycle
-  - 2-5 overall safety management
-  - 2-6 project dependent safety management
-  - 2-7 safety management regarding production, operation, service and decommissioning
+- There is no functional safety if you don't manage functional safety
+- Point 1: Safety lifecycle
+  - 2-5 Overall safety management
+  - 2-6 Project dependent safety management
+  - 2-7 Safety management regarding production, operation, service and decommissioning
   - Management of functional safety
-    - organization level
-    - project level
-    - after release for production
-- Point 2: overall saftey management
-  - procedures for your E/E R&D
-    - define and apply procedures for your E/E R&D
-      - company-specific lifecycle
-      - tools
-      - configuration management
-      - safety analysis
+    - Organization level
+    - Project level
+    - After release for production
+- Point 2: Overall saftey management
+  - Procedures for your E/E R&D
+    - Define and apply procedures for your E/E R&D
+      - Company-specific lifecycle
+      - Tools
+      - Configuration management
+      - Safety analysis
   - QA management system
-    - establish a quality assurance system
+    - Establish a quality assurance system
       - Automotive SPICE
         - SUP.1 Quality assurance
-  - deploy a competence management
-  - process to identify communcate and resolve safety anomalies methodically
-  - safety culture
-    - resource required for functional safety are actually made available by management
-- Point 3: safety management at project level
-  - define roles and responsibilities
-  - perform an impact analysis
-  - tailor the lifecycle
-  - plan the safety activities
-  - monitor progress
-- Point 4: safety case
-  - argumentation, that your product is safe
-- Point 5: building trust
-  - prevent misinterpreting ISO 26262 and cheating
-  - independent review
-  - confirmation measures
-    - confirmation review: safety plan, safety concepts from independent persion
-    - functional safety audit
-    - functional safety assessment
-  - independent confirmation measures shall prevent the development from misinterpretation of ISO 26262 and fraud
-  - post-development safety management
-    - appoint the responsible persons
-    - plan activities to assure functional safety
-    - deploy processes for the time after release for production
-    - install a field monitoring process
-    - manage the change of spare parts 
-- Point 6: a suited planning is necessary for the production and the vehicle lifetime
-- summary
-  - Point 1: address the maangement on an organizational level, on a per project level and for the time after release for production
-  - Point 2: establish both culture and processes supporting functional safety
-  - Point 3: name a responsible safey manager and install a tailored safety planning
+  - Deploy a competence management
+  - Process to identify communicate and resolve safety anomalies methodically
+  - Safety culture
+    - Resource required for functional safety are actually made available by management
+- Point 3: Safety management at project level
+  - Define roles and responsibilities
+  - Perform an impact analysis
+  - Tailor the lifecycle
+  - Plan the safety activities
+  - Monitor progress
+- Point 4: Safety case
+  - Argumentation, that your product is safe
+- Point 5: Building trust
+  - Prevent misinterpreting ISO 26262 and cheating
+  - Independent review
+  - Confirmation measures
+    - Confirmation review: safety plan, safety concepts from independent persion
+    - Functional safety audit
+    - Functional safety assessment
+  - Independent confirmation measures shall prevent the development from misinterpretation of ISO 26262 and fraud
+  - Post-development safety management
+    - Appoint the responsible persons
+    - Plan activities to assure functional safety
+    - Deploy processes for the time after release for production
+    - Install a field monitoring process
+    - Manage the change of spare parts 
+- Point 6: A suited planning is necessary for the production and the vehicle lifetime
+- Summary
+  - Point 1: Address the maangement on an organizational level, on a per project level and for the time after release for production
+  - Point 2: Establish both culture and processes supporting functional safety
+  - Point 3: Name a responsible safey manager and install a tailored safety planning
   - Point 4: Develop a safety case containing the argumentation for your product being safe
-  - Point 5: prevent the development from misinterpretation and fraud by independent confirmation
-  - Point 6: to ensure functional safety is met during component and vehicle production and over the whole vehicle lifetime, a suitable planning is necessary, including a field monitoring process and change management
+  - Point 5: Prevent the development from misinterpretation and fraud by independent confirmation
+  - Point 6: To ensure functional safety is met during component and vehicle production and over the whole vehicle lifetime, a suitable planning is necessary, including a field monitoring process and change management
 
 #### ISO 26262 – Concept Phase of Functional Safety
 - https://www.youtube.com/watch?v=UPj6rNMPB8Y
