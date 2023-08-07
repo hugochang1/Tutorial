@@ -195,6 +195,42 @@
 
 #### ISO 26262 – Hardware Level of Functional Safety
 - https://www.youtube.com/watch?v=y_wYROXLLUk
+- Point 1: functional safety requires the HW development process to be adapted to the requirements of ISO 26262
+  - specify HW safety requirements
+    - safety mechanisms
+      - ex1: detection of excessive voltage fluctuations in the power supply for individual components and microcontrollers
+      - ex2: switches that no longer close
+    - detection, indication and control of internal faults
+    - failures external to the HW
+    - tolerance times
+      - define HW metrics and failure rates
+      - refine the specifications of interfaces with SW
+  - verify HW safety requirements
+- Point 2: Technical safety requirements must be detailed down to quality HW safety requirements in order to be implemented in the HW design
+  - HW architectural design
+    - implementing the HW safety requirements
+    - observe criteria for coexistence in cases of different ASILs
+    - traceability
+  - HW detailed design
+  - perform safety analysis
+    - classify faults: safe faults, single-point faults, residual faults, multiple-point faults
+    - evidence for preventing from single-point failures and latent faults
+  - safety-related special characteristics for production, operation, service and decommissioning
+- Point 3: HW faults must be classified according to whether and how directly they violate safety goals
+- Point 4: Evidence must be provided that HW faults that occur do not violate safety goals and are not permanently present in vehicles without being detected
+  - Evaluation of the HW architectural metrics
+    - Objective: Evidence for the suitability of the HW design to detect and control random HW failures
+  - Evaluation of safety gola violations due to random HW failures
+    - Objective: Evidence for low enough safety goal violation due to random HW failures
+- Point 5: Metrics on the effectiveness of safety mechanisms have to be created and the average probability of failure per hour has to be calculated. Compliance with ASIL-specific limits is an argument for the suitability of the HW
+  - HW integration and verification
+    - plan specify, perform and evaluate HW integration and test/verification
+    - specifiy test cases using methods
+    - provide evidence of implementation of HW safety requirements
+    - provide evidence of robustness of HW
+    - apply industry standard test methods
+      - functional testing, electrical testing, EMC (Electromagnetic Compatibility) tests
+- Point 6: methods have to be used for the specification of HW test. and HW tests must be performed successfully according to industry standards
 
 ### Wiki
 - https://en.wikipedia.org/wiki/ISO_26262
