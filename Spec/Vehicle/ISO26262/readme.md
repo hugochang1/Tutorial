@@ -33,6 +33,63 @@
   - functional safety requires appropriate measures to assure functional safety throughout the whole lifetime of vehicles
   - there is no functional safety without safety management
 
+#### ISO 26262 – Management of Functional Safety
+- https://www.youtube.com/watch?v=BF8DAvAuYNM
+- there is functional safety if you don't manage functional safety
+- Point 1: safety lifecycle
+  - 2-5 overall safety management
+  - 2-6 project dependent safety management
+  - 2-7 safety management regarding production, operation, service and decommissioning
+  - Management of functional safety
+    - organization level
+    - project level
+    - after release for production
+- Point 2: overall saftey management
+  - procedures for your E/E R&D
+    - define and apply procedures for your E/E R&D
+      - company-specific lifecycle
+      - tools
+      - configuration management
+      - safety analysis
+  - QA management system
+    - establish a quality assurance system
+      - Automotive SPICE
+        - SUP.1 Quality assurance
+  - deploy a competence management
+  - process to identify communcate and resolve safety anomalies methodically
+  - safety culture
+    - resource required for functional safety are actually made available by management
+- Point 3: safety management at project level
+  - define roles and responsibilities
+  - perform an impact analysis
+  - tailor the lifecycle
+  - plan the safety activities
+  - monitor progress
+- Point 4: safety case
+  - argumentation, that your product is safe
+- Point 5: building trust
+  - prevent misinterpreting ISO 26262 and cheating
+  - independent review
+  - confirmation measures
+    - confirmation review: safety plan, safety concepts from independent persion
+    - functional safety audit
+    - functional safety assessment
+  - independent confirmation measures shall prevent the development from misinterpretation of ISO 26262 and fraud
+  - post-development safety management
+    - appoint the responsible persons
+    - plan activities to assure functional safety
+    - deploy processes for the time after release for production
+    - install a field monitoring process
+    - manage the change of spare parts 
+- Point 6: a suited planning is necessary for the production and the vehicle lifetime
+- summary
+  - Point 1: address the maangement on an organizational level, on a per project level and for the time after release for production
+  - Point 2: establish both culture and processes supporting functional safety
+  - Point 3: name a responsible safey manager and install a tailored safety planning
+  - Point 4: Develop a safety case containing the argumentation for your product being safe
+  - Point 5: prevent the development from misinterpretation and fraud by independent confirmation
+  - Point 6: to ensure functional safety is met during component and vehicle production and over the whole vehicle lifetime, a suitable planning is necessary, including a field monitoring process and change management
+
 #### ISO 26262 – Concept Phase of Functional Safety
 - https://www.youtube.com/watch?v=UPj6rNMPB8Y
 - ![image](https://github.com/hugochang1/Tutorial/assets/6143237/aaac8ed4-ec60-41e0-bd0d-0d6be0ab935b)
@@ -231,68 +288,3 @@
     - apply industry standard test methods
       - functional testing, electrical testing, EMC (Electromagnetic Compatibility) tests
 - Point 6: methods have to be used for the specification of HW test. and HW tests must be performed successfully according to industry standards
-
-### Wiki
-- https://en.wikipedia.org/wiki/ISO_26262
-- 1st edition ISO 26262:2011
-- 2nd edition ISO 26262:2018
-- IEC 61508 (Industrial/General, ISO 26262 is an adaption with minor differences)
-
-### What is ISO 26262 (Synopsis)
-- https://www.synopsys.com/automotive/what-is-iso-26262.html
-- Scope: SW, HW, Electrics, Optics, Hydraulics, Pneumatics, etc.
-- System level - a separate descipline
-  - shall define the requirements for each individual technology
-  - Shall systematically integrate them
-- R&R
-  - concept phase: carmaker
-  - system phase: tier-1
-- System engineer
-  - designs this level including mechanisms for error detection and handling
-- Safety activites need to be coordinated at a system level
-- System level
-  - Technical safety concept
-    - HW level
-    - SW level
-  - System and item inegration and testing
-
-### ASIL Operating Systems
-- February 07, 2021 https://www.functionalsafetyfirst.com/2021/02/asil-operating-systems-which-is-your.html
-- What ASIL OS we expected
-  - High availability and reliability (Guaranteed and correct execution of not only safety components, but also non-safety components)
-  - Maximum Performance (minimal latencies for interrupts, events, tasks etc)
-  - Guaranteed Isolation of Safety related processes (including its memory and data)
-  - Guaranteed freedom from Interference for execution of Safety related tasks/threads and preferably, localized recovery of failed components/processes without affecting the rest of the System
-  - Safe and reliable inter-process/inter-task/inter-thread communication
-  - Integration of Security into the architecture of the OS
-- OS consideration
-  - ASIL level
-  - compliant to AUTOSAR standards
-  - compliant to POSIX standards
-  - support Multi-core and Many-core architectures
-  - MMU (Memory Management Unit)
-  - MPU (Memory Protection Unit)
-  - OS Architecture (Nature of Kernel, scheduling policies etc)
-  - Freedom from Interference for Memory (i.e., tasks/process memory)
-  - detects or prevents Stack corruption/overflow/underflow
-  - safe inter-task/inter-process communication
-  - Freedom from Interference for Timing and Execution
-  - ensures high reliability, availability and performance
-  - Microcontrollers supported
-  - security
-
-### ELISA (Enabling Linux In Safety Applications)
-- https://elisa.tech/
-
-### AGL (Automotive Grade Linux)
-- https://www.automotivelinux.org/
-
-### RedHat
-- https://www.redhat.com/en/solutions/automotive
-
-### Zephyr
-- https://www.zephyrproject.org/safety-and-zephyr-rtos/
-
-### Terms
-- RPN (Risk Priority Number)
-  - show the probability of potential risk
