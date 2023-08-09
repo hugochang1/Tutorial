@@ -1,0 +1,29 @@
+- 拒絕惰性
+  - 是沒機會, 還是機會來了你沒準備好?
+- how to present in meeting, 1-on-1 and email
+  - target audience
+  - understand the background
+  - driver your conversation instead of people driving you
+    - frame your story 內容架構 (聽眾是誰, 他要聽什麼, 你要達到什麼目的)
+    - bullet points 條列重點 (忌諱: 沒重點)
+    - always start with a summary not a long story or detail
+    - 建立信心
+    - 猜題練習 (top 10 questions)
+    - no complaints, make suggestions
+    - 先找支援 (會前會, 內部以及外部)
+    - 處理異議 (recognize 對方的問題, 然後跟他說記錄起來後續討論, 或是後續會討論到)
+    - 投影片內容不要一堆字
+    - practice makes perfect (不斷的重複練習)
+    - 開完會需要發信 meeting minutes & action items
+    - email 具體感謝協助 並且 cc 對方主管
+- 聆聽
+  - 用心上心
+  - hear every word
+  - 幫對方畫重點
+- 問問題
+  - 不要讓被問問題的人覺得自己被挑戰
+  - 要精準
+  - 有彈性
+  - 不自私: 先入為主
+  - 開放式的問題 open question, 幫助對方描述細節
+  - closed question (封閉式問題), 幫助對方收斂結果
