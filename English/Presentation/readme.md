@@ -1,0 +1,81 @@
+- 開場
+  - Please take your seats
+  - Good morning, ladies and gentlemen
+  - Thank you for coming
+  - I'm Hugo, representing XXX (company)
+  - Our company is the worlds' number one semiconductor
+- 簡報主題
+  - I'm here to present XXX (topic)
+  - The purpose of this presentation is to introduce XXX (something)
+  - The information you receive today will help you XXX (something)
+  - Here is an overview of my presentation
+  - I'll be speaking for 30 minutes, followed by a five-minute Q&A
+- 引言
+  - (問問題, 聽眾回答) Can anyone tell me the brand of the most expensive cars in the worlds?
+  - (問問題, 聽眾思考) Consider a moment, would you rather be a follower or a leader?
+  - (數據) Statistics show that smokers are 4 times more likely to have lung cancer than nonsmokers
+  - (驚嚇) Did you know that late school start times greatly improve test scores?
+  - (引起好奇心) Have you ever wondered why small dogs live longer than large ones?
+- 線圖 (trend)
+  - Take a look at this line chart obtained from somewhere from 2000 to 2010
+  - This chart shows the number of XXX
+  - The X-axis represents XXX and the Y-axis shows XXX
+  - from 2000 to 2010, the number increased steadily, but since then, it has been dropping
+  - In my opinion, ...
+- 條形圖 (數量)
+  - Here is a bart chart, the data were provided by XXX (somewhere)
+  - It shows XXX (something)
+  - On your left is XXX and OOO is shown on the chart
+  - (Conclusion) Apparently, XXX
+  - (Suggestion)
+- 餅圖 (百分比)
+  - This is a pie chart about XXX (something)
+  - It shows XXX (topics)
+  - The different colored segments represent XXX (data)
+  - (Conclusion) It's clear that XXX (observation)
+  - (Suggestion) 
+- 其他圖形
+  - Table (row column)
+  - cycle diagram (stages)
+  - process diagram (steps)
+  - pyramid diagram (order)
+  - structure diagram (diagram)
+- 支持簡報論點
+  - (example) I like XXX (something), such as ...
+  - (reason) we've done something because we want to have something
+  - (data) according to XXX, ...
+- 陳述內容
+  - Let me call your attention to XXX
+  - Compared with XXX
+  - Let's look into the pros and cons of XXX
+  - I recommend that XXX
+  - I promise that XXX
+- 連結內容
+  - First of all, let's XXX
+  - What's more, ...
+  - By the way, ...
+  - Consequently,
+  - I will now leave XXX and turn to OOO
+- 結語
+  - In conclusion, ...
+  - I would like to finish by summarizing
+  - I strongly urge you to XXX
+  - What would happen to XXX
+    - As I said in the beginning of my talk, ...
+  - They said "..."
+    - For this reasons, I dare to say that ...
+- Q&A (Question)
+  - I think I'll close here, any questions?
+  - Thank you for your question
+  - Would you say that again, please?
+  - You mentioned .... Did I hear you correctly?
+- Q&A (Answer)
+  - I'm sorry, I don't know the answer
+  - Well, let me see ...
+  - I can further explain this by using ...
+  - You can say that again
+  - I'm afraid I have to disagree with you
+  - I'm not sure how this is related to my speech
+- 突發狀況
+  - Technical problems
+  - Let's take a short break
