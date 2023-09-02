@@ -1,9 +1,9 @@
-# Qualcomm Presents: How to Achieve System on Chip Functional Safety Compliance
+# Qualcomm Presents: How to Achieve SoC FuSa Compliance
 - https://www.youtube.com/watch?v=68Y7X0uu3Ig
 
 ### SW module selection
 - 3 Types
-  - SW module don't directly impact safety-critical modules (ex: libc)
+  - SW modules don't directly impact safety-critical modules (ex: libc)
   - security-related SW which is not directly used in safety (ex: switch)
     - use SW qualification (black-box testing) (ISO26262 8-12)
     - use ASIL decomposition
@@ -12,44 +12,43 @@
 ### working across multiple teams
 - tailor the components for different teams and the rationale how it is achieved safety requirement
 - request most of teams to follow a certain tool
-  - few teams cannot use tool, then they need to provide the report
+  - few teams cannot use a certain tool, then they need to provide the report
 - check the tool qualification
   - tool qualification ISO26262 8-11
-- customers want to know customer reuqirements are traced to internal reuqirements
-  - traced to test plans and implementation (ex: static analysis, violation code coverage goals)
-- present safety case to accessor  
+- customers want to know how their reuqirements are traced to internal reuqirements
+  - and how to trace to test plans and implementation (ex: static analysis, violation code coverage goals)
+- present safety case to accessor
 
 ### initiation of project
 - use Jama as requirement management
 - check HW architectural metrics
   - what are the SW assumptions of used data
-- use 2 as SW safety requirements
+- use above assumptions as SW safety requirements
 - to archieve safety
   - check ASIL decompoition to reduce ASIL if possible
-  - add safety mechanisms
-    - add in interesting points
+  - add safety mechanisms in the interesting points
 - SW safety requirement
   - stack overflow detection, watchdog monitoring, fault and error handling
-- customer may request to reduce the overhead of safety mechanism with the same level of safety
+- customer may request to reduce the overhead of safety mechanism and keep the same level of safety
 
 ### Architectural design
--processor vendors
+- processor vendors
   - how to release SW, review their recommands, static analysis code coverage, design plan
--OS selection to run on specific proprietary processor
+- OS selection to run on specific proprietary processor
   - select OS which is complient with ASIL
--SW usage with no ASIL
+- SW usage with no ASIL
   - check performance, power, thermal, dynamic clock, voltage scaling, ...etc.
   - have the scalable SW (configurable for safety and non-safety)
--freedom from interference
+- freedom from interference
   - all of processor (ex: proprietary processor, AP processor, safety processor) need to meet freedom from interference
   - System-level MMU and MMU for each processor
   - scheduling mechanisms
 
 ### Integration of 3rd party OS and 3rd party SW
-- 3 types 3rd party SW handling
+- 3 types
   - 3rd party SEooC SW without any change (ex: QNX OS)
     - they don't change their SW to fix our needs
-    - has to use their SW based on their assumptions of use
+    - has to use their SW based on their assumptions
   - 3rd party SEooC SW with slight change 
     - need to work closely to them
   - 3rd party SW with QM (ex: open source, compiler, C libraries)
@@ -79,8 +78,8 @@
 - the goal is to ensure all faults can be handled correctly
 - need FMEA from HW team to decide how to FIT during UT, IT
 - provide API to generate faults (ex: corrupt PCIe packets, corrupt camera frame, ...etc.)
-- special module to test all faults case
-- use debugger and set break point to change the input value or the value or register
+- use the special module to test all faults case
+- use the debugger and set break point to change the input value or register value
 - customer will also need to know how to generate FIT to ensure they can ensure all faults are handled correctly
   - provide the detail FIT and script to customers
 
