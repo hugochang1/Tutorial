@@ -1,3 +1,4 @@
+- Youtbue link: https://www.youtube.com/watch?v=f-947qWzkSk
 - LIN (Local Interconnect Network)
   - Multidrop topology
   - Master controls the timing
