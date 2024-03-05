@@ -1,1 +1,32 @@
-aaa
+- LIN (Local Interconnect Network)
+  - Multidrop topology
+  - Master controls the timing
+  - Collision avoidance: TDMA (Time Divided Media Access)
+  - 20Kb/s
+- CAN/CAN-FD/CAN-XL (Control Area Network)
+  - Multidrop topology
+  - Collision avoidance: Use ID as arbitration
+  - 10MB/s (CAN-XL)
+- FlexRay
+  - Multidrop topology
+  - Collision avoidance: TDMA (Time Divided Media Access)
+  - 10Mb/s
+- MOST (Media Oriented System Transport)
+  - Ring topology
+  - 25/50/150Mbps
+  - Single point failure takes down the network
+- Automotive Ethernet (100BASE-T1 / 1000BASE-T1 / 2.5G,5G,10GBASE-T1)
+  - point-to-point (bi-directly)
+  - 100BASE-T1 (802.3bw): 66.6 Mbps
+  - 1000BASE-T1 (802.3bp): 750 Mbps
+  - 2.5/5/10GBASE-T1 (802.3ch): 1406.25/2812.5/5625 Mbps
+  - Full-Duplex
+  - Requires a switch
+- Automotive Ethernet (10BASE-T1s)
+  - Multidrop topology
+  - Collision avoidance: TDMA (Time Divided Media Access)
+  - 10Mb/s
+- SerDes (Serizalizer/Deserializer)
+  - point-to-point (uni-direction)
+  - for Camera
+  - low cost (easy to implement, no SW)
