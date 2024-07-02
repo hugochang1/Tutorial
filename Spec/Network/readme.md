@@ -62,4 +62,17 @@
   - This field specifies the length in bytes of the UDP header and UDP data
 
 # GSO/TSO/UFO/LRO/GRO
-https://blog.csdn.net/Rong_Toa/article/details/108748689#blogTitle1
+- https://blog.csdn.net/Rong_Toa/article/details/108748689#blogTitle1
+
+# QoS (Quality of Service)
+- good article
+  - https://www.jannet.hk/quality-of-service-qos-router-zh-hant/
+- Integrated Service (IntServ)
+  - 預留緊急通道給高優先權封包
+- Differentiated Service (DiffServ)
+  - 只有發生 Congestion 的時候, 才實施交通管制
+- Ingress (入口端)
+- Outgree or egress (出口端)
+  - Ingress inteface -> HW queue -> routing descision -> HW queue -> outgress interface
+  - 遇到封包來不及處理, 通常都是解決 outgress 這邊的 HW queue
+  - IP header 裡面有一個 DSCP (Differentiated Services Code Point)
