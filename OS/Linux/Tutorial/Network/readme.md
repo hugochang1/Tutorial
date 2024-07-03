@@ -24,8 +24,7 @@ lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
 ````
 - `UP` and `RUNNING` means the interface is enabled
 - `$ ifconfig ens33 down` to disable `ens33` interface
-- `$ ifconfig ens33 up` to enable `ens33` interface
-- 
+- `$ ifconfig ens33 up` to enable `ens33` interface 
 
 # route
 - show the IP routing table
