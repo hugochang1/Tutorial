@@ -152,7 +152,7 @@ daytime         13/tcp
 
 # dhclient
 - Dynamic Host Configuration Protocol Client
-- `$ sudo dhclient <interface`
+- `$ sudo dhclient <interface>`
   - `$ sudo dhclient ens33`
   - need to remove the default gateway before using dhclient
 
