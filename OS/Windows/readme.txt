@@ -7,16 +7,17 @@ timeout 1 /nobreak > NUL
 REM ---------- create an empty file ---------- 
 copy NUL file_name
 
+
 REM ---------- delete a file ---------- 
 del file_name
 
 
+REM ---------- make a folder ---------- 
+mkdir folder_name
+
+
 REM ---------- delete a folder ---------- 
 rmdir /s /q folder_name
-
-
-REM ---------- make a folder ---------- 
-mkdir autotest
 
 
 REM ---------- file exist ---------- 
