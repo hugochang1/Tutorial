@@ -4,6 +4,9 @@ REM ---------- sleep in second. ----------
 timeout 1 /nobreak > NUL
 
 
+REM ---------- create an empty file ---------- 
+copy NUL file_name
+
 REM ---------- delete a file ---------- 
 del file_name
 
