@@ -25,15 +25,15 @@ sudo ip netns exec ns1 ip link set lo up
 sudo ip netns exec ns1 bash
 ```
 
+#### Ping from network namesapce to the real host
+```
+ping 192.168.10.1
+```
+
 #### List Network Namespace
 ```
 ip netns list
 ns1 (id: 0)
-```
-
-#### Ping from network namesapce to the real host
-```
-ping 192.168.10.1
 ```
 
 #### Delete Network Namespace
