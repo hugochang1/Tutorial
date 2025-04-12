@@ -31,6 +31,11 @@ ip netns list
 ns1 (id: 0)
 ```
 
+#### Ping from network namesapce to the real host
+```
+ping 192.168.10.1
+```
+
 #### Delete Network Namespace
 ```
 sudo ip netns delete ns1
