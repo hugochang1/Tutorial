@@ -25,6 +25,14 @@ sudo ip netns exec ns1 ip link set lo up
 sudo ip netns exec ns1 bash
 ```
 
-#### Delete
+#### List Network Namespace
 ```
+ip netns list
+ns1 (id: 0)
 ```
+
+#### Delete Network Namespace
+```
+sudo ip netns delete ns1
+```
+
