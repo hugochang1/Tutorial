@@ -2,6 +2,7 @@
 - on Windows, if you're trying to ping a destination from a specific source IP address that's in a different subnet, there are some key things to ensure for it to work properly
 - Windows IPv4 address: `192.168.1.116`
 - Ping target: `192.168.2.1`
+- `ping -S <source_address> <target_address>`
 - `ping -S 192.168.1.116 192.168.2.1`
 
 ### Run Command Prompt as Administrator
