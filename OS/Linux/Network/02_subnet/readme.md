@@ -44,12 +44,12 @@ sudo ip route add 192.168.101.0/24 dev veth1
 
 #### ping test
 ```
-# from veth0
+# veth0
 ping -I veth0 192.168.10.2
 ping -I veth0 192.168.10.102
 ping -I veth0 192.168.102.2
 
-# from veth1
+# veth1
 ping -I veth1 192.168.10.1
 ping -I veth1 192.168.10.101
 ping -I veth1 192.168.101.1
