@@ -1,5 +1,5 @@
 ### Create a Network Namespace to Simulate a Second Host
-#### Create
+#### Create a virtual network device
 ```
 # Create veth pair
 sudo ip link add veth0 type veth peer name veth1
@@ -20,7 +20,7 @@ sudo ip netns exec ns1 ip link set veth1 up
 sudo ip netns exec ns1 ip link set lo up
 ```
 
-#### Login the second host
+#### Login to Network Namespace
 ```
 sudo ip netns exec ns1 bash
 ```
@@ -34,5 +34,10 @@ ns1 (id: 0)
 #### Delete Network Namespace
 ```
 sudo ip netns delete ns1
+```
+
+#### Delete a virtual network device
+```
+sudo ip link del veth0
 ```
 
