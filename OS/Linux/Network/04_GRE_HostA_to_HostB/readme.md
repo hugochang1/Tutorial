@@ -40,38 +40,40 @@ sudo ip netns exec ns2 ip link set rb_eth1 up
 sudo ip netns exec ns2 ip link set lo up
 ```
 
-### Login to Network Namespace 1
+### Login to Network Namespace 1 and check the connection
 ```
 sudo ip netns exec ns1 bash
 ping -I ha_eth0 192.168.20.1
 ```
 
-### Login to Network Namespace 2
+### Login to Network Namespace 2 and check the connection
 ```
 sudo ip netns exec ns2 bash
 ping -I rb_eth1 192.168.10.1
 ```
 
-### Setup GRE on Host A
+### Setup GRE on Router A
 ```
 sudo ip tunnel add gre1 mode gre remote 192.168.10.2 local 192.168.10.1 ttl 255
 sudo ip addr add 10.0.0.1/24 dev gre1
 sudo ip link set gre1 up
 ```
 
-### Setup GRE on Host B
+### Setup GRE on Router B
 ```
+# sudo ip netns exec ns2 bash
 ip tunnel add gre1 mode gre remote 192.168.10.1 local 192.168.10.2 ttl 255
 ip addr add 10.0.0.2/24 dev gre1
 ip link set gre1 up
 ```
 
-### check GRE connection on Host A
+### check GRE connection on Router A
 ```
 ping -I gre1 10.0.0.2
 ```
 
-### check GRE connection on Host B
+### check GRE connection on Router B
 ```
+# sudo ip netns exec ns2 bash
 ping -I gre1 10.0.0.1
 ```
