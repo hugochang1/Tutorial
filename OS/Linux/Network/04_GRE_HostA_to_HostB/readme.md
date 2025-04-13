@@ -40,13 +40,13 @@ sudo ip netns exec ns2 ip link set rb_eth1 up
 sudo ip netns exec ns2 ip link set lo up
 ```
 
-### Login to Network Namespace 1 and check the connection
+### Login to Network Namespace 1 and check the connection between Host A and Router A
 ```
 sudo ip netns exec ns1 bash
 ping -I ha_eth0 192.168.20.1
 ```
 
-### Login to Network Namespace 2 and check the connection
+### Login to Network Namespace 2 and check the connection between Router A and Router B
 ```
 sudo ip netns exec ns2 bash
 ping -I rb_eth1 192.168.10.1
@@ -76,4 +76,14 @@ ping -I gre1 10.0.0.2
 ```
 # sudo ip netns exec ns2 bash
 ping -I gre1 10.0.0.1
+```
+
+### Add the routing rule
+```
+# TBD
+```
+
+### check the connection between Host A and Router B
+```
+ping -I gre1 192.168.20.1
 ```
