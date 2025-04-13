@@ -78,12 +78,27 @@ ping -I gre1 10.0.0.2
 ping -I gre1 10.0.0.1
 ```
 
-### Add the routing rule
+### Add the routing rule on Router B
 ```
-# TBD
+# sudo ip netns exec ns2 bash
+ip route add 192.168.20.0/24 via 10.0.0.1 dev gre1
 ```
 
-### check the connection between Host A and Router B
+### check the connection from Router B to Router A via GRE
 ```
+# sudo ip netns exec ns2 bash
 ping -I gre1 192.168.20.1
 ```
+
+### Add the routing rule on Host A
+```
+# sudo ip netns exec ns1 bash
+ip route add 10.0.0.0/24 via 192.168.20.1 dev ha_eth0
+```
+
+### check the connection between Router B and Host A via GRE
+```
+# sudo ip netns exec ns2 bash
+ping -I gre1 192.168.20.2
+```
+
