@@ -1,40 +1,55 @@
 ### Topology
-- Host A/ha_eth0
-  - IP: 192.168.100.1/24
+- Host A/ha_eth0 (ns1)
+  - IP: 192.168.20.2/24
 - Router A/ra_eth0
+  - IP: 192.168.20.1/24
+- Router A/ra_eth1
   - IP: 192.168.10.1/24
   - Tunnel IP: 10.0.0.1
-- Router B/rb_eth0
+- Router B/rb_eth1 (ns2)
   - IP: 192.168.10.2/24
   - Tunnel IP: 10.0.0.2
-- Host B/ha_eth0
-  - IP 192.168.200.1/24
 
 ### Setup the simulated Ethernet Hosts
 ```
 # Create veth pair
-sudo ip link add veth0 type veth peer name veth1
+sudo ip link add ra_eth0 type veth peer name ha_eth0
+sudo ip link add ra_eth1 type veth peer name rb_eth1
 
 # Create namespace
 sudo ip netns add ns1
+sudo ip netns add ns2
 
-# Move veth1 into the namespace
-sudo ip link set veth1 netns ns1
+# Move into the namespaces
+sudo ip link set ha_eth0 netns ns1
+sudo ip link set rb_eth1 netns ns2
 
 # Assign IP addresses
-sudo ip addr add 192.168.10.1/24 dev veth0
-sudo ip netns exec ns1 ip addr add 192.168.10.2/24 dev veth1
+sudo ip addr add 192.168.20.1/24 dev ra_eth0
+sudo ip addr add 192.168.10.1/24 dev ra_eth1
+sudo ip netns exec ns1 ip addr add 192.168.20.2/24 dev ha_eth0
+sudo ip netns exec ns2 ip addr add 192.168.10.2/24 dev rb_eth1
 
 # Bring interfaces up
-sudo ip link set veth0 up
-sudo ip netns exec ns1 ip link set veth1 up
+sudo ip link set ra_eth0 up
+sudo ip netns exec ns1 ip link set ha_eth0 up
 sudo ip netns exec ns1 ip link set lo up
 
-# Login to Network Namespace
-sudo ip netns exec ns1 bash
+sudo ip link set ra_eth1 up
+sudo ip netns exec ns2 ip link set rb_eth1 up
+sudo ip netns exec ns2 ip link set lo up
+```
 
-# check the connection
-ping -I veth1 192.168.10.1
+### Login to Network Namespace 1
+```
+sudo ip netns exec ns1 bash
+ping -I ha_eth0 192.168.20.1
+```
+
+### Login to Network Namespace 2
+```
+sudo ip netns exec ns2 bash
+ping -I rb_eth1 192.168.10.1
 ```
 
 ### Setup GRE on Host A
