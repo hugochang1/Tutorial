@@ -67,3 +67,20 @@ IPv4 路由表
 
 ### route delete
 - `route -p delete 192.168.2.0`
+
+### How to add IPv6 route
+#### show IPv6 interfaces
+```
+> netsh interface ipv6 show interfaces
+
+Idx     Met         MTU          State                Name
+---  ----------  ----------  ------------  ---------------------------
+  1          75  4294967295  connected     Loopback Pseudo-Interface 1
+ 16          25        1500  connected     Ethernet
+ 12          25        1500  connected     Ethernet 2
+```
+#### add IPv6 route
+```
+netsh interface ipv6 add route <Prefix> <Interface> <NextHop> [metric=<Metric>] [publish=<Publish>] [validlifetime=<ValidLifetime>] [preferredlifetime=<PreferredLifetime>]
+> netsh interface ipv6 add route fd00:12::1/64 "Ethernet 2" 2001:DB8:1::1
+```
