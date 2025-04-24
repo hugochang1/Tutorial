@@ -1,14 +1,14 @@
 ### Topology
 - Host A/ha_eth0 (ns1)
-  - IP: 192.168.20.2/24
+  - Inner IP: 192.168.20.2/24
 - Router A/ra_eth0
-  - IP: 192.168.20.1/24
+  - Inner IP: 192.168.20.1/24
 - Router A/ra_eth1
-  - IP: 192.168.10.1/24
-  - Tunnel IP: 10.0.0.1
+  - Inner IP: 10.0.0.1
+  - Outer IP: 192.168.10.1/24
 - Router B/rb_eth1 (ns2)
-  - IP: 192.168.10.2/24
-  - Tunnel IP: 10.0.0.2
+  - Outer IP: 192.168.10.2/24
+  - Inner IP: 10.0.0.2
 
 ### Setup the simulated Ethernet Hosts
 ```
