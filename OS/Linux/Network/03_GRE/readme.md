@@ -1,10 +1,10 @@
 ### Topology
 - Host A/veth0
-  - IP: 192.168.10.1/24
-  - Tunnel IP: 10.0.0.1
+  - Outer IP: 192.168.10.1/24
+  - Inner IP: 10.0.0.1
 - Host B/veth1
-  - IP: 192.168.10.2/24
-  - Tunnel IP: 10.0.0.2
+  - Outer IP: 192.168.10.2/24
+  - Inner IP: 10.0.0.2
 
 ### Setup the simulated Ethernet Hosts
 ```
