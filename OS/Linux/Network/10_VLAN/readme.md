@@ -39,3 +39,15 @@ sudo ip netns exec ns1 ip link set dev veth1.100 up
 ping -I veth0.100 192.168.30.2
 sudo ip netns exec ns1 ping -I veth1.100 192.168.30.1
 ```
+
+### tcpdump veth0 (has VLAN ID)
+```
+sudo tcpdump -i veth0 -n -w tcpdump.pcap
+```
+![image](https://github.com/user-attachments/assets/18ff2f5b-0cc2-4a25-a6c0-cc876a46a6d0)
+
+### tcpdump veth0.100 (no VLAN ID)
+```
+sudo tcpdump -i veth0.100 -n -w tcpdump.pcap
+```
+![image](https://github.com/user-attachments/assets/dab9efd7-71c0-44fa-956c-267f44aeb490)
