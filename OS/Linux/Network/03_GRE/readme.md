@@ -6,53 +6,60 @@
   - Outer IP: 192.168.10.2/24
   - Inner IP: 10.0.0.2
 
-### Setup the simulated Ethernet Hosts
+### Create GRE
 ```
-# Create veth pair
-sudo ip link add veth0 type veth peer name veth1
+# [Topology]
+# Host A (ns1)
+#  etha
+#   192.168.100.2
+#   fd80:100::2
+#
+# Router
+#  r_etha
+#   192.168.100.1
+#   fd80:100::1
+#  gre1
+#   10.0.0.1
+#   fd80:202::1
+#  r_ethb
+#   192.168.200.1
+#   fd80:200::1
+#
+# Host B (ns2)
+#  ethb
+#   192.168.200.2
+#   fd80:200::2
+#  gre1
+#   10.0.0.2
+#   fd80:202::2
 
-# Create namespace
-sudo ip netns add ns1
-
-# Move veth1 into the namespace
-sudo ip link set veth1 netns ns1
-
-# Assign IP addresses
-sudo ip addr add 192.168.10.1/24 dev veth0
-sudo ip netns exec ns1 ip addr add 192.168.10.2/24 dev veth1
-
-# Bring interfaces up
-sudo ip link set veth0 up
-sudo ip netns exec ns1 ip link set veth1 up
-sudo ip netns exec ns1 ip link set lo up
-
-# Login to Network Namespace
-sudo ip netns exec ns1 bash
-
-# check the connection
-ping -I veth1 192.168.10.1
-```
-
-### Setup GRE on Host A
-```
-sudo ip tunnel add gre1 mode gre remote 192.168.10.2 local 192.168.10.1 ttl 255
+sudo ip tunnel add gre1 mode gre remote 192.168.200.2 local 192.168.200.1 ttl 255
 sudo ip addr add 10.0.0.1/24 dev gre1
 sudo ip link set gre1 up
-```
 
-### Setup GRE on Host B
+sudo ip netns exec ns2 ip tunnel add gre1 mode gre remote 192.168.200.1 local 192.168.200.2 ttl 255
+sudo ip netns exec ns2 ip addr add 10.0.0.2/24 dev gre1
+sudo ip netns exec ns2 ip link set gre1 up
 ```
-ip tunnel add gre1 mode gre remote 192.168.10.1 local 192.168.10.2 ttl 255
-ip addr add 10.0.0.2/24 dev gre1
-ip link set gre1 up
-```
-
-### check GRE connection on Host A
+### ping
 ```
 ping -I gre1 10.0.0.2
+sudo ip netns exec ns2 ping -I gre1 10.0.0.1
 ```
 
-### check GRE connection on Host B
+### tcpdump
 ```
-ping -I gre1 10.0.0.1
+sudo tcpdump -i r_ethb -n -w tcpdump.pcap
+```
+![image](https://github.com/user-attachments/assets/3b29cf6e-e4c5-45d0-989a-796de5ed4136)
+
+```
+sudo tcpdump -i gre1 -n -w tcpdump.pcap
+```
+![image](https://github.com/user-attachments/assets/84fa5bec-8d9e-4a90-b29f-910197f183bc)
+
+
+### Remove GRE
+```
+sudo ip tunnel del gre1
 ```
