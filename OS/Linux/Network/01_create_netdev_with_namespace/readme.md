@@ -47,6 +47,12 @@ sudo ip netns exec ns1 ip link set etha up
 sudo ip netns exec ns1 ip link set lo up
 sudo ip netns exec ns2 ip link set ethb up
 sudo ip netns exec ns2 ip link set lo up
+
+# add the routing rule
+#   to ensure Host A ping Router different subnet
+sudo ip netns exec ns1 ip route add 192.168.200.0/24 via 192.168.100.1 dev etha
+#   to ensure Host B ping ROuter's different subnet
+sudo ip netns exec ns2 ip route add 192.168.100.0/24 via 192.168.200.1 dev ethb
 ```
 
 #### Login to Network Namespace
