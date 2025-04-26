@@ -1,4 +1,4 @@
-### Create a Network Namespace to Simulate a Second Host
+### create the virtual netdev with namespace 
 #### Topology
 - Host A (ns1)
   - etha
