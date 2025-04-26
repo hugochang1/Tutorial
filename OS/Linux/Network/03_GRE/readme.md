@@ -1,11 +1,3 @@
-### Topology
-- Host A/veth0
-  - Outer IP: 192.168.10.1/24
-  - Inner IP: 10.0.0.1
-- Host B/veth1
-  - Outer IP: 192.168.10.2/24
-  - Inner IP: 10.0.0.2
-
 ### Create GRE
 ```
 # [Topology]
