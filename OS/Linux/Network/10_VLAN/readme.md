@@ -33,14 +33,12 @@ ping -I r_etha.100 192.168.101.2 -c 3
 sudo ip netns exec ns1 ping -I etha.100 192.168.101.1 -c 3
 ```
 
-### tcpdump veth0 (has VLAN ID)
+### tcpdump
 ```
 sudo tcpdump -i r_etha -n -w tcpdump.pcap
 ```
 ![image](https://github.com/user-attachments/assets/b5790dab-f127-41a2-a9f8-885482e4474f)
 
-
-### tcpdump veth0.100 (no VLAN ID)
 ```
 sudo tcpdump -i r_etha.100 -n -w tcpdump.pcap
 ```
