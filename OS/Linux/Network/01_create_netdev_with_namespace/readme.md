@@ -1,4 +1,4 @@
-#### Create the virtual network devices
+### Create the virtual network devices
 ```
 # [Topology]
 # Host A (ns1)
@@ -10,8 +10,8 @@
 #  r_etha
 #   192.168.100.1
 #   fd80:100::1
-# r_ethb
-#  192.168.200.1
+#  r_ethb
+#   192.168.200.1
 #   fd80:200::1
 #
 # Host B (ns2)
