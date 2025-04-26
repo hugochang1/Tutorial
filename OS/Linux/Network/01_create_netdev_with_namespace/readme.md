@@ -1,23 +1,24 @@
-### create the virtual netdev with namespace 
-#### Topology
-- Host A (ns1)
-  - etha
-    - 192.168.100.2
-    - fd80:100::2
-- Router
-  - r_etha
-    - 192.168.100.1
-    - fd80:100::1
-  - r_ethb
-    - 192.168.200.1
-    - fd80:200::1
-- Host B (ns2)
-  - ethb
-    - 192.168.200.2
-    - fd80:200::2
-
 #### Create the virtual network devices
 ```
+# [Topology]
+# Host A (ns1)
+#  etha
+#   192.168.100.2
+#   fd80:100::2
+#
+# Router
+#  r_etha
+#   192.168.100.1
+#   fd80:100::1
+# r_ethb
+#  192.168.200.1
+#   fd80:200::1
+#
+# Host B (ns2)
+#  ethb
+#   192.168.200.2
+#   fd80:200::2
+
 # Create veth pair
 sudo ip link add r_etha type veth peer name etha
 sudo ip link add r_ethb type veth peer name ethb
