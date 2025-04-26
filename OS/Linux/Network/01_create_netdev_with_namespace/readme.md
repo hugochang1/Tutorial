@@ -52,6 +52,7 @@ sudo ip netns exec ns2 ip link set lo up
 #### Login to Network Namespace
 ```
 sudo ip netns exec ns1 bash
+sudo ip netns exec ns2 bash
 ```
 
 #### ping
