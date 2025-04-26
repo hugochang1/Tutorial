@@ -78,6 +78,17 @@ ping -I r_ethb fe80:200::2
 # Host B to Router
 sudo ip netns exec ns2 ping -I ethb 192.168.200.1
 sudo ip netns exec ns2 ping -I ethb fe80:200::1
+
+# Host A to Host B
+sudo ip netns exec ns1 ping -I etha 192.168.200.2 -c 3
+
+# Host B to Host A
+sudo ip netns exec ns2 ping -I ethb 192.168.100.2 -c 3
+```
+
+#### tcpdump
+```
+sudo tcpdump -i r_etha -n
 ```
 
 #### Remove the virtual network devices
