@@ -48,6 +48,18 @@ sudo ip netns exec ns2 ping -I gre1 10.0.0.1 -c 3
 sudo ip netns exec ns2 ping -I gre1 fd80:202::1 -c 3
 ```
 
+### tcpdump
+```
+sudo tcpdump -i r_ethb -n -w tcpdump.pcap
+```
+![image](https://github.com/user-attachments/assets/8b399e29-7d6f-4c52-a20a-f004e9cfac5c)
+
+```
+sudo tcpdump -i gre1 -n -w tcpdump.pcap
+```
+![image](https://github.com/user-attachments/assets/1c888b12-2800-4696-b6cd-0cffd90f8188)
+
+
 ### Remove GRE
 ```
 sudo ip link del gre1
