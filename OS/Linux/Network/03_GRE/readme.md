@@ -65,7 +65,7 @@ sudo ip netns exec ns2 ping -I gre1 fd80:202::1 -c 3
 
 # ping from Host B to Host A
 sudo ip netns exec ns2 ping -I gre1 192.168.100.2 -c 3
-sudo ip netns exec ns2 ping -I gre fd80:100::2
+sudo ip netns exec ns2 ping -I gre1 fd80:100::2 -c 3
 
 # ping from Host A to Host B
 sudo ip netns exec ns1 ping -I etha 10.0.0.2 -c 3
