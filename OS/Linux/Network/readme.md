@@ -1,3 +1,6 @@
+### Initial Environment
+- 00_Vitrual_netdev
+
 ### enable IP forwarding for IPv4 and IPv6
 - `# vi /etc/sysctl.conf`
 - `net.ipv4.ip_forward = 1`
