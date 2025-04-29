@@ -1,3 +1,6 @@
+### Initial Environment
+- 00_Vitrual_netdev
+
 ### create a VLAN interface
 ```
 # Host A (ns1)
