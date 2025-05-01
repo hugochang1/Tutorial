@@ -81,9 +81,9 @@ sudo ip netns exec ns2 ip route add fd80:100::0/64 dev ethb
 ```
 # Host A to Host B
 sudo ip netns exec ns1 ping -I etha 192.168.200.2 -c 3
-sudo ip netns exec ns1 ping -I fd80:100::2 fd80:200::2 -c 3
+# sudo ip netns exec ns1 ping -I fd80:100::2 fd80:200::2 -c 3
 
 # Host B to Host A
 sudo ip netns exec ns2 ping -I ethb 192.168.100.2 -c 3
-sudo ip netns exec ns2 ping -I fd80:200::2 fd80:100::2 -c 3
+# sudo ip netns exec ns2 ping -I fd80:200::2 fd80:100::2 -c 3
 ```
