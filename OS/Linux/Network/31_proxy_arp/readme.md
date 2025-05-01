@@ -4,6 +4,9 @@
 
 ### notice
 - still need to add the routing rule, but next hop can be ignored
+- IPv4 is work
+- IPv6 is TBD
+- suggest the method which configures the next-hop in the routing rule
 
 ### enable proxy ARP and IP forward
 ```
@@ -69,7 +72,7 @@ sudo ip netns exec ns2 ip link set lo up
 # sudo ip netns exec ns2 ip route add 192.168.100.0/24 via 192.168.200.1 dev ethb
 # sudo ip netns exec ns2 ip route add fd80:100::0/64 via fd80:200::1 dev ethb
 sudo ip netns exec ns1 ip route add 192.168.200.0/24 dev etha
-sudo ip netns exec ns1 ip route add fd80:200::0/64 etha
+sudo ip netns exec ns1 ip route add fd80:200::0/64 dev etha
 sudo ip netns exec ns2 ip route add 192.168.100.0/24 dev ethb
 sudo ip netns exec ns2 ip route add fd80:100::0/64 dev ethb
 ```
