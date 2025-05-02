@@ -1,6 +1,7 @@
 ### What is proxy ARP
 - Proxy ARP allows a router to answer ARP requests on behalf of another device.
 - This is useful when two devices are on different subnets or VLANs but believe they’re on the same LAN.
+- IPv6 uses proxy neighboring discovery protocol (proxy NDP)
 
 ### notice
 - still need to add the routing rule, but next hop can be ignored
@@ -77,15 +78,21 @@ sudo ip netns exec ns1 ip route add 192.168.200.0/24 dev etha
 sudo ip netns exec ns1 ip route add fd80:200::0/64 dev etha
 sudo ip netns exec ns2 ip route add 192.168.100.0/24 dev ethb
 sudo ip netns exec ns2 ip route add fd80:100::0/64 dev ethb
+
+# Add the proxy neighbor entry
+sudo ip -6 neigh add proxy fd80:200::1 dev r_etha
+sudo ip -6 neigh add proxy fd80:200::2 dev r_etha
+sudo ip -6 neigh add proxy fd80:100::1 dev r_ethb
+sudo ip -6 neigh add proxy fd80:100::2 dev r_ethb
 ```
 
 #### ping
 ```
 # Host A to Host B
 sudo ip netns exec ns1 ping -I etha 192.168.200.2 -c 3
-# sudo ip netns exec ns1 ping -I fd80:100::2 fd80:200::2 -c 3
+sudo ip netns exec ns1 ping -I fd80:100::2 fd80:200::2 -c 3
 
 # Host B to Host A
 sudo ip netns exec ns2 ping -I ethb 192.168.100.2 -c 3
-# sudo ip netns exec ns2 ping -I fd80:200::2 fd80:100::2 -c 3
+sudo ip netns exec ns2 ping -I fd80:200::2 fd80:100::2 -c 3
 ```
