@@ -12,7 +12,9 @@
 ```
 # on the router
 echo 1 | sudo tee /proc/sys/net/ipv4/conf/all/proxy_arp
+echo 1 | sudo tee /proc/sys/net/ipv6/conf/all/proxy_ndp
 echo 1 | sudo tee /proc/sys/net/ipv4/ip_forward
+echo 1 | sudo tee /proc/sys/net/ipv6/conf/all/forwarding
 ```
 
 ### Create the virtual network devices
