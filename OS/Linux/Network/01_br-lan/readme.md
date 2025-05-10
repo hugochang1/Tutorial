@@ -55,12 +55,15 @@ sudo ip netns exec ns2 ip addr add fd80:200::2/64 dev ethb
 
 # create GRE
 sudo ip link add gre1 type gretap remote 192.168.200.2 local 192.168.200.1 ttl 255
+# sudo ip link add gre1 type ip6gretap remote fd80:200::2 local fd80:200::1 ttl 255
 sudo ip link set gre1 up
 
 sudo ip netns exec ns2 ip link add gre1 type gretap remote 192.168.200.1 local 192.168.200.2 ttl 255
+# sudo ip netns exec ns2 ip link add gre1 type ip6gretap remote fd80:200::1 local fd80:200::2 ttl 255
 sudo ip netns exec ns2 ip addr add 192.168.100.3/24 dev gre1
 sudo ip netns exec ns2 ip addr add fd80:100::3/64 dev gre1
 sudo ip netns exec ns2 ip link set gre1 up
+
 
 # Add physical interfaces to the bridge
 sudo ip link set dev r_etha master br-lan
