@@ -1,3 +1,6 @@
+### Initial Environment
+- None
+
 ### Create the bridge interface
 ```
 # [Topology]
