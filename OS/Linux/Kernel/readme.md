@@ -3,7 +3,11 @@
   - output example `aarch64`
 
 ### check kernel config
-- `zcat /proc/config.gz | grep <your interesting keyword>`
+- Ubuntu
+  - `cat /boot/config-$(uname -r)`
+  - `cat /boot/config-$(uname -r) | grep XFRM`
+- OpenWrt
+  - `zcat /proc/config.gz | grep <your interesting keyword>`
   - `zcat /proc/config.gz | grep XFRM`
 ```
 CONFIG_XFRM=y
@@ -18,6 +22,3 @@ CONFIG_XFRM_USER=y
 - `lsmod | grep <your interesting module name>`
   - `lsmod | grep gre`
 
-### check Kernel config
-- `cat /boot/config-$(uname -r)`
-- `cat /boot/config-$(uname -r) | grep XFRM`
