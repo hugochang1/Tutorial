@@ -87,6 +87,7 @@ ip link show master br-lan
 ### ping from Host A to Host B
 ```
 sudo ip netns exec ns1 ping 192.168.100.3
+sudo ip netns exec ns1 ping -I etha fd80:100::3
 ```
 
 ### delete br-lan
