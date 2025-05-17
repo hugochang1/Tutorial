@@ -27,7 +27,7 @@ sudo ip netns exec ns1 ip link add name br-lan type bridge
 sudo ip netns exec ns1 ip link set dev br-lan up
 sudo ip netns exec ns1 ip addr add 192.168.100.1/24 dev br-lan
 
-sudo ip netns exec ns1 ifconfig eth1 10.10.10.2 netmask 255.255.255.0
+sudo ip netns exec ns1 ifconfig etha 10.10.10.2 netmask 255.255.255.0
 sudo ip netns exec ns1 ip route add 192.168.200.0/24 via 10.10.10.1 dev etha
 sudo ip netns exec ns1 ip xfrm policy add src 192.168.100.0/24 dst 192.168.200.0/24 dir out tmpl src 10.10.10.2 dst 10.10.10.1 proto esp reqid 0 mode tunnel
 sudo ip netns exec ns1 ip xfrm policy add src 192.168.200.0/24 dst 192.168.100.0/24 dir in tmpl src 10.10.10.1 dst 10.10.10.2 proto esp reqid 0 mode tunnel
@@ -39,7 +39,7 @@ sudo ip netns exec ns1 ip xfrm state add src 10.10.10.1 dst 10.10.10.2 proto esp
 sudo ip link add name br-lan type bridge
 sudo ip link set dev br-lan up
 sudo ip addr add 192.168.200.1/24 dev br-lan
-sudo ifconfig eth1 10.10.10.1 netmask 255.255.255.0
+sudo ifconfig r_etha 10.10.10.1 netmask 255.255.255.0
 sudo ip route add 192.168.100.0/24 via 10.10.10.2 dev r_etha
 sudo ip xfrm policy add src 192.168.200.0/24 dst 192.168.100.0/24 dir out tmpl src 10.10.10.1 dst 10.10.10.2 proto esp reqid 0 mode tunnel
 sudo ip xfrm policy add src 192.168.100.0/24 dst 192.168.200.0/24 dir in tmpl src 10.10.10.2 dst 10.10.10.1 proto esp reqid 0 mode tunnel
@@ -50,10 +50,23 @@ sudo ip xfrm state add src 10.10.10.2 dst 10.10.10.1 proto esp spi 0xc8a985e0 mo
 
 ### Ping
 ```
-# Host A
+# Host A to Router
 sudo ip netns exec ns1 ping -I 192.168.100.1 192.168.200.1
 ```
 ```
 # Router
 ping -I 192.168.200.1 192.168.100.1
 ```
+
+### tcpdump
+```
+# Router
+# Host A to Router
+sudo ip netns exec ns1 ping -I 192.168.100.1 192.168.200.1
+sudo tcpdump -i r_etha -n -w tcpdump.pcap
+```
+![image](https://github.com/user-attachments/assets/3a7d1e1f-9a18-4f6b-a6b3-d00a77fea65c)
+![image](https://github.com/user-attachments/assets/2a915053-1ebe-4d09-b5cd-fe70012b2023)
+![image](https://github.com/user-attachments/assets/3b91852a-f0b6-4c8c-8013-0e19cf92e4c1)
+
+
