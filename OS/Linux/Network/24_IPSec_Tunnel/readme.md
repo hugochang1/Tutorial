@@ -6,7 +6,7 @@
 ### Create IPSec tunnel
 ```
 # Topology
-# Host A
+# Host A (ns1)
 #  ping/iperf
 #  br-lan 192.168.100.1
 #  etha 10.10.10.2
