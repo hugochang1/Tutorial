@@ -69,4 +69,16 @@ sudo tcpdump -i r_etha -n -w tcpdump.pcap
 ![image](https://github.com/user-attachments/assets/2a915053-1ebe-4d09-b5cd-fe70012b2023)
 ![image](https://github.com/user-attachments/assets/3b91852a-f0b6-4c8c-8013-0e19cf92e4c1)
 
+### Remove
+```
+sudo ip netns delete ns1
 
+sudo ip xfrm state del src 10.10.10.2 dst 10.10.10.1 proto esp spi 0xc8a985e0
+sudo ip xfrm state del src 10.10.10.1 dst 10.10.10.2 proto esp spi 0xc8a985e0
+
+sudo ip xfrm policy del src 192.168.100.0/24 dst 192.168.200.0/24 dir fwd
+sudo ip xfrm policy del src 192.168.100.0/24 dst 192.168.200.0/24 dir in
+sudo ip xfrm policy del src 192.168.200.0/24 dst 192.168.100.0/24 dir out
+
+sudo ip link del dev br-lan
+```
