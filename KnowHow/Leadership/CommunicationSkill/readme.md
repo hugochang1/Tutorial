@@ -11,7 +11,7 @@
     - disagree
 
 ### function statement
-- write donw your statements
+- write down your statements
 - communication method: Email/Teams/Phone
 - Primary audience: who
 - Purpose - what's your topic
@@ -43,5 +43,5 @@
 - Example
   - background: ABC has improved something for 10%
   - Complication: but it also causes a problem DEF
-  - Answer: we need other ownerS to look at this problem
+  - Answer: we need other owners to look at this problem
   - Action: Does your team has the resource to support it?
