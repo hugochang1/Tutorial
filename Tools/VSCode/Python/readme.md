@@ -1,5 +1,11 @@
 - Windows shell
   - enter "python3" and install it
   - use "python3" to verify whether the installation is correct
+  - pip show opencv-python
+    - <img width="931" height="125" alt="image" src="https://github.com/user-attachments/assets/684f6b68-c9db-415a-b788-c78de5a14337" />
 - install cv2 on Windows shell
   - pip3 install opencv-python
+- 在 VS Code 裡切換到正確的 Python 解譯器
+  - 按下 Ctrl + Shift + P（打開命令面板）
+  - 輸入：Python: Select Interpreter
+  - 選擇你知道有安裝 opencv-python 的那個 Python 路徑
