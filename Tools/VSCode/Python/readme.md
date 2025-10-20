@@ -1,0 +1,5 @@
+- Windows shell
+  - enter "python3" and install it
+  - use "python3" to verify whether the installation is correct
+- install cv2 on Windows shell
+  - pip3 install opencv-python
