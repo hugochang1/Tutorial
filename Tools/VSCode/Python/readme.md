@@ -9,3 +9,5 @@
   - 按下 Ctrl + Shift + P（打開命令面板）
   - 輸入：Python: Select Interpreter
   - 選擇你知道有安裝 opencv-python 的那個 Python 路徑
+- RTSP server
+  - ffmpeg -f dshow -i video="HP HD Camera" -c:v libx264 -preset veryfast -tune zerolatency -c:a aac -f rtsp -rtsp_transport tcp -muxdelay 0.1 rtsp://127.0.0.1:8554/mystream
