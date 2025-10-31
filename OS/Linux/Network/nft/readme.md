@@ -1,0 +1,14 @@
+- add
+  - icmp
+    - nft add rule inet fw4 mangle_forward ip protocol icmp meta mark set 2147483648
+  - udp
+    - nft add rule inet fw4 mangle_forward ip protocol udp meta mark set 2147483648
+  - tcp
+    - nft add rule inet fw4 mangle_forward ip protocol tcp ip saddr 192.168.10.215 ip daddr 192.168.1.123 meta mark set 2147483648
+    - nft add rule inet fw4 mangle_forward ip protocol tcp ip saddr 192.168.10.220 ip daddr 192.168.1.123 meta mark set 2147483648
+  - VLC
+    - nft add rule inet fw4 mangle_forward ip protocol udp ip saddr 192.168.10.220 ip daddr 192.168.1.50 meta mark set 2147483648
+- list
+  - nft --handle list chain inet fw4 mangle_forward
+- delete
+  - nft delete rule inet fw4 mangle_forward handle 271
