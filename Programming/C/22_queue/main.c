@@ -12,14 +12,17 @@ typedef struct queue {
     list *rear;
 } queue;
 
+// O(1)
 void queue_init(queue *q) {
     q->front = q->rear = NULL;
 }
 
+// O(1)
 bool queue_empty(queue *q) {
     return q->front == NULL;
 }
 
+// O(1)
 bool queue_enqueue(queue* q, int data) {
     list *l = (list*)malloc(sizeof(list));
     l->data = data;
@@ -33,6 +36,7 @@ bool queue_enqueue(queue* q, int data) {
     return true;
 }
 
+// O(1)
 bool queue_dequeue(queue* q, int *data) {
     if (queue_empty(q)) return false;
     list *l = q->front;
