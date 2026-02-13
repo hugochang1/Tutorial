@@ -4,6 +4,8 @@
 
 using namespace std;
 
+// Time complexity: O(N), N is the number of elements in list
+// Space complexity: O(K) or O(N), K is the number of bucket in unordered_map
 bool TwoSum(int target, int* list, int size, int *pos1, int *pos2) {
     unordered_map<int, int> m;
     
