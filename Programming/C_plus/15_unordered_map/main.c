@@ -12,11 +12,15 @@ void dump(unordered_map<int, int>& m) {
 }
 
 int main() {
-    unordered_map<int, int> m;
+    unordered_map<int, int> m = {
+        {1, 11}, {2, 22}, {3, 33},
+    };
     
-    m[1] = 11;
-    m[2] = 22;
-    m[3] = 33;
+    dump(m); // dump map: 3/33 2/22 1/11
+    
+    m[4] = 44;
+    m[5] = 55;
+    dump(m); // 5/55 4/44 1/11 2/22 3/33
 
     auto r = m.erase(1);
     cout << "erase result:" << r << endl; // erase result:1
@@ -27,9 +31,7 @@ int main() {
     cout << "insert result:" << r2.second << endl; // insert result:1
     r2 = m.insert(pair<int, int>(1, 11));
     cout << "insert result:" << r2.second << endl; // insert result:0
-    
-    dump(m); // dump map: 1/11 3/33 2/22 
-    
+
     m.clear();
     dump(m); // dump map:
     
