@@ -6,7 +6,7 @@
 #define Y_NUM 5
 
 int visisted[Y_NUM][X_NUM];
-int dirs[4][2] = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
+int dirs[4][2] = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}}; // down, up, right, left
 
 // Time Complexity: O(N x M x max(N, M)), N is the number of row, M is the number of column
 bool dfs(int maze[][X_NUM], int startx, int starty, int endx, int endy) {
@@ -20,7 +20,7 @@ bool dfs(int maze[][X_NUM], int startx, int starty, int endx, int endy) {
         int nx = startx;
         int ny = starty;
         
-        while (nx >= 0 && nx < X_NUM && ny >= 0 && ny < Y_NUM && maze[nx][ny] == 0) {
+        while (nx >= 0 && nx < X_NUM && ny >= 0 && ny < Y_NUM && maze[ny][nx] == 0) {
             nx += dirs[i][1];
             ny += dirs[i][0];
         }
@@ -30,8 +30,9 @@ bool dfs(int maze[][X_NUM], int startx, int starty, int endx, int endy) {
         ny -= dirs[i][0];
         
         if (nx >= 0 && nx < X_NUM && ny >= 0 && ny < Y_NUM) {
-            bool ret = dfs(maze, nx, ny, endx, endy);
-            if (ret) return true;
+            if (dfs(maze, nx, ny, endx, endy)) {
+                return true;
+            }
         }
     }
     return false;
@@ -41,8 +42,6 @@ bool hasPath(int maze[][X_NUM], int startx, int starty, int endx, int endy) {
     memset(visisted, 0, sizeof(visisted));
     return dfs(maze, startx, starty, endx, endy);
 }
-
-//3:53 -> 3:58
 
 int main() {
     int maze[][X_NUM] = {
