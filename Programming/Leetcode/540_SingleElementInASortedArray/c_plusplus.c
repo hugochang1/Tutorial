@@ -1,4 +1,7 @@
+#include <stdio.h>
+#include <stdlib.h>
 
+// Time Complexity: O(logn), Space Complexity: O(1)
 int find(int *v, int size) {
     int left = 0;
     int right = size - 1;
