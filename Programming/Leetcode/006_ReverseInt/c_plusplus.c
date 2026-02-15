@@ -2,26 +2,40 @@
 #include <stdlib.h>
 
 int reverseInt(int value) {
-    bool positive = value >= 0;
     int ret = 0;
     int pre = 0;
+    bool positive = true;
+    if (value < 0) {
+        positive = false;
+        value = -value;
+    }
     
-    if(!positive) value = -value;
-    
-    while(value > 0) {
+    while(value) {
         pre = ret;
         ret *= 10;
-        if (pre != ret / 10) return 0;
+        if (ret/10 != pre) return 0;
         ret += value % 10;
         value /= 10;
     }
     
-    if (!positive) ret = -ret;
+    if (!positive) {
+        ret = -ret;
+    }
     return ret;
 }
 
 int main() {
-    int ret = reverseInt(-123);
-    printf("ret=%d\n", ret);
+    int ret;
+    ret = reverseInt(123456789);
+    printf("ret=%d\n", ret); //987654321
+    
+    ret = reverseInt(-123456789);
+    printf("ret=%d\n", ret); //-987654321
+    
+    ret = reverseInt(1234567899);
+    printf("ret=%d\n", ret); //0
+    
+    ret = reverseInt(-1234567899);
+    printf("ret=%d\n", ret); //0
     return 0;
 }
