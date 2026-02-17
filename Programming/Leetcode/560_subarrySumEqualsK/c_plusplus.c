@@ -1,36 +1,35 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <vector>
+#include <unordered_map>
 
-//time complexity: O(n^2)
-//TODO can be optimized to O(n) by using hashmap
-int subarraySum(int *nums, int size, int target) {
+using namespace std;
+
+// time complexity: O(n), space complexity: O(n)
+int solution(vector<int> input, int target) {
+    int i = 0;
+    int sum = 0;
     int count = 0;
-    int i, j;
-    int sum;
+    unordered_map<int, int> m; // sum, count
+    // I record all sum data from iteration i to unordered_map
+    // if I can find the summary from unordered_map, j which means 
+    // index j+1 to index i can be sumed to target value
     
-    for (i = 0; i < size; i++) {
-        sum = 0;
-        for (j = i; j < size; j++) {
-            sum += nums[j];
-            if (sum == target) {
-                printf("found %d %d\n", i, j);
-                count++;
-                break;
-            }
+    m[0] = 1;
+    
+    for (i = 0; i < input.size(); i++) {
+        sum += input[i];
+        if (m.count(sum - target)) {
+            count += m.count(sum - target);
         }
+        m[sum]++;
     }
     return count;
 }
 
 int main() {
-    int nums[] = {1,2,3};
-    int target = 3;
-    int ret = subarraySum(nums, sizeof(nums)/4, target);
+    vector<int> v = {1,2,3,3,3,2,1};
+    int ret = solution(v, 3);
     printf("ret=%d\n", ret);
-    /*
-    found 0 1
-    found 2 2
-    ret=2
-    */
     return 0;
 }
