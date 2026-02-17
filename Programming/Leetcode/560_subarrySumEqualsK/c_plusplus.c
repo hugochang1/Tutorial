@@ -27,5 +27,10 @@ int main() {
     int target = 3;
     int ret = subarraySum(nums, sizeof(nums)/4, target);
     printf("ret=%d\n", ret);
+    /*
+    found 0 1
+    found 2 2
+    ret=2
+    */
     return 0;
 }
