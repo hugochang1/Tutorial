@@ -1,17 +1,24 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <algorithm>
-
-using namespace std;
 
 bool isValidTriangle(int a, int b, int c) {
     if ((a+b) > c && (a+c) > b && (b+c) > a) return true;
     return false;
 }
 
+int cmpfunc(const void * a, const void * b) {
+   return ( *(int*)a - *(int*)b );
+}
+
 // time complexity: O(n^3), TODO improve it
 int solution(int *arr, int size) {
     int count = 0;
+
+    qsort(arr, size, sizeof(int), cmpfunc);
+    for(int i = 0; i < size; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
     
     //sort(arr, arr + size); //O(nlogn)
     
@@ -30,7 +37,8 @@ int solution(int *arr, int size) {
 
 
 int main() {
-    int arr[] = {2,2,3,4};
+    //int arr[] = {2,2,3,4}; // ret=3
+    int arr[] = {4,2,3,4}; // ret=4
     int ret = solution(arr, sizeof(arr)/sizeof(arr[0]));
     printf("ret=%d\n", ret);
     
