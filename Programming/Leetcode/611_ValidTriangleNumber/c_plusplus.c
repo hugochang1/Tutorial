@@ -6,28 +6,31 @@ bool isValidTriangle(int a, int b, int c) {
     return false;
 }
 
-int cmpfunc(const void * a, const void * b) {
-   return ( *(int*)a - *(int*)b );
+int cmpfun(const void* a, const void *b) {
+    return *(int*)a - *(int*)b;
 }
 
-// time complexity: O(n^3), TODO improve it
+// time complexity: O(n^2)
 int solution(int *arr, int size) {
     int count = 0;
+    
+    qsort(arr, size, sizeof(int), cmpfun);//O(nlogn)
 
-    qsort(arr, size, sizeof(int), cmpfunc);
     for(int i = 0; i < size; i++) {
         printf("%d ", arr[i]);
     }
     printf("\n");
     
-    //sort(arr, arr + size); //O(nlogn)
-    
-    int i, j, k;
-    
-    for(i = 0; i < size; i++) {
-        for(j = i + 1; j < size; j++) {
-            for(k = j + 1; k < size; k++) {
-                if(isValidTriangle(arr[i], arr[j], arr[k])) count++;
+    for(int i = size - 1; i >= 2 ; i--) {
+        int left = 0;
+        int right = i - 1;
+        
+        while (left < right) {
+            if (arr[left] + arr[right] > arr[i]) {
+                count += (right - left);
+                right--;
+            } else {
+                left++;
             }
         }
     }
@@ -37,8 +40,8 @@ int solution(int *arr, int size) {
 
 
 int main() {
-    //int arr[] = {2,2,3,4}; // ret=3
-    int arr[] = {4,2,3,4}; // ret=4
+    int arr[] = {2,2,3,4}; // ret=3
+    //int arr[] = {4,2,3,4}; // ret=4
     int ret = solution(arr, sizeof(arr)/sizeof(arr[0]));
     printf("ret=%d\n", ret);
     
