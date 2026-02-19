@@ -1,55 +1,55 @@
-#include <iostream>
+#include <stdio.h>
+#include <stdlib.h>
 #include <deque>
+#include <utility>
 
 using namespace std;
 
-int main() {
-
-    deque<int> q = {1,2,3};
-
-    /**************************************
-        push_back() push_front(), O(1)
-    **************************************/
-    q.push_back(4);  // {1,2,3,4}
-    q.push_back(5);  // {1,2,3,4,5}
-    q.push_front(0); // {0,1,2,3,4,5}
-
-    /**************************************
-        pop_back() pop_front(), O(1)
-    **************************************/
-    q.pop_back();    // {0,1,2,3,4}
-    q.pop_back();    // {0,1,2,3}
-    q.pop_front();   // {1,2,3}
-    q.pop_front();   // {2,3}
-
-    /**************************************
-        front() back(), O(1)
-    **************************************/
-    printf("front=%d\n", q.front()); // front=2
-    printf("back=%d\n", q.back()); // back=3
-
-    /**************************************
-        access, O(n)
-    **************************************/
-    q[0] = 10;       // {10,3}
-    q[0] = 2;        // {2,3}
-
-    /**************************************
-        insert() erase(), O(n)
-    **************************************/
-    q.insert(q.begin(), 1); // {1,2,3}
-    q.insert(q.begin()+1, 10); // {1,10,2,3}
-    q.erase(q.begin());   // {10,2,3}
-    q.erase(q.begin()+1); // {10,3}
-
-    cout << q.size() << endl;  // 2
-    cout << q.empty() << endl; // 0
-
-    /**************************************
-        traverse
-    **************************************/
-    for (int a : q) {
-        cout << a << endl; //10 3
+void dump(deque<pair<int,int>> d) {
+    for (auto [d1, d2] : d) {
+        printf("{%d,%d}, ", d1, d2);
     }
+    printf("\n");
+}
+
+int findPos(deque<pair<int,int>> d, int key) {
+    for (int i = 0; i < d.size(); i++) {
+        if (d[i].first == key) {
+            return i;
+        }
+    }
+    return -1;
+}
+
+int main() {
+    deque<pair<int, int>> d = {{1,2},{3,4}};
+    dump(d); // {1,2}, {3,4}, 
+    
+    d.push_back({5,6});
+    dump(d); // {1,2}, {3,4}, {5,6},
+    
+    d.push_front({0,0});
+    dump(d); // {0,0}, {1,2}, {3,4}, {5,6},
+    
+    d.pop_front();
+    dump(d); // {1,2}, {3,4}, {5,6},
+    
+    d.pop_back();
+    dump(d); // {1,2}, {3,4}, 
+    
+    printf("%d\n", findPos(d, 1)); // 0
+    printf("%d\n", findPos(d, 2)); // -1
+    printf("%d\n", findPos(d, 3)); // 1
+    
+    int index = findPos(d, 1); // index = 0;
+    d.erase(d.begin() + index);
+    dump(d); // {3,4}, 
+    
+    d.insert(d.begin(), {1,2});
+    dump(d); // {1,2}, {3,4}, 
+    
+    d.insert(d.end(), {5,6});
+    dump(d); // {1,2}, {3,4}, {5,6},
+    
     return 0;
 }
