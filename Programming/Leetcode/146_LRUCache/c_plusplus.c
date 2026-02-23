@@ -54,8 +54,6 @@ public:
     }
 };
 
-#include <algorithm>
-
 int main() {
     LRUCache c(2);
     
