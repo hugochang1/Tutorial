@@ -6,10 +6,11 @@ using namespace std;
 
 //836_RectangleOverlap
 bool isOverlap(vector<int> r1, vector<int> r2) {
-    return !(r1[0] >= r2[3] || //left
-             r1[3] <= r2[0] || //right
-             r1[1] >= r2[3] || //bottom
-             r1[3] <= r2[1] // top
+    return !(
+        r1[0] >= r2[2] || //left
+        r1[2] <= r2[0] || //right
+        r1[1] >= r2[3] || //bottom
+        r1[3] <= r2[1] //top
         );
 }
 
