@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <vector>
 #include <map>
-
+#include <deque>
 using namespace std;
 
 // 894_AllPossibleFullBinaryTrees
@@ -18,10 +18,53 @@ public:
     TreeNode(int v, TreeNode* l, TreeNode* r): value(v), left(l), right(r) {}
 };
 
+void dump(TreeNode *t) {
+    if(t == nullptr) {
+        printf("n (root)\n");
+        return;
+    }
+    
+    printf("%d (root)\n", t->value);
+    
+    deque<TreeNode*> q;
+    q.push_back(t->left);
+    q.push_back(t->right);
+    
+    int valid_count = 1;
+    while(!q.empty() && valid_count > 0) {
+        int size = q.size();
+        valid_count = 0;
+        for(int i = 0; i < size; i++) {
+            TreeNode *tmp = q.front();
+            q.pop_front();
+            if(tmp == nullptr) {
+                printf("n ");
+                q.push_back(nullptr);
+                q.push_back(nullptr);
+                continue;
+            }
+            printf("%d ", tmp->value);
+            q.push_back(tmp->left);
+            q.push_back(tmp->right);
+            if(tmp->left) valid_count++;
+            if(tmp->right) valid_count++;
+        }
+        printf("\n");
+    }
+}
+
+void dump(vector<TreeNode*> ts) {
+    printf("size=%d\n", ts.size());
+    
+    for(auto t:ts) {
+        dump(t);
+    }
+}
 
 map<int, vector<TreeNode*>> m;
 vector<TreeNode*> dfs(int n) {
-    if (n % 2 != 1) return {};
+    if (n % 2 != 1) return { nullptr };
+    if (n == 0) return { nullptr };
     if (n == 1) return { new TreeNode(0) };
     
     if(m.find(n) != m.end()) {
@@ -30,22 +73,10 @@ vector<TreeNode*> dfs(int n) {
     
     vector<TreeNode*> ret;
     int l, r;
-    for(l = 0; l < n; l++) {
+    for(l = 1; l < n; l+=2) {
         r = n - l - 1;
         auto leftTrees = dfs(l);
         auto rightTrees = dfs(r);
-        if(leftTrees.size() == 0) {
-            for(auto rightTree:rightTrees) {
-                TreeNode *root = new TreeNode(0, nullptr, rightTree);
-                ret.push_back(root);
-            }
-        }
-        if(rightTrees.size() == 0) {
-            for(auto leftTree:leftTrees) {
-                TreeNode *root = new TreeNode(0, leftTree, nullptr);
-                ret.push_back(root);
-            }
-        }
         for(auto leftTree:leftTrees) {
             for(auto rightTree:rightTrees) {
                 TreeNode *root = new TreeNode(0, leftTree, rightTree);
@@ -61,7 +92,28 @@ vector<TreeNode*> dfs(int n) {
 int main() {
     vector<TreeNode*> ts;
     ts = dfs(7); // 5
-    printf("possible size=%zu\n", ts.size());
-    
+    dump(ts);
+    /*
+    size=5
+    0 (root)
+    0 0 
+    n n 0 0 
+    n n n n n n 0 0 
+    0 (root)
+    0 0 
+    n n 0 0 
+    n n n n 0 0 n n 
+    0 (root)
+    0 0 
+    0 0 0 0 
+    0 (root)
+    0 0 
+    0 0 n n 
+    n n 0 0 n n n n 
+    0 (root)
+    0 0 
+    0 0 n n 
+    0 0 n n n n n n 
+    */
     return 0;
 }
