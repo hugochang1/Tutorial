@@ -61,12 +61,15 @@ int main() {
     **************************************/
     v1.erase(v1.begin());  // {1,11,2,3}
     v1.erase(v1.begin()+1);  // {1,2,3}
+    //v1.erase(v1.begin() , v1.end()) // {}
     
     /**************************************
         sort, O(nlogn)
     **************************************/
+    // ascending order
     sort(v1.begin(), v1.end()); // {1,2,3}
     sort(v1.begin(), v1.end(), less<int>()); // {1,2,3}
+    // descending order
     sort(v1.begin(), v1.end(), greater<int>()); // {3,2,1}
 
     return 0;
