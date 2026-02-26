@@ -34,7 +34,7 @@ public:
     
     int get(int index, int snap_id) {
         if(index >= v.size()) return -1;
-        if(snap_id >= snap_count) return -1;
+        if(snap_id >= sanp_count) return -1;
         return vs[snap_id][index];
     }
 };
