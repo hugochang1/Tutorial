@@ -8,10 +8,7 @@ using namespace std;
 
 class SnapshotArray {
     int snap_count;
-    vector<vector<pair<int, int>>> v;
-    //the first index of v (e.g. v[0]) is stored for current values
-    //the second index of v (e.g. v[i][j]) is stored for history
-    //pair stores snap_id and value
+    vector<vector<pair<int,int>>> v;
     
 public:
     SnapshotArray(int length) {
@@ -28,8 +25,7 @@ public:
     }
     
     int snap() {
-        for(int i = 0; i < v.size(); i++) {
-            vector<pair<int,int>>& a = v[i];
+        for(auto& a:v) {
             if(a.size() > 0) {
                 a.push_back({snap_count, a[0].second});
             }
@@ -39,22 +35,20 @@ public:
     }
     
     int get(int index, int snap_id) {
-        vector<pair<int,int>> a = v[index];
-        for(auto [record, val]:a) {
+        auto a = v[index];
+        for(auto [record, value]:a) {
             if(record == snap_id) {
-                return val;
+                return value;
             }
         }
         return 0;
     }
     
     void dump() {
-        printf("len=%zu\n", v.size());
-        for(int i = 0; i < v.size(); i++) {
-            vector<pair<int,int>> a = v[i];
-            printf("  index=%d ", i);
+        for(auto a:v) {
+            printf("  size=%d ", a.size());
             for(auto [record, value]:a) {
-                printf("%d/%d ", record, value);
+                printf("%d,%d ", record, value);
             }
             printf("\n");
         }
