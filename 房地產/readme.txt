@@ -65,3 +65,5 @@ iservice@IKEA.com.tw
   不是本人, 要寫委託書 --> [action] 請南門銀行幫忙寄送
   [action] 去地政事務所辦理
   [question] 去哪一間地政事務所辦理需要再確認
+
+https://app.frame.io/reviews/877646d7-f18d-4d6f-a08d-93d3c97c55ca/0b9a275b-297e-4634-a972-e21b0a069b48
