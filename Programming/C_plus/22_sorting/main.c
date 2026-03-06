@@ -1,13 +1,64 @@
 #include <iostream>
 #include <vector>
 #include <string>
-#include <algorithm>
+#include <algorithm> //greater<int>()
+#include <array>
+#include <vector>
+#include <deque>
+#include <list>
 
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
 
 using namespace std;
+
+int demo1() {
+    //std::sort
+    //support data type: int, float, double, char, bool, string, vector
+    array<int, 3> arr = {1,3,2};
+    vector<int> v = {3,1,2};
+    deque<int> d = {2,3,1};
+    
+    // sorted by ascending order
+    sort(arr.begin(), arr.end()); // 1,2,3
+    sort(v.begin(), v.end());    // 1,2,3
+    sort(d.begin(), d.end());    // 1,2,3
+    
+    // descending by ascending order
+    sort(arr.begin(), arr.end(), greater<int>()); // 3,2,1
+    sort(v.begin(), v.end(), greater<int>());    // 3,2,1
+    sort(d.begin(), d.end(), greater<int>());    // 3,2,1
+    
+    for(auto a:arr) {
+        printf("%d ", a);
+    }
+    printf("\n");
+    for(auto a:v) {
+        printf("%d ", a);
+    }
+    printf("\n");
+    for(auto a:d) {
+        printf("%d ", a);
+    }
+    printf("\n");
+    
+    //-------------------------------------
+    list<int> l = {3,2,1};
+    
+    // sorted by ascending order
+    l.sort();    // 1,2,3
+    
+    // descending by ascending order
+    l.sort(greater<int>());    // 3,2,1
+    
+    for(auto a:l) {
+        printf("%d ", a);
+    }
+    printf("\n");
+    
+    return 0;
+}
 
 void dump_array(int* data, int n) {
     printf("dump_array n=%d\n", n);
