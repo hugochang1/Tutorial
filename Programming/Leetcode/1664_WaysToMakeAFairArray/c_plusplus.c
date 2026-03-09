@@ -7,7 +7,7 @@ using namespace std;
 //1664_WaysToMakeAFairArray
 
 // time complexity: O(n^2)
-// can be improved TBD
+// time complexity can be improved to O(n) TBD
 int solution(vector<int> v) {
     int count = 0;
     for(int i = 0; i < v.size(); i++) {
