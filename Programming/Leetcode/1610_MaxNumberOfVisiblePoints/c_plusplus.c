@@ -7,42 +7,38 @@ using namespace std;
 
 //1610_MaxNumberOfVisiblePoints
 
-// go through all points and use atan2(y,x) to get the angles
-// use atan2(y,x) to get the angles
-// sort the angles by ascending order
-// go through all angles to see how many points inside the angle given
+// use atan2 to get the angle for each point
+// sort angles by ascending order
+// go through angles to check the max count of angles within angle given
 
 int solution(vector<vector<int>> points, int angle, vector<int> location) {
+    int x = location[0];
+    int y = location[1];
     int collocated_count = 0;
     int max_angle_count = 0;
     vector<double> angles;
-    int x = location[0];
-    int y = location[1];
     
     for(auto point:points) {
         if(point[0] == x && point[1] == y) {
             collocated_count++;
         } else {
-            double a = atan2(point[1] - y, point[0] - x) * 180 / M_PI;
-            if(a < 0) a += 360;
-            angles.push_back(a);
+            double ang = atan2(point[1] - y,point[0] - x) * 180 / M_PI;
+            if(ang < 0) ang += 360;
+            angles.push_back(ang);
         }
     }
     
     sort(angles.begin(), angles.end());
-    // dedicate the angles with +360 degree to handle wrap-around
     int size = angles.size();
+    //duplicate angles to handle wrap-around
     for(int i = 0; i < size; i++) {
         angles.push_back(angles[i] + 360);
     }
     
     for(int i = 0; i < size; i++) {
-        int j = i;
-        printf("i=%d j=%d\n", i, j);
-        while(angles[j] - angles[i] <= angle) {
-            printf(" i=%d j=%d %f %f %d\n", i, j, angles[j], angles[i], angle);
-            j++;
-        }
+        int j = i + 1;
+        while(angles[j] - angles[i] <= angle) j++;
+        //printf("i=%d j=%d %f %f %d\n", i, j, angles[i], angles[j], angle);
         max_angle_count = max(max_angle_count, j - i);
     }
     
