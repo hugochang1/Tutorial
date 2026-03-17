@@ -8,10 +8,10 @@ using namespace std;
 //2342_MaxSumOfAPairWithEqualSumOfDigits
 
 // go through all inputs and save the sum of digits into unordered_map
-// time complexity: O(n^2)
+// time complexity: O(n)
 int find(vector<int> inputs) {
     int out = -1;
-    unordered_map<int, vector<int>> m;
+    unordered_map<int, int> m;
     
     for(auto value:inputs) {
         int sum = 0;
@@ -21,14 +21,17 @@ int find(vector<int> inputs) {
             tmp = tmp / 10;
         }
         
-        if(m.find(sum) != m.end()) {
-            vector<int> matches = m[sum];
-            for(auto match:matches) {
-                out = max(out, match + value);
-            }
+        if(m.count(sum)) {
+            out = max(out, m[sum] + value);
         }
-        m[sum].push_back(value);
+        
+        if(m.count(sum)) {
+            m[sum] = max(m[sum], value);
+        } else {
+            m[sum] = value;
+        }
     }
+    
     return out;
 }
 
