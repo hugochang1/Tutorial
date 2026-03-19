@@ -1,11 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <unordered_map>
 #include <list>
+#include <unordered_map>
 
 using namespace std;
-
-// 146 LRUCache
 
 class Node {
 public:
@@ -15,54 +13,48 @@ public:
 };
 
 class LRUCache {
+public:
     list<Node> l;
     unordered_map<int, list<Node>::iterator> m;
     int cap;
-    
-    void moveToHead(list<Node>::iterator it) {
-        l.splice(l.begin(), l, it); //O(1)
-    }
-    
-public:
-    LRUCache(int capacity) {
-        cap = capacity;
-    }
-    
-    int get(int key) {
-        if (m.find(key) != m.end()) {
-            list<Node>::iterator it = m[key];
-            moveToHead(it);
-            return it->value;
-        }
-        return -1;
-    }
+    LRUCache(int capacity): cap(capacity) {}
     
     void put(int key, int value) {
-        if (m.find(key) != m.end()) {
-            list<Node>::iterator it = m[key];
-            it->value = value;
-            moveToHead(it);
+        if(m.count(key)) {
+            list<Node>::iterator n = m[key];
+            n->value = value;
+            l.splice(l.begin(), l, n);
         } else {
-            if (l.size() == cap) {
+            if(l.size() >= cap) {
                 int least_used_key = l.back().key;
                 l.pop_back();
                 m.erase(least_used_key);
             }
-            l.push_front(Node(key, value));
+            Node n(key, value);
+            l.push_front(n);
             m[key] = l.begin();
         }
+    }
+    
+    int get(int key) {
+        if(m.count(key)) {
+            list<Node>::iterator n = m[key];
+            l.splice(l.begin(), l, n);
+            return n->value;
+        }
+        return -1;
     }
 };
 
 int main() {
     LRUCache c(2);
-    
-    c.put(1, 1);
-    c.put(2, 2);
+    c.put(1,1);
+    c.put(2,2);
     printf("%d\n", c.get(1)); //1
-    c.put(3, 3); //remove 2,2
+    c.put(3,3);
     printf("%d\n", c.get(2)); //-1
-    c.put(4,4); //remove 1,1
+    c.put(4,4);
+    printf("%d\n", c.get(1)); //-1
     printf("%d\n", c.get(3)); //3
     printf("%d\n", c.get(4)); //4
     
