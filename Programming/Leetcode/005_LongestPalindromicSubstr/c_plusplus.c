@@ -1,38 +1,39 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
+#include <string>
 
-// Time Complexity: O(n^2)
-void find(const char* str, char* out) {
-    int len = strlen(str);
-    if (len == 0) return;
-    int i, j;
-    int max_len = 1, max_begin = 0, max_end = 0;
-    for (i = 0; i < len; i++) {
-        for (j = 0; (i - j) >= 0 && (i + j) < len; j++) {
-            int begin = i - j;
-            int end = i + j;
-            if (str[begin] == str[end]) {
-                int curr_len = (end - begin) + 1;
-                if (curr_len > max_len) {
-                    max_len = curr_len;
-                    max_begin = begin;
-                    max_end = end;
+using namespace std;
+
+bool isPalindromic(string s) {
+    int left = 0;
+    int right = s.size() - 1;
+    while(left < s.size()) {
+        if(s[left] != s[right]) return false;
+        left++;
+        right--;
+    }
+    return true;
+}
+
+string find(string s) {
+    string ret;
+    
+    for(int i = 0; i < s.size(); i++) {
+        for(int j = i + 1; j < s.size() + 1; j++) {
+            string sub = s.substr(i, j);
+            if(isPalindromic(sub)) {
+                if(ret.size() < sub.size()) {
+                    ret = sub;
                 }
-            } else {
-                break;
             }
         }
     }
-    memcpy(out, str + max_begin, max_len);
+
+    return ret;
 }
 
 int main() {
-    const char* str = "ababd";
-    char out[1024] = {0};
-    //expect output: bab or aba
-    
-    find(str, out);
-    printf("out=%s\n", out);
+    printf("%s\n", find("babad").c_str()); //bab
+    printf("%s\n", find("cbbd").c_str()); //bb
     return 0;
 }
