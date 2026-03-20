@@ -1,39 +1,32 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
+#include <string>
 #include <unordered_map>
 
 using namespace std;
 
-// Time Complexity: O(N)
-int findLength(const char* str, int size) {
-    if (size == 0) return 0;
-    unordered_map<char, int> m;
-    int i = 0;
-    int max_len = 0;
-    int prev = 0;
-    for (i = 0; i < size; i++) {
-        auto ret = m.find(str[i]);
-        if(ret == m.end()) {
-            m[str[i]] = i;
-            int curr_len = (i - prev) + 1;
-            if (max_len < curr_len) {
-                max_len = curr_len;
-            }
+//use two points and unordered_map (char, index)
+
+int find(string s) {
+    unordered_map<char,int> m;
+    int left = 0;
+    int ret = 0;
+    
+    for(int i = 0; i < s.size(); i++) {
+        if(m.count(s[i])) {
+            left = m[s[i]] + 1;
         } else {
-            int index = m[str[i]];
-            prev = index + 1;
-            m[str[i]] = i;
+            ret = max(ret, i - left + 1);
         }
+        m[s[i]] = i;
     }
-    return max_len;
+    
+    return ret;
 }
 
 int main() {
-    const char* str = "baaaa123";
-    
-    int ret = findLength(str, strlen(str));
-    printf("ret=%d\n", ret);
-    
+    printf("%d\n", find("abcabcbb")); //3
+    printf("%d\n", find("bbbbb")); //1
+    printf("%d\n", find("pwwkew")); //3
     return 0;
 }
