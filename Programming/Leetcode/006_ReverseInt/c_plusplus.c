@@ -1,41 +1,36 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string>
 
-int reverseInt(int value) {
+using namespace std;
+
+int solution(int num) {
     int ret = 0;
-    int pre = 0;
-    bool positive = true;
-    if (value < 0) {
-        positive = false;
-        value = -value;
+    bool negative = false;
+    if(num < 0) {
+        negative = true;
+        num = -num;
     }
     
-    while(value) {
-        pre = ret;
+    while(num > 0) {
+        int pre = ret;
         ret *= 10;
-        if (ret/10 != pre) return 0;
-        ret += value % 10;
-        value /= 10;
+        if(ret/10 != pre) return 0;
+        ret += num % 10;
+        num /= 10;
     }
     
-    if (!positive) {
+    if(negative) {
         ret = -ret;
     }
+    
     return ret;
 }
 
 int main() {
-    int ret;
-    ret = reverseInt(123456789);
-    printf("ret=%d\n", ret); //987654321
-    
-    ret = reverseInt(-123456789);
-    printf("ret=%d\n", ret); //-987654321
-    
-    ret = reverseInt(1234567899);
-    printf("ret=%d\n", ret); //0
-    
-    ret = reverseInt(-1234567899);
-    printf("ret=%d\n", ret); //0
+    printf("%d\n", solution(123)); //321
+    printf("%d\n", solution(-123)); //-321
+    printf("%d\n", solution(120)); //21
+    printf("%d\n", solution(1234567899)); //0
     return 0;
 }
