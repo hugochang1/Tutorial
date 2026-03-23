@@ -1,43 +1,47 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
+#include <string>
 
-int compress(char* str, int size) {
-    int read_index = 0;
-    int write_index = 0;
+using namespace std;
+
+//443_StringCompression
+
+void solution(string& s) {
+    if(s.size() == 0) return;
+    int read_pos = 0;
+    int write_pos = 0;
     
-    if (size == 0) return 0;
-    
-    while (read_index < size) {
-        char curr_char = str[read_index];
-        int count = 0;
+    while(read_pos < s.size()) {
+        int current_char = s[read_pos++];
+        int cnt = 1;
         
-        while (read_index < size && curr_char == str[read_index]) {
-            count++;
-            read_index++;
+        while(read_pos < s.size() && current_char == s[read_pos]) {
+            read_pos++;
+            cnt++;
         }
         
-        str[write_index] = curr_char;
-        write_index++;
-        
-        if (count > 1) {
-            char tmp[10] = {0};
-            int len = sprintf(tmp, "%d", count);
-            int j = 0;
-            for(j = 0; j < len; j++) {
-                str[write_index] = tmp[j];
-                write_index++;
+        s[write_pos++] = current_char;
+        if(cnt > 1) {
+            string cnt_str = to_string(cnt);
+            for(auto c:cnt_str) {
+                s[write_pos++] = c;
             }
         }
     }
-    return write_index;
+    s[write_pos++] = 0;
 }
 
-
 int main() {
-    char str[] = "aabbccc";
-    int ret = compress(str, strlen(str));
-    printf("ret=%d str=%s\n", ret, str); // ret=6 str=a2b2c3c
+    string s = "aabbccc";
+    solution(s);
+    printf("%s\n", s.c_str()); // a2b2c3
     
+    s = "a";
+    solution(s);
+    printf("%s\n", s.c_str()); // a
+    
+    s = "abbbbbbbbbbbb";
+    solution(s);
+    printf("%s\n", s.c_str()); // ab12
     return 0;
 }
