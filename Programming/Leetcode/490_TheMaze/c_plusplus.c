@@ -1,59 +1,49 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <memory.h>
+#include <vector>
 
-#define X_NUM 5
-#define Y_NUM 5
+using namespace std;
 
-int visisted[Y_NUM][X_NUM];
-int dirs[4][2] = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}}; // down, up, right, left
+//490_TheMaze
 
-// Time Complexity: O(N x M x max(N, M)), N is the number of row, M is the number of column
-bool dfs(int maze[][X_NUM], int startx, int starty, int endx, int endy) {
-    if (startx == endx && starty == endy) return true;
-    if (maze[starty][startx]) return false;
-    if (visisted[starty][startx]) return false;
+bool bfs(vector<vector<int>>& maze, vector<vector<bool>>& visited, int x, int y, int target_x, int target_y) {
+    int m = maze.size();
+    int n = maze[0].size();
     
-    visisted[starty][startx] = 1;
-    int i;
-    for(i = 0; i < 4; i++) {
-        int nx = startx;
-        int ny = starty;
+    visited[x][y] = true;
+    
+    if(x == target_x && y == target_y) return true;
+    
+    vector<vector<int>> moves = {{0,1},{0,-1},{1,0},{-1,0}};
+    
+    for(auto move:moves) {
+        int next_x = x + move[0];
+        int next_y = y + move[1];
         
-        while (nx >= 0 && nx < X_NUM && ny >= 0 && ny < Y_NUM && maze[ny][nx] == 0) {
-            nx += dirs[i][1];
-            ny += dirs[i][0];
+        while(0 <= next_x && next_x < m && 0 <= next_y && next_y < n && maze[next_x][next_y] == 0) {
+            next_x += move[0];
+            next_y += move[1];
         }
+        next_x -= move[0];
+        next_y -= move[1];
         
-        // step back
-        nx -= dirs[i][1];
-        ny -= dirs[i][0];
-        
-        if (nx >= 0 && nx < X_NUM && ny >= 0 && ny < Y_NUM) {
-            if (dfs(maze, nx, ny, endx, endy)) {
-                return true;
-            }
+        if(!visited[next_x][next_y]) {
+            if(bfs(maze, visited, next_x, next_y, target_x, target_y)) return true;
         }
     }
     return false;
 }
 
-bool hasPath(int maze[][X_NUM], int startx, int starty, int endx, int endy) {
-    memset(visisted, 0, sizeof(visisted));
-    return dfs(maze, startx, starty, endx, endy);
+bool find(vector<vector<int>> maze, vector<int> start_pos, vector<int> end_pos) {
+    int m = maze.size();
+    int n = maze[0].size();
+    vector<vector<bool>> visited(m, vector<bool>(n, false));
+    return bfs(maze, visited, start_pos[0], start_pos[1], end_pos[0], end_pos[1]);
 }
 
 int main() {
-    int maze[][X_NUM] = {
-        {0, 0, 1, 0, 0},
-        {0, 0, 0, 0, 0},
-        {0, 1, 1, 1, 0},
-        {0, 1, 0, 0, 0},
-        {0, 0, 0, 1, 0},
-    };
-    
-    bool ret = hasPath(maze, 0, 0, 4, 4);
-    printf("ret=%d\n", ret); // ret=1
-    
+    printf("%d\n", find({{0,0,1,0,0},{0,0,0,0,0},{0,0,0,1,0},{1,1,0,1,1},{0,0,0,0,0}}, {0,4}, {4,4})); // true
+    printf("%d\n", find({{0,0,1,0,0},{0,0,0,0,0},{0,0,0,1,0},{1,1,0,1,1},{0,0,0,0,0}}, {0,4}, {3,2})); // false
+    printf("%d\n", find({{0,0,0,0,0},{1,1,0,0,1},{0,0,0,0,0},{0,1,0,0,1},{0,1,0,0,0}}, {4,3}, {0,1})); // false
     return 0;
 }
