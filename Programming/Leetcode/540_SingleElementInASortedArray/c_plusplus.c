@@ -1,26 +1,38 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <vector>
 
-// Time Complexity: O(logn), Space Complexity: O(1)
-int find(int *v, int size) {
-    int left = 0;
-    int right = size - 1;
-    while (left < right) {
-        int mid = left + (right - left) / 2;
-        if (v[mid] == v[mid ^ 1]) {
-            left = mid + 1;
-        } else {
-            right = mid;
-        }
+using namespace std;
+
+//540_SingleElementInASortedArray
+//time complexity: O(logn)
+int recu(vector<int>& nums, int left, int right) {
+    if(left == right) {
+        return left;
     }
-    return v[left];
+    
+    int m1 = (right+left)/2;
+    int m2 = m1 ^ 1;
+    
+    if(nums[m1] == nums[m2]) {
+        int mid = max(m1, m2) + 1;
+        return recu(nums, mid, right);
+    } else {
+        int mid = min(m1, m2);
+        return recu(nums, left, mid);
+    }
+}
+
+int find(vector<int> nums) {
+    int left = 0;
+    int right = nums.size() - 1;
+    return recu(nums, left, right);
 }
 
 int main() {
-    int v[] = {1,1,2,3,3};
-    
-    int ret = find(v, sizeof(v)/4);
-    printf("ret=%d\n", ret); // ret=2
-    
-    return 0;
+    printf("%d\n", find({1,2,2,3,3})); //0
+    printf("%d\n", find({1,1,2,2,3})); //4
+    printf("%d\n", find({1,1,2,3,3})); //2
+    printf("%d\n", find({1,1,2})); // 2
+    printf("%d\n", find({1,2,2})); // 0
 }
