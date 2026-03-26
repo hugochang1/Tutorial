@@ -4,47 +4,40 @@
 
 using namespace std;
 
-// time complexity: O(n!), space complexity: O(n!)
-void permutateRecu(vector<int> &input, int pos, vector<vector<int>> &out) {
-    if (pos == (input.size() - 1)) {
-        out.push_back(input);
-    } else {
-        int i;
-        for (i = pos; i < input.size(); i++) {
-            swap(input[pos], input[i]);
-            if (input[pos] % (pos + 1) == 0 || (pos + 1) % input[pos] == 0)
-                permutateRecu(input, pos + 1, out);
-            swap(input[pos], input[i]);
-        }
+//526_BeautifulArrangement
+// time complexity: O(n!)
+void perm(vector<int>& v, int index, int &cnt) {
+    int size = v.size();
+    if(index == size - 1) {
+        cnt++;
+        return;
     }
+    for(int i = index; i < size; i++) {
+        swap(v[i], v[index]);
+        if((v[i] % (i+1) == 0 || (i+1) % v[i] == 0) &&
+            (v[index] % (index+1) == 0 || (index+1) % v[index] == 0)) {
+            perm(v, index+1, cnt);
+        }
+        swap(v[i], v[index]);
+    }
+    
 }
 
-vector<vector<int>> permutate(vector<int> input) {
-    vector<vector<int>> out;
-    permutateRecu(input, 0, out);
-    return out;
+int find(int n) {
+    int cnt = 0;
+    vector<int> v;
+    for(int i = 1; i <= n; i++) {
+        v.push_back(i);
+    }
+    perm(v, 0, cnt);
+    return cnt;
 }
+
 
 int main() {
-    vector<int> v = {1,2,3,4};
-    vector<vector<int>> ret = permutate(v);
-    for(auto a:ret) {
-        for(auto b:a) {
-            printf("%d ", b);
-        }
-        printf("\n");
-    }
-    /*
-    1 2 3 4 
-    1 4 3 2 
-    2 1 3 4 
-    2 4 3 1 
-    2 4 1 3 
-    3 2 1 4 
-    3 4 1 2 
-    4 2 3 1 
-    4 2 1 3 
-    4 1 3 2 
-    */
+    printf(" %d\n", find(1)); //1
+    printf(" %d\n", find(2)); //2
+    printf(" %d\n", find(3)); //3
+    printf(" %d\n", find(4)); //8
     return 0;
 }
