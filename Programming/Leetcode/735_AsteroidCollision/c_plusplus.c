@@ -1,56 +1,66 @@
-// Hello world! Cplayground is an online sandbox that makes it easy to try out
-// code.
-
 #include <stdio.h>
-#include <stdlib.h>
 #include <vector>
-#include <stack>
+#include <deque>
 
 using namespace std;
 
-vector<int> find(vector<int> &input) {
-    stack<int> s;
-    for(auto n:input) {
-        if(s.empty()) {
-            s.push(n);
+//735_AsteroidCollision
+//Time complexity: O(n)
+vector<int> find(vector<int> nums) {
+    vector<int> ret;
+    deque<int> q;
+    
+    for(int i = 0; i < nums.size(); i++) {
+        if(q.empty()) {
+            q.push_back(nums[i]);
+            continue;
+        }
+        if(nums[i] > 0) {
+            q.push_back(nums[i]);
+            continue;
+        }
+        while(!q.empty() && q.back() > 0 && q.back() < abs(nums[i])) {
+            q.pop_back();
+        }
+        if(q.empty()) {
+            q.push_back(nums[i]);
+            continue;
+        }
+        if(q.back() > 0 && q.back() == abs(nums[i])) {
+            q.pop_back();
+        } else if(q.back() > 0 && q.back() > abs(nums[i])) {
         } else {
-            while(!s.empty() && s.top() > 0 && s.top() < -n) {
-                s.pop();
-            }
-            if(!s.empty() && s.top() > 0 && s.top() == -n) {
-                s.pop();
-            } else {
-                if(s.empty() || s.top() < abs(n)) {
-                    s.push(n);
-                }
-            }
+            q.push_back(nums[i]);
         }
     }
     
-    vector<int> ret(s.size());
-    int i = s.size();
-    while(!s.empty()) {
-        ret[--i] = s.top();
-        s.pop();
+    for(auto a:q) {
+        ret.push_back(a);
     }
+    
     return ret;
 }
 
-void dump(vector<int> &input) {
-    printf("dump ");
-    for(auto a:input) {
+int main() {
+    vector<int> ret;
+    
+    ret = find({5,10,-5});//{5,10}
+    for(auto a:ret) {
         printf("%d ", a);
     }
     printf("\n");
-}
-
-int main() {
-    vector<int> v1 = {5,10,-5};
-    vector<int> v2 = {8, -8};
-    vector<int> v3 = {3,5,-6,2,-1,4};
-    vector<int> ret;
-    ret = find(v1); dump(ret); // 5 10
-    ret = find(v2); dump(ret); // 
-    ret = find(v3); dump(ret); // -6 2 4
+    
+    ret = find({8, -8});//{}
+    for(auto a:ret) {
+        printf("%d ", a);
+    }
+    printf("\n");
+    
+    ret = find({10, 2, -5});//{10}
+    for(auto a:ret) {
+        printf("%d ", a);
+    }
+    printf("\n");
     return 0;
 }
+
