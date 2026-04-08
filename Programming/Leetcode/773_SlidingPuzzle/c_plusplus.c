@@ -8,59 +8,57 @@
 using namespace std;
 
 //773_SlidingPuzzle
-//use a hashmap (unordered_map) to record the visited place (convert 2D array to a string)
-//use BFS (breadth first seach) to solve this issue
-
-int findRecu(vector<vector<int>>& maps, unordered_set<string>& m, int steps) {
+int find(vector<vector<int>> maps) {
+    //convert 2D maps to 1D string
+    //use unordered_set for visited position
+    //use queue to check steps
     string target = "123450";
     string s;
     for(auto a:maps) {
         for(auto b:a) {
-            s += to_string(b);
+            s+= to_string(b);
         }
     }
-    m.insert(s);
-    
-    // 0 1 2
-    // 3 4 5
-    vector<vector<int>> moves = {
-        /*0*/ {1, 3},
-        /*1*/ {0, 4, 2},
-        /*2*/ {1, 5},
-        /*3*/ {0, 4},
-        /*4*/ {3, 1, 5},
-        /*5*/ {2, 4},
-    };
+    unordered_set<string> visited;
+    visited.insert(s);
     
     deque<string> q;
     q.push_back(s);
     
+    // 0 1 2
+    // 3 4 5
+    vector<vector<int>> moves = {
+        /*0*/ {1,3},
+        /*1*/ {0,2,4},
+        /*2*/ {1,5},
+        /*3*/ {0,4},
+        /*4*/ {1,3,5},
+        /*5*/ {2,4},
+    };
+    
+    int steps = 0;
     while(!q.empty()) {
         int size = q.size();
         for(int i = 0; i < size; i++) {
-            string current = q.front();
+            string cur = q.front();
             q.pop_front();
-            if(current == target) {
-                return steps;
-            }
-            int zeroPos = current.find('0');
+            
+            if(cur == target) return steps;
+            
+            int zeroPos = cur.find('0');
+            
             for(auto move:moves[zeroPos]) {
-                swap(current[zeroPos], current[move]);
-                if(m.count(current) == 0) {
-                    q.push_back(current);
-                    m.insert(current);
+                swap(cur[move], cur[zeroPos]);
+                if(visited.count(cur) == 0) {
+                    visited.insert(cur);
+                    q.push_back(cur);
                 }
-                swap(current[zeroPos], current[move]);
+                swap(cur[move], cur[zeroPos]);
             }
         }
         steps++;
     }
     return -1;
-}
-
-int find(vector<vector<int>> maps) {
-    unordered_set<string> m;
-    return findRecu(maps, m, 0);
 }
 
 int main() {
