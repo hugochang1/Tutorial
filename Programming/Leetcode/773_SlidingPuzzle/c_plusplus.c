@@ -1,80 +1,72 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string>
 #include <vector>
 #include <unordered_set>
-#include <string>
-#include <queue>
-
-// 773_SlidingPuzzle
+#include <deque>
 
 using namespace std;
 
-// convert 2D to 1D 
-// use breadth first search (BFS) by using queue
-// use unordered_set to record visited position
-int find(vector<vector<int>> v) {
+//773_SlidingPuzzle
+//use a hashmap (unordered_map) to record the visited place (convert 2D array to a string)
+//use BFS (breadth first seach) to solve this issue
+
+int findRecu(vector<vector<int>>& maps, unordered_set<string>& m, int steps) {
     string target = "123450";
-    string pos = "";
-    
-    for(int i = 0; i < v.size(); i++) {
-        for(int j = 0; j < v[i].size(); j++) {
-            pos += to_string((v[i][j]));
+    string s;
+    for(auto a:maps) {
+        for(auto b:a) {
+            s += to_string(b);
         }
     }
-    
-    if (pos == target) return 0;
-    
-    queue<string> q;
-    q.push(pos);
-    
-    unordered_set<string> visited;
-    visited.insert(pos);
+    m.insert(s);
     
     // 0 1 2
     // 3 4 5
     vector<vector<int>> moves = {
-        {1, 3},     //neighbor of index 0
-        {0, 2, 4},  //neighbor of index 1
-        {1, 5},     //neighbor of index 2
-        {0, 4},     //neighbor of index 3
-        {1, 3, 5},  //neighbor of index 4
-        {2, 4}      //neighbor of index 5
+        /*0*/ {1, 3},
+        /*1*/ {0, 4, 2},
+        /*2*/ {1, 5},
+        /*3*/ {0, 4},
+        /*4*/ {3, 1, 5},
+        /*5*/ {2, 4},
     };
     
-    int level = 0;
+    deque<string> q;
+    q.push_back(s);
+    
     while(!q.empty()) {
         int size = q.size();
         for(int i = 0; i < size; i++) {
-            string currPos = q.front();
-            q.pop();
-            
-            if (currPos == target) return level;
-            
-            int zeroPos = currPos.find('0');
-            
-            for(int neighborPos : moves[zeroPos]) {
-                string nextPos = currPos;
-                swap(nextPos[zeroPos], nextPos[neighborPos]);
-                
-                if(visited.find(nextPos) == visited.end()) {
-                    visited.insert(nextPos);
-                    q.push(nextPos);
+            string current = q.front();
+            q.pop_front();
+            if(current == target) {
+                return steps;
+            }
+            int zeroPos = current.find('0');
+            for(auto move:moves[zeroPos]) {
+                swap(current[zeroPos], current[move]);
+                if(m.count(current) == 0) {
+                    q.push_back(current);
+                    m.insert(current);
                 }
+                swap(current[zeroPos], current[move]);
             }
         }
-        level++;
+        steps++;
     }
     return -1;
 }
 
+int find(vector<vector<int>> maps) {
+    unordered_set<string> m;
+    return findRecu(maps, m, 0);
+}
+
 int main() {
-    vector<vector<int>> v1 = {{1,2,3}, {4,0,5}}; // output: 1
-    vector<vector<int>> v2 = {{1,2,3}, {5,4,0}}; // output: -1
-    vector<vector<int>> v3 = {{4,1,2}, {5,0,3}}; // output: 5
-    vector<vector<int>> v4 = {{1,2,3}, {4,5,0}}; // output: 0
-    printf("%d\n", find(v1));
-    printf("%d\n", find(v2));
-    printf("%d\n", find(v3));
-    printf("%d\n", find(v4));
+    printf("%d\n", find({{1,2,3}, {4,0,5}})); //1
+    printf("%d\n", find({{1,2,3}, {5,4,0}})); //-1
+    printf("%d\n", find({{4,1,2}, {5,0,3}})); //5
+    printf("%d\n", find({{1,2,3}, {4,5,0}})); //0
     return 0;
 }
