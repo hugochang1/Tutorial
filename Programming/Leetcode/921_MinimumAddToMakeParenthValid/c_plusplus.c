@@ -5,23 +5,16 @@
 using namespace std;
 
 //921_MinimumAddToMakeParenthValid
-
 int find(string s) {
-    int valid_count = 0;
-    int addition_count = 0;
-    
-    for(char c:s) {
-        if(c == '(') {
-            valid_count++;
+    int cnt = 0;
+    for(int i = 0; i < s.size(); i++) {
+        if(s[i] == '(') {
+            cnt++;
         } else {
-            if(valid_count > 0) {
-                valid_count--;
-            } else {
-                addition_count++;
-            }
+            cnt--;
         }
     }
-    return valid_count + addition_count;
+    return abs(cnt);
 }
 
 int main() {
