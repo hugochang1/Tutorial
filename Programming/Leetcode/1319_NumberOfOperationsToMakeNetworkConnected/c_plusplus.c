@@ -1,34 +1,26 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <vector>
-#include <set>
+#include <unordered_set>
+
 using namespace std;
 
 //1319_NumberOfOperationsToMakeNetworkConnected
 
-//Time complexity is O(nlogn)
-//It can be improved to O(n) if change the data structure from set to unorder_set
+//time complexity: O(n) which n is the number of connections
 int find(int n, vector<pair<int,int>> connections) {
-    if (connections.size() < (n-1)) {
-        return -1;
-    }
-    //go through all connections and use the set for visited nodes
-    //the answer is the number of un-visited nodes
-    set<int> s;
+    if(n - 1 > connections.size()) return -1;
     
-    for(auto connection:connections) {
-        if(s.find(connection.first) == s.end()) {
-            s.insert(connection.first);
-        }
-        if(s.find(connection.second) == s.end()) {
-            s.insert(connection.second);
-        }
+    unordered_set<int> visited;
+    for(auto [a, b]:connections) {
+        visited.insert(a);
+        visited.insert(b);
     }
-    return n - s.size();
+    return n - visited.size();
 }
 
 int main() {
-    printf("%d\n", find(3, {{0,1}, {0,2}, {1,2}})); // 1
+    printf("%d\n", find(4, {{0,1}, {0,2}, {1,2}})); // 1
     printf("%d\n", find(6, {{0,1}, {0,2}, {0,3}, {1,2}, {1,3}})); //2
     printf("%d\n", find(6, {{0,1}, {0,2}, {0,3}, {1,2}})); // -1
     return 0;
