@@ -6,31 +6,62 @@ using namespace std;
 
 //1664_WaysToMakeAFairArray
 
-// time complexity: O(n^2)
-// time complexity can be improved to O(n) TBD
-int solution(vector<int> v) {
-    int count = 0;
-    for(int i = 0; i < v.size(); i++) {
-        vector<int> tmp;
-        for(int j = 0; j < v.size(); j++) {
-            if(i != j) {
-                tmp.push_back(v[j]);
-            }
-        }
-        
+#if 0
+// Time complexity: O(n^2)
+int solution(vector<int> nums) {
+    int cnt = 0;
+    for(int i = 0; i < nums.size(); i++) {
+        bool even = true;
         int oddSum = 0;
         int evenSum = 0;
-        for(int j = 0; j < tmp.size(); j++) {
-            if(j % 2 == 0) {
-                evenSum += tmp[j];
+        for(int j = 0; j < nums.size(); j++) {
+            if(i == j) continue;
+            if(even) {
+                evenSum += nums[j];
             } else {
-                oddSum += tmp[j];
+                oddSum += nums[j];
             }
+            even = !even;
         }
-        if(evenSum == oddSum) count++;
+        if(oddSum == evenSum) cnt++;
     }
-    return count;
+    return cnt;
 }
+#else
+// Time complexity: O(n)
+int solution(vector<int> nums) {
+    int cnt = 0;
+    int oddSum = 0;
+    int evenSum = 0;
+    for(int i = 0; i < nums.size(); i++) {
+        if(i%2 == 0) {
+            evenSum += nums[i];
+        } else {
+            oddSum += nums[i];
+        }
+    }
+    
+    int newOdSum = 0;
+    int newEvenSum = 0;
+    for(int i = 0; i < nums.size(); i++) {
+        if(i%2 == 0) {
+            evenSum -= nums[i];
+        } else {
+            oddSum -= nums[i];
+        }
+        
+        if((newOdSum + evenSum) == (newEvenSum + oddSum)) cnt++;
+        
+        if(i%2 == 0) {
+            newEvenSum += nums[i];
+        } else {
+            newOdSum += nums[i];
+        }
+    }
+    
+    return cnt;
+}
+#endif
 
 int main() {
     printf("%d\n", solution({2,1,6,4})); // 1
