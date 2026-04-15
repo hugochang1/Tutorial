@@ -5,18 +5,32 @@
 using namespace std;
 
 //2433_FindTheOriginalArrayOfPrefixXOR
-//time complexity: O(n)
-vector<int> find(vector<int> nums) {
-    vector<int> ret;
-    int value = 0;
-    for(auto num:nums) {
-        value ^= num;
-        int tmp = value;
-        ret.push_back(value);
-        value ^= num;
-        value ^= tmp;
+//pref[i] = arr[0] ^ arr[1] ^ ... ^ arr[i]
+
+//pref[0] = arr[0]
+//  arr[0] = pref[0]
+
+//pref[1] = arr[0] ^ arr[1]
+//  arr[1] = arr[0] ^ pref[1]
+//  arr[1] = pref[0] ^ pref[1]
+
+//pref[2] = arr[0] ^ arr[1] ^ arr[2]
+//  arr[2] = arr[0] ^ arr[1] ^ pref[2]
+//  arr[2] = pref[1] ^ pref[2]
+
+// time complexity: O(n)
+vector<int> find(vector<int> pref) {
+    vector<int> out;
+    if(pref.size() == 0) return out;
+    
+    int pre = pref[0];
+    out.push_back(pref[0]);
+    
+    for(int i = 1; i < pref.size(); i++) {
+        out.push_back(pre ^ pref[i]);
+        pre = pref[i];
     }
-    return ret;
+    return out;
 }
 
 int main() {
