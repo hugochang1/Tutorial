@@ -7,32 +7,30 @@ using namespace std;
 
 //2461_MaxSumOfDistinctSubarraysWithLengthK
 
-//go through nums
-//use unordered_set to check whether value already existed
-//time complexity: O(k x n)
+// time complexity: O(n x k)
 int find(vector<int> nums, int k) {
-    int ret = 0;
-    
-    for(int i = 0; i <= nums.size() - k; i++) {
+    int out = 0;
+    for(int i = 0; i < nums.size(); i++) {
+        unordered_set<int> visited;
         int sum = 0;
-        unordered_set<int> s;
-        for(int j = i; j < i + k; j ++) {
-            if(s.count(nums[j])) {
-                sum = 0;
-                break;
+        for(int j = i; j < nums.size(); j++) {
+            if(visited.count(nums[j]) == 0) {
+                visited.insert(nums[j]);
+                sum += nums[j];
+                if(visited.size() == k) {
+                    out = max(out, sum);
+                    break;
+                }
             }
-            sum += nums[j];
-            s.insert(nums[j]);
         }
-        ret = max(ret, sum);
     }
-    return ret;
+    return out;
 }
 
 int main() {
-    
     printf("%d\n", find({1,5,4,2,9,9,9}, 3)); //15
     printf("%d\n", find({4,4,4}, 3)); //0
-    
+    printf("%d\n", find({4,4,4,5,6}, 3)); //15
+    printf("%d\n", find({1,2,4,4,4}, 3)); //7
     return 0;
 }
