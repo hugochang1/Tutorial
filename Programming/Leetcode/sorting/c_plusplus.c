@@ -55,7 +55,6 @@ int partition(vector<int>& nums, int low, int high) {
 
 void quickSortRecu(vector<int>& nums, int low, int high) {
     if(low >= high) return;
-    
     int pivot = partition(nums, low, high);
     quickSortRecu(nums, low, pivot - 1);
     quickSortRecu(nums, pivot + 1, high);
@@ -67,56 +66,109 @@ vector<int> quickSort(vector<int> nums) {
 }
 
 // time complexity: O(n^2)
+
+// divide and conquer
+void merge(vector<int>& nums, int low, int mid, int high) {
+    int n1 = mid - low + 1;
+    int n2 = high - mid;
+    
+    vector<int> v1, v2;
+    for(int i = 0; i < n1; i++) {
+        v1.push_back(nums[low + i]);
+    }
+    for(int i =0; i < n2; i++) {
+        v2.push_back(nums[mid + 1 + i]);
+    }
+    
+    int i = 0, j = 0, pos = low;
+    while(i < n1 && j < n2) {
+        if(v1[i] <= v2[j]) {
+            nums[pos++] = v1[i++];
+        } else {
+            nums[pos++] = v2[j++];
+        }
+    }
+    while(i < n1) {
+        nums[pos++] = v1[i++];
+    }
+    while(j < n2) {
+        nums[pos++] = v2[j++];
+    }
+}
+
+void mergeSortRecu(vector<int>& nums, int low, int high) {
+    if(low >= high) return;
+    int mid = low + (high - low) / 2;
+    mergeSortRecu(nums, low, mid);
+    mergeSortRecu(nums, mid+1, high);
+    merge(nums, low, mid, high);
+}
+
 vector<int> mergeSort(vector<int> nums) {
+    mergeSortRecu(nums, 0, nums.size() - 1);
     return nums;
 }
+
+#define SORT mergeSort
 
 int main() {
     vector<int> ret;
     
-    ret = quickSort({3,2,1,4,5,0,-1});
+    ret = SORT({3,2,1,4,5,0,-1});
     for(auto a:ret) {
         printf("%d ", a);
     } // -1 0 1 2 3 4 5 
     printf("\n");
     
-    ret = quickSort({1});
+    ret = SORT({1});
     for(auto a:ret) {
         printf("%d ", a);
     }
     printf("\n");
     
-    ret = quickSort({1, 2});
+    ret = SORT({1, 2});
     for(auto a:ret) {
         printf("%d ", a);
     }
     printf("\n");
     
-    ret = quickSort({2, 1});
+    ret = SORT({2, 1});
     for(auto a:ret) {
         printf("%d ", a);
     }
     printf("\n");
     
-    ret = quickSort({1,2,3});
+    ret = SORT({1,2,3});
     for(auto a:ret) {
         printf("%d ", a);
     }
     printf("\n");
     
-    ret = quickSort({1,3,2});
+    ret = SORT({1,3,2});
     for(auto a:ret) {
         printf("%d ", a);
     }
     printf("\n");
     
-    ret = quickSort({2,1,3});
+    ret = SORT({2,1,3});
     for(auto a:ret) {
         printf("%d ", a);
     }
     printf("\n");
     
-    ret = quickSort({2,3,1});
+    ret = SORT({2,3,1});
+    for(auto a:ret) {
+        printf("%d ", a);
+    }
+    printf("\n");
+    
+    ret = SORT({3,1,2});
+    for(auto a:ret) {
+        printf("%d ", a);
+    }
+    printf("\n");
+    
+    ret = SORT({3,2,1});
     for(auto a:ret) {
         printf("%d ", a);
     }
