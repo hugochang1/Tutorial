@@ -9,9 +9,9 @@ Work Experience
 - MediaTek 2011/10 - now (14 years)
   - Tile: Senior Technical Manager
   - Expertise: AI QoS
-    - lead a team with 7 RDs and 2 QAs and landing to our products
+    - lead a team with 7 RDs and 2 QAs and landing to our products and improve E2E latency by 10 times
   - Expertise: USB RNDIS
-    - performance tuning: design a new flow in kernel driver to enhance peak throughput by 60%
+    - performance tuning: design a new flow in kernel driver to enhance peak throughput by 1.4 times
   - Expertise: AGNSS protocols
     - lead a team of 3 colleagues for AGNSS development (SUPL2.0, LPP, LPPe)
 - HTC 2008/10 - 2011/10 (3 years)
