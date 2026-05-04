@@ -46,8 +46,20 @@
                           |--[[31m34.92%[[m--cpuidle_enter
                           |          |
 ```
+
+### Flamegraph
 - Command ```  perf script > out.perf ```
   - read perf.data and convert to trace output format for generating flame graph
+- Install flamegrph ``` pip install flamegraph ``` at your PC
+```
+from flamegraph import FlameGraph
+
+with open("out.perf") as f:
+    stacks = f.read().splitlines()
+
+fg = FlameGraph()
+fg.generate(stacks, "flamegraph.svg")
+```
 
 
 
