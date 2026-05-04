@@ -9,10 +9,14 @@ Work Experience
 - MediaTek 2011/10 - now (14 years)
   - Tile: Senior Technical Manager
   - Expertise: AI QoS (OpenWrt, C/C++, Python)
-    - lead a team with 7 RDs and 2 QAs and landing to our products and improve E2E latency by 10 times for Router product
+    - Deployed an AI solution to identify real-time applications and ensure low latency under network congestion scenarios
+    - Led a team of 7 R&D engineers and 2 QA specialists for development and test
+    - Achieving a tenfold improvement in end-to-end latency for the router product
   - Expertise: USB RNDIS (Kernel driver, C)
-    - performance tuning: design a new flow in kernel driver to enhance peak throughput by 1.4 times for Router product
-  - Expertise: Tensorflow lite + Neuro Pilot (Android, C/C++)
+    - Peak throughput performance tuning
+    - Found the bottleneck and designed a new kernel driver workflow
+    - Increasing peak throughput by 1.4 times for the router product
+  - Expertise: Tensorflow lite + MediaTek Neuro Pilot (Android, C/C++)
     - TBD
   - Expertise: I2C/I3C (Kernel driver, C)
     - TBD
@@ -20,15 +24,15 @@ Work Experience
     - lead a team of 3 colleagues for AGNSS development (SUPL2.0, LPP, LPPe) + test tool and landing to Smart phone
 - HTC 2008/10 - 2011/10 (3 years)
   - Title: SW engineer
-  - Expertise: GPS/AGPS software
+  - Expertise: GPS/AGPS software (Android, C/C++)
     - landing vendors' GPS/AGPS solution to our products
 
 Education
 - National Taiwan University 
-  Electrical Engineering, Computer Engineering Division
-  Master
-  2006/9 - 2008/7
+  - Electrical Engineering, Computer Engineering Division
+  - Master
+  - 2006/9 - 2008/7
 - National Taipei University of Technology
-  Computer Science and Information Engineering
-  Bachelor
-  2003/9 - 2006/6
+  - Computer Science and Information Engineering
+  - Bachelor
+  - 2003/9 - 2006/6
