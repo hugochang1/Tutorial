@@ -1,7 +1,25 @@
 # perf
 - It's a Linux performance profiling tool for user space and kernel space in C/C++
 
+### perf record
+- Command ``` perf record -g ```
+  - Recording call graphs
+  - will generate perf.data under the current folder
+- Command ``` perf report --call-graph ```
+  - read perf.data under the current folder
+```
+  [[31m  44.97%[[m     0.00%  swapper          [kernel.kallsyms]    [k] cpu_startup_entry
+            |
+            ---cpu_startup_entry
+               |
+                --[[31m44.26%[[m--do_idle
+                          |
+                          |--[[31m34.92%[[m--cpuidle_enter
+                          |          |
+```
+
 ### perf top
+- CPU profiling
 ```
    PerfTop:    1619 irqs/sec  kernel:42.4%  exact:  0.0% lost: 0/0 drop: 0/0 [4000Hz cycles],  (all, 4 CPUs)
 -------------------------------------------------------------------------------
