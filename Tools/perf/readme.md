@@ -49,7 +49,7 @@
 
 ### Flamegraph
 - Command ```  perf script > out.perf ```
-  - read perf.data and convert to trace output format for generating flame graph
+  - read perf.data and convert to text format
 - perf2flamegrph.py
   - input file: out.perf
   - output file: flamegraph.svg
