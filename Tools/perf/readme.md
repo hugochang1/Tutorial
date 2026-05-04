@@ -50,12 +50,141 @@
 ### Flamegraph
 - Command ```  perf script > out.perf ```
   - read perf.data and convert to trace output format for generating flame graph
-- git clone https://github.com/brendangregg/Flamegraph
-  - cd Flamegraph
-  - ./stackcollapse-perf.pl ../out.perf > stacks.folded
-    - convert stack trace to flamegraph's input
-  - ./flamegraph.pl stacks.folded > flamegraph.svg
-    - convert to svg file
+- perf2flamegrph.py
+  - input file: out.perf
+  - output file: flamegraph.svg
+  - out.perf -> collpased.txt -> flamegraph.svg
+```
+import sys
+import re
+from collections import defaultdict
+
+def collapse_perf(f):
+    """解析 perf script 輸出並合併堆疊"""
+    stacks = defaultdict(int)
+    current_stack = []
+    current_comm = ""
+
+    # 匹配 perf script 的標頭行 (例如: swapper 0 [000] 123.456: cycles:)
+    header_re = re.compile(r'^\s*(.*?)\s+(\d+)\s+(?:\[\d+\]\s+)?\d+\.\d+:\s+(.*?):')
+    # 匹配堆疊行 (例如: 7fffffff8023 [unknown] ([kernel.kallsyms]))
+    frame_re = re.compile(r'^\s*[0-9a-f]+\s+(.*)\s+\((.*)\)')
+
+    for line in f:
+        line = line.rstrip()
+        if not line:
+            if current_stack:
+                # 輸出格式: comm;func1;func2 count
+                stack_str = f"{current_comm};" + ";".join(reversed(current_stack))
+                stacks[stack_str] += 1
+                current_stack = []
+            continue
+
+        header_match = header_re.match(line)
+        if header_match:
+            current_comm = header_match.group(1).replace(' ', '_')
+            continue
+
+        frame_match = frame_re.match(line)
+        if frame_match:
+            func = frame_match.group(1).split('+')[0]
+            current_stack.append(func)
+
+    # 處理最後一個堆疊
+    if current_stack:
+        stack_str = f"{current_comm};" + ";".join(reversed(current_stack))
+        stacks[stack_str] += 1
+
+    with open('collpased.txt', 'w', encoding='utf-8') as f:
+        for stack, count in sorted(stacks.items()):
+            f.write(f"{stack} {count}\n")
+
+class FlameGraph:
+    def __init__(self, title="Flame Graph", width=1200):
+        self.title = title
+        self.width = width
+        self.frame_height = 16
+        self.nodes = {"children": {}, "count": 0}
+        self.max_depth = 0
+
+    def add_stack(self, stack_str, count):
+        parts = stack_str.split(';')
+        current = self.nodes
+        current["count"] += count
+        
+        depth = 0
+        for part in parts:
+            if part not in current["children"]:
+                current["children"][part] = {"children": {}, "count": 0}
+            current = current["children"][part]
+            current["count"] += count
+            depth += 1
+        
+        if depth > self.max_depth:
+            self.max_depth = depth
+
+    def get_color(self, name):
+        # 簡單的調色盤：根據名稱雜湊決定顏色
+        h = hash(name) % 360
+        s = 50 + (hash(name) % 30)
+        l = 60 + (hash(name) % 15)
+        return f"hsl({h}, {s}%, {l}%)"
+
+    def render_svg(self):
+        total_count = self.nodes["count"]
+        if total_count == 0:
+            return "Empty dataset"
+
+        image_height = (self.max_depth + 3) * self.frame_height
+        
+        svg = [
+            f'<svg version="1.1" width="{self.width}" height="{image_height}" viewBox="0 0 {self.width} {image_height}" xmlns="http://www.w3.org/2000/svg">',
+            '<style>.func:hover { stroke: black; stroke-width: 0.5; cursor: pointer; } text { font-family: Verdana; font-size: 10px; fill: black; }</style>',
+            f'<rect width="100%" height="100%" fill="white" />',
+            f'<text x="{self.width/2}" y="20" font-size="18" text-anchor="middle">{self.title}</text>'
+        ]
+
+        def draw_node(node, name, x, y, w):
+            if w < 0.5: return # 太小的框不畫
+            
+            color = self.get_color(name)
+            svg.append(f'<g class="func">')
+            svg.append(f'  <title>{name} ({node["count"]} samples, {node["count"]/total_count:.2%})</title>')
+            svg.append(f'  <rect x="{x:.2f}" y="{y}" width="{w:.2f}" height="{self.frame_height-1}" fill="{color}" />')
+            if w > 30:
+                short_name = name[:int(w/6)]
+                svg.append(f'  <text x="{x+3:.2f}" y="{y+11}">{short_name}</text>')
+            svg.append(f'</g>')
+
+            child_x = x
+            for child_name, child_node in sorted(node["children"].items()):
+                child_w = (child_node["count"] / total_count) * self.width
+                draw_node(child_node, child_name, child_x, y - self.frame_height, child_w)
+                child_x += child_w
+
+        draw_node(self.nodes, "all", 0, image_height - 30, self.width)
+        svg.append('</svg>')
+        return "\n".join(svg)
+
+if __name__ == "__main__":
+    with open("out.perf", 'r', encoding='utf-8', errors='ignore') as f:
+        collapse_perf(f)
+
+    fg = FlameGraph()
+    input_source = open('collpased.txt', 'r', encoding='utf-8')
+    try:
+        for line in input_source:
+            if not line: continue
+            try:
+                stack, count = line.rsplit(' ', 1)
+                fg.add_stack(stack, int(count))
+            except ValueError:
+                continue
+    finally:
+        input_source.close()
+    with open('flamegraph.svg', 'w', encoding='utf-8') as f:
+        f.write(fg.render_svg())
+```
 
 ### Troubleshooting
 ```
