@@ -17,6 +17,8 @@
                           |--[[31m34.92%[[m--cpuidle_enter
                           |          |
 ```
+- Command ```  perf script > out.perf ```
+  - read perf.data and convert to trace output format for generating flame graph
 
 ### perf top
 - CPU profiling
