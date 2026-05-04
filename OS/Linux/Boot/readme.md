@@ -1,0 +1,16 @@
+# Boot up sequence
+- Boot ROM
+  - boot at the fixed address
+  - decide where to load bootloader (eMMC, NAND, UART, USB, ...etc)
+- 1st Bootloader
+  - init DRAM
+  - load 2nd Bootloader into DRAM
+- 2nd Bootloader
+  - init serial drivers
+  - load kernel image to DRAM
+- Kernel early init
+  - init interrupt, MMU, Device Tree (DTS)
+- Kernel driver init
+- Kernel mount rootfs
+- procd or systemd
+- Application
