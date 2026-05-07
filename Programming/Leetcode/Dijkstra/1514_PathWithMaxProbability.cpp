@@ -15,6 +15,7 @@ float solution(int n, vector<vector<int>> edges, vector<float> prob, int start, 
         int start = edges[i][0];
         int end = edges[i][1];
         adj[start].push_back({end, prob[i]});
+        adj[end].push_back({start, prob[i]});
     }
     
     //dist[dst] = prob
@@ -23,12 +24,14 @@ float solution(int n, vector<vector<int>> edges, vector<float> prob, int start, 
     
     //dst, prob
     priority_queue<pair<int,float>, vector<pair<int,float>>, greater<pair<int,float>>> q;
-    q.push({start, prob[start]});
+    q.push({start, 1});
 
     while(!q.empty()) {
         int start = q.top().first;
         float prob = q.top().second;
         q.pop();
+        
+        if(prob < dist[start]) continue;
         
         for(auto& a:adj[start]) {
             int end = a.first;
