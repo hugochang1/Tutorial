@@ -1,0 +1,10 @@
+- ```gdb-multiarch ./your_executable ./core_dump```
+  - ```set arch armv8-a```
+  - ```show arch```
+    - ```The target architecture is set to "armv8-a".```
+  - ```show solib-search-path```
+    - ```The search path for loading non-absolute shared library symbol files is .```
+  - ```set solib-search-path /path/to/your/openwrt/staging_dir/target-xxx/root-xxx/lib```
+    - ```The search path for loading non-absolute shared library symbol files is /path/to/your/openwrt/staging_dir/target-xxx/root-xxx/lib```
+  - ```file ./your_unstripped_executable```
+  - ```bt```
