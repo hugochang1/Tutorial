@@ -4,7 +4,7 @@
 
 using namespace std;
 
-//0021_RemoveDuplicatesFromSortedArray
+//0026_RemoveDuplicatesFromSortedArray
 
 int solution(vector<int>& nums) {
     if(nums.size() == 0) return 0;
