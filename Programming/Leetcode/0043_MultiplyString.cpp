@@ -7,28 +7,26 @@ using namespace std;
 
 //0043_MultiplyString
 
-int string2int(string s) {
+int str2int(string s) {
     int ret = 0;
-    for(auto& c:s) {
+    for(auto& ch:s) {
         ret *= 10;
-        ret += c - '0';
+        ret += ch - '0';
     }
     return ret;
 }
-
 string solution(string s1, string s2) {
-    string ret;
-    int n1 = string2int(s1);
-    int n2 = string2int(s2);
+    int n1 = str2int(s1);
+    int n2 = str2int(s2);
     int product = n1 * n2;
     if(product == 0) {
-        ret = "0";
-    } else {
-        while(product > 0) {
-            char ch = (product % 10) + '0';
-            ret =  ch + ret;
-            product /= 10;
-        }
+        return "0";
+    }
+    string ret;
+    while(product > 0) {
+        char ch = product%10 + '0';
+        ret = ch + ret;
+        product /= 10;
     }
     return ret;
 }
