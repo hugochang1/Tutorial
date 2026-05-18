@@ -4,8 +4,7 @@
 
 using namespace std;
 
-//0034_TrappingRainWater
-//Time complexity: O(n)
+//0042_TrappingRainWater
 int solution(vector<int> height) {
     int ret = 0;
     int left = 0;
@@ -23,7 +22,7 @@ int solution(vector<int> height) {
             }
             left++;
         } else {
-            //hanlde right part
+            //handle right part
             if(maxRight < height[right]) {
                 maxRight = height[right];
             } else {
