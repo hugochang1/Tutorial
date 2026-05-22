@@ -10,6 +10,7 @@ vector<vector<int>> solution(vector<vector<int>> intervals, vector<int> newInter
     vector<vector<int>> ret;
     
     int begin = -1;
+    int end = newInterval[1];
     for(auto& interval:intervals) {
         if(begin == -1) {
             if(newInterval[0] > interval[1]) {
@@ -21,9 +22,11 @@ vector<vector<int>> solution(vector<vector<int>> intervals, vector<int> newInter
             ret.push_back(interval);
         } else {
             if(newInterval[1] < interval[0]) {
-                ret.push_back({begin, newInterval[1]});
+                ret.push_back({begin, end});
                 begin = 1e9;
                 ret.push_back(interval);
+            } else {
+                end = max(end, interval[1]);
             }
         }
     }
