@@ -9,27 +9,27 @@ using namespace std;
 vector<vector<int>> solution(vector<vector<int>> intervals, vector<int> newInterval) {
     vector<vector<int>> ret;
     
-    int begin = -1;
-    int end = newInterval[1];
-    for(auto& interval:intervals) {
-        if(begin == -1) {
-            if(newInterval[0] > interval[1]) {
-                ret.push_back(interval);
-            } else {
-                begin = interval[0];
-            }
-        } else if(begin == 1e9) {
-            ret.push_back(interval);
-        } else {
-            if(newInterval[1] < interval[0]) {
-                ret.push_back({begin, end});
-                begin = 1e9;
-                ret.push_back(interval);
-            } else {
-                end = max(end, interval[1]);
-            }
-        }
+    int n = intervals.size();
+    int i = 0;
+    
+    while(i < n && intervals[i][1] < newInterval[0]) {
+        ret.push_back(intervals[i]);
+        i++;
     }
+    
+    int begin = intervals[i][0];
+    int end = newInterval[1];
+    while(i < n && intervals[i][0] <= newInterval[1]) {
+        end = max(end, intervals[i][1]);
+        i++;
+    }
+    ret.push_back({begin, end});
+    
+    while(i < n) {
+        ret.push_back(intervals[i]);
+        i++;
+    }
+    
     return ret;
 }
 
