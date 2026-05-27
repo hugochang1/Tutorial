@@ -5,10 +5,12 @@
 
 using namespace std;
 
+//0146_LRUCache
+
 class LRUCache {
     int capacity;
-    list<pair<int,int>> l; //key, value
-    unordered_map<int, list<pair<int,int>>::iterator> m; //key, list
+    list<pair<int, int>> l; //key, value
+    unordered_map<int, list<pair<int,int>>::iterator> m; //key, list node
     
 public:
     LRUCache(int cap) {
@@ -26,7 +28,7 @@ public:
                 l.pop_back();
                 m.erase(lruKey);
             }
-            l.push_front({key, value});
+            l.push_front({key,value});
             m[key] = l.begin();
         }
     }
