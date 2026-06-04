@@ -1,48 +1,42 @@
-#include <iostream>
-#include <list>
+#include <stdio.h>
+#include <vector>
 
 using namespace std;
+//0426_ConvertBST2SortedLinkedList
 
 class Node {
 public:
     int data;
-    Node *left;
-    Node *right;
-    
-    Node() {
-        data = 0;
+    Node* left;
+    Node* right;
+    Node(int d) {
+        data = d;
         left = nullptr;
         right = nullptr;
     }
 };
 
-class Solution {
-public:
-    Node *prev;
-    Node *head;
-    
-    Solution() {
-        prev = NULL;
-        head = NULL;
+void recursive(Node** pre, Node* curr, Node** head) {
+    if(curr == nullptr) return;
+    recursive(pre, curr->left, head);
+
+    if(*head == nullptr) {
+        *head = curr;
+    } else {
+        (*pre)->right = curr;
+        curr->left = *pre;
     }
-    
-    void inorder_traversal(Node *n) {
-        if (n == NULL) return;
-        
-        inorder_traversal(n->left);
-        
-        if (prev) {
-            n->left = prev;
-            prev->right = n;
-        } else {
-            prev = n;
-            head = n;
-        }
-        prev = n;
-        
-        inorder_traversal(n->right);
-    }
-};
+    *pre = curr;
+
+    recursive(pre, curr->right, head);
+}
+
+Node* solution(Node* r) {
+    Node* head = nullptr;
+    Node* pre = nullptr;
+    recursive(&pre, r, &head);
+    return head;
+}
 
 int main() {
     //     3
@@ -50,24 +44,18 @@ int main() {
     //   1   4
     //  / \
     // 0   2
-    Node nodes[5];
-    for(int i = 0; i < 5; i++) {
-        nodes[i].data = i;
-    }
-    nodes[3].left = &nodes[1];
-    nodes[3].right = &nodes[4];
-    nodes[1].left = &nodes[0];
-    nodes[1].right = &nodes[2];
-    
-    Solution s;
-    s.inorder_traversal(&nodes[3]);
-    
-    Node* n = s.head;
-    while (n != NULL) {
-        printf("%d ", n->data); // 0 1 2 3 4 
+    Node* r = new Node(3);
+    r->left = new Node(1);
+    r->right = new Node(4);
+    r->left->left = new Node(0);
+    r->left->right = new Node(2);
+
+    Node* n = solution(r);
+    while(n != nullptr) {
+        printf("%d ", n->data);
         n = n->right;
     }
     printf("\n");
-    
+
     return 0;
 }
