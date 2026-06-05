@@ -1,43 +1,47 @@
 #include <stdio.h>
-#include <stdlib.h>
 #include <vector>
 
 using namespace std;
-
 //526_BeautifulArrangement
-// time complexity: O(n!)
-void perm(vector<int>& v, int index, int &cnt) {
-    int size = v.size();
-    if(index == size - 1) {
-        cnt++;
+
+void recu(vector<int>& nums, int n, int index, vector<vector<int>>& ret) {
+    if(n == index) {
+        for(int i = 0; i < n; i++) {
+            if(nums[i] % (i+1) == 0 || (i+1) % nums[i] == 0) continue;
+            else return;
+        }
+        ret.push_back(nums);
         return;
     }
-    for(int i = index; i < size; i++) {
-        swap(v[i], v[index]);
-        if((v[i] % (i+1) == 0 || (i+1) % v[i] == 0) &&
-            (v[index] % (index+1) == 0 || (index+1) % v[index] == 0)) {
-            perm(v, index+1, cnt);
-        }
-        swap(v[i], v[index]);
+
+    for(int i = index; i < n; i++) {
+        swap(nums[index], nums[i]);
+        recu(nums, n, index + 1, ret);
+        swap(nums[index], nums[i]);
     }
-    
 }
 
-int find(int n) {
-    int cnt = 0;
-    vector<int> v;
-    for(int i = 1; i <= n; i++) {
-        v.push_back(i);
+vector<vector<int>> solution(int n) {
+    vector<vector<int>> ret;
+    vector<int> nums;
+    for(int i = 0; i < n; i++) {
+        nums.push_back(i+1);
     }
-    perm(v, 0, cnt);
-    return cnt;
+    recu(nums, n, 0, ret);
+    return ret;
 }
-
 
 int main() {
-    printf(" %d\n", find(1)); //1
-    printf(" %d\n", find(2)); //2
-    printf(" %d\n", find(3)); //3
-    printf(" %d\n", find(4)); //8
+    vector<vector<int>> ret;
+    ret = solution(4);
+    for(auto& r:ret) {
+        printf("{");
+        for(auto& a:r) {
+            printf("%d ", a);
+        }
+        printf("} ");
+    }
+    printf("\n");
+
     return 0;
 }
