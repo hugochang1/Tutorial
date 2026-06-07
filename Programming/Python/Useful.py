@@ -17,6 +17,7 @@ print(match) # ['444']
 import datetime, threading
 from threading import Lock
 
+aaa = 123
 module_version = "[1.00]"
 log_file_path = "./log.txt"
 _log_lock = Lock()
