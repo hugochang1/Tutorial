@@ -1,66 +1,78 @@
 #include <stdio.h>
 #include <vector>
-#include <deque>
+#include <stack>
+#include <cmath>
+//735_AsteroidCollision
 
 using namespace std;
 
-//735_AsteroidCollision
-//Time complexity: O(n)
-vector<int> find(vector<int> nums) {
+vector<int> find(vector<int> as) {
     vector<int> ret;
     deque<int> q;
-    
-    for(int i = 0; i < nums.size(); i++) {
+    int i = 0;
+
+    while(i < as.size()) {
         if(q.empty()) {
-            q.push_back(nums[i]);
-            continue;
-        }
-        if(nums[i] > 0) {
-            q.push_back(nums[i]);
-            continue;
-        }
-        while(!q.empty() && q.back() > 0 && q.back() < abs(nums[i])) {
-            q.pop_back();
-        }
-        if(q.empty()) {
-            q.push_back(nums[i]);
-            continue;
-        }
-        if(q.back() > 0 && q.back() == abs(nums[i])) {
-            q.pop_back();
-        } else if(q.back() > 0 && q.back() > abs(nums[i])) {
+            if(as[i] < 0) {
+                ret.push_back(as[i]);
+                i++;
+            } else {
+                q.push_back(as[i]);
+                i++;
+            }
         } else {
-            q.push_back(nums[i]);
+            if(as[i] > 0) {
+                q.push_back(as[i]);
+                i++;
+            } else {
+                while(!q.empty() && q.back() < abs(as[i])) {
+                    q.pop_back();
+                }
+                if(q.empty()) {
+                    ret.push_back(as[i]);
+                    i++;
+                } else if(!q.empty() && q.back() == abs(as[i])) {
+                    q.pop_back();
+                    i++;
+                } else {
+                    i++;
+                }
+            }
         }
     }
-    
-    for(auto a:q) {
-        ret.push_back(a);
+
+    for(auto& data:q) {
+        ret.push_back(data);
     }
-    
+
     return ret;
 }
 
 int main() {
     vector<int> ret;
     
-    ret = find({5,10,-5});//{5,10}
+    ret = find({5,10,-5});
     for(auto a:ret) {
         printf("%d ", a);
     }
-    printf("\n");
+    printf("\n");//{5,10}
     
-    ret = find({8, -8});//{}
+    ret = find({8, -8});
     for(auto a:ret) {
         printf("%d ", a);
     }
-    printf("\n");
+    printf("\n");//{}
     
-    ret = find({10, 2, -5});//{10}
+    ret = find({10, 2, -5});
     for(auto a:ret) {
         printf("%d ", a);
     }
-    printf("\n");
+    printf("\n");//{10}
+    
+    ret = find({-1, -2, 10, 2, -5});
+    for(auto a:ret) {
+        printf("%d ", a);
+    }
+    printf("\n");//{-1, -2, 10}
     return 0;
 }
-
