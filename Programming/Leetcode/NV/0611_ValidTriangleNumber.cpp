@@ -1,28 +1,27 @@
 #include <stdio.h>
-#include <stdlib.h>
 #include <vector>
+#include <algorithm>
 
 using namespace std;
 //611_ValidTriangleNumber
-//time complexity: O(n^2)
+
+//time complexity: O(nlogn)
 int find(vector<int> nums) {
-    int cnt = 0;
-    sort(nums.begin(), nums.end()); //O(nlogn)
-    
-    for(int i = nums.size() - 1; i >= 2; i--) {
+    int ret = 0;
+    sort(nums.begin(), nums.end());
+    for(int i = nums.size() - 1; i >= 0; i--) {
         int left = 0;
         int right = i - 1;
-        while(left != right) {
+        while(left < right) {
             if(nums[left] + nums[right] > nums[i]) {
-                cnt += (right - left);
+                ret += right - left;
                 right--;
             } else {
                 left++;
             }
         }
     }
-    
-    return cnt;
+    return ret;
 }
 
 int main() {
