@@ -1,62 +1,56 @@
 #include <stdio.h>
-#include <stdlib.h>
 #include <string>
 #include <vector>
 #include <unordered_set>
 #include <deque>
 
 using namespace std;
-
 //773_SlidingPuzzle
-int find(vector<vector<int>> maps) {
-    //convert 2D maps to 1D string
-    //use unordered_set for visited position
-    //use queue to check steps
+
+int find(vector<vector<int>> m) {
+    unordered_set<string> visited;
     string target = "123450";
-    string s;
-    for(auto a:maps) {
-        for(auto b:a) {
-            s+= to_string(b);
+    string curr;
+    deque<string> q;
+
+    for(auto& a:m) {
+        for(auto& b:a) {
+            curr += to_string(b);
         }
     }
-    unordered_set<string> visited;
-    visited.insert(s);
-    
-    deque<string> q;
-    q.push_back(s);
-    
+    if(curr == target) return 0;
+    q.push_back(curr);
+    visited.insert(curr);
+
     // 0 1 2
     // 3 4 5
     vector<vector<int>> moves = {
-        /*0*/ {1,3},
-        /*1*/ {0,2,4},
-        /*2*/ {1,5},
-        /*3*/ {0,4},
-        /*4*/ {1,3,5},
-        /*5*/ {2,4},
+        {1,3}, //index 0
+        {0,2,4}, //index 1
+        {1,5}, //index 2
+        {0,4}, //index 3
+        {1,3,5}, //index 4
+        {2,4} //index 5
     };
-    
-    int steps = 0;
+
+    int cnt = 0;
     while(!q.empty()) {
         int size = q.size();
         for(int i = 0; i < size; i++) {
-            string cur = q.front();
+            curr = q.front();
             q.pop_front();
-            
-            if(cur == target) return steps;
-            
-            int zeroPos = cur.find('0');
-            
-            for(auto move:moves[zeroPos]) {
-                swap(cur[move], cur[zeroPos]);
-                if(visited.count(cur) == 0) {
-                    visited.insert(cur);
-                    q.push_back(cur);
+            if(curr == target) return cnt;
+            int zeroPos = curr.find('0');
+            for(auto& move:moves[zeroPos]) {
+                swap(curr[zeroPos], curr[move]);
+                if(visited.count(curr) == 0) {
+                    q.push_back(curr);
+                    visited.insert(curr);
                 }
-                swap(cur[move], cur[zeroPos]);
+                swap(curr[zeroPos], curr[move]);
             }
         }
-        steps++;
+        cnt++;
     }
     return -1;
 }
