@@ -1,18 +1,14 @@
 #include <stdio.h>
-#include <stdlib.h>
+#include <vector>
 #include <string>
 #include <numeric>
-
 using namespace std;
 
 //1071_GreatestCommonDivisorOfStrings
 
-string find(string str1, string str2) {
-    if(str1 + str2 != str2 + str1) {
-        return "";
-    }
-    int g = gcd(str1.size(), str2.size());
-    return str1.substr(0, g);
+string find(string s1, string s2) {
+    if(s1 + s2 != s2 + s1) return "";
+    return s1.substr(0, gcd(s1.size(), s2.size()));
 }
 
 int main() {
