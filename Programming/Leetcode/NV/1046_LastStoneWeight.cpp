@@ -1,34 +1,32 @@
 #include <stdio.h>
-#include <stdlib.h>
 #include <vector>
 #include <queue>
-
 using namespace std;
 
 //1046_LastStoneWeight
 
-int find(vector<int> s) {
+int find(vector<int> stones) {
     priority_queue<int> q;
-    for(auto a:s) {
-        q.push(a);
+    for(auto& stone:stones) {
+        q.push(stone);
     }
-    
+
     while(q.size() > 1) {
-        int first = q.top();
+        int s1 = q.top();
         q.pop();
-        int second = q.top();
+        int s2 = q.top();
         q.pop();
-        
-        q.push(first - second);
+        int delta = s1 - s2;
+        if(delta) {
+            q.push(delta);
+        }
     }
+
     return q.top();
 }
 
 int main() {
-    vector<int> s = {2,7,4,1,8,1}; // 1
-    printf("%d\n", find(s));
-    
-    s = {5};
-    printf("%d\n", find(s)); // 5
+    printf("%d\n", find({2,7,4,1,8,1})); // 1
+    printf("%d\n", find({5})); // 5
     return 0;
 }
