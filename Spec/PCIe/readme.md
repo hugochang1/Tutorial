@@ -46,6 +46,23 @@
   - Config Space Register Block: Hardware automatically handles basic host read/writes to the 4KB Configuration Space (Vendor ID, Device ID, BAR registers)
   - Inbound/Outbound Address Translation (iATU): Hardware block that maps host physical memory addresses (System DRAM) to endpoint local internal bus addresses (AXI/AHB).
 
+### Check PCIe driver
+#### Linux
+- ```# lspci```
+  - Bus:Device.Function
+  - <img width="806" height="324" alt="image" src="https://github.com/user-attachments/assets/c5acb377-1520-4682-bdd7-f4b242ecbb22" />
+
+#### Windows
+- Windows Key -> device manager
+  - <img width="846" height="1020" alt="image" src="https://github.com/user-attachments/assets/cc4a7d1b-74d3-48f6-8c86-d844c0ce47d0" />
+  - <img width="581" height="647" alt="image" src="https://github.com/user-attachments/assets/27a4533f-3967-4621-b32b-3535eb6204c5" />
+  - <img width="581" height="647" alt="image" src="https://github.com/user-attachments/assets/76e47b04-166c-432e-9148-34a542e1e12d" />
+  - <img width="581" height="647" alt="image" src="https://github.com/user-attachments/assets/539a0961-73bd-4c1b-88ec-4d6f441aff38" />
+  - <img width="581" height="647" alt="image" src="https://github.com/user-attachments/assets/2db775e9-a30e-4a12-8783-078d365ec4dd" />
+  - <img width="581" height="647" alt="image" src="https://github.com/user-attachments/assets/c408c2c5-2979-48eb-ab50-e49cfed4fed5" />
+
+
+
 
 
 
