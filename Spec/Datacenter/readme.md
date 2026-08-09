@@ -1,0 +1,13 @@
+## L1 - L12
+- L2: Sub-assembly of parts into small components
+- L3: Integration of metals and plastics into a chassis
+- L4: Chassis assembled with PSU, cables, or backplane as a kit
+- L5: Full enclosure assembly with cables and I/O testing
+- L6: Integration of the **motherboard** into the chassis with power-on testing (barebone servers)
+- L7: Adding and testing add-on **cards (e.g., GPUs, NICs)** in barebone servers
+- L8: Integration and testing of **hard drives** in barebone servers
+- L9: Installation and testing of **CPU and memory** in barebone servers
+- L10: Complete server assembly with system-level testing, **OS/software integration**, and documentation
+- L11: **Rack-level** integration—assembling nodes into racks, adding networking (switches, cabling), and conducting rack-level testing
+- L12: **Multi-rack** integration—extending L11 to include cluster management, cloud OS (e.g., OpenStack), full networking setup, and multi-rack validation/testing
+- <img width="1024" height="700" alt="image" src="https://github.com/user-attachments/assets/a1a39c65-c1f1-4981-b64f-0dbf6bb6cb27" />
