@@ -16,13 +16,13 @@ extern "C" __global__ void vectorAdd(const float* A, const float* B, float* C, i
 - <img width="466" height="713" alt="image" src="https://github.com/user-attachments/assets/738a767b-b103-4983-9d9e-69f8a4639c66" />
 - After compiling ```vector_add.cu```, ```vector_add.ptx``` will be generated
 
+
 ## Build Host code
 - <img width="437" height="287" alt="image" src="https://github.com/user-attachments/assets/1c8f0766-aded-4838-b571-eabc2a173d4e" />
 - mouse right click and select ```Property```
 - <img width="1299" height="682" alt="image" src="https://github.com/user-attachments/assets/4e39536c-2b53-41f0-93e1-6ead9c35d7e4" />
 - <img width="1328" height="682" alt="image" src="https://github.com/user-attachments/assets/e818d4d2-dc92-4c84-8bc4-c2d8418baf4f" />
 - <img width="1443" height="682" alt="image" src="https://github.com/user-attachments/assets/6013fcd1-2400-4460-9b45-35e13c2a9650" />
-
 - ```kernel.cu```
 ```
 #include <iostream>
@@ -114,4 +114,3 @@ int main() {
     return 0;
 }
 ```
-- 
