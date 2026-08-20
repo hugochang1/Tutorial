@@ -1,7 +1,32 @@
 ### 2D Matrix Addition
-- CPU Time: 41.7484 ms
-- GPU Global Memory Time: 3.53245 ms
-- GPU Shared Memory Time: 5.0289 ms
+- Matrix Size  : 512 x 512 (262144 elements)
+- Tile Size    : 32 x 32
+- CPU Time                : 0.6815 ms
+- GPU Global Memory Time  : 0.435584 ms
+- GPU Shared Memory Time  : 0.139552 ms
+- Speedup (Global / Shared)  3.1213 x
+- 
+- Matrix Size  : 1024 x 1024 (1048576 elements)
+- Tile Size    : 32 x 32
+- CPU Time                : 3.7718 ms
+- GPU Global Memory Time  : 1.21939 ms
+- GPU Shared Memory Time  : 0.580736 ms
+- Speedup (Global / Shared)  2.09974 x
+- 
+- Matrix Size  : 2048 x 2048 (4194304 elements)
+- Tile Size    : 32 x 32
+- CPU Time                : 12.417 ms
+- GPU Global Memory Time  : 1.19904 ms
+- GPU Shared Memory Time  : 1.5015 ms
+- Speedup (Global / Shared)  0.798559 x
+- 
+- Matrix Size  : 4096 x 4096 (16777216 elements)
+- Tile Size    : 32 x 32
+- CPU Time                : 44.2713 ms
+- GPU Global Memory Time  : 3.83082 ms
+- GPU Shared Memory Time  : 5.46448 ms
+- Speedup (Global / Shared)  0.701039 x
+- 
 
 ### 2D Matrix Transpose
 - Matrix Size : 1024 x 1024
