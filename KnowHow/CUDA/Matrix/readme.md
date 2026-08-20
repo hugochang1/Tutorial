@@ -1,9 +1,9 @@
-### 2D Matrix Addition Performance Test
+### 2D Matrix Addition
 - CPU Time: 41.7484 ms
 - GPU Global Memory Time: 3.53245 ms
 - GPU Shared Memory Time: 5.0289 ms
 
-### 2D Matrix Transpose Performance result
+### 2D Matrix Transpose
 - Matrix Size : 1024 x 1024
 - Tile Dimension: 16 x 16
 - Global Memory Transpose Time: 0.501216 ms
