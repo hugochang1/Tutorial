@@ -4,7 +4,44 @@
 - GPU Shared Memory Time: 5.0289 ms
 
 ### 2D Matrix Transpose Performance result
-- 矩陣大小: 4096 x 4096 (64 MB)
-- CPU 執行時間: 104.884 ms
-- GPU Global Memory 執行時間: 2.65606 ms
-- GPU Shared Memory 執行時間: 4.0713 ms
+- Matrix Size : 1024 x 1024
+- Tile Dimension: 16 x 16
+- Global Memory Transpose Time: 0.501216 ms
+- Shared Memory Transpose Time: 0.313728 ms
+- Speedup (Global / Shared)   : 1.60 x
+- 
+- Matrix Size : 2048 x 2048
+- Tile Dimension: 16 x 16
+- Global Memory Transpose Time: 1.034080 ms
+- Shared Memory Transpose Time: 0.974848 ms
+- Speedup (Global / Shared)   : 1.06 x
+- 
+- Matrix Size : 4096 x 4096
+- Tile Dimension: 16 x 16
+- Global Memory Transpose Time: 3.240832 ms
+- Shared Memory Transpose Time: 3.772320 ms
+- Speedup (Global / Shared)   : 0.86 x
+- 
+- Matrix Size : 8192 x 8192
+- Tile Dimension: 16 x 16
+- Global Memory Transpose Time: 11.304864 ms
+- Shared Memory Transpose Time: 15.184992 ms
+- Speedup (Global / Shared)   : 0.74 x
+- 
+- Matrix Size : 2048 x 2048
+- Tile Dimension: 32 x 32
+- Global Memory Transpose Time: 2.174720 ms
+- Shared Memory Transpose Time: 1.669120 ms
+- Speedup (Global / Shared)   : 1.30 x
+- 
+- Matrix Size : 4096 x 4096
+- Tile Dimension: 32 x 32
+- Global Memory Transpose Time: 6.242944 ms
+- Shared Memory Transpose Time: 5.107520 ms
+- Speedup (Global / Shared)   : 1.22 x
+- 
+- Matrix Size : 8192 x 8192
+- Tile Dimension: 32 x 32
+- Global Memory Transpose Time: 23.618816 ms
+- Shared Memory Transpose Time: 18.996449 ms
+- Speedup (Global / Shared)   : 1.24 x
