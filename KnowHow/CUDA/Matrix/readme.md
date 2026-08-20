@@ -28,6 +28,31 @@
 - Speedup (Global / Shared)  0.701039 x
 - 
 
+### 2D Matrix Multiplication
+- Matrix Size: 128 x 128
+- Tile Size  : 32 x 32
+- GPU Global Memory : 0.548 ms
+- GPU Shared Memory : 0.346 ms
+- GPU Shared vs GPU Global   : 1.585 x
+- 
+- Matrix Size: 1024 x 1024
+- Tile Size  : 32 x 32
+- GPU Global Memory : 70.512 ms
+- GPU Shared Memory : 76.297 ms
+- GPU Shared vs GPU Global   : 0.924 x
+- 
+- Matrix Size: 2048 x 2048
+- Tile Size  : 32 x 32
+- GPU Global Memory : 483.958 ms
+- GPU Shared Memory : 511.373 ms
+- GPU Shared vs GPU Global   : 0.946 x
+- 
+- Matrix Size: 4096 x 4096
+- Tile Size  : 32 x 32
+- GPU Global Memory : 3556.577 ms
+- GPU Shared Memory : 4080.295 ms
+- GPU Shared vs GPU Global   : 0.872 x
+
 ### 2D Matrix Transpose
 - Matrix Size : 1024 x 1024
 - Tile Dimension: 16 x 16
