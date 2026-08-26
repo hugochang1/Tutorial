@@ -27,8 +27,28 @@ __global__ void matrixSumGlobal(const float* d_matrix, float* d_sum, int rows, i
     }
 }
 
+__global__ void matrixSumShared(const float* d_mat, float* d_block_sums, int total_elements) {
+    //宣告動態共用記憶體
+    extern __shared__ float sdata[];
+    
+    int tid = threadIdx.x;
+    int idx = blockIdx.x * blockDim.x + threadIdx.x;
+    // 載入資料至共用記憶體，若超出範圍則補 0
+
+    sdata[tid] = (idx < total_elements) ? d_mat[idx] : 0.0f;
+    __syncthreads();
+
+    if (tid == 0) {
+        float sum = 0;
+        for(int i = 0; i < blockDim.x; i++) {
+            sum += sdata[i];
+        }
+        d_block_sums[blockIdx.x] = sum;
+    }
+}
+
 // CUDA Kernel: 每個 Block 使用共用記憶體進行區域歸約 (Reduction)
-__global__ void matrixSumKernel(const float* d_mat, float* d_block_sums, int total_elements) {
+__global__ void matrixSumSharedTree(const float* d_mat, float* d_block_sums, int total_elements) {
     //宣告動態共用記憶體
     extern __shared__ float sdata[];
 
@@ -57,8 +77,8 @@ __global__ void matrixSumKernel(const float* d_mat, float* d_block_sums, int tot
 }
 
 int main() {
-    int rows = 32;
-    int cols = 1;
+    int rows = 1024;
+    int cols = 1024;
     int total_elements = rows * cols;
     size_t size_bytes = total_elements * sizeof(float);
 
@@ -70,7 +90,7 @@ int main() {
     float *d_mat = nullptr;
     float *d_block_sums = nullptr;
 
-    int threadsPerBlock = 16;
+    int threadsPerBlock = 256;
     int blocksPerGrid = (total_elements + threadsPerBlock - 1) / threadsPerBlock;
 
     CHECK_CUDA(cudaMalloc(&d_mat, size_bytes));
@@ -81,7 +101,7 @@ int main() {
 
     // 4. 執行第一階段 Kernel (計算每個 Block 的總和)
     size_t sharedMemSize = threadsPerBlock * sizeof(float);
-    matrixSumKernel<<<blocksPerGrid, threadsPerBlock, sharedMemSize>>>(d_mat, d_block_sums, total_elements);
+    matrixSumShared<<<blocksPerGrid, threadsPerBlock, sharedMemSize>>>(d_mat, d_block_sums, total_elements);
     CHECK_CUDA(cudaGetLastError());
 
     // 5. 若有超過 1 個 Block，將結果抓回 CPU 做最後加總 (或者再寫一個小 Kernel 歸約)
