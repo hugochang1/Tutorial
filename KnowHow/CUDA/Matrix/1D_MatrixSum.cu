@@ -11,6 +11,22 @@
     } \
 }
 
+// CUDA Kernel: 每個 thread 負責讀取矩陣中的一個元素並加到總和變數中
+// 注意：此為最直觀的 Global Access 實作，未使用 atomic 或 reduction 樹狀歸約，
+// 若矩陣很大會發生 thread 覆寫與競態問題，僅用於教學與展示 Global Memory 讀取。
+__global__ void matrixSumGlobal(const float* d_matrix, float* d_sum, int rows, int cols) {
+    int row = blockIdx.y * blockDim.y + threadIdx.y;
+    int col = blockIdx.x * blockDim.x + threadIdx.x;
+
+    if (row < rows && col < cols) {
+        int idx = row * cols + col;
+        // 直接對 global memory 的 sum 進行 atomicAdd 避免衝突，
+        // 若完全不加 atomic 則多個 thread 同時寫入會造成資料錯亂。
+        atomicAdd(d_sum, d_matrix[idx]);
+        //d_sum[0] += d_matrix[idx]; //race condition
+    }
+}
+
 // CUDA Kernel: 每個 Block 使用共用記憶體進行區域歸約 (Reduction)
 __global__ void matrixSumKernel(const float* d_mat, float* d_block_sums, int total_elements) {
     //宣告動態共用記憶體
