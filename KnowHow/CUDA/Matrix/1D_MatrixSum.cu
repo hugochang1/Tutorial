@@ -14,12 +14,10 @@
 // CUDA Kernel: 每個 thread 負責讀取矩陣中的一個元素並加到總和變數中
 // 注意：此為最直觀的 Global Access 實作，未使用 atomic 或 reduction 樹狀歸約，
 // 若矩陣很大會發生 thread 覆寫與競態問題，僅用於教學與展示 Global Memory 讀取。
-__global__ void matrixSumGlobal(const float* d_matrix, float* d_sum, int rows, int cols) {
-    int row = blockIdx.y * blockDim.y + threadIdx.y;
-    int col = blockIdx.x * blockDim.x + threadIdx.x;
+__global__ void matrixSumGlobal(const float* d_matrix, float* d_sum, int total_elements) {
+    int idx = blockIdx.x * blockDim.x + threadIdx.x;
 
-    if (row < rows && col < cols) {
-        int idx = row * cols + col;
+    if (idx < total_elements) {
         // 直接對 global memory 的 sum 進行 atomicAdd 避免衝突，
         // 若完全不加 atomic 則多個 thread 同時寫入會造成資料錯亂。
         atomicAdd(d_sum, d_matrix[idx]);
@@ -54,7 +52,7 @@ __global__ void matrixSumSharedTree(const float* d_mat, float* d_block_sums, int
 
     int tid = threadIdx.x;
     int idx = blockIdx.x * blockDim.x + threadIdx.x;
-    printf("tid=%d idx=%d\n", tid, idx);
+    //printf("tid=%d idx=%d\n", tid, idx);
 
     // 載入資料至共用記憶體，若超出範圍則補 0
     sdata[tid] = (idx < total_elements) ? d_mat[idx] : 0.0f;
@@ -63,8 +61,8 @@ __global__ void matrixSumSharedTree(const float* d_mat, float* d_block_sums, int
     // 樹狀歸約 (Tree-based reduction) 於共用記憶體中進行
     for (unsigned int s = blockDim.x / 2; s > 0; s >>= 1) {
         if (tid < s) {
-            printf("  tid=%d idx=%d s=%d (tid+s)=%d sdata[tid]=%f sdata[tid+s]=%f\n",
-                tid, idx, s, tid+s, sdata[tid], sdata[tid+s]);
+            //printf("  tid=%d idx=%d s=%d (tid+s)=%d sdata[tid]=%f sdata[tid+s]=%f\n",
+            //    tid, idx, s, tid+s, sdata[tid], sdata[tid+s]);
             sdata[tid] += sdata[tid + s];
         }
         __syncthreads();
@@ -101,7 +99,7 @@ int main() {
 
     // 4. 執行第一階段 Kernel (計算每個 Block 的總和)
     size_t sharedMemSize = threadsPerBlock * sizeof(float);
-    matrixSumShared<<<blocksPerGrid, threadsPerBlock, sharedMemSize>>>(d_mat, d_block_sums, total_elements);
+    matrixSumSharedTree<<<blocksPerGrid, threadsPerBlock, sharedMemSize>>>(d_mat, d_block_sums, total_elements);
     CHECK_CUDA(cudaGetLastError());
 
     // 5. 若有超過 1 個 Block，將結果抓回 CPU 做最後加總 (或者再寫一個小 Kernel 歸約)
