@@ -6,9 +6,11 @@
 
 ### software coherence
 - use page fault to sync between CPU and GPU
+- cost of conflict: page transfer (bigger >= 4KB)
 
 ### hardware coherence
 - CPU 和 GPU 擁有各自獨立的頁表結構。但雙方的 MMU 透過硬體協議（如 ATS）保持同步，或由驅動程式在背後進行鏡像複製。
+- cost of conflict: cache line (smaller)
 
 ### Terms
 - Heterogeneous Managed Memory (HMM) - A feature of the Linux kernel that enables software coherency for full unified memory
