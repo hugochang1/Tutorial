@@ -1,11 +1,11 @@
 ### Unified memory (UM)
 - a single, shared pool of physical memory (RAM) that is directly accessed by both the central processing unit (CPU) and the graphics processing unit (GPU), rather than keeping them separated
 
-| Phase | Architectures | How It Operates Under the Hood |
-| :--- | :--- | :--- |
-| **Early UM (Coarse-grained)** | Kepler, Maxwell (CUDA 6–7) | **No hardware page faulting.** All managed memory had to be synchronized and migrated in bulk at kernel boundaries; CPU and GPU could not access data concurrently. |
-| **Software Coherence**<br>**Page-Fault UM (Demand Paging)** | Pascal through Blackwell (dGPUs) | **Hardware Page Faulting Engine + UVM Driver.** Fine-grained demand paging over PCIe/NVLink. True concurrency and memory oversubscription supported. |
-| **Hardware Coherence** | Grace Hopper (GH200), Grace Blackwell (GB200) | **NVLink-C2C (Chip-to-Chip)** connects CPU and GPU directly. Both processors can directly load/store into each other's memory with hardware-level cache coherence, minimizing the need for software page migration. |
+| Phase | Architectures | How It Operates Under the Hood | Related Features |
+| :--- | :--- | :--- | :--- |
+| **Early UM (Coarse-grained)** | Kepler, Maxwell (CUDA 6–7) | **No hardware page faulting.** All managed memory had to be synchronized and migrated in bulk at kernel boundaries; CPU and GPU could not access data concurrently. | N/A |
+| **Software Coherence**<br>**Page-Fault UM (Demand Paging)** | Pascal through Blackwell (dGPUs) | **Hardware Page Faulting Engine + UVM Driver.** Fine-grained demand paging over PCIe/NVLink. True concurrency and memory oversubscription supported. | Heterogeneous Managed Memory (HMM) |
+| **Hardware Coherence** | Grace Hopper (GH200), Grace Blackwell (GB200) | **NVLink-C2C (Chip-to-Chip)** connects CPU and GPU directly. Both processors can directly load/store into each other's memory with hardware-level cache coherence, minimizing the need for software page migration. | Address Translation Services (ATS) |
 
 
 
