@@ -1,4 +1,4 @@
-### Unified memory (UM)
+### Unified Memory (UM)
 - a single, shared pool of physical memory (RAM) that is directly accessed by both the central processing unit (CPU) and the graphics processing unit (GPU), rather than keeping them separated
 
 | Phase | Architectures | How It Operates Under the Hood | Related Features |
