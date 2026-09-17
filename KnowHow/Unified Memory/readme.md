@@ -8,8 +8,10 @@
 | **Hardware Coherence** | Grace Hopper (GH200), Grace Blackwell (GB200) | **NVLink-C2C (Chip-to-Chip)** connects CPU and GPU directly. Both processors can directly load/store into each other's memory with hardware-level cache coherence, minimizing the need for software page migration. |
 
 
-### Unified Virtual Memory (UVM) 
-- gives the central processing unit (CPU) and graphics processing unit (GPU) a single, shared virtual address space
+
+### Unified Virtual Address (UVM) Space
+- Gives the central processing unit (CPU) and graphics processing unit (GPU) a single, shared virtual address space
+- CPU memory and each GPU’s memory have a distinct range within a single virtual address space
 
 ### explicit managed memory allocations
 - need to use explicit memory managed API provided by CUDA such as cudaMallocManaged()
