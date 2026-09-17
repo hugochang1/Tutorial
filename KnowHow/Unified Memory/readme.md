@@ -7,7 +7,10 @@
 | **Software Coherence**<br>**Page-Fault UM (Demand Paging)** | Pascal through Blackwell (dGPUs) | **Hardware Page Faulting Engine + UVM Driver.** Fine-grained demand paging over PCIe/NVLink. True concurrency and memory oversubscription supported. | Heterogeneous Managed Memory (HMM) |
 | **Hardware Coherence** | Grace Hopper (GH200), Grace Blackwell (GB200) | **NVLink-C2C (Chip-to-Chip)** connects CPU and GPU directly. Both processors can directly load/store into each other's memory with hardware-level cache coherence, minimizing the need for software page migration. | Address Translation Services (ATS) |
 
-
+- **Heterogeneous Managed Memory (HMM)**
+  - A feature of the Linux kernel that enables software coherency for full unified memory
+- **Address Translation Services (ATS)**
+  - A hardware feature, available when GPUs are connected to the CPU by the NVLink Chip-to-Chip (C2C) interconnect, which provides hardware coherency for full unified memory
 
 ### Unified Virtual Address (UVM) Space
 - Gives the central processing unit (CPU) and graphics processing unit (GPU) a single, shared virtual address space
